@@ -118,15 +118,24 @@
               <div class="browser-url">sigbot.app/dashboard</div>
             </div>
             <div class="app-shell" style="height: 520px;">
-              <div class="app-sidebar" style="display: flex; flex-direction: column;">
+              <div class="app-sidebar" style="display: flex; flex-direction: column; width: 190px;">
                 <div class="app-sidebar-logo"><span></span> SIGBOT</div>
+                <!-- Workspace dropdown -->
+                <div style="margin:0 10px 14px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:6px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;cursor:default;">
+                  <span style="font-size:11px;color:#ccc;font-weight:500;">Personal</span>
+                  <span style="font-size:10px;color:#555;">▾</span>
+                </div>
                 <div class="sidebar-item active"><span class="s-icon">📊</span> Dashboard</div>
                 <div class="sidebar-item"><span class="s-icon">👥</span> Contacts</div>
                 <div class="sidebar-item"><span class="s-icon">🗺️</span> Map</div>
-                <div class="sidebar-item"><span class="s-icon">📁</span> Folders</div>
                 <div class="sidebar-item"><span class="s-icon">👤</span> Account</div>
+                <div style="padding:14px 16px 4px;display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:9px;color:#3a3a3a;text-transform:uppercase;letter-spacing:0.07em;">Folders</span>
+                  <span style="font-size:15px;color:#3a3a3a;line-height:1;">+</span>
+                </div>
+                <div class="sidebar-item" style="color:#3a3a3a;font-size:11px;padding:5px 16px;">📁 New Folder</div>
                 <div class="sidebar-usage">
-                  <div class="sidebar-usage-row"><span style="color:#666;font-size:9px;text-transform:uppercase;letter-spacing:0.05em;">Email scraping</span><span style="font-size:9px;color:#3b82f6;font-weight:600;">Starter</span></div>
+                  <div class="sidebar-usage-row"><span style="color:#555;font-size:9px;text-transform:uppercase;letter-spacing:0.05em;">Email scraping</span><span style="font-size:9px;color:#3b82f6;font-weight:600;">Starter</span></div>
                   <div class="sidebar-usage-row"><span>Today</span><span>0 / 50</span></div>
                   <div class="sidebar-usage-row"><span>Total</span><span>0 / 300</span></div>
                   <div class="sidebar-upgrade-btn">⬆ Upgrade</div>
@@ -266,71 +275,70 @@
                 </div>
                 <div class="browser-url">sigbot.app/contacts</div>
               </div>
-              <div class="app-shell" style="height: 360px;">
-                <div class="app-sidebar" style="display:flex;flex-direction:column;">
+              <div class="app-shell" style="height: 420px;">
+
+                <!-- Sidebar — matches real app structure -->
+                <div class="app-sidebar" style="display:flex;flex-direction:column;width:190px;">
                   <div class="app-sidebar-logo"><span></span> SIGBOT</div>
+
+                  <!-- Workspace dropdown -->
+                  <div style="margin:0 10px 14px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:6px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;cursor:default;">
+                    <span style="font-size:11px;color:#ccc;font-weight:500;">Personal</span>
+                    <span style="font-size:10px;color:#555;">▾</span>
+                  </div>
+
                   <div class="sidebar-item"><span class="s-icon">📊</span> Dashboard</div>
                   <div class="sidebar-item active"><span class="s-icon">👥</span> Contacts</div>
                   <div class="sidebar-item"><span class="s-icon">🗺️</span> Map</div>
-                  <div class="sidebar-item"><span class="s-icon">📁</span> Folders</div>
                   <div class="sidebar-item"><span class="s-icon">👤</span> Account</div>
+
+                  <!-- Folders section -->
+                  <div style="padding:14px 16px 4px;display:flex;justify-content:space-between;align-items:center;">
+                    <span style="font-size:9px;color:#3a3a3a;text-transform:uppercase;letter-spacing:0.07em;">Folders</span>
+                    <span style="font-size:15px;color:#3a3a3a;line-height:1;cursor:default;">+</span>
+                  </div>
+                  <div class="sidebar-item" style="color:#3a3a3a;font-size:11px;padding:5px 16px;">📁 New Folder</div>
+
+                  <!-- Upgrade widget -->
+                  <div class="sidebar-usage">
+                    <div class="sidebar-usage-row">
+                      <span style="color:#555;font-size:9px;text-transform:uppercase;letter-spacing:0.05em;">Email scraping</span>
+                      <span style="font-size:9px;color:#3b82f6;font-weight:600;">Starter</span>
+                    </div>
+                    <div class="sidebar-usage-row"><span>Today</span><span>0 / 50</span></div>
+                    <div class="sidebar-usage-row"><span>Total</span><span>0 / 300</span></div>
+                    <div class="sidebar-upgrade-btn">⬆ Upgrade</div>
+                  </div>
                 </div>
-                <div class="app-main">
-                  <div class="app-topbar">
-                    <div class="app-page-title">Contacts <span style="font-size:10px;color:#444;font-weight:400;margin-left:8px;">100 contacts</span></div>
-                    <div style="display:flex;gap:8px;align-items:center;">
-                      <div class="app-search">Search contacts...</div>
-                      <div style="background:#3b82f6;color:#fff;font-size:10px;font-weight:600;padding:5px 10px;border-radius:6px;cursor:default;">+ New</div>
+
+                <!-- Main content -->
+                <div class="app-main" style="overflow:hidden;">
+                  <!-- Topbar matching real app buttons -->
+                  <div class="app-topbar" style="flex-wrap:wrap;gap:8px;">
+                    <div style="display:flex;align-items:baseline;gap:10px;flex-shrink:0;">
+                      <div class="app-page-title">Contacts</div>
+                      <span style="font-size:10px;color:#444;font-weight:400;">100 contacts</span>
+                    </div>
+                    <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+                      <div class="app-search" style="width:140px;">Search contacts...</div>
+                      <div style="background:#1a1a1a;border:1px solid #2a2a2a;color:#777;font-size:9px;font-weight:600;padding:5px 8px;border-radius:6px;cursor:default;white-space:nowrap;">Add Data</div>
+                      <div style="background:#1a1a1a;border:1px solid #2a2a2a;color:#777;font-size:9px;font-weight:600;padding:5px 8px;border-radius:6px;cursor:default;white-space:nowrap;">Export Data</div>
+                      <div style="background:#3b82f6;color:#fff;font-size:9px;font-weight:600;padding:5px 8px;border-radius:6px;cursor:default;white-space:nowrap;">+ New Contact</div>
                     </div>
                   </div>
-                  <div class="app-table-header contacts-6col">
-                    <div>Name ↕</div>
-                    <div>Email ↕</div>
-                    <div>Company ↕</div>
-                    <div>Title ↕</div>
-                    <div>Phone</div>
-                    <div>Location</div>
+
+                  <!-- Table header -->
+                  <div style="display:grid;grid-template-columns:20px 1.4fr 1.8fr 1.4fr 1.1fr 0.1fr;gap:6px;padding:6px 8px;font-size:9px;color:#3a3a3a;text-transform:uppercase;letter-spacing:0.06em;border-bottom:1px solid #1e1e1e;margin-bottom:2px;align-items:center;">
+                    <div></div><div>Name ↕</div><div>Email ↕</div><div>Company ↕</div><div>Title ↕</div><div></div>
                   </div>
-                  <div class="app-contact-row contacts-6col">
-                    <div class="app-contact-name">Amy Levine</div>
-                    <div class="app-contact-company">amy.levine@ironcladcontracting.com</div>
-                    <div class="app-contact-company">Ironclad Contracting</div>
-                    <div class="app-contact-company">Site Superintendent</div>
-                    <div class="app-contact-company">(506) 431-7139</div>
-                    <div class="app-contact-company">Canada</div>
-                  </div>
-                  <div class="app-contact-row contacts-6col" style="background:#141414;">
-                    <div class="app-contact-name">Martha Gilbert</div>
-                    <div class="app-contact-company">martha.gilbert@anchorpointconstruction.com</div>
-                    <div class="app-contact-company">Anchor Point Construction</div>
-                    <div class="app-contact-company">Civil Engineer</div>
-                    <div class="app-contact-company">(405) 377-3515</div>
-                    <div class="app-contact-company">USA</div>
-                  </div>
-                  <div class="app-contact-row contacts-6col">
-                    <div class="app-contact-name">Colton Clay</div>
-                    <div class="app-contact-company">colton.clay@pinnacleconstructiongroup.com</div>
-                    <div class="app-contact-company">Pinnacle Construction</div>
-                    <div class="app-contact-company">Civil Engineer</div>
-                    <div class="app-contact-company">(267) 586-9261</div>
-                    <div class="app-contact-company">USA</div>
-                  </div>
-                  <div class="app-contact-row contacts-6col" style="background:#141414;">
-                    <div class="app-contact-name">Deborah Reid</div>
-                    <div class="app-contact-company">deborah.reid@horizonbuildpartners.com</div>
-                    <div class="app-contact-company">Horizon Build Partners</div>
-                    <div class="app-contact-company">Site Manager</div>
-                    <div class="app-contact-company">(746) 120-0471</div>
-                    <div class="app-contact-company">USA</div>
-                  </div>
-                  <div class="app-contact-row contacts-6col">
-                    <div class="app-contact-name">Brenda Carson</div>
-                    <div class="app-contact-company">brenda.carson@apexstructuralgroup.com</div>
-                    <div class="app-contact-company">Apex Structural Group</div>
-                    <div class="app-contact-company">Construction Estimator</div>
-                    <div class="app-contact-company">(513) 709-8593</div>
-                    <div class="app-contact-company">USA</div>
-                  </div>
+
+                  <!-- Contact rows — real data from app screenshot -->
+                  <div class="ctrow"><div class="ctcheck"></div><div class="ctcell"><div class="ctname">Amy Levine</div><div class="ctmeta">(506) 431-7139 &nbsp;·&nbsp; Canada</div></div><div class="ctcell ctmuted">amy.levine@ironcladcontracting.com</div><div class="ctcell ctmuted">Ironclad Contracting</div><div class="ctcell ctmuted">Site Superintendent</div><div class="ctdots">···</div></div>
+                  <div class="ctrow ctalt"><div class="ctcheck"></div><div class="ctcell"><div class="ctname">Martha Gilbert</div><div class="ctmeta">(405) 377-3515 &nbsp;·&nbsp; USA</div></div><div class="ctcell ctmuted">martha.gilbert@anchorpointconstruction.com</div><div class="ctcell ctmuted">Anchor Point Construction</div><div class="ctcell ctmuted">Civil Engineer</div><div class="ctdots">···</div></div>
+                  <div class="ctrow"><div class="ctcheck"></div><div class="ctcell"><div class="ctname">Colton Clay</div><div class="ctmeta">(267) 586-9261 &nbsp;·&nbsp; USA</div></div><div class="ctcell ctmuted">colton.clay@pinnacleconstructiongroup.com</div><div class="ctcell ctmuted">Pinnacle Construction Group</div><div class="ctcell ctmuted">Civil Engineer</div><div class="ctdots">···</div></div>
+                  <div class="ctrow ctalt"><div class="ctcheck"></div><div class="ctcell"><div class="ctname">Deborah Reid</div><div class="ctmeta">(746) 120-0471 &nbsp;·&nbsp; USA</div></div><div class="ctcell ctmuted">deborah.reid@horizonbuildpartners.com</div><div class="ctcell ctmuted">Horizon Build Partners</div><div class="ctcell ctmuted">Site Manager</div><div class="ctdots">···</div></div>
+                  <div class="ctrow"><div class="ctcheck"></div><div class="ctcell"><div class="ctname">Brenda Carson</div><div class="ctmeta">(513) 709-8593 &nbsp;·&nbsp; USA</div></div><div class="ctcell ctmuted">brenda.carson@apexstructuralgroup.com</div><div class="ctcell ctmuted">Apex Structural Group</div><div class="ctcell ctmuted">Construction Estimator</div><div class="ctdots">···</div></div>
+                  <div class="ctrow ctalt"><div class="ctcheck"></div><div class="ctcell"><div class="ctname">Tammy Ballard</div><div class="ctmeta">(516) 048-1754 &nbsp;·&nbsp; USA</div></div><div class="ctcell ctmuted">tammy.ballard@northstarbuilders.com</div><div class="ctcell ctmuted">Northstar Builders</div><div class="ctcell ctmuted">Plumbing Contractor</div><div class="ctdots">···</div></div>
                 </div>
               </div>
             </div>
