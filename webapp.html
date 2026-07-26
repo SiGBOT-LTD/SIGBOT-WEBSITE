@@ -100,13 +100,129 @@
         </div>
       </div>
 
+      <!-- Dashboard Analytics Mockup -->
+      <div style="text-align: center; margin-top: 120px;">
+        <div class="section-pill">DASHBOARD</div>
+        <h2 class="heroTitle" style="font-size: 32px; margin: 0 auto 20px;">Instant insight into your database.</h2>
+        <p class="f-desc" style="font-size: 18px; line-height: 1.6; max-width: 600px; margin: 0 auto 60px;">
+          Track contact growth over time, spot your top companies and roles, and see exactly where your data is incomplete — all from one screen.
+        </p>
+        <div style="display: flex; justify-content: center;">
+          <div class="browser-window">
+            <div class="browser-chrome">
+              <div class="browser-dots">
+                <div class="browser-dot red"></div>
+                <div class="browser-dot yellow"></div>
+                <div class="browser-dot green"></div>
+              </div>
+              <div class="browser-url">sigbot.app/dashboard</div>
+            </div>
+            <div class="app-shell" style="height: 520px;">
+              <div class="app-sidebar" style="display: flex; flex-direction: column;">
+                <div class="app-sidebar-logo"><span></span> SIGBOT</div>
+                <div class="sidebar-item active"><span class="s-icon">📊</span> Dashboard</div>
+                <div class="sidebar-item"><span class="s-icon">👥</span> Contacts</div>
+                <div class="sidebar-item"><span class="s-icon">🗺️</span> Map</div>
+                <div class="sidebar-item"><span class="s-icon">📁</span> Folders</div>
+                <div class="sidebar-item"><span class="s-icon">👤</span> Account</div>
+                <div class="sidebar-usage">
+                  <div class="sidebar-usage-row"><span style="color:#666;font-size:9px;text-transform:uppercase;letter-spacing:0.05em;">Email scraping</span><span style="font-size:9px;color:#3b82f6;font-weight:600;">Starter</span></div>
+                  <div class="sidebar-usage-row"><span>Today</span><span>0 / 50</span></div>
+                  <div class="sidebar-usage-row"><span>Total</span><span>0 / 300</span></div>
+                  <div class="sidebar-upgrade-btn">⬆ Upgrade</div>
+                </div>
+              </div>
+              <div class="app-main">
+                <div class="app-topbar">
+                  <div class="app-page-title">Dashboard</div>
+                </div>
+                <!-- Stat cards -->
+                <div class="db-stats-grid">
+                  <div class="db-stat-box">
+                    <div class="db-stat-lbl">Total Contacts</div>
+                    <div class="db-stat-val">279</div>
+                    <div class="db-stat-meta">0 added this week</div>
+                  </div>
+                  <div class="db-stat-box">
+                    <div class="db-stat-lbl">Top Company</div>
+                    <div class="db-stat-val">Bird</div>
+                    <div class="db-stat-meta">6 contacts</div>
+                  </div>
+                  <div class="db-stat-box">
+                    <div class="db-stat-lbl">Top Role</div>
+                    <div class="db-stat-val" style="font-size:12px;padding-top:2px;">Project Manager</div>
+                    <div class="db-stat-meta">6 contacts</div>
+                  </div>
+                  <div class="db-stat-box">
+                    <div class="db-stat-lbl">Growth</div>
+                    <div class="db-stat-val">+12%</div>
+                    <div class="db-stat-meta">Week over week</div>
+                  </div>
+                </div>
+                <!-- Growth chart -->
+                <div class="db-chart-box">
+                  <div class="db-chart-title-row">
+                    <div class="db-chart-title">Contact Growth</div>
+                    <div class="db-chart-range">May 26 — Jun 26</div>
+                  </div>
+                  <svg class="db-chart-svg" viewBox="0 0 400 52" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="cGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25"/>
+                        <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M0,52 C40,51 80,48 120,42 C160,36 200,24 260,14 C300,8 350,3 400,1 L400,52 Z" fill="url(#cGrad)"/>
+                    <path d="M0,52 C40,51 80,48 120,42 C160,36 200,24 260,14 C300,8 350,3 400,1" stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="400" cy="1" r="3" fill="#3b82f6"/>
+                  </svg>
+                </div>
+                <!-- Recent Activity + Data Completeness -->
+                <div class="db-bottom-grid">
+                  <div class="db-bottom-box">
+                    <div class="db-bottom-title">Recent Activity</div>
+                    <div class="activity-item"><span>Imported <strong>221 contacts</strong></span><span class="activity-date">26 Jun</span></div>
+                    <div class="activity-item"><span>Imported <strong>221 contacts</strong></span><span class="activity-date">24 Jun</span></div>
+                    <div class="activity-item"><span>Imported <strong>41 contacts</strong></span><span class="activity-date">22 Jun</span></div>
+                    <div class="activity-item"><span>Imported <strong>20 contacts</strong></span><span class="activity-date">21 Jun</span></div>
+                  </div>
+                  <div class="db-bottom-box">
+                    <div class="db-bottom-title">Data Completeness</div>
+                    <div class="comp-row">
+                      <div class="comp-label">Email</div>
+                      <div class="comp-bar-track"><div class="comp-bar-fill" style="width:100%;background:#22c55e;"></div></div>
+                      <div class="comp-pct" style="color:#22c55e;">100%</div>
+                    </div>
+                    <div class="comp-row">
+                      <div class="comp-label">Phone</div>
+                      <div class="comp-bar-track"><div class="comp-bar-fill" style="width:88%;background:#22c55e;"></div></div>
+                      <div class="comp-pct" style="color:#22c55e;">88%</div>
+                    </div>
+                    <div class="comp-row">
+                      <div class="comp-label">Company</div>
+                      <div class="comp-bar-track"><div class="comp-bar-fill" style="width:100%;background:#22c55e;"></div></div>
+                      <div class="comp-pct" style="color:#22c55e;">100%</div>
+                    </div>
+                    <div class="comp-row">
+                      <div class="comp-label">Job Title</div>
+                      <div class="comp-bar-track"><div class="comp-bar-fill" style="width:16%;background:#f59e0b;"></div></div>
+                      <div class="comp-pct" style="color:#f59e0b;">16%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Feature grid -->
       <div class="section-header" style="margin-top: 120px; text-align: center;">
         <h2 class="heroTitle" style="font-size: 42px; margin: 0 auto 20px; text-align: center;">Everything in one tab.</h2>
         <p class="pageSub" style="margin: 0 auto 40px;">The full Sigbot experience without installing anything.</p>
       </div>
 
-      <div class="features-grid" style="margin-top: 60px;">
+      <div class="features-grid-4">
         <div class="panel">
           <div class="feature-icon-box" style="margin-bottom: 24px;">🌐</div>
           <h3 class="f-title">Any device, any browser</h3>
@@ -114,8 +230,13 @@
         </div>
         <div class="panel">
           <div class="feature-icon-box" style="margin-bottom: 24px;">🔍</div>
-          <h3 class="f-title">Search, filter, and export</h3>
-          <p class="f-desc">Search across thousands of contacts instantly. Filter by sector, company, or source email account. Export to CSV or Excel in one click.</p>
+          <h3 class="f-title">Search, filter, export</h3>
+          <p class="f-desc">Search across thousands of contacts instantly. Filter by company, role, or source inbox. Export to CSV or Excel in one click.</p>
+        </div>
+        <div class="panel">
+          <div class="feature-icon-box" style="margin-bottom: 24px;">📊</div>
+          <h3 class="f-title">Data completeness</h3>
+          <p class="f-desc">See which fields are missing across your database. Know at a glance which contacts need enrichment before they matter.</p>
         </div>
         <div class="panel">
           <div class="feature-icon-box" style="margin-bottom: 24px;">👥</div>
@@ -126,6 +247,95 @@
 
       <!-- Walkthrough -->
       <div class="web-walkthrough">
+
+        <!-- Row 0: Contacts table -->
+        <div class="web-walk-row">
+          <div style="text-align: center;">
+            <h2 class="heroTitle" style="font-size: 32px; margin: 0 auto 20px;">Every contact, every detail.</h2>
+            <p class="f-desc" style="font-size: 18px; line-height: 1.6; max-width: 600px; margin: 0 auto;">
+              Sortable columns across name, email, company, title, phone, and location. Search your entire database in under a second — then export exactly what you need.
+            </p>
+          </div>
+          <div style="display: flex; justify-content: center; width: 100%;">
+            <div class="browser-window">
+              <div class="browser-chrome">
+                <div class="browser-dots">
+                  <div class="browser-dot red"></div>
+                  <div class="browser-dot yellow"></div>
+                  <div class="browser-dot green"></div>
+                </div>
+                <div class="browser-url">sigbot.app/contacts</div>
+              </div>
+              <div class="app-shell" style="height: 360px;">
+                <div class="app-sidebar" style="display:flex;flex-direction:column;">
+                  <div class="app-sidebar-logo"><span></span> SIGBOT</div>
+                  <div class="sidebar-item"><span class="s-icon">📊</span> Dashboard</div>
+                  <div class="sidebar-item active"><span class="s-icon">👥</span> Contacts</div>
+                  <div class="sidebar-item"><span class="s-icon">🗺️</span> Map</div>
+                  <div class="sidebar-item"><span class="s-icon">📁</span> Folders</div>
+                  <div class="sidebar-item"><span class="s-icon">👤</span> Account</div>
+                </div>
+                <div class="app-main">
+                  <div class="app-topbar">
+                    <div class="app-page-title">Contacts <span style="font-size:10px;color:#444;font-weight:400;margin-left:8px;">100 contacts</span></div>
+                    <div style="display:flex;gap:8px;align-items:center;">
+                      <div class="app-search">Search contacts...</div>
+                      <div style="background:#3b82f6;color:#fff;font-size:10px;font-weight:600;padding:5px 10px;border-radius:6px;cursor:default;">+ New</div>
+                    </div>
+                  </div>
+                  <div class="app-table-header contacts-6col">
+                    <div>Name ↕</div>
+                    <div>Email ↕</div>
+                    <div>Company ↕</div>
+                    <div>Title ↕</div>
+                    <div>Phone</div>
+                    <div>Location</div>
+                  </div>
+                  <div class="app-contact-row contacts-6col">
+                    <div class="app-contact-name">Amy Levine</div>
+                    <div class="app-contact-company">amy.levine@ironcladcontracting.com</div>
+                    <div class="app-contact-company">Ironclad Contracting</div>
+                    <div class="app-contact-company">Site Superintendent</div>
+                    <div class="app-contact-company">(506) 431-7139</div>
+                    <div class="app-contact-company">Canada</div>
+                  </div>
+                  <div class="app-contact-row contacts-6col" style="background:#141414;">
+                    <div class="app-contact-name">Martha Gilbert</div>
+                    <div class="app-contact-company">martha.gilbert@anchorpointconstruction.com</div>
+                    <div class="app-contact-company">Anchor Point Construction</div>
+                    <div class="app-contact-company">Civil Engineer</div>
+                    <div class="app-contact-company">(405) 377-3515</div>
+                    <div class="app-contact-company">USA</div>
+                  </div>
+                  <div class="app-contact-row contacts-6col">
+                    <div class="app-contact-name">Colton Clay</div>
+                    <div class="app-contact-company">colton.clay@pinnacleconstructiongroup.com</div>
+                    <div class="app-contact-company">Pinnacle Construction</div>
+                    <div class="app-contact-company">Civil Engineer</div>
+                    <div class="app-contact-company">(267) 586-9261</div>
+                    <div class="app-contact-company">USA</div>
+                  </div>
+                  <div class="app-contact-row contacts-6col" style="background:#141414;">
+                    <div class="app-contact-name">Deborah Reid</div>
+                    <div class="app-contact-company">deborah.reid@horizonbuildpartners.com</div>
+                    <div class="app-contact-company">Horizon Build Partners</div>
+                    <div class="app-contact-company">Site Manager</div>
+                    <div class="app-contact-company">(746) 120-0471</div>
+                    <div class="app-contact-company">USA</div>
+                  </div>
+                  <div class="app-contact-row contacts-6col">
+                    <div class="app-contact-name">Brenda Carson</div>
+                    <div class="app-contact-company">brenda.carson@apexstructuralgroup.com</div>
+                    <div class="app-contact-company">Apex Structural Group</div>
+                    <div class="app-contact-company">Construction Estimator</div>
+                    <div class="app-contact-company">(513) 709-8593</div>
+                    <div class="app-contact-company">USA</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Row 1: Folders -->
         <div class="web-walk-row">
@@ -242,11 +452,13 @@
       </div>
 
       <!-- CTA -->
-      <div style="margin: 80px 0 40px; text-align: center;">
-        <h2 class="heroTitle" style="font-size: 48px; margin: 0 auto 20px; text-align: center;">Ready to log in?</h2>
-        <p class="pageSub" style="margin: 0 auto 40px; max-width: 500px;">Sigbot runs entirely in your browser — nothing to install, always up to date.</p>
-        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 40px;">
-          <a href="https://sigbot.app/login" class="btnPrimary" style="padding: 18px 40px; font-size: 16px;">Log in to Sigbot</a>
+      <div style="margin: 80px 0 40px; text-align: center; padding: 60px 32px; background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.15); border-radius: 24px;">
+        <h2 class="heroTitle" style="font-size: 48px; margin: 0 auto 20px; text-align: center;">Start building your database.</h2>
+        <p class="pageSub" style="margin: 0 auto 16px; max-width: 500px;">Free forever — no credit card required. Connect your inbox and your first contacts appear in minutes.</p>
+        <p style="font-size: 13px; color: var(--muted); margin: 0 auto 40px;">Pro from $20/month for unlimited scanning &amp; full inbox backfill.</p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="https://sigbot.app/login" class="btnPrimary" style="padding: 16px 40px; font-size: 16px;">Get Started Free</a>
+          <a href="pricing.html" class="btnGhost" style="padding: 16px 32px; font-size: 16px;">See pricing</a>
         </div>
       </div>
 
