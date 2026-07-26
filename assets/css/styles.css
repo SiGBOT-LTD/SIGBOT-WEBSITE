@@ -184,6 +184,21 @@ a:hover {
   color: var(--fg) !important;
 }
 
+.navlinks a.cta-ghost {
+  color: var(--fg);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.navlinks a.cta-ghost:hover {
+  border-color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.06);
+  color: var(--fg);
+}
+
 .navlinks a.cta {
   color: var(--bg);
   background: var(--fg);
@@ -240,7 +255,7 @@ a:hover {
   opacity: 0;
 }
 
-.dot {
+.badge-dot {
   width: 6px;
   height: 6px;
   background: #10b981;
@@ -278,8 +293,17 @@ a:hover {
   display: flex;
   gap: 16px;
   justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: 16px;
   animation: fadeUp 0.8s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.hero-trust-line {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 40px;
+  letter-spacing: 0.02em;
+  animation: fadeUp 0.8s ease-out 0.4s forwards;
   opacity: 0;
 }
 
@@ -872,6 +896,13 @@ a:hover {
 }
 
 
+/* TWO-COLUMN LAYOUT */
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
 /* FOOTER CTA SECTION */
 .footer-cta-section {
   display: grid;
@@ -959,6 +990,64 @@ a:hover {
   font-size: 14px;
   color: var(--muted);
   line-height: 1.5;
+}
+
+/* HOMEPAGE VIDEO SECTION */
+.homepage-video-section {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.homepage-video-wrap {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  margin-top: 40px;
+}
+
+.homepage-video-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* PRO NUDGE BANNER */
+.pro-nudge-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 0 auto 60px;
+  padding: 20px 32px;
+  background: rgba(59, 130, 246, 0.07);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 16px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.pro-nudge-banner strong {
+  color: var(--fg);
+}
+
+.pro-nudge-link {
+  color: var(--accent);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.pro-nudge-link:hover {
+  color: var(--fg);
 }
 
 
@@ -1097,8 +1186,15 @@ a:hover {
 
   .navlinks a.active { color: var(--fg); }
 
-  .navlinks a.cta {
+  .navlinks a.cta-ghost {
     margin-top: 8px;
+    text-align: center;
+    padding: 12px 16px;
+    border-radius: 99px;
+  }
+
+  .navlinks a.cta {
+    margin-top: 4px;
     text-align: center;
     padding: 12px 16px;
     border-radius: 99px;
