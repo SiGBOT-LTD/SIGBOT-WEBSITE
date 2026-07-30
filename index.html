@@ -78,6 +78,8 @@
     <!-- HERO -->
     <div class="header hero" id="top">
 
+      <canvas id="hero-bg" aria-hidden="true"></canvas>
+
       <div class="heroBadge">
         <span class="badge-dot"></span>
         Outlook, Gmail &amp; IMAP
@@ -99,6 +101,56 @@
 
     </div>
   </div>
+
+  <!-- ═══════════ PRODUCT NAV CARDS ═══════════ -->
+  <section class="product-nav-cards">
+    <a href="webapp.html" class="product-nav-card">
+      <div class="pnc-title">Web App</div>
+      <div class="pnc-image">
+        <svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96" fill="none" aria-hidden="true">
+          <rect x="4" y="4" width="112" height="88" rx="10" stroke="currentColor" stroke-width="4"/>
+          <line x1="4" y1="26" x2="116" y2="26" stroke="currentColor" stroke-width="4"/>
+          <circle cx="20" cy="15" r="4" fill="currentColor"/>
+          <circle cx="34" cy="15" r="4" fill="currentColor"/>
+          <circle cx="48" cy="15" r="4" fill="currentColor"/>
+          <rect x="20" y="38" width="80" height="8" rx="4" fill="currentColor" opacity="0.35"/>
+          <rect x="20" y="54" width="56" height="8" rx="4" fill="currentColor" opacity="0.25"/>
+          <rect x="20" y="70" width="68" height="8" rx="4" fill="currentColor" opacity="0.2"/>
+        </svg>
+      </div>
+      <div class="pnc-arrow">↗</div>
+    </a>
+    <a href="mobile.html" class="product-nav-card">
+      <div class="pnc-title">Mobile App</div>
+      <div class="pnc-image">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="104" viewBox="0 0 64 104" fill="none" aria-hidden="true">
+          <rect x="4" y="4" width="56" height="96" rx="12" stroke="currentColor" stroke-width="4"/>
+          <line x1="4" y1="18" x2="60" y2="18" stroke="currentColor" stroke-width="3"/>
+          <line x1="4" y1="86" x2="60" y2="86" stroke="currentColor" stroke-width="3"/>
+          <circle cx="32" cy="94" r="3.5" fill="currentColor" opacity="0.5"/>
+          <rect x="22" y="8" width="20" height="4" rx="2" fill="currentColor" opacity="0.35"/>
+          <rect x="14" y="28" width="36" height="6" rx="3" fill="currentColor" opacity="0.3"/>
+          <rect x="14" y="42" width="28" height="6" rx="3" fill="currentColor" opacity="0.22"/>
+          <rect x="14" y="56" width="32" height="6" rx="3" fill="currentColor" opacity="0.18"/>
+          <rect x="14" y="70" width="22" height="6" rx="3" fill="currentColor" opacity="0.15"/>
+        </svg>
+      </div>
+      <div class="pnc-arrow">↗</div>
+    </a>
+  </section>
+
+  <!-- ═══════════ GLOBE: CONTACTS WORLDWIDE ═══════════ -->
+  <section class="globe-section">
+    <div class="anim-label">Global Network</div>
+    <div class="anim-title">Contacts from everywhere</div>
+    <div class="anim-sub">Sigbot builds your database no matter where your emails come from. Click a pin to preview a
+      contact.</div>
+    <div class="globe-stage" id="globe-stage">
+      <canvas id="globe-canvas"></canvas>
+      <div class="globe-popup" id="globe-popup" hidden></div>
+      <div class="globe-hint">Drag to rotate · Click a pin</div>
+    </div>
+  </section>
 
   <!-- ═══════════ ANIMATION CSS ═══════════ -->
   <link rel="stylesheet" href="assets/css/index.css" />
@@ -481,9 +533,14 @@
   </div>
 
   <script src="assets/js/index.js"></script>
+  <script src="assets/js/hero-bg.js"></script>
 
   <!-- ═══════════ ANIMATION ENGINE ═══════════ -->
   <script src="assets/js/nav.js"></script>
+
+  <!-- ═══════════ GLOBE ═══════════ -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="assets/js/globe.js"></script>
 </body>
 
 </html>
