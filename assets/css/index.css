@@ -258,3 +258,193 @@
       margin: 0 auto var(--s-5);
       max-width: 60ch;
     }
+
+/* ═══════════════════════════════════════════════════════════════════
+   HERO BLOOM
+
+   The hero had a real subject on the right and flat void behind it.
+   A single wide, very low-opacity amber bloom sits behind the copy so
+   the headline has something to sit *on*. It is not a gradient in the
+   decorative sense — it is the light source the extraction card's
+   shadow already implies, made visible. Behind content (-1) and
+   pointer-transparent, so nothing about it can be interacted with. */
+    .hero--split {
+      position: relative;
+    }
+
+    .hero--split::before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      pointer-events: none;
+      /* Anchored to the headline, not the section centre — a centred
+         bloom under an asymmetric hero fights the layout. */
+      left: -12%;
+      top: -30%;
+      width: 70%;
+      aspect-ratio: 1;
+      background: radial-gradient(circle at 50% 50%,
+          rgba(var(--accent-rgb), 0.09) 0%,
+          rgba(var(--accent-rgb), 0.04) 38%,
+          transparent 68%);
+    }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PIPELINE — replaces .hiw-cards
+
+   Was three equal cards in a 3-column grid. That layout says "three
+   parallel options"; the copy says "a controlled pipeline", and the
+   steps are numbered 01–03. So it is set as a sequence instead: an
+   asymmetric two-column block with the heading held on the left and
+   the stages running down the right, threaded by a single rule.
+   ═══════════════════════════════════════════════════════════════════ */
+    .pipeline {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: var(--section-y) var(--pad);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+      gap: var(--s-5);
+      align-items: start;
+    }
+
+    /* The heading holds position while the stages scroll past it —
+       the one piece of scroll behaviour on the page, and it earns its
+       place by keeping the section's subject on screen while you read
+       the steps. */
+    @media (min-width: 861px) {
+      .pipeline-intro {
+        position: sticky;
+        top: 120px;
+      }
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 var(--s-2);
+    }
+
+    .pipeline .hiw-heading {
+      /* Two sizes down from the page-level heading scale: this sits in a
+         column roughly half the content width, and the 44px default was
+         breaking one sentence across five lines. */
+      font-size: clamp(28px, 3.2vw, 38px);
+      max-width: 20ch;
+      margin-bottom: var(--s-3);
+      /* Stops the last line dropping a single orphaned word. */
+      text-wrap: balance;
+    }
+
+    .pipeline-note {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--muted-2);
+      max-width: 32ch;
+      margin: 0;
+    }
+
+    .pipeline-steps {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    /* The thread. Sits in the numeral gutter and stops short at both
+       ends so it reads as a run between the steps rather than a border
+       on the column. */
+    .pipeline-steps::before {
+      content: '';
+      position: absolute;
+      left: 21px;
+      top: 12px;
+      bottom: 12px;
+      width: 1px;
+      background: linear-gradient(to bottom,
+          transparent,
+          var(--line) 8%,
+          var(--line) 92%,
+          transparent);
+    }
+
+    .pstep {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      gap: var(--s-3);
+      align-items: start;
+      padding-bottom: var(--s-5);
+    }
+
+    .pstep:last-child {
+      padding-bottom: 0;
+    }
+
+    .pstep-marker {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      /* Opaque, so the thread passes behind the marker rather than
+         through the numeral. */
+      background: var(--bg);
+      border: 1px solid var(--line);
+    }
+
+    .pstep-num {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      font-feature-settings: 'tnum' 1;
+      letter-spacing: 0.03em;
+      color: var(--accent);
+    }
+
+    .pstep-body {
+      /* Optical alignment: the title's cap-height sits ~3px below the
+         numeral's centre without this nudge. */
+      padding-top: 7px;
+    }
+
+    .pstep-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--fg);
+      margin: 0 0 10px;
+    }
+
+    .pstep-desc {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 46ch;
+      margin: 0;
+    }
+
+    @media (max-width: 860px) {
+      .pipeline {
+        grid-template-columns: 1fr;
+        gap: var(--s-4);
+        padding-top: var(--s-6);
+        padding-bottom: var(--s-6);
+      }
+
+      .pstep {
+        padding-bottom: var(--s-4);
+      }
+
+      .pstep-title {
+        font-size: 20px;
+      }
+    }

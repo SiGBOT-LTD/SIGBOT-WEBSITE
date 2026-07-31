@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <title>Page not found | Sigbot</title>
+  <meta name="description" content="That page doesn't exist. Here's the way back into Sigbot." />
+
+  <!-- A 404 must never be indexed, and must never be treated as canonical. -->
+  <meta name="robots" content="noindex,follow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet" href="/assets/css/notfound.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="nav-wrap">
+  <nav class="nav" aria-label="Primary">
+    <div class="brand">
+    <a href="/index.html">
+      <img src="/assets/robot.svg" alt="" aria-hidden="true">
+      SIGBOT
+    </a>
+    </div>
+    <button class="nav-hamburger" aria-label="Open menu"
+    aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="navlinks">
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" id="nav-product-toggle" aria-expanded="false"
+          aria-controls="nav-product-menu" aria-haspopup="true">Product</button>
+        <div class="nav-dropdown-menu" id="nav-product-menu" role="menu"
+          aria-labelledby="nav-product-toggle">
+          <a href="/webapp.html" role="menuitem">Web App</a>
+          <a href="/mobile.html" role="menuitem">Mobile App</a>
+          <a href="/demo.html" role="menuitem">Demo</a>
+        </div>
+      </div>
+      <a href="/construction.html">Construction</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/contact.html">Contact</a>
+      <a class="cta-ghost" href="https://sigbot.app/login">Log in</a>
+      <a class="cta" href="https://sigbot.app/login">Start free</a>
+    </div>
+  </nav>
+</div>
+
+  <div class="container">
+    <main class="nf" id="main" tabindex="-1">
+      <!-- The product parses records out of text. A 404 is the one field it
+           could not resolve, so the page states it in the same shape the app
+           uses — rather than a shrug and a big "404". -->
+      <div class="nf-record" role="img"
+        aria-label="A contact record with a status of not found for the requested page">
+        <div class="nf-record-bar">
+          <div class="nf-record-dots"><span></span><span></span><span></span></div>
+          <div class="nf-record-title">Lookup</div>
+        </div>
+        <dl class="nf-rows">
+          <div class="nf-row">
+            <dt>Status</dt>
+            <dd class="nf-status">404 — Not found</dd>
+          </div>
+          <div class="nf-row">
+            <dt>Path</dt>
+            <dd class="nf-path" id="nf-path">—</dd>
+          </div>
+          <div class="nf-row">
+            <dt>Result</dt>
+            <dd>No page at this address</dd>
+          </div>
+        </dl>
+      </div>
+
+      <h1 class="pageTitle nf-title">This page doesn't exist.</h1>
+      <p class="nf-sub">The link may be out of date, or the address may have a typo in it. Everything below still
+        works.</p>
+
+      <div class="nf-links">
+        <a class="btnPrimary" href="/index.html">Back to home</a>
+        <a class="nf-link" href="/demo.html">Try the demo →</a>
+      </div>
+
+      <nav class="nf-map" aria-label="Site sections">
+        <a href="/webapp.html">
+          <span class="nf-map-title">Web App</span>
+          <span class="nf-map-desc">Your database in any browser</span>
+        </a>
+        <a href="/mobile.html">
+          <span class="nf-map-title">Mobile App</span>
+          <span class="nf-map-desc">Scan and search on site</span>
+        </a>
+        <a href="/pricing.html">
+          <span class="nf-map-title">Pricing</span>
+          <span class="nf-map-desc">Free and Pro plans</span>
+        </a>
+        <a href="/faq.html">
+          <span class="nf-map-title">FAQ</span>
+          <span class="nf-map-desc">Setup, privacy, and billing</span>
+        </a>
+      </nav>
+
+      <p class="nf-help">Still stuck? Email <a href="mailto:support@sigbot.co">support@sigbot.co</a> and tell us what
+        you were looking for.</p>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-top">
+        <div>© <span id="y"></span> SIGBOT</div>
+        <div class="small">
+          <a href="/legal/terms.html">Terms</a> ·
+          <a href="/legal/privacy.html">Privacy</a> ·
+          <a href="/refund.html">Refunds</a> ·
+          <a href="/legal/security.html">Security</a> ·
+          <a href="/legal/dpa.html">DPA</a> ·
+          <a href="/contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-legal">
+        Sigbot is a trading name of Sigbot Ltd. Registered in England and Wales. Company No: 16997653.
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="/assets/js/nav.js"></script>
+  <script>
+    // Echo the path the visitor actually asked for. textContent, never innerHTML:
+    // location.pathname is attacker-controllable and must not be parsed as markup.
+    (function () {
+      var el = document.getElementById('nf-path');
+      if (el) el.textContent = location.pathname + location.search;
+    })();
+  </script>
+</body>
+
+</html>

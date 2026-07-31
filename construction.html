@@ -40,33 +40,43 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="nav-wrap">
+  <nav class="nav" aria-label="Primary">
+    <div class="brand">
+    <a href="index.html">
+      <img src="assets/robot.svg" alt="" aria-hidden="true">
+      SIGBOT
+    </a>
+    </div>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="navlinks">
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" id="nav-product-toggle" aria-expanded="false"
+          aria-controls="nav-product-menu" aria-haspopup="true">Product</button>
+        <div class="nav-dropdown-menu" id="nav-product-menu" role="menu"
+          aria-labelledby="nav-product-toggle">
+          <a href="webapp.html" role="menuitem">Web App</a>
+          <a href="mobile.html" role="menuitem">Mobile App</a>
+          <a href="demo.html" role="menuitem">Demo</a>
+        </div>
+      </div>
+      <a href="construction.html" class="active">Construction</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a class="cta-ghost" href="https://sigbot.app/login">Log in</a>
+      <a class="cta" href="https://sigbot.app/login">Start free</a>
+    </div>
+  </nav>
+</div>
+
   <div class="container">
 
     <!-- NAV -->
-    <div class="nav">
-      <div class="brand">
-        <a href="index.html">
-          <img src="assets/robot.svg" alt="" aria-hidden="true">
-          SIGBOT
-        </a>
-      </div>
-      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-        <div class="navlinks">
-        <a href="index.html">Home</a>
-        <a href="webapp.html">Web App</a><a href="mobile.html">Mobile App</a>
-        <a class="active" href="construction.html">Construction</a>
-        <a href="demo.html">Demo</a>
-        
-        <a href="pricing.html">Pricing</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-        <a class="cta-ghost" href="https://sigbot.app/login">Log in</a>
-        <a class="cta" href="https://sigbot.app/login">Start free</a>
-      </div>
-    </div>
-
     <!-- HERO -->
-    <section class="con-hero">
+    <section class="con-hero" id="main" tabindex="-1">
       <div class="heroBadge">
         <span class="badge-dot"></span>
         Built for Construction &amp; AEC

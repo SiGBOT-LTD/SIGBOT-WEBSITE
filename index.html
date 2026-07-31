@@ -51,33 +51,44 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="nav-wrap">
+  <nav class="nav" aria-label="Primary">
+    <div class="brand">
+    <a href="index.html">
+      <img src="assets/robot.svg" alt="" aria-hidden="true">
+      SIGBOT
+    </a>
+    </div>
+
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="navlinks">
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" id="nav-product-toggle" aria-expanded="false"
+          aria-controls="nav-product-menu" aria-haspopup="true">Product</button>
+        <div class="nav-dropdown-menu" id="nav-product-menu" role="menu"
+          aria-labelledby="nav-product-toggle">
+          <a href="webapp.html" role="menuitem">Web App</a>
+          <a href="mobile.html" role="menuitem">Mobile App</a>
+          <a href="demo.html" role="menuitem">Demo</a>
+        </div>
+      </div>
+      <a href="construction.html">Construction</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a class="cta-ghost" href="https://sigbot.app/login">Log in</a>
+      <a class="cta" href="https://sigbot.app/login">Start free</a>
+    </div>
+  </nav>
+</div>
+
   <div class="container">
 
     <!-- NAV -->
-    <div class="nav">
-      <div class="brand">
-        <a href="index.html">
-          <img src="assets/robot.svg" alt="" aria-hidden="true">
-          SIGBOT
-        </a>
-      </div>
-
-      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-        <div class="navlinks">
-        <a class="active" href="index.html">Home</a>
-        <a href="webapp.html">Web App</a><a href="mobile.html">Mobile App</a>
-        <a href="construction.html">Construction</a>
-        <a href="demo.html">Demo</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-        <a class="cta-ghost" href="https://sigbot.app/login">Log in</a>
-        <a class="cta" href="https://sigbot.app/login">Start free</a>
-      </div>
-    </div>
-
     <!-- HERO — the extraction is the thesis, so it opens the page. -->
-    <div class="header hero hero--split" id="top">
+    <header class="header hero hero--split" id="main" tabindex="-1">
 
       <div class="hero-copy">
         <div class="heroBadge">
@@ -112,9 +123,9 @@
           <hr class="extract-rule" />
           <div><span class="sigline extract-sig-name" data-field="name">David Miller</span></div>
           <div><span class="sigline" data-field="title">VP of Business Development</span></div>
-          <div><span class="sigline" data-field="company">Acme Corp</span></div>
+          <div><span class="sigline" data-field="company">Bayview Construction</span></div>
           <div><span class="sigline" data-field="phone">+1 (416) 555-0182</span></div>
-          <div><span class="sigline" data-field="email">david.miller@acmecorp.com</span></div>
+          <div><span class="sigline" data-field="email">d.miller@bayviewconst.ca</span></div>
         </div>
 
         <div class="extract-mid">
@@ -141,7 +152,7 @@
           </div>
           <div class="erow" data-row="company">
             <div class="erow-key">Company</div>
-            <div class="erow-val">Acme Corp</div>
+            <div class="erow-val">Bayview Construction</div>
             <svg class="erow-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,13 9,18 20,6" /></svg>
           </div>
@@ -153,19 +164,19 @@
           </div>
           <div class="erow" data-row="email">
             <div class="erow-key">Email</div>
-            <div class="erow-val">david.miller@acmecorp.com</div>
+            <div class="erow-val">d.miller@bayviewconst.ca</div>
             <svg class="erow-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,13 9,18 20,6" /></svg>
           </div>
         </div>
       </div>
 
-    </div>
+    </header>
   </div>
 
   <!-- ═══════════ PRODUCT NAV CARDS ═══════════ -->
   <section class="product-nav-cards">
-    <a href="webapp.html" class="product-nav-card">
+    <a href="webapp.html" class="product-nav-card" data-reveal="1">
       <div class="pnc-title">Web App</div>
       <div class="pnc-image">
         <svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96" fill="none" aria-hidden="true">
@@ -181,7 +192,7 @@
       </div>
       <div class="pnc-arrow">↗</div>
     </a>
-    <a href="mobile.html" class="product-nav-card">
+    <a href="mobile.html" class="product-nav-card" data-reveal="2">
       <div class="pnc-title">Mobile App</div>
       <div class="pnc-image">
         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="104" viewBox="0 0 64 104" fill="none" aria-hidden="true">
@@ -212,63 +223,56 @@
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <div class="how-it-works-section" id="how-it-works">
-    <h2 class="hiw-heading">A controlled pipeline from signature capture to clean contact records.</h2>
-    <div class="hiw-cards">
-      <div class="hiw-card">
-        <div class="hiw-card-header">
-          <span class="hiw-step">01</span>
-          <div class="hiw-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <polyline points="22,6 12,13 2,6" />
-            </svg>
-          </div>
-        </div>
-        <h3 class="hiw-title">Capture signatures</h3>
-        <p class="hiw-desc">Pull signature blocks from Outlook, Gmail, and IMAP email threads without interrupting the
-          inbox workflow.</p>
-      </div>
-      <div class="hiw-card">
-        <div class="hiw-card-header">
-          <span class="hiw-step">02</span>
-          <div class="hiw-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-              <polyline points="22 4 12 14.01 9 11.01" />
-            </svg>
-          </div>
-        </div>
-        <h3 class="hiw-title">Structure the data</h3>
-        <p class="hiw-desc">Normalize names, roles, companies, phone numbers, and other fields into a consistent schema.
-        </p>
-      </div>
-      <div class="hiw-card">
-        <div class="hiw-card-header">
-          <span class="hiw-step">03</span>
-          <div class="hiw-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-          </div>
-        </div>
-        <h3 class="hiw-title">Review and export</h3>
-        <p class="hiw-desc">Confirm new contacts inside a focused dashboard before sending them into your CRM process.
-        </p>
-      </div>
+  <!-- HOW IT WORKS
+       Three equal cards implied three parallel options. These are ordered
+       stages, so they are set as a sequence: one column, a rule running the
+       length of it, and the step number carrying the position. -->
+  <section class="pipeline" id="how-it-works" aria-labelledby="pipeline-heading">
+    <div class="pipeline-intro">
+      <p class="eyebrow">How it works</p>
+      <h2 class="hiw-heading" id="pipeline-heading">A controlled pipeline from signature capture to clean contact
+        records.</h2>
+      <p class="pipeline-note">No inbox rules to write, no CSV to import, no browser extension to babysit.</p>
     </div>
-  </div>
+
+    <ol class="pipeline-steps">
+      <li class="pstep" data-reveal="1">
+        <div class="pstep-marker" aria-hidden="true">
+          <span class="pstep-num">01</span>
+        </div>
+        <div class="pstep-body">
+          <h3 class="pstep-title">Capture signatures</h3>
+          <p class="pstep-desc">Pull signature blocks from Outlook, Gmail, and IMAP email threads without interrupting
+            the inbox workflow.</p>
+        </div>
+      </li>
+      <li class="pstep" data-reveal="2">
+        <div class="pstep-marker" aria-hidden="true">
+          <span class="pstep-num">02</span>
+        </div>
+        <div class="pstep-body">
+          <h3 class="pstep-title">Structure the data</h3>
+          <p class="pstep-desc">Normalize names, roles, companies, phone numbers, and other fields into a consistent
+            schema.</p>
+        </div>
+      </li>
+      <li class="pstep" data-reveal="3">
+        <div class="pstep-marker" aria-hidden="true">
+          <span class="pstep-num">03</span>
+        </div>
+        <div class="pstep-body">
+          <h3 class="pstep-title">Review and export</h3>
+          <p class="pstep-desc">Confirm new contacts inside a focused dashboard before sending them into your CRM
+            process.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
 
   <!-- DEMO VIDEO -->
   <div class="homepage-video-section">
     <h2 class="hiw-heading">Watch a 2-minute demo</h2>
-    <div class="homepage-video-wrap">
+    <div class="homepage-video-wrap" data-reveal="1">
       <iframe
         src="https://www.youtube-nocookie.com/embed/poxDSChDFB4"
         loading="lazy"
@@ -283,7 +287,7 @@
   <div class="container">
 
   <!-- PRO NUDGE -->
-  <div class="pro-nudge-banner">
+  <div class="pro-nudge-banner" data-reveal="1">
     <span>Pro includes unlimited scanning, full inbox backfill &amp; mobile app — from <strong>$20/month</strong></span>
     <a href="pricing.html" class="pro-nudge-link">See pricing →</a>
   </div>
@@ -291,7 +295,7 @@
   <!-- DEDICATED FOOTER CTA SECTION -->
   <div class="footer-cta-section">
     <!-- Get Started Column -->
-    <div class="cta-col">
+    <div class="cta-col" data-reveal="1">
       <h3 class="cta-title">Get Started</h3>
       <div class="cta-links">
         <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
@@ -312,7 +316,7 @@
     </div>
 
     <!-- Support Column -->
-    <div class="cta-col">
+    <div class="cta-col" data-reveal="2">
       <h3 class="cta-title">Support</h3>
       <div class="cta-links">
         <div style="display: flex; flex-direction: column; gap: 16px; align-items: center;">
@@ -331,7 +335,7 @@
   </div>
 
   <!-- FOOTER -->
-  <div class="footer">
+  <footer class="footer">
     <div class="footer-top">
       <div>© <span id="y"></span> SIGBOT</div>
       <div class="small">
@@ -346,11 +350,9 @@
     <div class="footer-legal">
       Sigbot is a trading name of Sigbot Ltd. Registered in England and Wales. Company No: 16997653.
     </div>
-  </div>
+  </footer>
 
   </div><!-- /.container -->
-
-  <script src="assets/js/index.js"></script>
 
   <!-- Hero extraction. Replaces hero-bg.js, whose floating envelopes clipped at
        the right edge and overlapped the headline — the hero now has a real
@@ -358,6 +360,10 @@
   <script src="assets/js/hero-extract.js"></script>
 
   <script src="assets/js/nav.js"></script>
+
+  <!-- Replaces index.js, whose reveal observed `.feature-card` (a class on no
+       page) and whose signature loop drove IDs deleted in e63e5f0. -->
+  <script src="assets/js/reveal.js" defer></script>
 
   <!-- ═══════════ GLOBE ═══════════ -->
   <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js" defer></script>
