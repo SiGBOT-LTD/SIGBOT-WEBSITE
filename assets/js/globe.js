@@ -17,7 +17,16 @@
     { lat: 19.08, lng: 72.88, name: 'Priya Sharma', role: 'Product Lead', company: 'Lotus Tech', email: 'priya@lotustech.in', location: 'Mumbai, IN', initials: 'PS', grad: 'linear-gradient(135deg,#f97316,#ec4899)' },
     { lat: 35.68, lng: 139.69, name: 'Kenji Sato', role: 'Sales Director', company: 'Nakamura KK', email: 'kenji@nakamura.jp', location: 'Tokyo, JP', initials: 'KS', grad: 'linear-gradient(135deg,#ec4899,#8b5cf6)' },
     { lat: -33.87, lng: 151.21, name: 'Olivia Bennett', role: 'Operations Lead', company: 'Harbour Group', email: 'olivia@harbourgroup.au', location: 'Sydney, AU', initials: 'OB', grad: 'linear-gradient(135deg,#06b6d4,#3b82f6)' },
-    { lat: -23.55, lng: -46.63, name: 'Maria Santos', role: 'Marketing Director', company: 'Verde SA', email: 'maria@verde.com.br', location: 'São Paulo, BR', initials: 'MS', grad: 'linear-gradient(135deg,#22c55e,#eab308)' }
+    { lat: -23.55, lng: -46.63, name: 'Maria Santos', role: 'Marketing Director', company: 'Verde SA', email: 'maria@verde.com.br', location: 'São Paulo, BR', initials: 'MS', grad: 'linear-gradient(135deg,#22c55e,#eab308)' },
+    { lat: 40.71, lng: -74.01, name: 'Marcus Reid', role: 'Managing Partner', company: 'Hudson & Clarke', email: 'm.reid@hudsonclarke.com', location: 'New York, US', initials: 'MR', grad: 'linear-gradient(135deg,#6366f1,#06b6d4)' },
+    { lat: 49.28, lng: -123.12, name: 'Chloe Nguyen', role: 'Estimating Manager', company: 'Westpoint Engineering', email: 'chloe.n@westpointeng.ca', location: 'Vancouver, CA', initials: 'CN', grad: 'linear-gradient(135deg,#14b8a6,#3b82f6)' },
+    { lat: 19.43, lng: -99.13, name: 'Diego Ramírez', role: 'Procurement Lead', company: 'Grupo Aurora', email: 'diego@grupoaurora.mx', location: 'Mexico City, MX', initials: 'DR', grad: 'linear-gradient(135deg,#ef4444,#a855f7)' },
+    { lat: 53.35, lng: -6.26, name: 'Aoife Byrne', role: 'Finance Director', company: 'Liffey Holdings', email: 'aoife@liffeyholdings.ie', location: 'Dublin, IE', initials: 'AB', grad: 'linear-gradient(135deg,#059669,#22d3ee)' },
+    { lat: 48.86, lng: 2.35, name: 'Camille Laurent', role: 'Account Executive', company: 'Maison Duval', email: 'camille@maisonduval.fr', location: 'Paris, FR', initials: 'CL', grad: 'linear-gradient(135deg,#8b5cf6,#ec4899)' },
+    { lat: 25.2, lng: 55.27, name: 'Omar Haddad', role: 'Regional Manager', company: 'Zenith Contracting', email: 'omar@zenithcontracting.ae', location: 'Dubai, AE', initials: 'OH', grad: 'linear-gradient(135deg,#0ea5e9,#6366f1)' },
+    { lat: 1.35, lng: 103.82, name: 'Wei Lin Tan', role: 'Head of Supply Chain', company: 'Meridian Pte', email: 'weilin@meridian.sg', location: 'Singapore, SG', initials: 'WT', grad: 'linear-gradient(135deg,#f43f5e,#6366f1)' },
+    { lat: -33.92, lng: 18.42, name: 'Thandiwe Mokoena', role: 'Business Development', company: 'Table Bay Group', email: 'thandiwe@tablebay.co.za', location: 'Cape Town, ZA', initials: 'TM', grad: 'linear-gradient(135deg,#84cc16,#06b6d4)' },
+    { lat: -36.85, lng: 174.76, name: 'Jack Thornton', role: 'Site Manager', company: 'Kauri Build', email: 'jack@kauribuild.nz', location: 'Auckland, NZ', initials: 'JT', grad: 'linear-gradient(135deg,#3b82f6,#a855f7)' }
   ];
 
   const projection = d3.geoOrthographic().clipAngle(90);
