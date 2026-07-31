@@ -6,7 +6,7 @@
       overflow: hidden;
       max-width: 900px;
       width: 100%;
-      box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8);
+      box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.75);
     }
 
     .browser-window.small {
@@ -45,7 +45,7 @@
       border-radius: 6px;
       padding: 4px 12px;
       font-size: 12px;
-      color: #666;
+      color: var(--chrome);
       text-align: center;
       max-width: 360px;
       margin: 0 auto;
@@ -54,7 +54,7 @@
     /* App shell inside browser */
     .app-shell {
       display: flex;
-      height: 460px;
+      min-height: 460px;
       background: #0a0a0a;
     }
 
@@ -62,13 +62,10 @@
       .app-shell { height: auto; flex-direction: column; }
       .app-sidebar { width: 100% !important; flex-direction: row !important; flex-wrap: wrap; padding: 8px 12px !important; gap: 2px !important; border-right: none !important; border-bottom: 1px solid #1e1e1e; }
       .app-sidebar-logo { padding: 0 12px 0 0 !important; border-bottom: none !important; margin-bottom: 0 !important; }
-      .sidebar-item { padding: 5px 8px !important; font-size: 11px !important; border-left: none !important; }
-      .sidebar-item.active { border-bottom: 2px solid #3b82f6; border-left: none !important; padding-left: 8px !important; }
+      .sidebar-item { padding: 5px 8px !important; font-size: 12px !important; border-left: none !important; }
+      .sidebar-item.active { border-bottom: 2px solid var(--accent); border-left: none !important; padding-left: 8px !important; }
       .app-main { padding: 12px !important; }
       .app-stat-row { gap: 6px !important; }
-      .app-stat-value { font-size: 16px !important; }
-      .app-table-header > div:last-child, .app-contact-row > div:last-child { display: none; }
-      .app-table-header, .app-contact-row { grid-template-columns: 2fr 1.5fr 1fr !important; }
       .app-search { width: 110px !important; }
     }
 
@@ -90,7 +87,7 @@
       padding: 0 16px 20px;
       font-size: 13px;
       font-weight: 700;
-      color: #fff;
+      color: var(--fg);
       letter-spacing: 0.06em;
       border-bottom: 1px solid #1e1e1e;
       margin-bottom: 12px;
@@ -99,7 +96,7 @@
     .app-sidebar-logo span {
       width: 20px;
       height: 20px;
-      background: #3b82f6;
+      background: var(--accent);
       border-radius: 4px;
       display: inline-block;
       flex-shrink: 0;
@@ -111,23 +108,33 @@
       gap: 8px;
       padding: 8px 16px;
       font-size: 12px;
-      color: #555;
+      color: var(--chrome);
       border-radius: 0;
       cursor: default;
       transition: background 0.15s;
     }
 
     .sidebar-item.active {
-      color: #fff;
-      background: rgba(59,130,246,0.12);
-      border-left: 2px solid #3b82f6;
+      color: var(--fg);
+      background: rgba(var(--accent-rgb), 0.12);
+      border-left: 2px solid var(--accent);
       padding-left: 14px;
     }
 
-    .sidebar-item .s-icon {
-      font-size: 14px;
+    /* Was sized for an emoji glyph; now holds a line icon matching the SVGs
+       used everywhere else on the site. */
+    .s-icon {
       width: 18px;
-      text-align: center;
+      flex: 0 0 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: currentColor;
+    }
+
+    .s-icon svg {
+      width: 15px;
+      height: 15px;
     }
 
     .app-main {
@@ -146,7 +153,7 @@
     .app-page-title {
       font-size: 16px;
       font-weight: 700;
-      color: #fff;
+      color: var(--fg);
     }
 
     .app-search {
@@ -154,8 +161,8 @@
       border: 1px solid #2a2a2a;
       border-radius: 6px;
       padding: 6px 12px;
-      font-size: 11px;
-      color: #444;
+      font-size: 12px;
+      color: var(--chrome);
       width: 180px;
     }
 
@@ -167,91 +174,19 @@
       margin-bottom: 20px;
     }
 
-    .app-stat-card {
-      background: #141414;
-      border: 1px solid #222;
-      border-radius: 8px;
-      padding: 12px;
-    }
-
-    .app-stat-label {
-      font-size: 10px;
-      color: #555;
-      margin-bottom: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .app-stat-value {
-      font-size: 22px;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1;
-    }
-
-    .app-stat-sub {
-      font-size: 10px;
-      color: #3b82f6;
-      margin-top: 4px;
-    }
-
     /* Contact rows */
     .app-table-header {
       display: grid;
       grid-template-columns: 2fr 1.5fr 1fr 1fr;
       gap: 8px;
       padding: 6px 8px;
-      font-size: 10px;
-      color: #444;
+      font-size: 12px;
+      color: var(--chrome);
       text-transform: uppercase;
       letter-spacing: 0.06em;
       border-bottom: 1px solid #1e1e1e;
       margin-bottom: 4px;
     }
-
-    .app-contact-row {
-      display: grid;
-      grid-template-columns: 2fr 1.5fr 1fr 1fr;
-      gap: 8px;
-      padding: 7px 8px;
-      font-size: 11px;
-      border-radius: 4px;
-      align-items: center;
-    }
-
-    .app-contact-row:hover {
-      background: #141414;
-    }
-
-    .app-contact-name {
-      color: #e5e5e5;
-      font-weight: 500;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .app-contact-company {
-      color: #666;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .app-badge {
-      font-size: 9px;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-    }
-
-    .app-badge.blue  { background: rgba(59,130,246,0.15); color: #60a5fa; }
-    .app-badge.green { background: rgba(34,197,94,0.12);  color: #4ade80; }
-    .app-badge.amber { background: rgba(245,158,11,0.12); color: #fbbf24; }
-    .app-badge.red   { background: rgba(239,68,68,0.12);  color: #f87171; }
 
     /* Walkthrough */
     .web-walkthrough {
@@ -283,8 +218,8 @@
     }
 
     .db-stat-lbl {
-      font-size: 9px;
-      color: #555;
+      font-size: 12px;
+      color: var(--chrome);
       text-transform: uppercase;
       letter-spacing: 0.06em;
       margin-bottom: 4px;
@@ -293,7 +228,7 @@
     .db-stat-val {
       font-size: 17px;
       font-weight: 800;
-      color: #fff;
+      color: var(--fg);
       line-height: 1.1;
       white-space: nowrap;
       overflow: hidden;
@@ -301,8 +236,8 @@
     }
 
     .db-stat-meta {
-      font-size: 9px;
-      color: #555;
+      font-size: 12px;
+      color: var(--chrome);
       margin-top: 3px;
     }
 
@@ -323,14 +258,14 @@
     }
 
     .db-chart-title {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
-      color: #888;
+      color: var(--muted-2);
     }
 
     .db-chart-range {
-      font-size: 9px;
-      color: #444;
+      font-size: 12px;
+      color: var(--chrome);
     }
 
     .db-chart-svg {
@@ -355,9 +290,9 @@
     }
 
     .db-bottom-title {
-      font-size: 9px;
+      font-size: 12px;
       font-weight: 700;
-      color: #555;
+      color: var(--chrome);
       margin-bottom: 10px;
       text-transform: uppercase;
       letter-spacing: 0.07em;
@@ -372,8 +307,8 @@
     }
 
     .comp-label {
-      font-size: 10px;
-      color: #777;
+      font-size: 12px;
+      color: var(--chrome);
       width: 52px;
       flex-shrink: 0;
       text-align: left;
@@ -393,8 +328,8 @@
     }
 
     .comp-pct {
-      font-size: 10px;
-      color: #555;
+      font-size: 12px;
+      color: var(--chrome);
       width: 30px;
       text-align: right;
       flex-shrink: 0;
@@ -402,8 +337,8 @@
 
     /* Activity feed */
     .activity-item {
-      font-size: 10px;
-      color: #555;
+      font-size: 12px;
+      color: var(--chrome);
       padding: 5px 0;
       border-bottom: 1px solid #1c1c1c;
       display: flex;
@@ -415,7 +350,7 @@
     .activity-item:last-child { border-bottom: none; }
 
     .activity-item strong { color: #bbb; font-weight: 600; }
-    .activity-date { color: #3a3a3a; flex-shrink: 0; }
+    .activity-date { color: var(--chrome); flex-shrink: 0; }
 
     /* Sidebar usage/upgrade block */
     .sidebar-usage {
@@ -427,17 +362,19 @@
     .sidebar-usage-row {
       display: flex;
       justify-content: space-between;
-      font-size: 9px;
-      color: #444;
+      font-size: 12px;
+      color: var(--chrome);
       margin-bottom: 3px;
     }
 
+    /* Dark text on amber (9.8:1). This was white-on-blue before the palette
+       change; white on amber is 2.0:1. */
     .sidebar-upgrade-btn {
       width: 100%;
-      background: #3b82f6;
+      background: var(--accent);
       border: none;
-      color: white;
-      font-size: 11px;
+      color: var(--bg);
+      font-size: 12px;
       font-weight: 600;
       padding: 7px 10px;
       border-radius: 6px;
@@ -480,53 +417,279 @@
     }
 
     .ctname {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 500;
-      color: #e5e5e5;
+      color: var(--fg);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
     .ctmeta {
-      font-size: 9px;
-      color: #444;
+      font-size: 12px;
+      color: var(--chrome);
       margin-top: 2px;
       white-space: nowrap;
     }
 
     .ctmuted {
-      font-size: 10px;
-      color: #555;
+      font-size: 12px;
+      color: var(--chrome);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
     .ctdots {
-      font-size: 11px;
-      color: #333;
+      font-size: 12px;
+      color: var(--chrome);
       text-align: right;
       cursor: default;
       letter-spacing: 1px;
     }
 
-    /* Features grid — 4 items */
+    /* Features grid — 4 items.
+       2×2 rather than 4-across: at a 936px column, four tracks leave ~139px of
+       content per card, which wrapped every title one word per line.
+       minmax(0, …) keeps tracks equal — plain 1fr lets long words like
+       "completeness" win space from its neighbours. */
     .features-grid-4 {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 20px;
       margin-top: 60px;
       text-align: left;
     }
 
+    /* .f-desc carries a 32px bottom margin for its other uses; inside a card
+       that stacks on top of 40px of panel padding. */
+    .features-grid-4 .f-desc {
+      margin-bottom: 0;
+    }
+
+    /* Icon inline with the title rather than a 64px tile stacked above it.
+       The tile-over-heading stack is the default shape of a generated feature
+       card; setting the icon beside the title makes it read as a label on the
+       heading instead of decoration sitting on top of one. */
+    .features-grid-4 .panel {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      column-gap: 12px;
+      align-items: center;
+      padding: 32px;
+    }
+
+    .features-grid-4 .feature-icon-box {
+      grid-column: 1;
+      grid-row: 1;
+      width: 30px;
+      height: 30px;
+      margin: 0;
+      background: none;
+      border: none;
+      border-radius: 0;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      color: var(--muted);
+    }
+
+    .features-grid-4 .feature-icon-box svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .features-grid-4 .f-title {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0;
+      font-size: 19px;
+      letter-spacing: -0.01em;
+    }
+
+    .features-grid-4 .f-desc {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      margin-top: 14px;
+      font-size: 15px;
+    }
+
     @media (max-width: 900px) {
-      .features-grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .features-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .db-stats-grid { grid-template-columns: repeat(2, 1fr); }
       .db-bottom-grid { grid-template-columns: 1fr; }
-      .contacts-6col { grid-template-columns: 1.4fr 1.8fr 1.5fr 0fr !important; }
     }
 
     @media (max-width: 560px) {
       .features-grid-4 { grid-template-columns: 1fr; }
+    }
+
+    /* How contacts get in */
+    .webapp-integrations {
+      margin-top: 120px;
+      text-align: center;
+    }
+
+    /* Sample data label */
+    .sample-data-label {
+      font-size: 0.8rem;
+      color: var(--muted-2);
+      margin: 0 0 12px;
+    }
+
+    /* Trust/security note */
+    .webapp-trust-note {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 20px auto 0;
+      line-height: 1.6;
+    }
+
+    .webapp-trust-note a {
+      color: var(--accent);
+    }
+
+    /* Mid-page CTA */
+    .webapp-cta-mid {
+      margin-top: 80px;
+      text-align: center;
+      padding: 48px 32px;
+      background: rgba(var(--accent-rgb), 0.06);
+      border: 1px solid rgba(var(--accent-rgb), 0.15);
+      border-radius: 24px;
+    }
+
+    .webapp-cta-mid p {
+      font-size: 18px;
+      color: var(--fg);
+      margin: 0 0 24px;
+    }
+
+    /* Mini FAQ */
+    .webapp-faq {
+      margin: 100px auto 0;
+      max-width: 700px;
+      text-align: center;
+    }
+
+    .faq-item {
+      text-align: left;
+      border-top: 1px solid #1e1e1e;
+      padding: 20px 0;
+    }
+
+    .faq-item h3 {
+      font-size: 16px;
+      color: var(--fg);
+      margin: 0 0 8px;
+    }
+
+    .faq-item p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+      max-width: var(--measure);
+    }
+
+    .faq-item p a {
+      color: var(--accent);
+    }
+
+    .webapp-faq-more {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .webapp-faq-more a {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+      .webapp-cta-mid { padding: 32px 20px; }
+      .webapp-faq { margin-top: 60px; }
+    }
+
+    /* ── Page-level utilities ────────────────────────────────────────
+       These replace the most-repeated inline style blocks on webapp.html.
+       Each existed 2-6 times as a literal style="" attribute; the markup
+       had drifted into carrying its own design system. */
+    .wa-section {
+      text-align: center;
+      margin-top: 120px;
+    }
+
+    .wa-h2 {
+      font-size: 32px;
+      margin: 0 auto 20px;
+    }
+
+    .wa-sub {
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    .wa-center {
+      text-align: center;
+    }
+
+    .wa-center-col {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Mockup interior pieces */
+    .wa-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--fg);
+    }
+
+    .wa-meta {
+      font-size: 12px;
+      color: var(--chrome);
+    }
+
+    .wa-chip {
+      background: #1e1e1e;
+      color: var(--chrome);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 12px;
+    }
+
+    .wa-chip-accent {
+      background: rgba(var(--accent-rgb), 0.15);
+      color: var(--accent);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .wa-tile {
+      background: #141414;
+      border: 1px solid #222;
+      border-radius: 8px;
+      padding: 14px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .wa-bar {
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }

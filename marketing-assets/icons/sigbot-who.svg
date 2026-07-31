@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+  stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <!-- subtle robot badge -->
+  <path d="M12 3v2"/>
+  <path d="M10.2 5h3.6"/>
+  <!-- user -->
+  <path d="M12 13.2c2 0 3.6-1.6 3.6-3.6S14 6 12 6 8.4 7.6 8.4 9.6 10 13.2 12 13.2z"/>
+  <path d="M6.8 20c.8-2.8 2.9-4.4 5.2-4.4s4.4 1.6 5.2 4.4"/>
+</svg>

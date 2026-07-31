@@ -18,7 +18,9 @@
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/styles.css" />
 
@@ -51,8 +53,8 @@
         <a href="pricing.html">Pricing</a>
         <a class="active" href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
-        <a class="cta-ghost" href="https://sigbot.app/login">Start Free</a>
-        <a class="cta" href="https://sigbot.app/login">Log In</a>
+        <a class="cta-ghost" href="https://sigbot.app/login">Log in</a>
+        <a class="cta" href="https://sigbot.app/login">Start free</a>
       </div>
     </div>
 
@@ -78,35 +80,35 @@
         <div class="panel">
           <p class="panelTitle">Common questions</p>
 
-          <div class="kv">
+          <div class="kv kv--qa">
             <div class="kvRow">
-              <div class="kvKey">Does Sigbot upload my data?</div>
+              <h3 class="kvKey">Does Sigbot upload my data?</h3>
               <div class="kvVal">Contacts are synced to a secure Firebase cloud database for cross-device access. No data is shared with third parties.</div>
             </div>
             <div class="kvRow">
-              <div class="kvKey">What does it capture?</div>
+              <h3 class="kvKey">What does it capture?</h3>
               <div class="kvVal">Signature fields like name, title, company, phone, email.</div>
             </div>
             <div class="kvRow">
-              <div class="kvKey">Can I export contacts?</div>
+              <h3 class="kvKey">Can I export contacts?</h3>
               <div class="kvVal">Yes — CSV and Excel export for your tools.</div>
             </div>
             <div class="kvRow">
-              <div class="kvKey">Does it deduplicate?</div>
+              <h3 class="kvKey">Does it deduplicate?</h3>
               <div class="kvVal">Yes — it keeps one clean record per contact.</div>
             </div>
             <div class="kvRow">
-              <div class="kvKey">How do updates work?</div>
+              <h3 class="kvKey">How do updates work?</h3>
               <div class="kvVal">The web app updates automatically — just refresh your browser to get the latest version.</div>
             </div>
             <div class="kvRow">
-              <div class="kvKey">What email providers are supported?</div>
+              <h3 class="kvKey">What email providers are supported?</h3>
               <div class="kvVal">Outlook, any IMAP-compatible provider (including Gmail via an app password), or email
                 forwarding from any mailbox.
               </div>
             </div>
             <div class="kvRow">
-              <div class="kvKey">Is there a mobile app?</div>
+              <h3 class="kvKey">Is there a mobile app?</h3>
               <div class="kvVal">Yes — iOS and Android. Search contacts, view maps, scan business cards, and share your
                 profile via QR code.</div>
             </div>
@@ -121,33 +123,33 @@
         <div class="panel">
           <p class="panelTitle">Troubleshooting</p>
 
-          <div class="kv">
+          <div class="kv kv--qa">
             <div class="kvRow">
-              <div class="kvKey">Can’t log in</div>
+              <h3 class="kvKey">Can’t log in</h3>
               <div class="kvVal">Try resetting your password or clearing your browser cache.</div>
             </div>
             <div class="kvRow">
-              <div class="kvKey">Inbox not connecting</div>
+              <h3 class="kvKey">Inbox not connecting</h3>
               <div class="kvVal">Check that you’ve granted the necessary permissions when connecting your account.</div>
             </div>
             <div class="kvRow">
-              <div class="kvKey">Contacts not appearing</div>
+              <h3 class="kvKey">Contacts not appearing</h3>
               <div class="kvVal">Allow a few minutes for the initial sync to complete after connecting an inbox.</div>
             </div>
           </div>
 
           <div class="btnrow" style="margin-top:14px">
-            <a class="btnPrimary" href="https://sigbot.app/login">Open web app</a>
+            <a class="btnPrimary" href="https://sigbot.app/login">Start free</a>
             <a class="btnGhost" href="contact.html">Contact support</a>
           </div>
         </div>
       </div>
       <!-- Bottom CTA -->
-      <div style="text-align: center; margin-top: 60px; padding: 48px 32px; background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.18); border-radius: 20px;">
+      <div style="text-align: center; margin-top: 60px; padding: 48px 32px; background: rgba(var(--accent-rgb), 0.07); border: 1px solid rgba(var(--accent-rgb), 0.18); border-radius: 20px;">
         <h2 style="font-size: 24px; font-weight: 800; margin: 0 0 12px; letter-spacing: -0.03em;">Ready to stop losing contacts?</h2>
-        <p style="font-size: 15px; color: var(--muted); margin: 0 0 28px;">Start free — no credit card required. Upgrade to Pro when you're ready for unlimited scanning.</p>
+        <p style="font-size: 15px; color: var(--muted); margin: 0 0 28px; max-width: var(--measure);">Start free — no credit card required. Upgrade to Pro when you're ready for unlimited scanning.</p>
         <div class="btnrow" style="justify-content: center;">
-          <a class="btnPrimary" href="https://sigbot.app/login" style="padding: 14px 32px;">Get Started Free</a>
+          <a class="btnPrimary" href="https://sigbot.app/login" style="padding: 14px 32px;">Start free</a>
           <a class="btnGhost" href="pricing.html" style="padding: 14px 32px;">See pricing</a>
         </div>
       </div>

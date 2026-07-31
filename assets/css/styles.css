@@ -1,17 +1,81 @@
+/* ═══════════════════════════════════════════════════════════════════
+   SIGNAL — Sigbot's visual identity.
+
+   The accent is a highlighter amber, and that is the whole idea: Sigbot
+   marks the fields in a signature and lifts them out, so the colour that
+   does the marking is the colour of the brand. Mint appears only where
+   something is confirmed. Nothing else is allowed to be chromatic.
+
+   Every text value below clears WCAG AA (4.5:1) on --bg and --surface;
+   --chrome is 3.99:1 and is for decorative mockup chrome only.
+   ═══════════════════════════════════════════════════════════════════ */
 :root {
-  --bg: #050505;
-  --fg: #ffffff;
-  --muted: #a1a1aa;
-  --line: #27272a;
-  --hover: #f4f4f5;
-  --accent: #3b82f6;
-  /* A nice blue for accents */
-  --accent-glow: rgba(59, 130, 246, 0.15);
+  --bg: #0A0B0D;
+  /* ground — near-black, faint cool cast so warm amber reads warm */
+  --surface: #12141A;
+  /* cards and panels */
+  --fg: #F4F5F7;
+  /* 18.1:1 — primary text */
+  --muted: #9AA0AC;
+  /* 7.5:1 — secondary text */
+  --muted-2: #868C99;
+  /* 5.8:1 — tertiary */
+  --faint: #7A808C;
+  /* 5.0:1 — captions, meta, legal */
+  --chrome: #888D9C;
+  /* 5.0:1 on the lightest surface it lands on (#1e1e1e), 5.9:1 on --bg.
+     Was #6B7080, validated only against --bg — but this token is used almost
+     entirely inside the app mockups, whose surfaces (#0d0d0d…#1a1a1a) are
+     lighter than the page. It measured 3.5–4.0:1 there: 85 failures on
+     webapp.html alone. Validate this against #1a1a1a, not --bg. */
+  --line: #23262E;
+  --hover: #F4F5F7;
+
+  /* The highlighter. 9.8:1 on ground — the old Tailwind blue was 5.4:1. */
+  --accent: #F0A93B;
+  --accent-rgb: 240, 169, 59;
+  --accent-glow: rgba(240, 169, 59, 0.15);
+
+  /* Confirmed / verified only. Never decorative. */
+  --verify: #5FD3A3;
+  --verify-rgb: 95, 211, 163;
+
   --max: 1000px;
   --pad: 32px;
   --card-bg: rgba(255, 255, 255, 0.03);
   --card-border: rgba(255, 255, 255, 0.08);
+
+  /* Display carries the personality and is used on headings only.
+     Inter stays as the body face — it is a good body face; being the
+     *only* face was the problem. Mono is for parsed field values. */
+  --font-display: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
   --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Spacing scale. Section rhythm is --section-y; everything else steps 8→96. */
+  --s-1: 8px;
+  --s-2: 16px;
+  --s-3: 24px;
+  --s-4: 40px;
+  --s-5: 64px;
+  --s-6: 96px;
+  --section-y: 96px;
+
+  /* Motion. Two hover lifts chosen by element size — there were eight ad-hoc
+     values between -1px and -8px with nothing distinguishing them. Durations
+     stay under 200ms for hover feedback: this is a pointer response, not a
+     moment. --ease has more bite at both ends than the built-in `ease`. */
+  /* Reading measure. `ch` is the width of "0", which in Inter runs wider than
+     the average character, so 60ch lands around 72-75 real characters — inside
+     the 65-75 the eye tracks comfortably. Anything unconstrained on this site
+     was running 100-134. */
+  --measure: 60ch;
+
+  --lift-card: -4px;
+  --lift-control: -2px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 120ms;
+  --dur: 180ms;
 }
 
 * {
@@ -49,12 +113,108 @@ a:hover {
   color: var(--accent);
 }
 
+/* ── Keyboard focus ──────────────────────────────────────────────
+   :focus-visible only, so mouse users never see a ring but keyboard
+   and screen-reader users always do. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Inputs already swap the ring for a border+glow, but that reads as
+   ambiguous on a dark field — give them the ring too. */
+.form-control:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────
+   The site ships 22 CSS animations and 49 transitions. Anyone who has
+   asked their OS to calm motion down gets state changes without travel.
+   JS loops (hero-bg.js, globe.js) check the same query themselves. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Hover lifts translate; keep the colour change, drop the movement.
+     Covers every lifting or scaling hover on the site, not a sample. */
+  .panel:hover,
+  .hiw-card:hover,
+  .product-nav-card:hover,
+  .product-nav-card:hover .pnc-arrow,
+  .cta-col:hover,
+  .feature-card:hover,
+  .btnPrimary:hover,
+  .btnGhost:hover,
+  .store-btn:hover,
+  .navlinks a.cta:hover,
+  .navlinks a.cta-ghost:hover,
+  .con-ctaBtn:hover {
+    transform: none !important;
+  }
+}
+
 .container {
   max-width: var(--max);
   margin: 0 auto;
   padding: 24px var(--pad) 80px;
   position: relative;
   z-index: 10;
+}
+
+/* Display face on headings and the wordmark only. Inter remains the body face
+   — it was never the problem; being the *only* face was. Existing per-rule
+   weights and tracking are left alone. */
+h1,
+h2,
+h3,
+h4,
+.heroTitle,
+.pageTitle,
+.hiw-heading,
+.anim-title,
+.f-title,
+.cta-title,
+.brand a {
+  font-family: var(--font-display);
+}
+
+/* Parsed field values and other machine-read data. Mono signals "this came
+   out of a signature verbatim" rather than being body prose. */
+.sig-block,
+.contact-field-value,
+.app-contact-row,
+.browser-url {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum' 1;
+}
+
+/* Canonical content column. Every top-level section resolves to the same
+   936px content box (1000 - 2×32) so left edges line up down the whole page.
+   Sections previously ran at 936 / 1000 / 1100 / 900 / full-bleed. */
+.section-w {
+  max-width: var(--max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--pad);
+  padding-right: var(--pad);
 }
 
 /* NAV */
@@ -206,12 +366,21 @@ a:hover {
   transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
 }
 
+/* The primary action. Amber on dark text — the one saturated element in the
+   nav, so the eye lands on signup rather than on Log in. */
 .navlinks a.cta {
-  background: rgba(255, 255, 255, 0.16);
+  background: var(--accent);
+  color: var(--bg);
 }
 
-.navlinks a.cta-ghost:hover,
 .navlinks a.cta:hover {
+  background: #F7BC5C;
+  color: var(--bg);
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 6px 22px rgba(var(--accent-rgb), 0.3);
+}
+
+.navlinks a.cta-ghost:hover {
   color: var(--fg);
   background: rgba(255, 255, 255, 0.24);
   transform: translateY(-1px) scale(1.03);
@@ -256,35 +425,14 @@ a:hover {
   align-items: center;
 }
 
-/* Full-bleed animated background: emails → contact cards */
-#hero-bg {
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero > *:not(#hero-bg) {
+.hero > * {
   position: relative;
   z-index: 1;
 }
 
-/* Gradient background glow for hero */
-.hero::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 400px;
-  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.8;
-}
+/* The radial accent glow that used to sit behind the headline is gone: with a
+   warm accent it read as a smudge, and the hero now has a real subject in it.
+   (#hero-bg and its canvas were removed at the same time — see index.html.) */
 
 .heroBadge {
   display: inline-flex;
@@ -298,16 +446,17 @@ a:hover {
   color: var(--muted);
   margin-bottom: 24px;
   backdrop-filter: blur(8px);
-  animation: fadeUp 0.8s ease-out forwards;
-  opacity: 0;
 }
 
+/* "Connected" is a confirmed state, so it uses --verify. Was a hardcoded
+   #10b981 that belonged to no part of the palette. Deliberately does not
+   pulse — a looped glow on a status dot is the most common motion tell there
+   is, and this dot is not reporting anything live. */
 .badge-dot {
   width: 6px;
   height: 6px;
-  background: #10b981;
+  background: var(--verify);
   border-radius: 50%;
-  box-shadow: 0 0 8px #10b981;
 }
 
 .heroTitle {
@@ -317,12 +466,10 @@ a:hover {
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 1.05;
-  background: linear-gradient(180deg, #ffffff 0%, #bbbbbb 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: fadeUp 0.8s ease-out 0.1s forwards;
-  opacity: 0;
+  /* Was a white→grey gradient text fill. Dropped: it is decoration that says
+     nothing about the product, and the amber should be the only colour move
+     on the page. */
+  color: var(--fg);
 }
 
 .heroSub {
@@ -330,10 +477,8 @@ a:hover {
   font-size: 24px;
   font-weight: 500;
   line-height: 1.4;
-  color: #eeeeee;
+  color: var(--fg);
   margin: 0 0 48px;
-  animation: fadeUp 0.8s ease-out 0.2s forwards;
-  opacity: 0;
 }
 
 .heroCtas {
@@ -341,8 +486,6 @@ a:hover {
   gap: 16px;
   justify-content: center;
   margin-bottom: 16px;
-  animation: fadeUp 0.8s ease-out 0.3s forwards;
-  opacity: 0;
 }
 
 .hero-trust-line {
@@ -350,28 +493,28 @@ a:hover {
   color: var(--muted);
   margin: 0 0 40px;
   letter-spacing: 0.02em;
-  animation: fadeUp 0.8s ease-out 0.4s forwards;
-  opacity: 0;
 }
 
+/* Same action, same look. This was white while the nav's primary was amber —
+   one action should not have two visual forms. */
 .btnPrimary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 14px 28px;
-  background: var(--fg);
+  background: var(--accent);
   color: var(--bg);
   border-radius: 12px;
   font-weight: 600;
   font-size: 15px;
-  transition: all 0.2s;
+  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
   border: 1px solid transparent;
 }
 
 .btnPrimary:hover {
-  background: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+  background: #F7BC5C;
+  transform: translateY(var(--lift-control));
+  box-shadow: 0 6px 24px rgba(var(--accent-rgb), 0.28);
   color: var(--bg);
 }
 
@@ -396,11 +539,11 @@ a:hover {
   align-items: center;
   gap: 12px;
   background: #000;
-  color: #fff;
+  color: var(--fg);
   padding: 10px 18px;
   border-radius: 12px;
   border: 1px solid #333;
-  transition: all 0.2s;
+  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
   text-align: left;
   text-decoration: none;
   width: fit-content;
@@ -408,10 +551,10 @@ a:hover {
 
 .store-btn:hover {
   background: #111;
-  border-color: #555;
-  transform: translateY(-2px);
+  border-color: var(--chrome);
+  transform: translateY(var(--lift-control));
   box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: var(--fg);
 }
 
 .store-btn svg {
@@ -427,7 +570,7 @@ a:hover {
 }
 
 .btn-label-small {
-  font-size: 9px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--muted);
@@ -438,8 +581,6 @@ a:hover {
   font-size: 15px;
   font-weight: 700;
 }
-
-
 
 /* APP MOCKUP */
 /* APP MOCKUP - DASHBOARD */
@@ -454,45 +595,6 @@ a:hover {
   opacity: 0;
 }
 
-.appWindow {
-  background: #000;
-  /* Deep black as per screenshot */
-  border: 1px solid #333;
-  border-radius: 12px;
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.5),
-    0 30px 60px -15px rgba(0, 0, 0, 0.8);
-  overflow: hidden;
-  transform: rotateX(2deg);
-  transition: transform 0.4s ease;
-  font-family: 'Inter', sans-serif;
-  color: #fff;
-}
-
-.appWindow:hover {
-  transform: rotateX(0deg) scale(1.005);
-}
-
-.windowHeader {
-  background: #000;
-  padding: 12px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #222;
-}
-
-.winControls {
-  display: flex;
-  gap: 8px;
-}
-
-.winDot {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-}
-
 .winDot.red {
   background: #fd5f57;
 }
@@ -505,19 +607,6 @@ a:hover {
   background: #27c93f;
 }
 
-.winTitle {
-  font-size: 13px;
-  font-weight: 600;
-  color: #888;
-}
-
-.windowBody {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  min-height: 560px;
-  background: #050505;
-}
-
 /* Sidebar */
 .mockSidebar {
   background: #0a0a0a;
@@ -528,72 +617,17 @@ a:hover {
   gap: 8px;
 }
 
-.mockBrand {
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  color: #fff;
-  margin-bottom: 24px;
-  padding-left: 8px;
-}
-
-.mockNavLink {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 13px;
-  color: #888;
-  font-weight: 500;
-  transition: all 0.2s;
-}
-
+/* 2px to match .sidebar-item.active in webapp.css — the same active-nav
+   convention was drawn at two different weights. */
 .mockNavLink.active {
   background: #1a1a1a;
-  color: #fff;
-  border-left: 3px solid #3b82f6;
-}
-
-.mockNavLink:hover {
-  color: #fff;
-  background: #111;
-}
-
-.mockIcon {
-  width: 14px;
-  height: 14px;
-  background: currentColor;
-  border-radius: 2px;
-  opacity: 0.7;
+  color: var(--fg);
+  border-left: 2px solid var(--accent);
 }
 
 /* Main Content */
 .mockMain {
   padding: 32px;
-}
-
-.mockHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 32px;
-}
-
-.mockPageTitle {
-  font-size: 24px;
-  font-weight: 700;
-  color: #fff;
-}
-
-.mockBtn {
-  background: transparent;
-  border: 1px solid #444;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 8px 16px;
-  border-radius: 6px;
 }
 
 /* ===== Dashboard Grid (Updated to match Desktop) ===== */
@@ -607,14 +641,6 @@ a:hover {
 /* Span Utilities */
 .span-2 {
   grid-column: span 2;
-}
-
-.span-3 {
-  grid-column: span 3;
-}
-
-.span-6 {
-  grid-column: span 6;
 }
 
 /* Stat Cards */
@@ -633,7 +659,7 @@ a:hover {
 .stat-value {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--fg);
   margin: 10px 0 5px 0;
   line-height: 1;
   position: relative;
@@ -644,7 +670,7 @@ a:hover {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #888;
+  color: var(--muted-2);
   font-weight: 600;
 }
 
@@ -654,21 +680,11 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 4px;
-  color: #888;
+  color: var(--muted-2);
 }
 
 .stat-trend.positive {
   color: #10b981;
-}
-
-.stat-icon-bg {
-  position: absolute;
-  right: -10px;
-  bottom: -10px;
-  font-size: 4rem;
-  opacity: 0.05;
-  pointer-events: none;
-  filter: grayscale(100%);
 }
 
 .widget {
@@ -683,17 +699,10 @@ a:hover {
 .widget h3 {
   font-size: 11px;
   font-weight: 600;
-  color: #888;
+  color: var(--muted-2);
   letter-spacing: 0.05em;
   text-transform: uppercase;
   margin: 0 0 16px 0;
-}
-
-.emptyState {
-  text-align: center;
-  color: #444;
-  font-size: 13px;
-  padding: 20px;
 }
 
 /* Map Placeholder */
@@ -712,36 +721,6 @@ a:hover {
   overflow: hidden;
 }
 
-.mapPin {
-  position: absolute;
-  top: 50%;
-  left: 60%;
-  width: 14px;
-  height: 14px;
-  background: #3b82f6;
-  border: 3px solid #fff;
-  border-radius: 50%;
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.8), 0 0 4px rgba(0, 0, 0, 0.5);
-  z-index: 10;
-  animation: pulsePin 2s infinite;
-}
-
-@keyframes pulsePin {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
-  }
-
-  70% {
-    transform: scale(1.2);
-    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
-  }
-
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
-  }
-}
 
 /* Map App Contact Card */
 .mapCard {
@@ -763,35 +742,6 @@ a:hover {
   animation-delay: 0.5s;
 }
 
-.mapAvatar {
-  width: 32px;
-  height: 32px;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: #fff;
-  font-size: 12px;
-}
-
-.mapInfo {
-  display: flex;
-  flex-direction: column;
-}
-
-.mapName {
-  font-size: 12px;
-  font-weight: 600;
-  color: #fff;
-}
-
-.mapLoc {
-  font-size: 10px;
-  color: #888;
-}
-
 /* Graph Placeholder */
 .graphPlaceholder {
   display: flex;
@@ -802,18 +752,6 @@ a:hover {
   padding-top: 20px;
 }
 
-.bar {
-  flex: 1;
-  background: #222;
-  border-radius: 2px 2px 0 0;
-  animation: growBar 1.5s ease-out forwards;
-}
-
-@keyframes growBar {
-  from {
-    height: 0;
-  }
-}
 
 /* GRID / CARDS */
 /* FEATURES STACK SECTION */
@@ -840,24 +778,18 @@ a:hover {
   flex-direction: row;
   align-items: center;
   gap: 48px;
-  background: linear-gradient(145deg, rgba(59, 130, 246, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
 }
 
 .feature-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(59, 130, 246, 0.3);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.1);
+  transform: translateY(var(--lift-card));
+  border-color: rgba(var(--accent-rgb), 0.3);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(var(--accent-rgb), 0.1);
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
 }
 
 .feature-card.featured:hover {
-  background: linear-gradient(145deg, rgba(59, 130, 246, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
-}
-
-.f-content {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
+  background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
 }
 
 .feature-icon-box {
@@ -923,26 +855,6 @@ a:hover {
   list-style: none;
 }
 
-.f-list li {
-  color: var(--fg);
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.f-list li::before {
-  content: "";
-  display: block;
-  width: 6px;
-  height: 6px;
-  background: var(--fg);
-  /* or accent color */
-  border-radius: 50%;
-  opacity: 0.5;
-}
-
-
 /* TWO-COLUMN LAYOUT */
 .twoCol {
   display: grid;
@@ -967,14 +879,14 @@ a:hover {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
 
 .cta-col:hover {
-  transform: translateY(-5px);
+  transform: translateY(var(--lift-card));
   background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(59, 130, 246, 0.4);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(59, 130, 246, 0.1);
+  border-color: rgba(var(--accent-rgb), 0.4);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(var(--accent-rgb), 0.1);
 }
 
 .cta-title {
@@ -1001,7 +913,7 @@ a:hover {
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid transparent;
-  transition: all 0.2s;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
 .cta-link:hover {
@@ -1041,9 +953,9 @@ a:hover {
 
 /* HOMEPAGE VIDEO SECTION */
 .homepage-video-section {
-  max-width: 900px;
-  margin: 80px auto;
-  padding: 0 24px;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--section-y) var(--pad);
   text-align: center;
 }
 
@@ -1053,8 +965,12 @@ a:hover {
   height: 0;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
   margin-top: 40px;
+  /* Before the third-party embed paints, this was an unbordered black hole the
+     same colour as the page. A surface and border make it read as a frame. */
+  background: var(--surface);
+  border: 1px solid var(--line);
 }
 
 .homepage-video-wrap iframe {
@@ -1075,8 +991,8 @@ a:hover {
   flex-wrap: wrap;
   margin: 0 auto 60px;
   padding: 20px 32px;
-  background: rgba(59, 130, 246, 0.07);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(var(--accent-rgb), 0.07);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
   border-radius: 16px;
   font-size: 15px;
   color: var(--muted);
@@ -1096,7 +1012,6 @@ a:hover {
 .pro-nudge-link:hover {
   color: var(--fg);
 }
-
 
 /* FOOTER */
 .footer {
@@ -1123,8 +1038,10 @@ a:hover {
   width: 100%;
   padding-top: 16px;
   border-top: 1px solid var(--line);
-  font-size: 11px;
-  color: rgba(161, 161, 170, 0.6);
+  font-size: 12px;
+  /* Was rgba(--muted, 0.6), which resolves to ~3.1:1 over the page — too low
+     for a company-registration line someone may actually need to read. */
+  color: var(--faint);
   line-height: 1.6;
   text-align: center;
 }
@@ -1146,6 +1063,7 @@ a:hover {
 @media (max-width: 900px) {
   :root {
     --pad: 24px;
+    --section-y: 64px;
   }
 
   .footer-cta-section {
@@ -1181,7 +1099,7 @@ a:hover {
   height: 2px;
   background: var(--fg);
   border-radius: 2px;
-  transition: all 0.2s;
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
 }
 
 .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -1305,10 +1223,6 @@ a:hover {
 
   /* App mockup */
   .appMockup  { transform: scale(0.9) rotateX(2deg); width: 110%; left: -5%; margin-top: 40px; }
-  .mockSidebar { display: none; }
-  .windowBody { grid-template-columns: 1fr; }
-  .dashboardGrid { grid-template-columns: 1fr; gap: 12px; }
-  .span-2, .span-3, .span-6 { grid-column: span 1; }
   .stat-card  { min-height: 100px; padding: 16px; }
   .stat-value { font-size: 1.8rem; }
 
@@ -1357,7 +1271,7 @@ a:hover {
 
   /* Footer */
   .footer-top { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .footer-top .small { font-size: 11px; line-height: 1.8; }
+  .footer-top .small { font-size: 12px; line-height: 1.8; }
 }
 
 @media (max-width: 768px) {
@@ -1370,8 +1284,8 @@ a:hover {
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   max-width: var(--max);
-  margin: 0 auto 80px;
-  padding: 0 var(--pad);
+  margin: 0 auto;
+  padding: 0 var(--pad) var(--section-y);
 }
 
 .product-nav-card {
@@ -1392,7 +1306,7 @@ a:hover {
 .product-nav-card:hover {
   background: rgba(255, 255, 255, 0.07);
   border-color: rgba(255, 255, 255, 0.15);
-  transform: translateY(-3px);
+  transform: translateY(var(--lift-card));
   color: var(--fg);
 }
 
@@ -1458,8 +1372,8 @@ a:hover {
 /* GLOBE SECTION */
 .globe-section {
   max-width: var(--max);
-  margin: 0 auto 40px;
-  padding: 40px var(--pad) 0;
+  margin: 0 auto;
+  padding: 0 var(--pad) var(--section-y);
 }
 
 .globe-stage {
@@ -1551,7 +1465,7 @@ a:hover {
   justify-content: center;
   font-size: 14px;
   font-weight: 700;
-  color: #fff;
+  color: var(--fg);
   flex-shrink: 0;
 }
 
@@ -1584,7 +1498,7 @@ a:hover {
 .globe-popup-badge {
   margin-top: 12px;
   display: inline-block;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: #4ade80;
@@ -1595,9 +1509,11 @@ a:hover {
 }
 
 /* PAGE / SECONDARY VARIATIONS */
+/* No entrance animation. This wrapped the entire content of every secondary
+   page, so a 600ms fade+rise ran over the h1 on each navigation — delaying the
+   largest contentful paint to say nothing at all. */
 .page {
   padding: 40px 0 0;
-  animation: fadeUp 0.6s ease-out forwards;
 }
 
 .pageTitle {
@@ -1619,14 +1535,14 @@ a:hover {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
   padding: 40px;
-  transition: all 0.3s ease;
+  transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 
 .panel:hover {
-  transform: translateY(-5px);
+  transform: translateY(var(--lift-card));
   background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(59, 130, 246, 0.4);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(59, 130, 246, 0.1);
+  border-color: rgba(var(--accent-rgb), 0.4);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(var(--accent-rgb), 0.1);
 }
 
 /* FORMS */
@@ -1652,7 +1568,7 @@ a:hover {
   padding: 14px 16px;
   color: var(--fg);
   font-size: 16px;
-  transition: all 0.2s;
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
   font-family: inherit;
 }
 
@@ -1660,7 +1576,7 @@ a:hover {
   outline: none;
   border-color: var(--accent);
   background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.15);
+  box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.15);
 }
 
 .panelTitle {
@@ -1679,18 +1595,6 @@ a:hover {
   gap: 24px;
   align-items: stretch;
   margin-top: 60px;
-}
-
-@media (max-width: 1024px) {
-  .pricingGrid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 640px) {
-  .pricingGrid {
-    grid-template-columns: 1fr;
-  }
 }
 
 .pricing-card {
@@ -1746,9 +1650,9 @@ a:hover {
 
 .pricing-card.recommended {
   border-color: var(--accent);
-  background: linear-gradient(145deg, rgba(59, 130, 246, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+  background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
   position: relative;
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 20px 45px -25px rgba(0, 0, 0, 0.7);
 }
 
 .recommended-badge {
@@ -1757,14 +1661,14 @@ a:hover {
   left: 50%;
   transform: translateX(-50%);
   background: var(--accent);
-  color: white;
+  color: var(--bg);
   padding: 4px 14px;
   border-radius: 20px;
   font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.4);
 }
 
 .btnrow {
@@ -1784,7 +1688,7 @@ a:hover {
   background: transparent;
   color: var(--fg);
   font-weight: 500;
-  transition: all 0.2s;
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
 .btnGhost:hover {
@@ -1823,6 +1727,33 @@ a:hover {
   font-weight: 500;
 }
 
+/* ── Prose Q&A ───────────────────────────────────────────────────
+   The base .kv is a key→value spec list: short value, right-aligned,
+   key and value on one line. An FAQ answer is a paragraph, so it needs
+   its own left edge and measure — squeezed into the key column, questions
+   were wrapping to four lines against centre-set answers. */
+.kv--qa .kvRow {
+  display: block;
+  padding: var(--s-3) 0;
+}
+
+.kv--qa .kvKey {
+  color: var(--fg);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--s-1);
+}
+
+.kv--qa .kvVal {
+  text-align: left;
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--muted);
+  max-width: var(--measure);
+}
+
 .note {
   color: var(--muted);
   font-size: 13px;
@@ -1859,23 +1790,17 @@ a:hover {
   /* Offset start */
 }
 
+/* Scrollytelling steps. The inactive state was 0.4, which put this section's
+   body copy at roughly 2:1. Opacity is the wrong tool for de-emphasising text
+   — it drags contrast down with it — and the phone mockup beside these steps
+   already shows which one is active. */
 .step {
   height: 80vh;
   /* Each step takes full viewport height roughly */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  opacity: 0.4;
-  transition: opacity 0.3s;
   padding: 0 40px;
-}
-
-.step:hover,
-/* Or active via JS if we want */
-.step:nth-child(1) {
-  /* Default first one active visually for simple css? No, just keep simple */
-  /* opacity: 1; handled by intersection observer maybe? or just simple hover text */
-  opacity: 1;
 }
 
 /* PHONE BEZEL */
@@ -1907,7 +1832,7 @@ a:hover {
   width: 100%;
   height: 100%;
   background: #111;
-  color: #fff;
+  color: var(--fg);
   position: relative;
   overflow: hidden;
 }
@@ -1926,7 +1851,7 @@ a:hover {
   background: #111;
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.5s ease;
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
   pointer-events: none;
   /* Let clicks pass? No, just visual */
 }
@@ -1972,14 +1897,14 @@ a:hover {
 }
 
 .app-stat small {
-  color: #888;
+  color: var(--muted-2);
   font-size: 12px;
 }
 
 .app-section-title {
   padding: 0 20px;
   margin-bottom: 15px;
-  color: #888;
+  color: var(--muted-2);
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -2001,7 +1926,7 @@ a:hover {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #3b82f6;
+  background: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2016,7 +1941,7 @@ a:hover {
 
 .app-meta {
   font-size: 12px;
-  color: #888;
+  color: var(--muted-2);
 }
 
 /* SYNC SCREEN */
@@ -2042,22 +1967,6 @@ a:hover {
   }
 }
 
-.sync-bar-container {
-  width: 100%;
-  height: 8px;
-  background: #222;
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 12px;
-}
-
-.sync-bar-fill {
-  width: 0%;
-  height: 100%;
-  background: #3b82f6;
-  border-radius: 4px;
-}
-
 .screen-sync.active .sync-bar-fill {
   animation: syncProgress 3s forwards ease-in-out;
 }
@@ -2068,26 +1977,12 @@ a:hover {
   }
 }
 
-.sync-status-text {
-  font-size: 14px;
-  color: #888;
-  margin-bottom: 24px;
-}
-
-.sync-success-note {
-  font-size: 16px;
-  font-weight: 600;
-  color: #10b981;
-  opacity: 0;
-  transform: translateY(10px);
-}
-
 .screen-sync.active .sync-success-note {
   animation: fadeUp 0.5s 3.2s forwards;
 }
 
 .app-meta {
-  color: #888;
+  color: var(--muted-2);
   font-size: 13px;
 }
 
@@ -2097,7 +1992,7 @@ a:hover {
   padding: 12px;
   border-radius: 8px;
   font-size: 14px;
-  color: #888;
+  color: var(--muted-2);
 }
 
 .app-bottom-nav {
@@ -2121,7 +2016,7 @@ a:hover {
 
 .nav-item.active {
   opacity: 1;
-  color: #3b82f6;
+  color: var(--accent);
 }
 
 /* MAP SPECIFICS */
@@ -2168,7 +2063,7 @@ a:hover {
 .scan-frame {
   width: 250px;
   height: 150px;
-  border: 2px solid #3b82f6;
+  border: 2px solid var(--accent);
   border-radius: 12px;
   box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.8);
   /* Darken surroundings */
@@ -2226,11 +2121,11 @@ a:hover {
   font-size: 1.2rem;
   margin-top: 30px;
   margin-bottom: 15px;
-  color: #fff;
+  color: var(--fg);
 }
 
 .content p {
-  color: #aaa;
+  color: var(--muted);
   line-height: 1.6;
   margin-bottom: 15px;
 }
@@ -2254,21 +2149,6 @@ a:hover {
   max-width: 700px;
 }
 
-.window-header {
-  height: 32px;
-  background: #2a2a2a;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-  position: relative;
-}
-
-.window-dots {
-  display: flex;
-  gap: 8px;
-}
-
 .dot {
   width: 12px;
   height: 12px;
@@ -2285,70 +2165,6 @@ a:hover {
 
 .dot.green {
   background: #27c93f;
-}
-
-.window-title {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 13px;
-  color: #888;
-}
-
-.desktop-img {
-  display: block;
-  width: 100%;
-}
-
-.desktop-walkthrough .walk-row {
-  display: flex;
-  align-items: center;
-  gap: 60px;
-  margin-bottom: 120px;
-}
-
-.desktop-walkthrough .walk-row.reverse {
-  flex-direction: row-reverse;
-}
-
-.walk-text {
-  flex: 1;
-}
-
-.walk-viz {
-  flex: 1.4;
-}
-
-@media (max-width: 900px) {
-  .desktop-walkthrough .walk-row {
-    flex-direction: column !important;
-    gap: 40px;
-    margin-bottom: 80px;
-  }
-}
-
-.play-btn {
-  width: 80px;
-  height: 80px;
-  background: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
-  transition: transform 0.2s;
-}
-
-.play-btn::after {
-  content: "";
-  border-left: 20px solid black;
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  margin-left: 6px;
-}
-
-.video-preview-section:hover .play-btn {
-  transform: scale(1.1);
 }
 
 /* CONTACT LOADING ANIMATION - Full Width */
@@ -2368,118 +2184,43 @@ a:hover {
   gap: 24px;
 }
 
-.loading-status {
-  font-size: 12px;
-  color: var(--muted);
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 0;
-  white-space: nowrap;
-}
-
 #contact-count {
   color: var(--accent);
   font-family: 'Courier New', Courier, monospace;
 }
 
-.loading-bar-bg {
-  flex: 1;
-  max-width: 600px;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  overflow: hidden;
-  position: relative;
-}
 
-.loading-bar-fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0%;
-  background: var(--accent);
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
-}
-
-.loading-bar-fill::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.3) 50%,
-      transparent 100%);
-  animation: shimmer-load 2s infinite;
-}
-
-@keyframes shimmer-load {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-@media (max-width: 640px) {
-  .loading-container {
-    padding: 8px 16px;
-    gap: 12px;
-  }
-
-  .loading-status {
-    font-size: 10px;
-  }
-}
-
-/* HOW IT WORKS SECTION */
+/* HOW IT WORKS SECTION
+   Left-aligned on purpose. Every section on this page used to be an identical
+   centred stack — eyebrow, big heading, grey sub, row of cards — which is what
+   made the page read as templated no matter how good any single part was.
+   The pipeline is a sequence, so it gets a left edge to read down. */
 .how-it-works-section {
-  padding: 120px var(--pad) 100px;
-  text-align: center;
-  max-width: 1100px;
+  padding: var(--section-y) var(--pad);
+  text-align: left;
+  max-width: var(--max);
   margin: 0 auto;
 }
 
-.section-pill {
-  display: inline-block;
-  padding: 6px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 100px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  color: var(--muted);
-  margin-bottom: 32px;
-}
-
 .hiw-heading {
-  font-size: clamp(32px, 5vw, 52px);
+  font-size: clamp(30px, 4vw, 44px);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.1;
   color: var(--fg);
-  max-width: 18ch;
-  margin: 0 auto 60px;
+  max-width: 24ch;
+  margin: 0 0 var(--s-5);
 }
 
 .hiw-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
 .hiw-card {
-  background: #0a0a0a;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--surface);
+  border: 1px solid var(--card-border);
   border-radius: 20px;
   padding: 32px 28px 36px;
   text-align: left;
@@ -2488,7 +2229,7 @@ a:hover {
 
 .hiw-card:hover {
   border-color: rgba(255, 255, 255, 0.16);
-  transform: translateY(-4px);
+  transform: translateY(var(--lift-card));
 }
 
 .hiw-card-header {
@@ -2498,10 +2239,13 @@ a:hover {
   margin-bottom: 28px;
 }
 
+/* 01 / 02 / 03 earns its place here — this genuinely is an ordered pipeline,
+   so the accent marks it as structure rather than decoration. */
 .hiw-step {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
   letter-spacing: 0.05em;
 }
 
@@ -2536,9 +2280,5 @@ a:hover {
   .hiw-cards {
     grid-template-columns: 1fr;
     gap: 16px;
-  }
-
-  .how-it-works-section {
-    padding: 80px var(--pad) 60px;
   }
 }

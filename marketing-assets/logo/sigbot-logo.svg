@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- antenna -->
+  <path d="M32 6v6" stroke="#EDEDED" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- hard hat -->
+  <path d="M18 18c0-8 6-12 14-12s14 4 14 12v2H18v-2z"
+        stroke="#EDEDED" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M14 22h36" stroke="#EDEDED" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- robot head -->
+  <rect x="12" y="24" width="40" height="30" rx="10"
+        stroke="#EDEDED" stroke-width="4"/>
+
+  <!-- eyes -->
+  <circle cx="24" cy="38" r="4" fill="#EDEDED"/>
+  <circle cx="40" cy="38" r="4" fill="#EDEDED"/>
+
+  <!-- mouth -->
+  <path d="M22 48h20" stroke="#EDEDED" stroke-width="4" stroke-linecap="round"/>
+</svg>

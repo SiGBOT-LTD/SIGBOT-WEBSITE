@@ -110,13 +110,25 @@
     return d3.geoDistance([pin.lng, pin.lat], [-r[0], -r[1]]) < Math.PI / 2 - 0.06;
   }
 
+  // Pull the palette off the stylesheet rather than repeating hexes here, so
+  // the globe cannot drift out of sync with the tokens the way it did when the
+  // accent was still a hardcoded blue.
+  const css = getComputedStyle(document.documentElement);
+  const token = (name, fallback) => (css.getPropertyValue(name).trim() || fallback);
+  const PALETTE = {
+    sphere: token('--bg', '#0A0B0D'),
+    accent: token('--accent', '#F0A93B'),
+    accentRgb: token('--accent-rgb', '240, 169, 59'),
+    land: token('--chrome', '#6B7080'),
+  };
+
   function render() {
     context.clearRect(0, 0, width, height);
 
     // Sphere
     context.beginPath();
     context.arc(width / 2, height / 2, projection.scale(), 0, 2 * Math.PI);
-    context.fillStyle = '#050505';
+    context.fillStyle = PALETTE.sphere;
     context.fill();
     context.strokeStyle = 'rgba(255,255,255,0.8)';
     context.lineWidth = 1.5;
@@ -140,7 +152,7 @@
       context.stroke();
 
       // Halftone dots
-      context.fillStyle = '#8f8f8f';
+      context.fillStyle = PALETTE.land;
       allDots.forEach(function (dot) {
         const p = projection(dot);
         if (p) {
@@ -158,11 +170,11 @@
       if (!p) return;
       context.beginPath();
       context.arc(p[0], p[1], 10, 0, 2 * Math.PI);
-      context.fillStyle = 'rgba(59,130,246,0.25)';
+      context.fillStyle = 'rgba(' + PALETTE.accentRgb + ', 0.25)';
       context.fill();
       context.beginPath();
       context.arc(p[0], p[1], 5, 0, 2 * Math.PI);
-      context.fillStyle = '#3b82f6';
+      context.fillStyle = PALETTE.accent;
       context.fill();
       context.strokeStyle = '#ffffff';
       context.lineWidth = 1.5;
@@ -262,9 +274,15 @@
     if (!popupPin) autoRotate = true;
   });
 
-  // Auto-rotation
+  // Auto-rotation. Skipped entirely under prefers-reduced-motion — the globe
+  // stays interactive (drag and pin clicks still work), it just doesn't spin
+  // on its own. Live query so a mid-session OS change is honoured.
+  var reduceMotion = window.matchMedia
+    ? window.matchMedia('(prefers-reduced-motion: reduce)')
+    : null;
+
   d3.timer(function () {
-    if (autoRotate) {
+    if (autoRotate && !(reduceMotion && reduceMotion.matches)) {
       rotation[0] += 0.25;
       projection.rotate(rotation);
       render();

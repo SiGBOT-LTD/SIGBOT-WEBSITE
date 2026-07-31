@@ -18,7 +18,9 @@
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/styles.css" />
 
@@ -53,21 +55,21 @@
         <a href="pricing.html">Pricing</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
-        <a class="cta-ghost" href="https://sigbot.app/login">Start Free</a>
-        <a class="cta" href="https://sigbot.app/login">Log In</a>
+        <a class="cta-ghost" href="https://sigbot.app/login">Log in</a>
+        <a class="cta" href="https://sigbot.app/login">Start free</a>
       </div>
     </div>
 
-    <div class="page" style="text-align: center;">
+    <div class="page wa-center">
       <h1 class="pageTitle" style="text-align: center; margin: 0 auto 20px;">Your database, in any browser.</h1>
       <p class="pageSub" style="text-align: center; margin: 0 auto 40px; max-width: 700px;">No download required. Log in at
         <a href="https://sigbot.app/login" style="color: var(--accent);">sigbot.app</a> to access your full
         contact database, manage your team, and export data from anywhere.</p>
 
       <!-- Map Section -->
-      <div style="text-align: center; margin-top: 120px;">
-        <h2 class="heroTitle" style="font-size: 32px; margin: 0 auto 20px;">See where your contacts are.</h2>
-        <p class="f-desc" style="font-size: 18px; line-height: 1.6; max-width: 600px; margin: 0 auto 40px;">
+      <div class="wa-section">
+        <h2 class="heroTitle wa-h2">See where your contacts are.</h2>
+        <p class="f-desc wa-sub">
           Every contact with a location is plotted on an interactive world map. Zoom into regions, click clusters to explore contacts, and spot where your network is growing.
         </p>
         <div style="display: flex; justify-content: center;">
@@ -86,10 +88,9 @@
       </div>
 
       <!-- Dashboard Analytics Mockup -->
-      <div style="text-align: center; margin-top: 120px;">
-        <div class="section-pill">DASHBOARD</div>
-        <h2 class="heroTitle" style="font-size: 32px; margin: 0 auto 20px;">Instant insight into your database.</h2>
-        <p class="f-desc" style="font-size: 18px; line-height: 1.6; max-width: 600px; margin: 0 auto 60px;">
+      <div class="wa-section">
+        <h2 class="heroTitle wa-h2">Instant insight into your database.</h2>
+        <p class="f-desc wa-sub">
           Track contact growth over time, spot your top companies and roles, and see exactly where your data is incomplete — all from one screen.
         </p>
         <div style="display: flex; justify-content: center;">
@@ -102,28 +103,28 @@
               </div>
               <div class="browser-url">sigbot.app/dashboard</div>
             </div>
-            <div class="app-shell" style="height: 520px;">
+            <div class="app-shell" style="min-height: 520px;">
               <div class="app-sidebar" style="display: flex; flex-direction: column; width: 190px;">
                 <div class="app-sidebar-logo"><span></span> SIGBOT</div>
                 <!-- Workspace dropdown -->
-                <div style="margin:0 10px 14px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:6px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;cursor:default;">
-                  <span style="font-size:11px;color:#ccc;font-weight:500;">Personal</span>
-                  <span style="font-size:10px;color:#555;">▾</span>
+                <div style="margin:0 10px 14px;background:rgba(var(--accent-rgb), 0.1);border:1px solid rgba(var(--accent-rgb), 0.2);border-radius:6px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;cursor:default;">
+                  <span style="font-size: 12px;color: var(--muted);font-weight:500;">Personal</span>
+                  <span class="wa-meta">▾</span>
                 </div>
-                <div class="sidebar-item active"><span class="s-icon">📊</span> Dashboard</div>
-                <div class="sidebar-item"><span class="s-icon">👥</span> Contacts</div>
-                <div class="sidebar-item"><span class="s-icon">🗺️</span> Map</div>
-                <div class="sidebar-item"><span class="s-icon">👤</span> Account</div>
+                <div class="sidebar-item active"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="20" x2="20" y2="20"/><rect x="5.5" y="12" width="4" height="5"/><rect x="11.5" y="7" width="4" height="10"/><rect x="17" y="14" width="4" height="3"/></svg></span> Dashboard</div>
+                <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="8" r="3.2"/><path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4"/></svg></span> Contacts</div>
+                <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13M15 6.5v13"/></svg></span> Map</div>
+                <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5 19.5v-1a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v1"/></svg></span> Account</div>
                 <div style="padding:14px 16px 4px;display:flex;justify-content:space-between;align-items:center;">
-                  <span style="font-size:9px;color:#3a3a3a;text-transform:uppercase;letter-spacing:0.07em;">Folders</span>
-                  <span style="font-size:15px;color:#3a3a3a;line-height:1;">+</span>
+                  <span style="font-size: 12px;color: var(--chrome);text-transform:uppercase;letter-spacing:0.07em;">Folders</span>
+                  <span style="font-size:15px;color: var(--chrome);line-height:1;">+</span>
                 </div>
-                <div class="sidebar-item" style="color:#3a3a3a;font-size:11px;padding:5px 16px;">📁 New Folder</div>
+                <div class="sidebar-item" style="color: var(--chrome);font-size: 12px;padding:5px 16px;"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> New Folder</div>
                 <div class="sidebar-usage">
-                  <div class="sidebar-usage-row"><span style="color:#555;font-size:9px;text-transform:uppercase;letter-spacing:0.05em;">Email scraping</span><span style="font-size:9px;color:#3b82f6;font-weight:600;">Starter</span></div>
+                  <div class="sidebar-usage-row"><span style="color: var(--chrome);font-size: 12px;text-transform:uppercase;letter-spacing:0.05em;">Email scraping</span><span style="font-size: 12px;color:var(--accent);font-weight:600;">Starter</span></div>
                   <div class="sidebar-usage-row"><span>Today</span><span>0 / 50</span></div>
-                  <div class="sidebar-usage-row"><span>Total</span><span>0 / 300</span></div>
-                  <div class="sidebar-upgrade-btn">⬆ Upgrade</div>
+                  <div class="sidebar-usage-row"><span>Total</span><span>279 / 300</span></div>
+                  <div class="sidebar-upgrade-btn"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></svg></span> Upgrade</div>
                 </div>
               </div>
               <div class="app-main">
@@ -162,13 +163,13 @@
                   <svg class="db-chart-svg" viewBox="0 0 400 52" preserveAspectRatio="none">
                     <defs>
                       <linearGradient id="cGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25"/>
-                        <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+                        <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.25"/>
+                        <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
                       </linearGradient>
                     </defs>
                     <path d="M0,52 C40,51 80,48 120,42 C160,36 200,24 260,14 C300,8 350,3 400,1 L400,52 Z" fill="url(#cGrad)"/>
-                    <path d="M0,52 C40,51 80,48 120,42 C160,36 200,24 260,14 C300,8 350,3 400,1" stroke="#3b82f6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="400" cy="1" r="3" fill="#3b82f6"/>
+                    <path d="M0,52 C40,51 80,48 120,42 C160,36 200,24 260,14 C300,8 350,3 400,1" stroke="var(--accent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="400" cy="1" r="3" fill="var(--accent)"/>
                   </svg>
                 </div>
                 <!-- Recent Activity + Data Completeness -->
@@ -210,6 +211,19 @@
         </div>
       </div>
 
+      <!-- How contacts get in -->
+      <section class="webapp-integrations">
+        <h2 class="heroTitle wa-h2">Connect once. Contacts appear automatically.</h2>
+        <p class="f-desc" style="font-size: 18px; line-height: 1.6; max-width: 600px; margin: 0 auto 16px;">
+          Sigbot scans email signatures across Outlook, Gmail, and IMAP inboxes — no manual entry, no copy-paste. New
+          contacts are extracted the moment someone emails you.
+        </p>
+        <p class="f-desc" style="font-size: 18px; line-height: 1.6; max-width: 600px; margin: 0 auto;">
+          Works alongside the tools you already use on-site — see <a href="/construction.html" style="color: var(--accent);">Sigbot for Construction</a>
+          for integrations with Procore, Buildertrend, and Pipedrive.
+        </p>
+      </section>
+
       <!-- Feature grid -->
       <div class="section-header" style="margin-top: 120px; text-align: center;">
         <h2 class="heroTitle" style="font-size: 42px; margin: 0 auto 20px; text-align: center;">Everything in one tab.</h2>
@@ -218,25 +232,58 @@
 
       <div class="features-grid-4">
         <div class="panel">
-          <div class="feature-icon-box" style="margin-bottom: 24px;">🌐</div>
+          <div class="feature-icon-box">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M3 12h18M12 3a15 15 0 0 1 4 9 15 15 0 0 1-4 9 15 15 0 0 1-4-9 15 15 0 0 1 4-9z" />
+            </svg>
+          </div>
           <h3 class="f-title">Any device, any browser</h3>
           <p class="f-desc">Log in from a work PC, client laptop, or tablet. Your contacts are always up to date — synced in real time via the cloud.</p>
         </div>
         <div class="panel">
-          <div class="feature-icon-box" style="margin-bottom: 24px;">🔍</div>
+          <div class="feature-icon-box">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <line x1="16.5" y1="16.5" x2="21" y2="21" />
+            </svg>
+          </div>
           <h3 class="f-title">Search, filter, export</h3>
           <p class="f-desc">Search across thousands of contacts instantly. Filter by company, role, or source inbox. Export to CSV or Excel in one click.</p>
         </div>
         <div class="panel">
-          <div class="feature-icon-box" style="margin-bottom: 24px;">📊</div>
+          <div class="feature-icon-box">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="4" y1="20" x2="20" y2="20" />
+              <rect x="5.5" y="12" width="4" height="5" />
+              <rect x="11.5" y="7" width="4" height="10" />
+              <rect x="17.5" y="14.5" width="4" height="2.5" stroke-dasharray="2 2" />
+            </svg>
+          </div>
           <h3 class="f-title">Data completeness</h3>
           <p class="f-desc">See which fields are missing across your database. Know at a glance which contacts need enrichment before they matter.</p>
         </div>
         <div class="panel">
-          <div class="feature-icon-box" style="margin-bottom: 24px;">👥</div>
+          <div class="feature-icon-box">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19" />
+              <circle cx="10" cy="8" r="3.5" />
+              <path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4M15.5 5.1a3.5 3.5 0 0 1 0 5.8" />
+            </svg>
+          </div>
           <h3 class="f-title">Team management</h3>
           <p class="f-desc">Invite team members, manage roles, and share contact folders across your organisation — all from the web dashboard.</p>
         </div>
+      </div>
+
+      <!-- Mid-page CTA -->
+      <div class="webapp-cta-mid">
+        <p>See your own contacts on your own map, in minutes.</p>
+        <a href="https://sigbot.app/login" class="btnPrimary">Start free</a>
       </div>
 
       <!-- Walkthrough -->
@@ -244,13 +291,14 @@
 
         <!-- Row 0: Contacts table -->
         <div class="web-walk-row">
-          <div style="text-align: center;">
-            <h2 class="heroTitle" style="font-size: 32px; margin: 0 auto 20px;">Every contact, every detail.</h2>
+          <div class="wa-center">
+            <h2 class="heroTitle wa-h2">Every contact, every detail.</h2>
             <p class="f-desc" style="font-size: 18px; line-height: 1.6; max-width: 600px; margin: 0 auto;">
               Sortable columns across name, email, company, title, phone, and location. Search your entire database in under a second — then export exactly what you need.
             </p>
           </div>
-          <div style="display: flex; justify-content: center; width: 100%;">
+          <div class="wa-center-col">
+            <p class="sample-data-label"><em>Sample data shown for illustration.</em></p>
             <div class="browser-window">
               <div class="browser-chrome">
                 <div class="browser-dots">
@@ -260,39 +308,39 @@
                 </div>
                 <div class="browser-url">sigbot.app/contacts</div>
               </div>
-              <div class="app-shell" style="height: 420px;">
+              <div class="app-shell" style="min-height: 420px;">
 
                 <!-- Sidebar — matches real app structure -->
                 <div class="app-sidebar" style="display:flex;flex-direction:column;width:190px;">
                   <div class="app-sidebar-logo"><span></span> SIGBOT</div>
 
                   <!-- Workspace dropdown -->
-                  <div style="margin:0 10px 14px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:6px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;cursor:default;">
-                    <span style="font-size:11px;color:#ccc;font-weight:500;">Personal</span>
-                    <span style="font-size:10px;color:#555;">▾</span>
+                  <div style="margin:0 10px 14px;background:rgba(var(--accent-rgb), 0.1);border:1px solid rgba(var(--accent-rgb), 0.2);border-radius:6px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;cursor:default;">
+                    <span style="font-size: 12px;color: var(--muted);font-weight:500;">Personal</span>
+                    <span class="wa-meta">▾</span>
                   </div>
 
-                  <div class="sidebar-item"><span class="s-icon">📊</span> Dashboard</div>
-                  <div class="sidebar-item active"><span class="s-icon">👥</span> Contacts</div>
-                  <div class="sidebar-item"><span class="s-icon">🗺️</span> Map</div>
-                  <div class="sidebar-item"><span class="s-icon">👤</span> Account</div>
+                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="20" x2="20" y2="20"/><rect x="5.5" y="12" width="4" height="5"/><rect x="11.5" y="7" width="4" height="10"/><rect x="17" y="14" width="4" height="3"/></svg></span> Dashboard</div>
+                  <div class="sidebar-item active"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="8" r="3.2"/><path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4"/></svg></span> Contacts</div>
+                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13M15 6.5v13"/></svg></span> Map</div>
+                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5 19.5v-1a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v1"/></svg></span> Account</div>
 
                   <!-- Folders section -->
                   <div style="padding:14px 16px 4px;display:flex;justify-content:space-between;align-items:center;">
-                    <span style="font-size:9px;color:#3a3a3a;text-transform:uppercase;letter-spacing:0.07em;">Folders</span>
-                    <span style="font-size:15px;color:#3a3a3a;line-height:1;cursor:default;">+</span>
+                    <span style="font-size: 12px;color: var(--chrome);text-transform:uppercase;letter-spacing:0.07em;">Folders</span>
+                    <span style="font-size:15px;color: var(--chrome);line-height:1;cursor:default;">+</span>
                   </div>
-                  <div class="sidebar-item" style="color:#3a3a3a;font-size:11px;padding:5px 16px;">📁 New Folder</div>
+                  <div class="sidebar-item" style="color: var(--chrome);font-size: 12px;padding:5px 16px;"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> New Folder</div>
 
                   <!-- Upgrade widget -->
                   <div class="sidebar-usage">
                     <div class="sidebar-usage-row">
-                      <span style="color:#555;font-size:9px;text-transform:uppercase;letter-spacing:0.05em;">Email scraping</span>
-                      <span style="font-size:9px;color:#3b82f6;font-weight:600;">Starter</span>
+                      <span style="color: var(--chrome);font-size: 12px;text-transform:uppercase;letter-spacing:0.05em;">Email scraping</span>
+                      <span style="font-size: 12px;color:var(--accent);font-weight:600;">Starter</span>
                     </div>
                     <div class="sidebar-usage-row"><span>Today</span><span>0 / 50</span></div>
-                    <div class="sidebar-usage-row"><span>Total</span><span>0 / 300</span></div>
-                    <div class="sidebar-upgrade-btn">⬆ Upgrade</div>
+                    <div class="sidebar-usage-row"><span>Total</span><span>279 / 300</span></div>
+                    <div class="sidebar-upgrade-btn"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></svg></span> Upgrade</div>
                   </div>
                 </div>
 
@@ -302,18 +350,18 @@
                   <div class="app-topbar" style="flex-wrap:wrap;gap:8px;">
                     <div style="display:flex;align-items:baseline;gap:10px;flex-shrink:0;">
                       <div class="app-page-title">Contacts</div>
-                      <span style="font-size:10px;color:#444;font-weight:400;">100 contacts</span>
+                      <span style="font-size: 12px;color: var(--chrome);font-weight:400;">279 contacts</span>
                     </div>
                     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
                       <div class="app-search" style="width:140px;">Search contacts...</div>
-                      <div style="background:#1a1a1a;border:1px solid #2a2a2a;color:#777;font-size:9px;font-weight:600;padding:5px 8px;border-radius:6px;cursor:default;white-space:nowrap;">Add Data</div>
-                      <div style="background:#1a1a1a;border:1px solid #2a2a2a;color:#777;font-size:9px;font-weight:600;padding:5px 8px;border-radius:6px;cursor:default;white-space:nowrap;">Export Data</div>
-                      <div style="background:#3b82f6;color:#fff;font-size:9px;font-weight:600;padding:5px 8px;border-radius:6px;cursor:default;white-space:nowrap;">+ New Contact</div>
+                      <div style="background:#1a1a1a;border:1px solid #2a2a2a;color: var(--chrome);font-size: 12px;font-weight:600;padding:5px 8px;border-radius:6px;cursor:default;white-space:nowrap;">Add Data</div>
+                      <div style="background:#1a1a1a;border:1px solid #2a2a2a;color: var(--chrome);font-size: 12px;font-weight:600;padding:5px 8px;border-radius:6px;cursor:default;white-space:nowrap;">Export Data</div>
+                      <div style="background:var(--accent);color: var(--bg);font-size: 12px;font-weight:600;padding:5px 8px;border-radius:6px;cursor:default;white-space:nowrap;">+ New Contact</div>
                     </div>
                   </div>
 
                   <!-- Table header -->
-                  <div style="display:grid;grid-template-columns:20px 1.4fr 1.8fr 1.4fr 1.1fr 0.1fr;gap:6px;padding:6px 8px;font-size:9px;color:#3a3a3a;text-transform:uppercase;letter-spacing:0.06em;border-bottom:1px solid #1e1e1e;margin-bottom:2px;align-items:center;">
+                  <div style="display:grid;grid-template-columns:20px 1.4fr 1.8fr 1.4fr 1.1fr 0.1fr;gap:6px;padding:6px 8px;font-size: 12px;color: var(--chrome);text-transform:uppercase;letter-spacing:0.06em;border-bottom:1px solid #1e1e1e;margin-bottom:2px;align-items:center;">
                     <div></div><div>Name ↕</div><div>Email ↕</div><div>Company ↕</div><div>Title ↕</div><div></div>
                   </div>
 
@@ -332,13 +380,14 @@
 
         <!-- Row 1: Folders -->
         <div class="web-walk-row">
-          <div style="text-align: center;">
-            <h2 class="heroTitle" style="font-size: 32px; margin: 0 auto 20px;">Organise with folders.</h2>
+          <div class="wa-center">
+            <h2 class="heroTitle wa-h2">Organise with folders.</h2>
             <p class="f-desc" style="font-size: 18px; line-height: 1.6; max-width: 600px; margin: 0 auto;">
               Group contacts into named folders for projects, clients, or regions. Share folders with teammates so everyone works from the same list.
             </p>
           </div>
-          <div style="display: flex; justify-content: center; width: 100%;">
+          <div class="wa-center-col">
+            <p class="sample-data-label"><em>Sample data shown for illustration.</em></p>
             <div class="browser-window small">
               <div class="browser-chrome">
                 <div class="browser-dots">
@@ -348,14 +397,14 @@
                 </div>
                 <div class="browser-url">sigbot.app/folders</div>
               </div>
-              <div class="app-shell" style="height: 320px;">
+              <div class="app-shell" style="min-height: 320px;">
                 <div class="app-sidebar">
                   <div class="app-sidebar-logo"><span></span> SIGBOT</div>
-                  <div class="sidebar-item"><span class="s-icon">📋</span> Contacts</div>
-                  <div class="sidebar-item"><span class="s-icon">🗺️</span> Map</div>
-                  <div class="sidebar-item active"><span class="s-icon">📁</span> Folders</div>
-                  <div class="sidebar-item"><span class="s-icon">👥</span> Team</div>
-                  <div class="sidebar-item"><span class="s-icon">📤</span> Export</div>
+                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="1.6"/><path d="M9.5 4h5v2.4h-5z"/><path d="M9 11h6M9 15h4"/></svg></span> Contacts</div>
+                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13M15 6.5v13"/></svg></span> Map</div>
+                  <div class="sidebar-item active"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> Folders</div>
+                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="8" r="3.2"/><path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4"/></svg></span> Team</div>
+                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 8 12 3 17 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span> Export</div>
                 </div>
                 <div class="app-main">
                   <div class="app-topbar">
@@ -363,20 +412,20 @@
                   </div>
                   <div style="display: flex; flex-direction: column; gap: 8px;">
                     <div style="background:#141414; border:1px solid #222; border-radius:8px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center;">
-                      <div style="display:flex; align-items:center; gap:10px; font-size:12px; color:#e5e5e5;">📁 <strong>Manchester Clients</strong></div>
-                      <div style="font-size:11px; color:#555;">142 contacts · Shared</div>
+                      <div class="wa-row"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> <strong>Manchester Clients</strong></div>
+                      <div class="wa-meta">142 contacts · Shared</div>
                     </div>
-                    <div style="background:#141414; border:1px solid #2a2a2a; border-radius:8px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center;">
-                      <div style="display:flex; align-items:center; gap:10px; font-size:12px; color:#e5e5e5;">📁 <strong>Project Phoenix</strong></div>
-                      <div style="font-size:11px; color:#555;">37 contacts · Private</div>
+                    <div class="wa-bar">
+                      <div class="wa-row"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> <strong>Project Phoenix</strong></div>
+                      <div class="wa-meta">37 contacts · Private</div>
                     </div>
-                    <div style="background:#141414; border:1px solid #2a2a2a; border-radius:8px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center;">
-                      <div style="display:flex; align-items:center; gap:10px; font-size:12px; color:#e5e5e5;">📁 <strong>Subcontractors 2026</strong></div>
-                      <div style="font-size:11px; color:#555;">88 contacts · Shared</div>
+                    <div class="wa-bar">
+                      <div class="wa-row"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> <strong>Subcontractors 2026</strong></div>
+                      <div class="wa-meta">88 contacts · Shared</div>
                     </div>
-                    <div style="background:#141414; border:1px solid #2a2a2a; border-radius:8px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center;">
-                      <div style="display:flex; align-items:center; gap:10px; font-size:12px; color:#e5e5e5;">📁 <strong>Investor Contacts</strong></div>
-                      <div style="font-size:11px; color:#555;">21 contacts · Private</div>
+                    <div class="wa-bar">
+                      <div class="wa-row"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> <strong>Investor Contacts</strong></div>
+                      <div class="wa-meta">21 contacts · Private</div>
                     </div>
                   </div>
                 </div>
@@ -387,10 +436,15 @@
 
         <!-- Row 2: Export -->
         <div class="web-walk-row">
-          <div style="text-align: center;">
-            <h2 class="heroTitle" style="font-size: 32px; margin: 0 auto 20px;">Export in seconds.</h2>
+          <div class="wa-center">
+            <h2 class="heroTitle wa-h2">Export in seconds.</h2>
             <p class="f-desc" style="font-size: 18px; line-height: 1.6; max-width: 600px; margin: 0 auto;">
               Download your full database or a filtered subset as a CSV or Excel file. Send it straight into your CRM, mailing list, or reporting tool.
+            </p>
+            <p class="webapp-trust-note">
+              🔒 Your data is encrypted in transit and at rest, and handled under our GDPR/PIPEDA-compliant
+              <a href="/legal/dpa.html">Data Processing Agreement</a>. Details in our
+              <a href="/legal/security.html">Security Overview</a>.
             </p>
           </div>
           <div style="display: flex; justify-content: center; width: 100%;">
@@ -403,36 +457,36 @@
                 </div>
                 <div class="browser-url">sigbot.app/export</div>
               </div>
-              <div class="app-shell" style="height: 320px;">
+              <div class="app-shell" style="min-height: 320px;">
                 <div class="app-sidebar">
                   <div class="app-sidebar-logo"><span></span> SIGBOT</div>
-                  <div class="sidebar-item"><span class="s-icon">📋</span> Contacts</div>
-                  <div class="sidebar-item"><span class="s-icon">🗺️</span> Map</div>
-                  <div class="sidebar-item"><span class="s-icon">📁</span> Folders</div>
-                  <div class="sidebar-item"><span class="s-icon">👥</span> Team</div>
-                  <div class="sidebar-item active"><span class="s-icon">📤</span> Export</div>
+                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="1.6"/><path d="M9.5 4h5v2.4h-5z"/><path d="M9 11h6M9 15h4"/></svg></span> Contacts</div>
+                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13M15 6.5v13"/></svg></span> Map</div>
+                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> Folders</div>
+                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="8" r="3.2"/><path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4"/></svg></span> Team</div>
+                  <div class="sidebar-item active"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 8 12 3 17 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span> Export</div>
                 </div>
                 <div class="app-main">
                   <div class="app-topbar">
                     <div class="app-page-title">Export</div>
                   </div>
                   <div style="display: flex; flex-direction: column; gap: 12px;">
-                    <div style="background:#141414; border:1px solid #222; border-radius:8px; padding:14px; font-size:12px; color:#aaa;">
-                      <div style="color:#e5e5e5; font-weight:600; margin-bottom:8px;">Select scope</div>
+                    <div class="wa-tile">
+                      <div style="color: var(--fg); font-weight:600; margin-bottom:8px;">Select scope</div>
                       <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                        <span style="background:rgba(59,130,246,0.15);color:#60a5fa;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:600;">All contacts (2,481)</span>
-                        <span style="background:#1e1e1e;color:#555;border-radius:6px;padding:4px 10px;font-size:11px;">Current folder</span>
-                        <span style="background:#1e1e1e;color:#555;border-radius:6px;padding:4px 10px;font-size:11px;">Filtered view</span>
+                        <span style="background:rgba(var(--accent-rgb), 0.15);color:#60a5fa;border-radius:6px;padding:4px 10px;font-size: 12px;font-weight:600;">All contacts (279)</span>
+                        <span class="wa-chip">Current folder</span>
+                        <span class="wa-chip">Filtered view</span>
                       </div>
                     </div>
-                    <div style="background:#141414; border:1px solid #222; border-radius:8px; padding:14px; font-size:12px; color:#aaa;">
-                      <div style="color:#e5e5e5; font-weight:600; margin-bottom:8px;">Format</div>
+                    <div class="wa-tile">
+                      <div style="color: var(--fg); font-weight:600; margin-bottom:8px;">Format</div>
                       <div style="display:flex; gap:8px;">
-                        <span style="background:rgba(59,130,246,0.15);color:#60a5fa;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:600;">.csv</span>
-                        <span style="background:#1e1e1e;color:#555;border-radius:6px;padding:4px 10px;font-size:11px;">.xlsx</span>
+                        <span style="background:rgba(var(--accent-rgb), 0.15);color:#60a5fa;border-radius:6px;padding:4px 10px;font-size: 12px;font-weight:600;">.csv</span>
+                        <span class="wa-chip">.xlsx</span>
                       </div>
                     </div>
-                    <div style="background:#3b82f6; border-radius:8px; padding:10px; text-align:center; font-size:13px; font-weight:700; color:#fff; cursor:default;">
+                    <div style="background:var(--accent); border-radius:8px; padding:10px; text-align:center; font-size:13px; font-weight:700; color: var(--bg); cursor:default;">
                       Download export
                     </div>
                   </div>
@@ -444,13 +498,41 @@
 
       </div>
 
+      <!-- Mini FAQ -->
+      <section class="webapp-faq">
+        <h2 class="heroTitle" style="font-size: 32px; margin: 0 auto 32px;">Common questions</h2>
+
+        <div class="faq-item">
+          <h3>Is my data secure?</h3>
+          <p>
+            Yes. All data is encrypted in transit and at rest, and processed under our GDPR/PIPEDA-compliant DPA. See
+            our <a href="/legal/security.html">Security Overview</a>.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Which inboxes does Sigbot support?</h3>
+          <p>Outlook, Gmail, and any IMAP-based inbox.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How fast do contacts appear after I connect?</h3>
+          <p>
+            Within minutes. Sigbot backfills your existing inbox and then extracts new contacts in real time as
+            emails arrive.
+          </p>
+        </div>
+
+        <p class="webapp-faq-more"><a href="/faq.html">See all FAQs →</a></p>
+      </section>
+
       <!-- CTA -->
-      <div style="margin: 80px 0 40px; text-align: center; padding: 60px 32px; background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.15); border-radius: 24px;">
+      <div style="margin: 80px 0 40px; text-align: center; padding: 60px 32px; background: rgba(var(--accent-rgb), 0.06); border: 1px solid rgba(var(--accent-rgb), 0.15); border-radius: 24px;">
         <h2 class="heroTitle" style="font-size: 48px; margin: 0 auto 20px; text-align: center;">Start building your database.</h2>
         <p class="pageSub" style="margin: 0 auto 16px; max-width: 500px;">Free forever — no credit card required. Connect your inbox and your first contacts appear in minutes.</p>
-        <p style="font-size: 13px; color: var(--muted); margin: 0 auto 40px;">Pro from $20/month for unlimited scanning &amp; full inbox backfill.</p>
+        <p style="font-size: 13px; color: var(--muted); margin: 0 auto 40px; max-width: var(--measure);">Pro from $20/month — unlimited contacts, unlimited scanning, and full inbox backfill.</p>
         <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-          <a href="https://sigbot.app/login" class="btnPrimary" style="padding: 16px 40px; font-size: 16px;">Get Started Free</a>
+          <a href="https://sigbot.app/login" class="btnPrimary" style="padding: 16px 40px; font-size: 16px;">Start free</a>
           <a href="pricing.html" class="btnGhost" style="padding: 16px 32px; font-size: 16px;">See pricing</a>
         </div>
       </div>

@@ -89,6 +89,7 @@
       color: var(--muted);
       margin: 0 0 4px;
       min-height: 36px;
+      max-width: var(--measure);
     }
 
     .price-original {
@@ -111,19 +112,20 @@
 
     .annual-savings.show { display: inline; }
 
+    /* "Included" is a confirmation, so mint — same reasoning as .check-yes. */
     .feature-item svg {
       width: 14px;
       height: 14px;
       flex-shrink: 0;
-      color: var(--accent);
+      color: var(--verify);
     }
 
     .feature-item.muted-item svg {
-      color: #3f3f46;
+      color: var(--chrome);
     }
 
     .feature-item.muted-item {
-      color: #52525b;
+      color: var(--faint);
     }
 
     /* Section divider */
@@ -185,7 +187,7 @@
     }
 
     .compare-table td.col-highlight {
-      background: rgba(59,130,246,0.04);
+      background: rgba(var(--accent-rgb), 0.04);
     }
 
     .compare-table .section-head td {
@@ -198,7 +200,10 @@
       border-bottom: none;
     }
 
-    .check-yes { color: var(--accent); font-size: 16px; }
+    /* Mint, not amber. A tick means "included/confirmed", which is exactly what
+       --verify is for; leaving these amber put ~30 accent marks on the page and
+       drained the colour of any meaning. Amber stays on the actions. */
+    .check-yes { color: var(--verify); font-size: 16px; }
     .check-no  { color: #3f3f46; font-size: 16px; }
 
     /* Trust row */

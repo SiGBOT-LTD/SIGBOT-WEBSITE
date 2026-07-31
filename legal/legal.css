@@ -1,14 +1,21 @@
 /* Shared styles for all /legal/ pages. Page-specific layout stays inline. */
+  /* Same brand black as the marketing pages (--bg in assets/css/styles.css).
+     The amber ramp is split by ground: light grounds need a darker amber to
+     clear 4.5:1, dark grounds need a brighter one. The old --amber was
+     3.32:1 on paper and --amber-bright 2.36:1 — both failed as link colours. */
   :root{
-    --bg:#0B0B0C; --ink:#141311; --paper:#FDFCFA; --paper-muted:#F4F1EA;
-    --line:#E4E0D4; --amber:#C8781E; --amber-bright:#E8933A;
+    --bg:#0A0B0D; --ink:#141311; --paper:#FDFCFA; --paper-muted:#F4F1EA;
+    --line:#E4E0D4;
+    --amber:#A06018;          /* 4.9:1 on paper — links, current nav */
+    --amber-hover:#7C4B13;    /* 7.1:1 — hover darkens rather than fades */
+    --amber-bright:#E8933A;   /* dark grounds ONLY — eyebrow, footer hover */
     --text:#1E1C18; --text-muted:#6B655C; --white:#FFFFFF;
   }
   *{box-sizing:border-box;}
   body{margin:0;font-family:'Inter',sans-serif;color:var(--text);background:var(--paper);line-height:1.65;}
-  h1,h2,h3,.wordmark{font-family:'Space Grotesk',sans-serif;}
+  h1,h2,h3,.wordmark{font-family:'Bricolage Grotesque','Inter',sans-serif;}
   a{color:var(--amber);text-decoration:none;}
-  a:hover{color:var(--amber-bright);text-decoration:underline;}
+  a:hover{color:var(--amber-hover);text-decoration:underline;}
   header.site{background:var(--bg);padding:20px 32px;display:flex;align-items:center;justify-content:space-between;}
   .wordmark{color:var(--white);font-weight:700;font-size:20px;letter-spacing:0.02em;display:flex;align-items:center;gap:8px;}
   .wordmark .dot{width:9px;height:9px;background:var(--amber);border-radius:2px;display:inline-block;}
@@ -23,7 +30,7 @@
   .legal-nav li.current a{color:var(--amber);font-weight:700;}
   footer{background:var(--bg);color:#B9B4AB;padding:56px 32px 32px;margin-top:40px;}
   .footer-inner{max-width:1080px;margin:0 auto;display:flex;gap:80px;flex-wrap:wrap;}
-  footer h4{color:var(--white);font-family:'Space Grotesk',sans-serif;font-size:14px;letter-spacing:0.04em;text-transform:uppercase;margin:0 0 16px;}
+  footer h4{color:var(--white);font-family:'Bricolage Grotesque','Inter',sans-serif;font-size:14px;letter-spacing:0.04em;text-transform:uppercase;margin:0 0 16px;}
   footer ul{list-style:none;margin:0;padding:0;}
   footer li{margin-bottom:10px;}
   footer a{color:#B9B4AB;font-size:14px;}

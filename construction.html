@@ -18,7 +18,8 @@
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/styles.css" />
@@ -59,8 +60,8 @@
         <a href="pricing.html">Pricing</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
-        <a class="cta-ghost" href="https://sigbot.app/login">Start Free</a>
-        <a class="cta" href="https://sigbot.app/login">Log In</a>
+        <a class="cta-ghost" href="https://sigbot.app/login">Log in</a>
+        <a class="cta" href="https://sigbot.app/login">Start free</a>
       </div>
     </div>
 
@@ -106,7 +107,6 @@
 
     <!-- FLOW ANIMATION -->
     <section class="con-flowSection con-fadeUp">
-      <p class="con-sectionLabel">Intelligent Extraction</p>
       <h2 class="con-sectionTitle center">From inbox to contact database</h2>
       <p class="con-sectionSub center">Every email you receive is scanned in real-time. Signatures are parsed, verified, and saved automatically.</p>
 
@@ -153,7 +153,7 @@
           <!-- Contact cards output -->
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:28px;" id="con-contactCards">
             <div class="con-crmContactRow" id="con-cc0" style="opacity:0;transition:opacity 0.5s;">
-              <div class="con-crmAvatar" style="background:rgba(59,130,246,0.2);color:var(--accent);">SJ</div>
+              <div class="con-crmAvatar" style="background:rgba(var(--accent-rgb), 0.2);color:var(--accent);">SJ</div>
               <div>
                 <div class="con-crmContactName">Sarah Jenkins</div>
                 <div class="con-crmContactRole">Senior Engineer · Google</div>
@@ -161,7 +161,7 @@
               <div class="con-crmNewBadge">NEW</div>
             </div>
             <div class="con-crmContactRow" id="con-cc1" style="opacity:0;transition:opacity 0.5s 0.3s;">
-              <div class="con-crmAvatar" style="background:rgba(59,130,246,0.2);color:var(--accent);">JW</div>
+              <div class="con-crmAvatar" style="background:rgba(var(--accent-rgb), 0.2);color:var(--accent);">JW</div>
               <div>
                 <div class="con-crmContactName">James Wilson</div>
                 <div class="con-crmContactRole">Product Manager · Microsoft</div>
@@ -169,7 +169,7 @@
               <div class="con-crmNewBadge">NEW</div>
             </div>
             <div class="con-crmContactRow" id="con-cc2" style="opacity:0;transition:opacity 0.5s 0.6s;">
-              <div class="con-crmAvatar" style="background:rgba(59,130,246,0.2);color:var(--accent);">EC</div>
+              <div class="con-crmAvatar" style="background:rgba(var(--accent-rgb), 0.2);color:var(--accent);">EC</div>
               <div>
                 <div class="con-crmContactName">Emily Chen</div>
                 <div class="con-crmContactRole">Design Lead · Apple</div>
@@ -191,28 +191,23 @@
 
     <!-- PROBLEM -->
     <section class="con-problemSection con-fadeUp">
-      <p class="con-sectionLabel">The Problem</p>
       <h2 class="con-sectionTitle">Construction runs on relationships.<br/>Your contact data doesn't.</h2>
-      <p class="con-sectionSub">Every project brings dozens of new contacts. Most of them never make it into your database — and when you need them again, they're buried in an inbox or gone entirely.</p>
+      <p class="con-sectionSub">Every project brings dozens of new contacts. Most of them never make it into your database, and when you need them again, they're buried in an inbox or gone entirely.</p>
 
       <div class="con-problemGrid">
         <div class="con-problemCard">
-          <div class="con-problemNum">01</div>
           <h3>Thousands of emails, zero structure</h3>
           <p>A single commercial project generates thousands of emails weekly across GCs, subs, suppliers, and consultants. Critical contact details are trapped in inboxes, never captured.</p>
         </div>
         <div class="con-problemCard">
-          <div class="con-problemNum">02</div>
           <h3>Subcontractors change constantly</h3>
           <p>Estimators move between firms. Project managers get promoted. Phone numbers change. Your contact list from 18 months ago is already half-useless when you need it for the next bid.</p>
         </div>
         <div class="con-problemCard">
-          <div class="con-problemNum">03</div>
           <h3>CRM data entry never gets done</h3>
-          <p>Your team is on-site, not at a desk logging contacts into Salesforce. CRM adoption fails in over 60% of construction firms — not because the tools are bad, but because nobody has time to feed them.</p>
+          <p>Your team is on-site, not at a desk logging contacts into Salesforce. CRM adoption fails in over 60% of construction firms, and not because the tools are bad, but because nobody has time to feed them.</p>
         </div>
         <div class="con-problemCard">
-          <div class="con-problemNum">04</div>
           <h3>Bid day chaos</h3>
           <p>When a new tender lands, you need to send Invitations to Bid to 50 subcontractors immediately. If your database is outdated, emails bounce, calls go to wrong numbers, and you lose the bid.</p>
         </div>
@@ -223,7 +218,6 @@
 
     <!-- SEE IT IN ACTION -->
     <section class="con-howSection con-fadeUp" id="con-how">
-      <p class="con-sectionLabel">See It In Action</p>
       <h2 class="con-sectionTitle">Signature in. Contact out.</h2>
       <p class="con-sectionSub">Sigbot reads the signature block at the bottom of any email and extracts every field automatically.</p>
 
@@ -233,14 +227,14 @@
             <div class="con-stepNum">01</div>
             <div class="con-stepContent">
               <div class="con-stepTitle">Email arrives in your inbox</div>
-              <div class="con-stepDesc">A subcontractor, supplier, or consultant sends you an email. Sigbot detects the signature block automatically — no action required from you.</div>
+              <div class="con-stepDesc">A subcontractor, supplier, or consultant sends you an email. Sigbot detects the signature block automatically, without you doing anything.</div>
             </div>
           </div>
           <div class="con-howStep" data-step="1">
             <div class="con-stepNum">02</div>
             <div class="con-stepContent">
               <div class="con-stepTitle">AI extracts every field</div>
-              <div class="con-stepDesc">Name, title, company, phone, email, and address are extracted and structured in under a second. No manual input, no copy-pasting.</div>
+              <div class="con-stepDesc">Name, title, company, phone, email, and address are extracted and structured in under a second, with no manual input or copy-pasting.</div>
             </div>
           </div>
           <div class="con-howStep" data-step="2">
@@ -307,7 +301,7 @@
             <div class="con-panelLabel">Ready for Your CRM</div>
             <div class="con-crmPush">
               <div class="con-crmHeader">
-                <div class="con-crmLogo" style="background:#ff7a59;color:#fff;">H</div>
+                <div class="con-crmLogo" style="background:#ff7a59;color: var(--bg);">H</div>
                 <div>
                   <div class="con-crmTitle">HubSpot CRM</div>
                   <div class="con-crmSub">Import-ready export</div>
@@ -324,7 +318,7 @@
             </div>
             <div class="con-crmPush" style="margin-top:10px;">
               <div class="con-crmHeader">
-                <div class="con-crmLogo" style="background:#e5422b;color:#fff;">P</div>
+                <div class="con-crmLogo" style="background:#e5422b;color: var(--bg);">P</div>
                 <div>
                   <div class="con-crmTitle">Procore Directory</div>
                   <div class="con-crmSub">Import-ready export</div>
@@ -354,7 +348,7 @@
               </div>
             </div>
             <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:14px;margin-top:4px;">
-              <div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Sigbot Auto-Update</div>
+              <div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Sigbot Auto-Update</div>
               <div style="font-size:13px;color:var(--muted);">Company: <span style="text-decoration:line-through;">Ironclad Electrical Ltd</span> → <strong style="color:var(--fg);">Apex Electrical Group</strong></div>
               <div style="font-size:13px;color:var(--muted);margin-top:4px;">Title: <span style="text-decoration:line-through;">Senior Estimator</span> → <strong style="color:var(--fg);">Lead Estimator</strong></div>
             </div>
@@ -367,7 +361,6 @@
 
     <!-- WHO IT'S FOR -->
     <section class="con-personaSection con-fadeUp" id="con-personas">
-      <p class="con-sectionLabel">Who It's Built For</p>
       <h2 class="con-sectionTitle">Every role that depends on knowing who to call.</h2>
 
       <div class="con-personaGrid">
@@ -377,7 +370,7 @@
           <p class="con-personaCompany">Mid-to-large GCs tendering commercial &amp; residential projects</p>
           <div class="con-personaPain">
             <div class="con-personaPainLabel">The Pain</div>
-            <p>"When a tender lands, I need to send ITBs to 60 subs immediately. Half my contacts are outdated — emails bounce, numbers are wrong. We lose bids because we can't get pricing fast enough."</p>
+            <p>"When a tender lands, I need to send ITBs to 60 subs immediately. Half my contacts are outdated: emails bounce, numbers are wrong. We lose bids because we can't get pricing fast enough."</p>
           </div>
           <p class="con-personaSolution">Sigbot builds a <strong>self-updating subcontractor database</strong> from your inbox. Every electrical, mechanical, and civil sub who emails you is captured automatically — with their latest contact details, always current.</p>
         </div>
@@ -390,7 +383,7 @@
             <div class="con-personaPainLabel">The Pain</div>
             <p>"Our relationship data is scattered across 12 project managers' inboxes. When someone leaves the firm, we lose their entire network. We have no firm-wide view of who we know."</p>
           </div>
-          <p class="con-personaSolution">Sigbot creates a <strong>firm-wide contact intelligence layer</strong> — scanning every team member's inbox to build a single, searchable rolodex of every developer, GC, and consultant your firm has ever worked with.</p>
+          <p class="con-personaSolution">Sigbot creates a <strong>firm-wide contact intelligence layer</strong> that scans every team member's inbox to build a single, searchable rolodex of every developer, GC, and consultant your firm has ever worked with.</p>
         </div>
 
         <div class="con-personaCard">
@@ -401,7 +394,7 @@
             <div class="con-personaPainLabel">The Pain</div>
             <p>"We quote 40 projects a month. Every GC we quote has a different estimator, project manager, and procurement contact. We can never keep track of who to follow up with."</p>
           </div>
-          <p class="con-personaSolution">Every GC contact who emails your estimating team is <strong>automatically captured and tagged</strong> by project and trade type — so your sales team always knows who to call for the next bid.</p>
+          <p class="con-personaSolution">Every GC contact who emails your estimating team is <strong>automatically captured and tagged</strong> by project and trade type, so your sales team always knows who to call for the next bid.</p>
         </div>
 
         <div class="con-personaCard">
@@ -412,7 +405,7 @@
             <div class="con-personaPainLabel">The Pain</div>
             <p>"We manage 8 projects simultaneously, each with its own consultant team. Keeping track of 200+ contacts across architects, engineers, and contractors is a full-time job in itself."</p>
           </div>
-          <p class="con-personaSolution">Sigbot automatically <strong>organises contacts by project and role</strong> — so you always know exactly who the structural engineer, planning consultant, or M&amp;E coordinator is on each scheme.</p>
+          <p class="con-personaSolution">Sigbot automatically <strong>organises contacts by project and role</strong>, so you always know exactly who the structural engineer, planning consultant, or M&amp;E coordinator is on each scheme.</p>
         </div>
       </div>
     </section>
@@ -421,7 +414,6 @@
 
     <!-- HOW IT WORKS (pipeline steps) -->
     <section class="con-stepsSection con-fadeUp">
-      <p class="con-sectionLabel">How It Works</p>
       <h2 class="con-sectionTitle">A controlled pipeline from signature capture to clean contact records.</h2>
 
       <div class="con-stepsGrid">
@@ -433,7 +425,7 @@
         <div class="con-stepCard">
           <div class="con-stepCardNum">02</div>
           <h3>Structure the data</h3>
-          <p>Normalise names, roles, companies, phone numbers, and other fields into a consistent schema — ready for any CRM.</p>
+          <p>Normalise names, roles, companies, phone numbers, and other fields into a consistent schema, ready for any CRM.</p>
         </div>
         <div class="con-stepCard">
           <div class="con-stepCardNum">03</div>
@@ -447,7 +439,6 @@
 
     <!-- INTEGRATIONS -->
     <section class="con-integrationSection con-fadeUp" id="con-integrations">
-      <p class="con-sectionLabel">Integrations</p>
       <h2 class="con-sectionTitle">Plugs into your existing stack.</h2>
       <p class="con-sectionSub">Connect your inbox today, and export clean CSV/Excel files formatted for the tools your team already uses. Direct integrations are on the roadmap.</p>
 
@@ -497,11 +488,10 @@
 
     <!-- FOOTER CTA -->
     <section class="con-footerCta con-fadeUp" id="con-cta">
-      <p class="con-sectionLabel">Get Started</p>
       <h2>Your database builds itself.<br/>You just build.</h2>
-      <p>Connect your inbox in 60 seconds. Sigbot starts capturing contacts immediately — no setup, no training, no manual work.</p>
+      <p>Connect your inbox in 60 seconds. Sigbot starts capturing contacts immediately, with no setup, training, or manual work.</p>
       <div class="con-ctaForm">
-        <a class="con-ctaBtn" href="https://sigbot.app/login">Sign Up</a>
+        <a class="con-ctaBtn" href="https://sigbot.app/login">Start free</a>
       </div>
       <p class="con-ctaNote">Free plan available · No credit card required · Cancel anytime</p>
     </section>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+  stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <!-- robot dot + antenna -->
+  <path d="M12 3v2"/>
+  <path d="M10.2 5h3.6"/>
+  <!-- document -->
+  <path d="M8 7.5h6l2 2v7.8c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2V9.5c0-1.1.9-2 2-2z"/>
+  <path d="M14 7.5v2h2"/>
+  <!-- parse lines -->
+  <path d="M8.6 12h4.9"/>
+  <path d="M8.6 14.6h6.8"/>
+  <path d="M8.6 17.2h5.6"/>
+</svg>

@@ -1,4 +1,13 @@
-/* ── FADE UP OBSERVER ── */
+/* Opt the document into the scroll-reveal treatment. Until this runs,
+   .con-fadeUp content is plain visible — see construction.css. */
+    document.documentElement.classList.add('js-reveal');
+
+    /* Motion preference. Every looping or travelling effect below checks this and
+       falls back to its finished state rather than its animated one. */
+    const conReduceMotion = window.matchMedia
+      && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ── FADE UP OBSERVER ── */
     const conFadeObserver = new IntersectionObserver((entries) => {
       entries.forEach((e, i) => {
         if (e.isIntersecting) {
@@ -11,6 +20,10 @@
 
     /* ── COUNTER ANIMATION ── */
     function conAnimateCounter(el, target, duration, suffix) {
+      if (conReduceMotion) {
+        el.textContent = target + (suffix || '');
+        return;
+      }
       let startTime = null;
       function step(ts) {
         if (!startTime) startTime = ts;
@@ -40,6 +53,15 @@
     let conFlowStep = 0;
 
     function conRunFlow() {
+      // Reduced motion: present the completed pipeline instead of looping it.
+      if (conReduceMotion) {
+        conFlowNodes.forEach(n => n.classList.add('lit'));
+        conFlowArrows.forEach(a => a.classList.add('lit'));
+        conContactCards.forEach(c => c.style.opacity = '1');
+        conLiveCounterEl.textContent = conContactCards.length;
+        return;
+      }
+
       conFlowNodes.forEach(n => n.classList.remove('lit'));
       conFlowArrows.forEach(a => a.classList.remove('lit'));
       conContactCards.forEach(c => c.style.opacity = '0');
@@ -107,6 +129,10 @@
     });
 
     function conStartAutoTimer() {
+      // An auto-advancing carousel is motion the reader did not ask for, and it
+      // moves the panel out from under anyone reading it. Clicking a step still
+      // works — it just stays put afterwards.
+      if (conReduceMotion) return;
       conAutoTimer = setInterval(() => {
         conShowStep((conCurrentStep + 1) % conSteps.length);
       }, 4000);
@@ -117,6 +143,9 @@
     document.querySelectorAll('a[href^="#con-"]').forEach(a => {
       a.addEventListener('click', e => {
         const target = document.querySelector(a.getAttribute('href'));
-        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: conReduceMotion ? 'auto' : 'smooth' });
+        }
       });
     });

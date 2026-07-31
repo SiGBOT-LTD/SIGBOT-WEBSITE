@@ -15,14 +15,15 @@
   <link rel="canonical" href="https://sigbot.co/" />
   <meta name="robots" content="index,follow" />
 
-  <!-- Google Fonts: Inter -->
+  <!-- Google Fonts: Bricolage Grotesque (display), Inter (body), JetBrains Mono (data) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/index.css" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Sigbot | Email Signature to Contact Database" />
@@ -70,34 +71,94 @@
         <a href="pricing.html">Pricing</a>
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
-        <a class="cta-ghost" href="https://sigbot.app/login">Start Free</a>
-        <a class="cta" href="https://sigbot.app/login">Log In</a>
+        <a class="cta-ghost" href="https://sigbot.app/login">Log in</a>
+        <a class="cta" href="https://sigbot.app/login">Start free</a>
       </div>
     </div>
 
-    <!-- HERO -->
-    <div class="header hero" id="top">
+    <!-- HERO — the extraction is the thesis, so it opens the page. -->
+    <div class="header hero hero--split" id="top">
 
-      <canvas id="hero-bg" aria-hidden="true"></canvas>
+      <div class="hero-copy">
+        <div class="heroBadge">
+          <span class="badge-dot"></span>
+          Outlook, Gmail &amp; IMAP
+        </div>
 
-      <div class="heroBadge">
-        <span class="badge-dot"></span>
-        Outlook, Gmail &amp; IMAP
+        <h1 class="heroTitle">
+          Every signature is a contact.
+        </h1>
+
+        <p class="heroSub">Sigbot reads the signature block on every email you get and files the details as a
+          contact, so you never type one in again.</p>
+
+        <div class="heroCtas">
+          <a href="https://sigbot.app/login" class="btnPrimary">Start free</a>
+          <a href="#how-it-works" class="heroLink">How it works →</a>
+        </div>
+
+        <p class="hero-trust-line">Free forever · No credit card required · Cancel anytime</p>
       </div>
 
-      <h1 class="heroTitle">
-        Extract contacts from emails.
-      </h1>
+      <!-- Live extraction. JS cycles the highlight; see assets/js/hero-extract.js -->
+      <div class="extract" id="extract" aria-label="A demonstration of Sigbot reading an email signature and filling in a contact record" role="img">
+        <div class="extract-bar">
+          <div class="extract-dots"><span></span><span></span><span></span></div>
+          <div class="extract-bar-title">Inbox — Outlook</div>
+        </div>
 
-      <p class="heroSub">Pull contacts from email signatures across Outlook, Gmail, and IMAP. Build your database
-        automatically.</p>
+        <div class="extract-sig">
+          <div class="extract-sig-pre">Looking forward to your thoughts.</div>
+          <hr class="extract-rule" />
+          <div><span class="sigline extract-sig-name" data-field="name">David Miller</span></div>
+          <div><span class="sigline" data-field="title">VP of Business Development</span></div>
+          <div><span class="sigline" data-field="company">Acme Corp</span></div>
+          <div><span class="sigline" data-field="phone">+1 (416) 555-0182</span></div>
+          <div><span class="sigline" data-field="email">david.miller@acmecorp.com</span></div>
+        </div>
 
-      <div class="heroCtas">
-        <a href="https://sigbot.app/login" class="btnPrimary">Get Started Free</a>
-        <a href="faq.html" class="heroLink">How it works →</a>
+        <div class="extract-mid">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <line x1="12" y1="4" x2="12" y2="19" />
+            <polyline points="6,13 12,19 18,13" />
+          </svg>
+          Extracted
+        </div>
+
+        <div class="extract-rows">
+          <div class="erow" data-row="name">
+            <div class="erow-key">Name</div>
+            <div class="erow-val">David Miller</div>
+            <svg class="erow-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,13 9,18 20,6" /></svg>
+          </div>
+          <div class="erow" data-row="title">
+            <div class="erow-key">Title</div>
+            <div class="erow-val">VP of Business Development</div>
+            <svg class="erow-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,13 9,18 20,6" /></svg>
+          </div>
+          <div class="erow" data-row="company">
+            <div class="erow-key">Company</div>
+            <div class="erow-val">Acme Corp</div>
+            <svg class="erow-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,13 9,18 20,6" /></svg>
+          </div>
+          <div class="erow" data-row="phone">
+            <div class="erow-key">Phone</div>
+            <div class="erow-val">+1 (416) 555-0182</div>
+            <svg class="erow-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,13 9,18 20,6" /></svg>
+          </div>
+          <div class="erow" data-row="email">
+            <div class="erow-key">Email</div>
+            <div class="erow-val">david.miller@acmecorp.com</div>
+            <svg class="erow-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4,13 9,18 20,6" /></svg>
+          </div>
+        </div>
       </div>
-
-      <p class="hero-trust-line">Free forever · No credit card required · Cancel anytime</p>
 
     </div>
   </div>
@@ -141,8 +202,7 @@
 
   <!-- ═══════════ GLOBE: CONTACTS WORLDWIDE ═══════════ -->
   <section class="globe-section">
-    <div class="anim-label">Global Network</div>
-    <div class="anim-title">Contacts from everywhere</div>
+    <h2 class="anim-title">Contacts from everywhere</h2>
     <div class="anim-sub">Sigbot builds your database no matter where your emails come from. Click a pin to preview a
       contact.</div>
     <div class="globe-stage" id="globe-stage">
@@ -152,97 +212,8 @@
     </div>
   </section>
 
-  <!-- ═══════════ ANIMATION CSS ═══════════ -->
-  <link rel="stylesheet" href="assets/css/index.css" />
-
-
-  <!-- ═══════════ SECTION 2: SIGNATURE IN. CONTACT OUT. ═══════════ -->
-  <section class="sig-demo-section">
-    <div class="anim-label">See It In Action</div>
-    <div class="anim-title">Signature in. Contact out.</div>
-    <div class="anim-sub">Sigbot reads the signature block at the bottom of any email and extracts every field
-      automatically.</div>
-
-    <div class="sig-demo-grid">
-      <!-- Email mock -->
-      <div class="sig-email-mock">
-        <div class="sig-email-header">
-          <div class="sig-email-dots"><span></span><span></span><span></span></div>
-          <div class="sig-email-etitle">Inbox — Outlook</div>
-        </div>
-        <div class="sig-email-body">
-          <div class="sig-email-meta">
-            <strong>From:</strong> David Miller &lt;david.miller@acmecorp.com&gt;<br />
-            <strong>To:</strong> You<br />
-            <strong>Subject:</strong> Q2 Partnership Proposal
-          </div>
-          <div class="sig-email-text">
-            Hi there,<br /><br />
-            Thanks for connecting at the conference last week. I'd love to explore a potential partnership between our
-            teams. Please find the proposal attached.<br /><br />
-            Looking forward to your thoughts.
-          </div>
-          <hr class="sig-separator" />
-          <div class="sig-block">
-            <div class="sig-name-line sig-field-highlight" id="demo-name">David Miller</div>
-            <div class="sig-title-line sig-field-highlight" id="demo-title">VP of Business Development</div>
-            <div class="sig-detail sig-field-highlight" id="demo-company">Acme Corp</div>
-            <div class="sig-detail"><a href="#" class="sig-field-highlight" id="demo-phone">+1 (416) 555-0182</a></div>
-            <div class="sig-detail"><a href="#" class="sig-field-highlight"
-                id="demo-email">david.miller@acmecorp.com</a></div>
-            <div class="sig-detail" style="color:#555;">www.acmecorp.com</div>
-            <div class="sig-detail" style="color:#555;">123 Bay Street, Toronto, ON</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Arrow -->
-      <div class="transform-arrow">
-        <div class="transform-arrow-icon">→</div>
-        <div class="transform-label">Extracted</div>
-      </div>
-
-      <!-- Contact result -->
-      <div class="contact-result-card">
-        <div class="contact-result-header">
-          <span>New Contact</span>
-          <span class="verified-badge">✓ VERIFIED</span>
-        </div>
-        <div class="contact-result-body">
-          <div class="contact-result-avatar">DM</div>
-          <div class="contact-result-name">David Miller</div>
-          <div class="contact-result-title">VP of Business Development</div>
-          <div class="contact-fields">
-            <div class="contact-field">
-              <div class="contact-field-icon">🏢</div>
-              <div class="contact-field-value"><strong>Acme Corp</strong></div>
-            </div>
-            <div class="contact-field">
-              <div class="contact-field-icon">📞</div>
-              <div class="contact-field-value">+1 (416) 555-0182</div>
-            </div>
-            <div class="contact-field">
-              <div class="contact-field-icon">✉</div>
-              <div class="contact-field-value">david.miller@acmecorp.com</div>
-            </div>
-            <div class="contact-field">
-              <div class="contact-field-icon">🌐</div>
-              <div class="contact-field-value">www.acmecorp.com</div>
-            </div>
-            <div class="contact-field">
-              <div class="contact-field-icon">📍</div>
-              <div class="contact-field-value">Toronto, ON</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
   <!-- HOW IT WORKS -->
-  <div class="how-it-works-section">
-    <div class="section-pill">HOW IT WORKS</div>
+  <div class="how-it-works-section" id="how-it-works">
     <h2 class="hiw-heading">A controlled pipeline from signature capture to clean contact records.</h2>
     <div class="hiw-cards">
       <div class="hiw-card">
@@ -296,17 +267,20 @@
 
   <!-- DEMO VIDEO -->
   <div class="homepage-video-section">
-    <div class="section-pill">DEMO</div>
     <h2 class="hiw-heading">Watch a 2-minute demo</h2>
     <div class="homepage-video-wrap">
       <iframe
-        src="https://www.youtube.com/embed/poxDSChDFB4"
+        src="https://www.youtube-nocookie.com/embed/poxDSChDFB4"
+        loading="lazy"
         title="Sigbot Demo"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen>
       </iframe>
     </div>
   </div>
+
+  <!-- Tail sections share the canonical content column, matching every other page. -->
+  <div class="container">
 
   <!-- PRO NUDGE -->
   <div class="pro-nudge-banner">
@@ -374,18 +348,20 @@
     </div>
   </div>
 
-
-  </div>
+  </div><!-- /.container -->
 
   <script src="assets/js/index.js"></script>
-  <script src="assets/js/hero-bg.js"></script>
 
-  <!-- ═══════════ ANIMATION ENGINE ═══════════ -->
+  <!-- Hero extraction. Replaces hero-bg.js, whose floating envelopes clipped at
+       the right edge and overlapped the headline — the hero now has a real
+       subject there instead. -->
+  <script src="assets/js/hero-extract.js"></script>
+
   <script src="assets/js/nav.js"></script>
 
   <!-- ═══════════ GLOBE ═══════════ -->
-  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
-  <script src="assets/js/globe.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js" defer></script>
+  <script src="assets/js/globe.js" defer></script>
 </body>
 
 </html>
