@@ -232,3 +232,46 @@ export function getTimeAgo(dateStr: string): string {
 export function getInitials(c: Contact): string {
   return ((c.firstName?.[0] ?? '') + (c.lastName?.[0] ?? '')).toUpperCase();
 }
+
+// ── Folders ───────────────────────────────────────────────────────
+// The app stores folder membership by contact email and filters the
+// table through a `folder:<name>` search query. Same model here, so the
+// sidebar folders actually filter rather than being decoration.
+
+export const folders: { name: string; emails: string[] }[] = [
+  {
+    name: 'Tendering',
+    emails: [
+      'marcus.h@westpointeng.ca',
+      'elena.d@summitgroupco.com',
+      'rachel.t@bayviewconst.ca',
+      'victor.s@ridgelineltd.ca',
+      'derek.m@horizonbuild.ca',
+      'a.kirkbride@northshoreroof.ca',
+      'erin.k@willametteciv.com',
+      't.lindqvist@edmontonmech.ca',
+      'p.raval@mercerbuild.co.uk',
+      'i.chaudhry@aurorafacades.ca',
+    ],
+  },
+  {
+    name: 'Site contacts',
+    emails: [
+      'a.vos@horizonbuild.ca',
+      'g.ibbotson@northwindciv.ca',
+      'nadia.w@westpointeng.ca',
+      'g.oyelowo@ironbridgefab.ca',
+      'c.nowak@ironbridgefab.ca',
+      'j.mbeki@megacrane.ca',
+      'rick@falconequip.ca',
+      'c.fraser@atlanticmarine.ca',
+      'e.castellano@severnplant.co.uk',
+    ],
+  },
+];
+
+export function contactsInFolder(name: string): Contact[] {
+  const folder = folders.find((f) => f.name === name);
+  if (!folder) return [];
+  return contacts.filter((c) => folder.emails.includes(c.email));
+}

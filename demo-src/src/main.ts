@@ -13,9 +13,14 @@
 
 import './style.css';
 import { icons } from './icons';
-import { contacts } from './data';
+import { contacts, folders } from './data';
 import { renderDashboard } from './views/dashboard';
-import { renderContacts, bindSelection } from './views/contacts';
+import {
+  renderContacts,
+  bindSelection,
+  type TableState,
+  type SortField,
+} from './views/contacts';
 import { renderMap, mountMap } from './views/map';
 import { renderAccount } from './views/account';
 
@@ -34,7 +39,14 @@ const TOTAL_LIMIT = 300;
 const USED_TODAY = 12;
 
 let current: View = 'dashboard';
-let searchQuery = '';
+
+/** Contacts-table state. Sorting and folder filtering are real. */
+const table: TableState = {
+  query: '',
+  sortField: null,
+  sortDir: 'asc',
+  folder: null,
+};
 
 // ── Demo notice ───────────────────────────────────────────────────
 
@@ -94,14 +106,16 @@ function sidebar(): string {
       <div class="sidebar-folders">
         <div class="folders-head">
           <span>Folders</span>
-          <button data-demo="Folders are read-only in this demo." aria-label="New folder">${icons.plus}</button>
+          <button data-demo="Creating folders is disabled in this demo." aria-label="New folder">${icons.plus}</button>
         </div>
-        <button class="folder-item" data-demo="Folders are read-only in this demo.">
-          ${icons.folder}Tendering
-        </button>
-        <button class="folder-item" data-demo="Folders are read-only in this demo.">
-          ${icons.folder}Site contacts
-        </button>
+        ${folders
+          .map(
+            (f) => `<button class="folder-item${table.folder === f.name ? ' active' : ''}"
+              data-folder="${f.name}">${icons.folder}${f.name}
+              <span class="folder-count tabular">${f.emails.length}</span>
+            </button>`
+          )
+          .join('')}
       </div>
 
       ${usageMeter()}
@@ -122,7 +136,7 @@ function header(): string {
       ? `<div class="search-wrap">
            ${icons.search}
            <input class="search-input" id="search" type="text" placeholder="Search contacts..."
-             value="${searchQuery}" aria-label="Search contacts" />
+             value="${table.query}" aria-label="Search contacts" />
          </div>`
       : '';
 
@@ -165,7 +179,7 @@ function header(): string {
 function viewBody(): string {
   switch (current) {
     case 'contacts':
-      return renderContacts(searchQuery);
+      return renderContacts(table);
     case 'map':
       return renderMap();
     case 'account':
@@ -200,21 +214,30 @@ function bindSearch(): void {
   if (!input) return;
 
   input.addEventListener('input', () => {
-    searchQuery = input.value;
-    // Only the table is replaced, so the field keeps focus and caret —
-    // but the new checkboxes need binding again.
-    const content = document.getElementById('content');
-    if (content) {
-      content.innerHTML = renderContacts(searchQuery);
-      bindSelection();
-    }
+    table.query = input.value;
+    // Only the table is redrawn, so the field keeps focus and caret.
+    redrawTable();
   });
+}
+
+/**
+ * Redraw the table without touching the header, so typing is not
+ * interrupted and the caret stays put. Selection has to be re-bound
+ * because the checkboxes are new elements.
+ */
+function redrawTable(): void {
+  const content = document.getElementById('content');
+  if (!content) return;
+  content.innerHTML = renderContacts(table);
+  bindSelection();
 }
 
 function go(view: View): void {
   if (view === current) return;
   current = view;
-  if (view !== 'contacts') searchQuery = '';
+  // Leaving the table clears its text search but keeps the folder, which
+  // is a navigation choice rather than a transient one.
+  if (view !== 'contacts') table.query = '';
   render();
 }
 
@@ -232,6 +255,43 @@ document.addEventListener('click', (e) => {
   const navBtn = target.closest<HTMLElement>('[data-view]');
   if (navBtn) {
     go(navBtn.dataset.view as View);
+    return;
+  }
+
+  // Sorting is real: same field toggles direction, a new field starts
+  // ascending — the behaviour the app's SortHeader implements.
+  const sortBtn = target.closest<HTMLElement>('[data-sort]');
+  if (sortBtn) {
+    const field = sortBtn.dataset.sort as SortField;
+    if (table.sortField === field) {
+      table.sortDir = table.sortDir === 'asc' ? 'desc' : 'asc';
+    } else {
+      table.sortField = field;
+      table.sortDir = 'asc';
+    }
+    redrawTable();
+    return;
+  }
+
+  // Folder filtering is real too. Clicking the active folder clears it,
+  // and clicking any folder moves to the table so the effect is visible.
+  const folderBtn = target.closest<HTMLElement>('[data-folder]');
+  if (folderBtn) {
+    const name = folderBtn.dataset.folder ?? null;
+    table.folder = table.folder === name ? null : name;
+    if (current === 'contacts') {
+      render();
+    } else {
+      current = 'contacts';
+      table.query = '';
+      render();
+    }
+    return;
+  }
+
+  if (target.closest<HTMLElement>('[data-clear-folder]')) {
+    table.folder = null;
+    render();
     return;
   }
 
