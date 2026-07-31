@@ -16,23 +16,46 @@
     });
   }
 
-  // Products dropdown toggle
+  // Product dropdown. Click-driven rather than hover: a hover menu cannot be
+  // opened from a keyboard and is a moving target on a trackpad.
   var toggle = document.querySelector('.nav-dropdown-toggle');
   var menu = document.querySelector('.nav-dropdown-menu');
   if (toggle && menu) {
+    var setOpen = function (open) {
+      menu.classList.toggle('open', open);
+      toggle.classList.toggle('open', open);
+      // The visual state and the announced state have to move together, or a
+      // screen reader reads a collapsed menu that is plainly on screen.
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+
     toggle.addEventListener('click', function (e) {
       e.stopPropagation();
-      var open = menu.classList.toggle('open');
-      toggle.classList.toggle('open', open);
+      setOpen(!menu.classList.contains('open'));
     });
+
     // Prevent clicks inside the menu from bubbling to the document handler
     // so the link navigates before the menu is torn down
     menu.addEventListener('click', function (e) {
       e.stopPropagation();
     });
+
     document.addEventListener('click', function () {
-      menu.classList.remove('open');
-      toggle.classList.remove('open');
+      setOpen(false);
+    });
+
+    // Escape closes and returns focus to the control that opened it —
+    // otherwise focus is stranded inside a menu that is no longer visible.
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape' || !menu.classList.contains('open')) return;
+      setOpen(false);
+      toggle.focus();
+    });
+
+    // Tabbing out of the menu closes it too.
+    document.addEventListener('focusin', function (e) {
+      if (!menu.classList.contains('open')) return;
+      if (!menu.contains(e.target) && e.target !== toggle) setOpen(false);
     });
   }
 

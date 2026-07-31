@@ -267,3 +267,149 @@
     .pricing-card .btnrow > button {
       min-height: 56px;
     }
+
+/* ═══════════════════════════════════════════════════════════════════
+   PLANS
+
+   Three equal towers gave Pro the same visual weight as the plan above
+   and below it, and leaned on a badge and a border to say "pick this".
+   The full comparison table below already handles compare-everything,
+   so this block only has to carry the decision: Pro leads at full
+   width, and the two edge cases — free, and whole-team — sit under it
+   as a pair.
+   ═══════════════════════════════════════════════════════════════════ */
+    .plans {
+      display: grid;
+      gap: 20px;
+      margin-top: 48px;
+      text-align: left;
+    }
+
+    /* ── Pro ── */
+    .plan-lead {
+      position: relative;
+      display: grid;
+      gap: var(--s-3);
+      border-color: rgba(var(--accent-rgb), 0.35);
+      /* The bloom the old card faked with a flat tint. Anchored to the
+         buy column, which is where the eye should land. */
+      background:
+        radial-gradient(120% 140% at 78% 0%, rgba(var(--accent-rgb), 0.07), transparent 62%),
+        var(--surface);
+    }
+
+    .plan-lead-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
+      gap: var(--s-4);
+      align-items: center;
+    }
+
+    /* The lead plan's name should not be the same muted grey as the two
+       supporting cards' — it is the thing being recommended. */
+    .plan-lead-id .panelTitle {
+      font-size: 30px;
+      color: var(--fg);
+      margin: 12px 0 6px;
+    }
+
+    .plan-lead-id .plan-tagline {
+      min-height: 0;
+      margin: 0;
+      max-width: 34ch;
+    }
+
+    /* The badge was absolutely positioned over the card's top edge. In a
+       lead card it can just sit in the flow, above the name. */
+    .plan-lead-badge {
+      position: static;
+      display: inline-block;
+      transform: none;
+      margin: 0;
+    }
+
+    .plan-lead-buy {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .plan-lead-buy .price-tag {
+      margin-top: 0;
+    }
+
+    /* No margin-top:auto here. The buy column is short, and pushing the
+       CTA to the bottom of a row sized by the other column opened a
+       ~90px hole between the price and the button. */
+    .plan-lead-buy .btnrow {
+      margin-top: var(--s-2);
+    }
+
+    /* Two columns of features under a full-width card — a single column
+       would run the card to an absurd height, and six items in one line
+       of six would read as a footer. */
+    .plan-lead-features {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 4px var(--s-4);
+      margin: 0;
+      padding-top: var(--s-3);
+      border-top: 1px solid var(--line);
+    }
+
+    /* ── Starter and Team ── */
+    .plan-pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .plan-alt {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .plan-alt .panelTitle {
+      margin-bottom: 6px;
+    }
+
+    /* Same rule as the old towers: one shared CTA height so the pair
+       reads as a row rather than two near-misses. */
+    .plan-pair .btnrow > a,
+    .plan-pair .btnrow > button,
+    .plan-lead .btnrow > button {
+      min-height: 56px;
+    }
+
+    @media (max-width: 860px) {
+      .plan-lead-head {
+        grid-template-columns: 1fr;
+        gap: var(--s-3);
+      }
+
+      .plan-lead-features {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .plan-pair {
+        grid-template-columns: 1fr;
+      }
+    }
+
+/* .btnrow carries a 20px bottom margin for the button rows it was built
+   for; inside a plan card the note underneath is meant to sit with the
+   button, not 32px below it. */
+    .plan-lead .btnrow,
+    .plan-alt .btnrow {
+      margin-bottom: 0;
+    }
+
+/* Yearly billing reveals the struck-through price and the "billed $X/yr"
+   line inside .price-tag, which is a nowrap flex row by default. */
+    .plan-lead .price-tag,
+    .plan-alt .price-tag {
+      flex-wrap: wrap;
+      gap: 4px 6px;
+    }

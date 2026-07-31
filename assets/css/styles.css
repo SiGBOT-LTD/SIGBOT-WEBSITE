@@ -2368,3 +2368,49 @@ body::before {
     transition: none;
   }
 }
+
+/* ── Product dropdown on mobile ──────────────────────────────────
+   The desktop menu is an absolutely-positioned popover. Inside the
+   stacked mobile menu that would float over the links beneath it, so
+   below 640px it becomes an inline, indented group instead — the
+   nesting is expressed by position in the list, not by elevation. */
+@media (max-width: 640px) {
+  .nav-dropdown {
+    width: 100%;
+  }
+
+  .nav-dropdown-toggle {
+    width: 100%;
+    /* The rest of the mobile menu is centred; a single left-aligned row
+       would read as a different kind of item. */
+    justify-content: center;
+    padding: 10px 0;
+    font-size: 15px;
+  }
+
+  .nav-dropdown-menu {
+    position: static;
+    transform: none;
+    min-width: 0;
+    width: 100%;
+    margin: 0 0 4px;
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* Nesting is carried by the smaller, dimmer type rather than by an
+     indent, which centred items cannot express. */
+  .nav-dropdown-menu a {
+    padding: 9px 0;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .nav-dropdown-menu a:hover,
+  .nav-dropdown-menu a.active {
+    background: none;
+  }
+}
