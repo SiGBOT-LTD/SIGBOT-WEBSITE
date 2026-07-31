@@ -1105,9 +1105,11 @@ h4,
 .nav-hamburger.open span:nth-child(2) { opacity: 0; }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-@media (max-width: 640px) {
-  :root { --pad: 20px; }
-
+/* Nav collapse. At 768px rather than 640: with the wordmark, five links
+   and two CTAs on one row, the links met the wordmark at ~700px and ran
+   past the right edge below that, leaving a broken band between 641 and
+   700 where the hamburger had not yet taken over. */
+@media (max-width: 768px) {
   /* Nav — row with hamburger */
   .nav {
     flex-direction: row;
@@ -1192,6 +1194,35 @@ h4,
     font-size: 14px;
     color: var(--muted) !important;
   }
+
+
+  /* The desktop menu is an absolutely-positioned popover; inside the
+     stacked mobile menu it would float over the links beneath it. It
+     becomes an inline group, centred to match the links around it. */
+  .nav-dropdown-toggle {
+    justify-content: center;
+  }
+
+  .nav-dropdown-menu {
+    width: 100%;
+    margin: 0 0 4px;
+    padding: 0;
+  }
+
+  .nav-dropdown-menu a {
+    padding: 9px 0;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .nav-dropdown-menu a:hover,
+  .nav-dropdown-menu a.active {
+    background: none;
+  }
+}
+
+@media (max-width: 640px) {
+  :root { --pad: 20px; }
 
   /* Typography */
   .heroTitle { font-size: 36px; max-width: 100%; }
@@ -2369,48 +2400,86 @@ body::before {
   }
 }
 
-/* ── Product dropdown on mobile ──────────────────────────────────
-   The desktop menu is an absolutely-positioned popover. Inside the
-   stacked mobile menu that would float over the links beneath it, so
-   below 640px it becomes an inline, indented group instead — the
-   nesting is expressed by position in the list, not by elevation. */
-@media (max-width: 640px) {
-  .nav-dropdown {
-    width: 100%;
-  }
+/* ── Phone mock: real icons ──────────────────────────────────────
+   The mock's UI was drawn with emoji (🏠 👥 🗺️ 📷 📇 🔍 📞), which
+   render as someone else's icon set — a different one per platform,
+   in full colour, next to a monochrome interface. These are the
+   stroke icons the rest of the site uses. */
+.app-bottom-nav .nav-item svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
 
-  .nav-dropdown-toggle {
-    width: 100%;
-    /* The rest of the mobile menu is centred; a single left-aligned row
-       would read as a different kind of item. */
-    justify-content: center;
-    padding: 10px 0;
-    font-size: 15px;
-  }
+/* The real app gives Scan the centre slot at a larger size. */
+.app-bottom-nav .nav-item--scan svg {
+  width: 26px;
+  height: 26px;
+}
 
-  .nav-dropdown-menu {
-    position: static;
-    transform: none;
-    min-width: 0;
-    width: 100%;
-    margin: 0 0 4px;
-    padding: 0;
-    background: none;
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-  }
+.app-icon-btn svg {
+  width: 15px;
+  height: 15px;
+  display: block;
+}
 
-  /* Nesting is carried by the smaller, dimmer type rather than by an
-     indent, which centred items cannot express. */
-  .nav-dropdown-menu a {
-    padding: 9px 0;
-    font-size: 13px;
-    text-align: center;
-  }
+.app-action-btn svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+  color: var(--accent);
+}
 
-  .nav-dropdown-menu a:hover,
-  .nav-dropdown-menu a.active {
-    background: none;
-  }
+.app-profile {
+  text-align: center;
+  margin-top: 28px;
+  padding: 0 20px;
+}
+
+.app-profile-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.app-profile-sub {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted-2);
+  margin-bottom: 18px;
+}
+
+/* An actual QR-like matrix rather than a phone emoji standing in for
+   one — the screen is showing a QR code, so it should look like one. */
+.app-qr {
+  width: 112px;
+  height: 112px;
+  margin: 0 auto;
+  padding: 9px;
+  border-radius: 10px;
+  background: #fff;
+  color: #0A0B0D;
+}
+
+.app-qr svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Was a 2s infinite pulse that scaled, faded and glowed. A looping
+   attention-grab on a static marketing mock earns nothing and cannot
+   be dismissed; the icon just sits there now. */
+.sync-status-icon {
+  font-size: 0;
+  margin-bottom: 20px;
+  animation: none;
+  color: var(--accent);
+}
+
+.sync-status-icon svg {
+  width: 40px;
+  height: 40px;
+  display: block;
+  margin: 0 auto;
 }

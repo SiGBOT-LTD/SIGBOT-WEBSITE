@@ -220,15 +220,49 @@
         </div>
       </div>
 
-      <!-- How contacts get in -->
+      <!-- How contacts get in.
+           Three genuinely different routes in the app, and they are not
+           equivalent: Outlook is one-click OAuth, everything else is IMAP with
+           an app password, and forwarding is the no-connection option. The
+           page used to flatten all three into "Outlook, Gmail and IMAP", which
+           implied a one-click Gmail button the app deliberately does not
+           ship. -->
       <section class="webapp-integrations">
         <h2 class="heroTitle wa-h2">Connect once. Contacts appear automatically.</h2>
-        <p class="f-desc" style="font-size: 18px; line-height: 1.6; max-width: 600px; margin: 0 auto 16px;">
-          Sigbot scans email signatures across Outlook, Gmail, and IMAP inboxes — no manual entry, no copy-paste. New
-          contacts are extracted the moment someone emails you.
+        <p class="f-desc wa-connect-lede">
+          Sigbot reads the signature block on the mail you already receive — no manual entry, no copy-paste. Pick
+          whichever way of connecting suits your inbox.
         </p>
-        <p class="f-desc" style="font-size: 18px; line-height: 1.6; max-width: 600px; margin: 0 auto;">
-          Works alongside the tools you already use on-site — see <a href="/construction.html" style="color: var(--accent);">Sigbot for Construction</a>
+
+        <ol class="connect-routes">
+          <li class="connect-route">
+            <span class="connect-route-num">01</span>
+            <div>
+              <h3 class="connect-route-title">Outlook &mdash; one click</h3>
+              <p class="connect-route-desc">Sign in with Microsoft and approve access. Nothing to configure, and no
+                password ever reaches us.</p>
+            </div>
+          </li>
+          <li class="connect-route">
+            <span class="connect-route-num">02</span>
+            <div>
+              <h3 class="connect-route-title">Gmail &amp; any IMAP inbox</h3>
+              <p class="connect-route-desc">Connect with your server address and an app password. This is how Gmail,
+                Fastmail, and self-hosted inboxes connect.</p>
+            </div>
+          </li>
+          <li class="connect-route">
+            <span class="connect-route-num">03</span>
+            <div>
+              <h3 class="connect-route-title">Forward instead</h3>
+              <p class="connect-route-desc">Don't want to connect an inbox at all? You get a private forwarding
+                address. Anything you send it gets read and filed.</p>
+            </div>
+          </li>
+        </ol>
+
+        <p class="f-desc wa-connect-foot">
+          Works alongside the tools you already use on-site — see <a href="/construction.html">Sigbot for Construction</a>
           for integrations with Procore, Buildertrend, and Pipedrive.
         </p>
       </section>
@@ -521,7 +555,11 @@
 
         <div class="faq-item">
           <h3>Which inboxes does Sigbot support?</h3>
-          <p>Outlook, Gmail, and any IMAP-based inbox.</p>
+          <p>
+            Outlook connects in one click with your Microsoft account. Gmail and any other IMAP inbox connect with
+            your server address and an app password. If you'd rather not connect an inbox at all, forward mail to
+            your private Sigbot address instead.
+          </p>
         </div>
 
         <div class="faq-item">

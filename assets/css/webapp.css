@@ -693,3 +693,83 @@
       justify-content: space-between;
       align-items: center;
     }
+
+/* ── Connect routes ──────────────────────────────────────────────
+   The three ways contacts get in. Set as a numbered sequence rather
+   than three cards: they are alternatives ranked by how little work
+   they take, not equivalent options, and the page previously ran them
+   together into one sentence that implied a one-click Gmail button. */
+    .wa-connect-lede {
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    .connect-routes {
+      list-style: none;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0;
+      text-align: left;
+      display: grid;
+      gap: 4px;
+    }
+
+    .connect-route {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      padding: 20px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .connect-route:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .connect-route-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      font-feature-settings: 'tnum' 1;
+      color: var(--accent);
+      padding-top: 4px;
+    }
+
+    .connect-route-title {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+      margin: 0 0 6px;
+    }
+
+    .connect-route-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--muted);
+      margin: 0;
+      max-width: 52ch;
+    }
+
+    .wa-connect-foot {
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 32px auto 0;
+      color: var(--muted-2);
+    }
+
+    .wa-connect-foot a {
+      color: var(--accent);
+    }
+
+    @media (max-width: 560px) {
+      .connect-route {
+        grid-template-columns: 28px minmax(0, 1fr);
+        gap: 12px;
+      }
+    }
