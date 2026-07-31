@@ -248,3 +248,22 @@
       color: var(--muted);
       margin: 0 0 32px;
     }
+
+/* The reassurance line under each tier's CTA. Every tier gets one, so the
+   three CTAs form a single horizontal line — Starter previously had no note
+   and its button sat 32px lower than Pro's and Team's. */
+    .plan-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin: 12px 0 0;
+      text-align: center;
+    }
+
+/* .btnPrimary runs 15px and .btnGhost 16px, which leaves the recommended
+   tier's CTA 2px shorter than its neighbours. Pinning a shared min-height
+   makes the three read as one row without changing either button's type
+   scale elsewhere on the site. */
+    .pricing-card .btnrow > a,
+    .pricing-card .btnrow > button {
+      min-height: 56px;
+    }

@@ -156,7 +156,6 @@ summary:focus-visible,
   /* Hover lifts translate; keep the colour change, drop the movement.
      Covers every lifting or scaling hover on the site, not a sample. */
   .panel:hover,
-  .hiw-card:hover,
   .product-nav-card:hover,
   .product-nav-card:hover .pnc-arrow,
   .cta-col:hover,
@@ -2190,18 +2189,6 @@ h4,
 }
 
 
-/* HOW IT WORKS SECTION
-   Left-aligned on purpose. Every section on this page used to be an identical
-   centred stack — eyebrow, big heading, grey sub, row of cards — which is what
-   made the page read as templated no matter how good any single part was.
-   The pipeline is a sequence, so it gets a left edge to read down. */
-.how-it-works-section {
-  padding: var(--section-y) var(--pad);
-  text-align: left;
-  max-width: var(--max);
-  margin: 0 auto;
-}
-
 .hiw-heading {
   font-size: clamp(30px, 4vw, 44px);
   font-weight: 800;
@@ -2212,73 +2199,172 @@ h4,
   margin: 0 0 var(--s-5);
 }
 
-.hiw-cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-}
+/* ═══════════════════════════════════════════════════════════════════
+   CRAFT LAYER
 
-.hiw-card {
-  background: var(--surface);
-  border: 1px solid var(--card-border);
-  border-radius: 20px;
-  padding: 32px 28px 36px;
-  text-align: left;
-  transition: border-color 0.3s, transform 0.3s;
-}
+   Four things the identity pass left on the table: the page had no
+   surface texture, no way for a keyboard user to skip the 9-item nav,
+   no nav state once you scrolled past it, and no scroll choreography
+   (index.js targeted `.feature-card`, a class that exists on no page).
+   ═══════════════════════════════════════════════════════════════════ */
 
-.hiw-card:hover {
-  border-color: rgba(255, 255, 255, 0.16);
-  transform: translateY(var(--lift-card));
-}
+/* ── Buttons: <a> and <button> must render identically ───────────
+   .btnPrimary and .btnGhost are used on both anchors and buttons, but
+   neither set font-family or line-height — so anchors inherited the
+   body's 16px/1.6 Inter while <button> fell back to the UA default
+   (13.33px Arial, line-height normal). Measured on the pricing page:
+   Starter's anchor CTA was 56px tall, Pro's and Team's button CTAs
+   were 45px, leaving the three tier CTAs misaligned by 31px.
 
-.hiw-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 28px;
-}
-
-/* 01 / 02 / 03 earns its place here — this genuinely is an ordered pipeline,
-   so the accent marks it as structure rather than decoration. */
-.hiw-step {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--accent);
-  letter-spacing: 0.05em;
-}
-
-.hiw-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-}
-
-.hiw-title {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--fg);
-  margin: 0 0 12px;
-  letter-spacing: -0.01em;
-}
-
-.hiw-desc {
-  font-size: 15px;
+   Buttons also need the appearance reset, or iOS Safari re-applies its
+   own padding and corner radius on top of these. */
+.btnPrimary,
+.btnGhost {
+  font-family: inherit;
   line-height: 1.6;
-  color: var(--muted);
-  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
-@media (max-width: 768px) {
-  .hiw-cards {
-    grid-template-columns: 1fr;
-    gap: 16px;
+button.btnPrimary,
+button.btnGhost {
+  cursor: pointer;
+}
+
+/* Anchors were already resolving to the body's 16px; stating it makes
+   the button case match rather than shrink to the UA default. */
+.btnGhost {
+  font-size: 16px;
+}
+
+/* ── Skip link ───────────────────────────────────────────────────
+   Nine nav links plus two CTAs sit between the page top and the
+   content on every page. Tabbing through that on every navigation is
+   the cost this removes. */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -120%);
+  z-index: 300;
+  padding: 10px 20px;
+  background: var(--accent);
+  color: #0A0B0D;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 0 0 10px 10px;
+  transition: transform var(--dur) var(--ease);
+}
+
+.skip-link:focus-visible {
+  transform: translate(-50%, 0);
+  color: #0A0B0D;
+  outline-offset: -4px;
+}
+
+/* ── Grain ───────────────────────────────────────────────────────
+   A flat near-black field reads as "unstyled dark" rather than as a
+   material. Fractal noise at 3.5% gives the ground a tooth without
+   registering as a visible pattern. z-index -1 keeps it above the
+   body background and below every in-flow element, so it can never
+   muddy text. Fixed, so it does not travel with the scroll — grain
+   that scrolls reads as a texture *image* rather than as the surface. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Sticky nav ──────────────────────────────────────────────────
+   The nav scrolled away and left no wayfinding on pages that run
+   2000px+. It stays, and earns a surface only once it is overlapping
+   content — `.is-stuck` is set from nav.js.
+
+   The wrapper exists because `position: sticky` is bounded by its
+   containing block, and the nav used to sit inside `.container` —
+   which on the home page closes immediately after the hero. Sticking
+   to that would have released the nav a few hundred pixels down, on
+   that page only. The wrapper is a body-level child on every page, so
+   the behaviour is the same everywhere.
+
+   Emil's frequency gate applies to the motion: navigation is
+   high-traffic chrome, so this is a 150ms colour change and nothing
+   else. No slide, no shrink, no logo swap. */
+.nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  /* Colour only. An earlier version also collapsed a 24px top padding on
+     dock, which both animated a layout property and shifted the bar under
+     the pointer mid-scroll. The geometry is now identical in both states. */
+  transition: background-color 150ms var(--ease), border-color 150ms var(--ease);
+}
+
+.nav-wrap .nav {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 20px var(--pad);
+}
+
+.nav-wrap.is-stuck {
+  background: rgba(10, 11, 13, 0.72);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  border-bottom-color: var(--line);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .nav-wrap.is-stuck {
+    background: rgba(10, 11, 13, 0.94);
+  }
+}
+
+/* .container carried the nav's top spacing; the nav no longer lives
+   there, so the first section would otherwise start 24px too high. */
+.nav-wrap + .container,
+.nav-wrap + .container > .header {
+  padding-top: 0;
+}
+
+/* ── Scroll reveal ───────────────────────────────────────────────
+   Applied by reveal.js, never in the markup: the class that hides
+   content is added by the same script that removes it, so a blocked
+   or failed script leaves everything visible rather than permanently
+   blank. That was the failure mode waiting in the old index.js.
+
+   Jakub weighting — 460ms, a 14px rise, and a stagger small enough
+   that a row of three reads as one gesture rather than three events.
+   Transform and opacity only. */
+.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.js-reveal [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 460ms var(--ease) calc(var(--reveal-delay, 0) * 70ms),
+    transform 460ms var(--ease) calc(var(--reveal-delay, 0) * 70ms);
+}
+
+/* Anyone who has asked for calmer motion gets the content with no
+   travel and no hold — the reveal simply never arms. */
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal [data-reveal],
+  .js-reveal [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .skip-link {
+    transition: none;
   }
 }

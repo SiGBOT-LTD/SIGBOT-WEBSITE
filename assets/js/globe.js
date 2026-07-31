@@ -11,7 +11,7 @@
   // Demo contacts — one pin per city
   const PINS = [
     { lat: 37.39, lng: -122.08, name: 'Sarah Jenkins', role: 'Senior Engineer', company: 'Google', email: 'sarah@google.com', location: 'Mountain View, US', initials: 'SJ', grad: 'linear-gradient(135deg,#EA4335,#FBBC05)' },
-    { lat: 43.65, lng: -79.38, name: 'David Miller', role: 'VP of Business Development', company: 'Acme Corp', email: 'david.miller@acmecorp.com', location: 'Toronto, CA', initials: 'DM', grad: 'linear-gradient(135deg,#3b82f6,#8b5cf6)' },
+    { lat: 43.65, lng: -79.38, name: 'David Miller', role: 'VP of Business Development', company: 'Bayview Construction', email: 'd.miller@bayviewconst.ca', location: 'Toronto, CA', initials: 'DM', grad: 'linear-gradient(135deg,#3b82f6,#8b5cf6)' },
     { lat: 51.51, lng: -0.13, name: 'Sophie Turner', role: 'Head of Partnerships', company: 'Northgate Ltd', email: 'sophie@northgate.co.uk', location: 'London, UK', initials: 'ST', grad: 'linear-gradient(135deg,#f59e0b,#ef4444)' },
     { lat: 52.52, lng: 13.4, name: 'Lukas Weber', role: 'CTO', company: 'Fenster GmbH', email: 'lukas@fenster.de', location: 'Berlin, DE', initials: 'LW', grad: 'linear-gradient(135deg,#10b981,#3b82f6)' },
     { lat: 19.08, lng: 72.88, name: 'Priya Sharma', role: 'Product Lead', company: 'Lotus Tech', email: 'priya@lotustech.in', location: 'Mumbai, IN', initials: 'PS', grad: 'linear-gradient(135deg,#f97316,#ec4899)' },

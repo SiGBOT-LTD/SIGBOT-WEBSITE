@@ -1,0 +1,190 @@
+/* ═══════════════════════════════════════════════════════════════════
+   404
+
+   The site had no 404 page, so a bad link fell through to GitHub Pages'
+   default — unbranded, no nav, and a dead end. This one keeps the nav,
+   states the failure in the same record shape the product uses, and
+   offers four real destinations instead of a single "go home".
+   ═══════════════════════════════════════════════════════════════════ */
+.nf {
+  padding: var(--s-5) 0 var(--s-6);
+  max-width: 640px;
+}
+
+/* ── The failed lookup, drawn as a record ── */
+.nf-record {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: var(--s-4);
+  box-shadow: 0 16px 36px -18px rgba(0, 0, 0, 0.8);
+}
+
+.nf-record-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--line);
+}
+
+.nf-record-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.nf-record-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--line);
+}
+
+.nf-record-title {
+  font-size: 12px;
+  color: var(--chrome);
+  letter-spacing: 0.02em;
+}
+
+.nf-rows {
+  margin: 0;
+  padding: 12px 16px 14px;
+}
+
+.nf-row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 12px;
+  align-items: baseline;
+  padding: 5px 0;
+}
+
+.nf-row dt {
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--chrome);
+}
+
+.nf-row dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--fg);
+  overflow-wrap: anywhere;
+}
+
+/* Amber marks the field that failed — the same job it does in the hero,
+   where it marks the field being read. Mint is not used here: nothing on
+   this page is confirmed. */
+.nf-status {
+  color: var(--accent);
+}
+
+.nf-path {
+  color: var(--muted);
+}
+
+.nf-title {
+  margin: 0 0 14px;
+  text-wrap: balance;
+}
+
+.nf-sub {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 var(--s-4);
+  max-width: 46ch;
+}
+
+.nf-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-5);
+}
+
+.nf-link {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.nf-link:hover {
+  color: var(--fg);
+}
+
+/* ── Where to go instead ──
+   Two columns rather than four: four equal tiles is the same "row of
+   identical cards" reflex this pass is removing elsewhere. */
+.nf-map {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: var(--s-4);
+}
+
+.nf-map a {
+  display: block;
+  padding: 18px 20px;
+  background: var(--bg);
+  transition: background-color var(--dur) var(--ease);
+}
+
+.nf-map a:hover {
+  background: var(--surface);
+  color: inherit;
+}
+
+.nf-map-title {
+  display: block;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--fg);
+  margin-bottom: 3px;
+}
+
+.nf-map a:hover .nf-map-title {
+  color: var(--accent);
+}
+
+.nf-map-desc {
+  display: block;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted-2);
+}
+
+.nf-help {
+  font-size: 14px;
+  color: var(--faint);
+  margin: 0;
+}
+
+.nf-help a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.nf-help a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 560px) {
+  .nf-map {
+    grid-template-columns: 1fr;
+  }
+
+  .nf-links {
+    gap: var(--s-2);
+  }
+}

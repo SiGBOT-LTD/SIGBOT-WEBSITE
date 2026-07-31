@@ -35,4 +35,21 @@
       toggle.classList.remove('open');
     });
   }
+
+  // Sticky nav surface. The nav is transparent while it is still sitting on
+  // the page's own background and only takes a blurred surface once content
+  // is passing underneath it — a permanent bar would put a hard edge across
+  // the hero on first paint. A sentinel element is cheaper and smoother than
+  // a scroll listener: no work happens on the frames between crossings.
+  var nav = document.querySelector('.nav-wrap');
+  if (nav && 'IntersectionObserver' in window) {
+    var sentinel = document.createElement('div');
+    sentinel.setAttribute('aria-hidden', 'true');
+    sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none;';
+    document.body.prepend(sentinel);
+
+    new IntersectionObserver(function (entries) {
+      nav.classList.toggle('is-stuck', !entries[0].isIntersecting);
+    }).observe(sentinel);
+  }
 })();

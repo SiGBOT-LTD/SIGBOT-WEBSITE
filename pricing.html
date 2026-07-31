@@ -37,30 +37,33 @@
 </head>
 
 <body>
-  <div class="container">
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <div class="nav">
-      <div class="brand">
-        <a href="index.html">
-          <img src="assets/robot.svg" alt="" aria-hidden="true">
-          SIGBOT
-        </a>
-      </div>
-      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-        <div class="navlinks">
-        <a href="index.html">Home</a>
-        <a href="webapp.html">Web App</a><a href="mobile.html">Mobile App</a>
-        <a href="construction.html">Construction</a>
-        <a href="demo.html">Demo</a>
-        <a class="active" href="pricing.html">Pricing</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
-        <a class="cta-ghost" href="https://sigbot.app/login">Log in</a>
-        <a class="cta" href="https://sigbot.app/login">Start free</a>
-      </div>
+  <div class="nav-wrap">
+  <nav class="nav" aria-label="Primary">
+    <div class="brand">
+    <a href="index.html">
+      <img src="assets/robot.svg" alt="" aria-hidden="true">
+      SIGBOT
+    </a>
     </div>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="navlinks">
+    <a href="index.html">Home</a>
+    <a href="webapp.html">Web App</a><a href="mobile.html">Mobile App</a>
+    <a href="construction.html">Construction</a>
+    <a href="demo.html">Demo</a>
+    <a class="active" href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a class="cta-ghost" href="https://sigbot.app/login">Log in</a>
+    <a class="cta" href="https://sigbot.app/login">Start free</a>
+    </div>
+  </nav>
+</div>
 
-    <div class="page" style="text-align: center;">
+  <div class="container">
+    <div class="page" style="text-align: center;" id="main" tabindex="-1">
 
       <h1 class="pageTitle">Simple, transparent pricing</h1>
       <p class="pageSub" style="margin-bottom: 0;">Start free. Upgrade when you need more.</p>
@@ -115,6 +118,7 @@
           <div class="btnrow" style="margin-top:auto">
             <a class="btnGhost" href="https://sigbot.app/login" style="width:100%">Start free</a>
           </div>
+          <p class="plan-note">No credit card required</p>
         </div>
 
         <!-- PRO — Most Popular -->
@@ -151,9 +155,9 @@
             </li>
           </ul>
           <div class="btnrow" style="margin-top:auto">
-            <button class="btnPrimary" id="pro-checkout-btn" style="width:100%;cursor:pointer;border:none;">Subscribe to Pro</button>
+            <button class="btnPrimary" id="pro-checkout-btn" style="width:100%">Subscribe to Pro</button>
           </div>
-          <p style="font-size: 12px; color: var(--muted); margin: 12px 0 0; text-align: center;">30-day money-back guarantee</p>
+          <p class="plan-note">30-day money-back guarantee</p>
         </div>
 
         <!-- TEAM -->
@@ -193,9 +197,9 @@
             </li>
           </ul>
           <div class="btnrow" style="margin-top:auto">
-            <button class="btnGhost" id="team-checkout-btn" style="width:100%;cursor:pointer;">Subscribe to Team</button>
+            <button class="btnGhost" id="team-checkout-btn" style="width:100%">Subscribe to Team</button>
           </div>
-          <p style="font-size: 12px; color: var(--muted); margin: 12px 0 0; text-align: center;">30-day money-back guarantee</p>
+          <p class="plan-note">30-day money-back guarantee</p>
         </div>
 
       </div>
