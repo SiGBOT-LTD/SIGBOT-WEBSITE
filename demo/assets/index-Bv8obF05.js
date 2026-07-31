@@ -71,7 +71,7 @@
       ${_()}
       ${v()}
       ${te()}
-    </div>`}var S=[{field:`firstName`,label:`Name`,cls:``},{field:`email`,label:`Email`,cls:`col-md`},{field:`company`,label:`Company`,cls:`col-lg`},{field:`jobTitle`,label:`Title`,cls:`col-lg`}];function C(e,t){if(!t)return!0;let n=t.toLowerCase();return[e.firstName,e.lastName,e.email,e.company,e.jobTitle,e.phone,e.location].some(e=>(e??``).toLowerCase().includes(n))}function w(e,t){return(t===`firstName`?`${e.firstName} ${e.lastName}`:e[t]??``).toLowerCase()}function T(e){let t=s;if(e.folder){let n=f.find(t=>t.name===e.folder),r=n?n.emails:[];t=t.filter(e=>r.includes(e.email))}if(t=t.filter(t=>C(t,e.query)),e.sortField){let n=e.sortField,r=e.sortDir===`asc`?1:-1;t=[...t].sort((e,t)=>{let i=w(e,n),a=w(t,n);return!i&&a?1:i&&!a?-1:i.localeCompare(a)*r})}return t}function E(e,n,r,i){let a=i.sortField===e,o=a?i.sortDir===`asc`?`<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>`:`<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`:t.arrowUpDown;return`<th class="${r}">
+    </div>`}var S=[{field:`firstName`,label:`Name`,cls:``},{field:`email`,label:`Email`,cls:`c-email`},{field:`company`,label:`Company`,cls:`c-company`},{field:`jobTitle`,label:`Title`,cls:`c-title`}];function C(e,t){if(!t)return!0;let n=t.toLowerCase();return[e.firstName,e.lastName,e.email,e.company,e.jobTitle,e.phone,e.location].some(e=>(e??``).toLowerCase().includes(n))}function w(e,t){return(t===`firstName`?`${e.firstName} ${e.lastName}`:e[t]??``).toLowerCase()}function T(e){let t=s;if(e.folder){let n=f.find(t=>t.name===e.folder),r=n?n.emails:[];t=t.filter(e=>r.includes(e.email))}if(t=t.filter(t=>C(t,e.query)),e.sortField){let n=e.sortField,r=e.sortDir===`asc`?1:-1;t=[...t].sort((e,t)=>{let i=w(e,n),a=w(t,n);return!i&&a?1:i&&!a?-1:i.localeCompare(a)*r})}return t}function E(e,n,r,i){let a=i.sortField===e,o=a?i.sortDir===`asc`?`<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>`:`<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`:t.arrowUpDown;return`<th class="${r}">
     <button class="sort-btn${a?` active`:``}" data-sort="${e}"
       aria-label="Sort by ${n}${a?`, currently ${i.sortDir}ending`:``}">
       ${n}${o}
@@ -88,11 +88,11 @@
           </div>
         </div>
       </td>
-      <td class="col-md mono-cell muted-cell">${e.email}</td>
-      <td class="col-lg">${e.company}</td>
-      <td class="col-lg muted-cell">${e.jobTitle}</td>
-      <td class="col-lg mono-cell muted-cell">${e.phone}</td>
-      <td class="col-lg muted-cell">${e.location}</td>
+      <td class="c-email mono-cell muted-cell">${e.email}</td>
+      <td class="c-company">${e.company}</td>
+      <td class="c-title muted-cell">${e.jobTitle}</td>
+      <td class="c-phone mono-cell muted-cell">${e.phone}</td>
+      <td class="c-location muted-cell">${e.location}</td>
     </tr>`}function O(e){let n=T(e),r=e.folder?`Nothing in ${e.folder} matches “${e.query}”.`:`No contacts match “${e.query}”.`,i=n.length?n.map(D).join(``):`<tr class="empty-row"><td colspan="7">${r}</td></tr>`;return`
     <div class="table-meta">${e.folder?`<div class="filter-chip">
          <span>Folder: <strong>${e.folder}</strong></span>
@@ -112,8 +112,8 @@
           <tr>
             <th style="width:40px"><input type="checkbox" id="select-all" aria-label="Select all contacts" /></th>
             ${S.map(t=>E(t.field,t.label,t.cls,e)).join(``)}
-            <th class="col-lg">Phone</th>
-            <th class="col-lg">Location</th>
+            <th class="c-phone">Phone</th>
+            <th class="c-location">Location</th>
           </tr>
         </thead>
         <tbody>${i}</tbody>

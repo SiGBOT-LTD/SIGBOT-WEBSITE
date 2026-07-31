@@ -25,9 +25,9 @@ export interface TableState {
 
 const HEADERS: { field: SortField; label: string; cls: string }[] = [
   { field: 'firstName', label: 'Name', cls: '' },
-  { field: 'email', label: 'Email', cls: 'col-md' },
-  { field: 'company', label: 'Company', cls: 'col-lg' },
-  { field: 'jobTitle', label: 'Title', cls: 'col-lg' },
+  { field: 'email', label: 'Email', cls: 'c-email' },
+  { field: 'company', label: 'Company', cls: 'c-company' },
+  { field: 'jobTitle', label: 'Title', cls: 'c-title' },
 ];
 
 function matches(c: Contact, q: string): boolean {
@@ -105,11 +105,11 @@ function row(c: Contact): string {
           </div>
         </div>
       </td>
-      <td class="col-md mono-cell muted-cell">${c.email}</td>
-      <td class="col-lg">${c.company}</td>
-      <td class="col-lg muted-cell">${c.jobTitle}</td>
-      <td class="col-lg mono-cell muted-cell">${c.phone}</td>
-      <td class="col-lg muted-cell">${c.location}</td>
+      <td class="c-email mono-cell muted-cell">${c.email}</td>
+      <td class="c-company">${c.company}</td>
+      <td class="c-title muted-cell">${c.jobTitle}</td>
+      <td class="c-phone mono-cell muted-cell">${c.phone}</td>
+      <td class="c-location muted-cell">${c.location}</td>
     </tr>`;
 }
 
@@ -151,8 +151,8 @@ export function renderContacts(state: TableState): string {
           <tr>
             <th style="width:40px"><input type="checkbox" id="select-all" aria-label="Select all contacts" /></th>
             ${HEADERS.map((h) => sortHeader(h.field, h.label, h.cls, state)).join('')}
-            <th class="col-lg">Phone</th>
-            <th class="col-lg">Location</th>
+            <th class="c-phone">Phone</th>
+            <th class="c-location">Location</th>
           </tr>
         </thead>
         <tbody>${body}</tbody>

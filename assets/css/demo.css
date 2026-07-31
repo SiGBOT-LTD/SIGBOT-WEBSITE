@@ -95,3 +95,22 @@
   line-height: 1.6;
   color: var(--faint);
 }
+
+/* The frame was inheriting the page's 1000px text column, leaving the
+   embedded app 934px — with a 220px sidebar that is barely 700px of
+   table. The demo is the reason this page exists, so it breaks out of
+   the measure and takes the width it needs. */
+.demo-frame-wrapper {
+    width: min(1320px, calc(100vw - 40px));
+    max-width: none;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+    .demo-frame-wrapper {
+        width: calc(100% + 32px);
+        margin-left: -16px;
+        transform: none;
+    }
+}
