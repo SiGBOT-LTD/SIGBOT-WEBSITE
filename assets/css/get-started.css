@@ -1,0 +1,854 @@
+/* ═══════════════════════════════════════════════════════════════════
+   GET STARTED — the signup flow.
+
+   Everything here is a layout on top of the site's existing tokens and
+   components: .panel, .btnPrimary, .btnGhost, .form-control, and the
+   extraction card from styles.css. No new colours, no new type faces.
+
+   The one rule this page has to keep: amber marks the thing currently
+   being acted on — the step you are on, the line being read — and mint
+   marks something confirmed. Nothing is chromatic for decoration.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Progress ──────────────────────────────────────────────────────
+   Four steps, in order, because it is genuinely an order: an inbox has
+   to be connected before it can be scanned. Set in mono because the
+   numbering is machine sequence, not prose. */
+.gs-steps {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin: 8px 0 var(--s-5);
+  padding: 0 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.gs-step {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+}
+
+.gs-step-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  font-feature-settings: 'tnum' 1;
+  color: var(--chrome);
+  transition: color var(--dur) var(--ease);
+}
+
+.gs-step-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--faint);
+  transition: color var(--dur) var(--ease);
+}
+
+.gs-step.is-current .gs-step-num {
+  color: var(--accent);
+}
+
+.gs-step.is-current .gs-step-name {
+  color: var(--fg);
+}
+
+/* Done is a confirmed state, so it is the only place mint appears here. */
+.gs-step.is-done .gs-step-num {
+  color: var(--verify);
+}
+
+.gs-step.is-done .gs-step-num::before {
+  content: '✓ ';
+}
+
+.gs-step.is-done .gs-step-name {
+  color: var(--muted-2);
+}
+
+/* ── Stages ────────────────────────────────────────────────────────
+   One stage on screen at a time. `hidden` does the hiding so the DOM
+   state and the visual state cannot disagree. */
+.gs-stage {
+  display: none;
+}
+
+.gs-stage.is-active {
+  display: block;
+  animation: gs-in 280ms var(--ease) both;
+}
+
+/* Only the account stage runs two columns: it is the one stage with
+   something to say alongside the action. */
+.gs-stage--split.is-active {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
+  gap: var(--s-5);
+  align-items: start;
+}
+
+@keyframes gs-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gs-stage.is-active {
+    animation: none;
+  }
+}
+
+/* Grid children default to min-width:auto, which lets a long mono value
+   (a forwarding address, an email) push the column past the page. */
+.gs-col,
+.gs-route-body {
+  min-width: 0;
+}
+
+.gs-col--wide {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.gs-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 14px;
+}
+
+.gs-title {
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 14px;
+}
+
+.gs-sub {
+  font-size: 17px;
+  margin-bottom: var(--s-4);
+  max-width: 52ch;
+}
+
+.gs-title--center,
+.gs-sub--center {
+  text-align: center;
+}
+
+.gs-sub--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── Account ───────────────────────────────────────────────────────
+   The Microsoft route is a button, not a link, and it carries a second
+   line because it does two things at once: signs you in and connects
+   Outlook. Saying so here is what makes step 02 skippable. */
+.gs-authbtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--fg);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.gs-authbtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(var(--accent-rgb), 0.45);
+  transform: translateY(var(--lift-control));
+}
+
+.gs-authbtn svg {
+  flex: 0 0 20px;
+}
+
+.gs-authbtn-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.gs-authbtn-label small {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.gs-authbtn-arrow {
+  margin-left: auto;
+  color: var(--chrome);
+  transition: transform var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.gs-authbtn:hover .gs-authbtn-arrow {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+.gs-or {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: var(--s-3) 0;
+  font-size: 12.5px;
+  color: var(--faint);
+}
+
+.gs-or::before,
+.gs-or::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.gs-submit {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.gs-hint {
+  font-size: 12.5px;
+  color: var(--faint);
+  margin: 6px 0 0;
+}
+
+/* Errors state what happened and what to do, in the interface's voice. */
+.gs-error {
+  font-size: 13px;
+  color: var(--accent);
+  margin: 0 0 14px;
+}
+
+.gs-fine {
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--faint);
+  margin: 16px 0 0;
+}
+
+.gs-fine a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.gs-fine a:hover {
+  color: var(--accent);
+}
+
+.gs-fine--center {
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* ── Aside ─────────────────────────────────────────────────────────
+   The free plan, stated as a spec sheet rather than a sales panel —
+   key/value in the same shape the app shows a contact record in. */
+.gs-aside {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  padding: 26px 24px;
+  position: sticky;
+  top: 96px;
+}
+
+.gs-aside-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+
+.gs-aside-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.gs-aside-list li {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+  padding: 9px 0;
+  border-top: 1px solid var(--line);
+}
+
+.gs-aside-list li:first-child {
+  border-top: 0;
+}
+
+.gs-aside-k {
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--chrome);
+}
+
+.gs-aside-v {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--fg);
+}
+
+.gs-aside-foot {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 20px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.gs-aside-foot a {
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* ── Inbox routes ──────────────────────────────────────────────────
+   The same three routes, in the same order and words, as the web app
+   page. They are numbered because they are ranked by how little work
+   each one asks of you, not because numbers look tidy. */
+.gs-routes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.gs-route {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+}
+
+.gs-route:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.gs-route-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  font-feature-settings: 'tnum' 1;
+  color: var(--accent);
+  padding-top: 4px;
+}
+
+.gs-route-title {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  margin: 0 0 6px;
+}
+
+.gs-route-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 18px;
+  max-width: 52ch;
+}
+
+.gs-route-btn {
+  padding: 12px 22px;
+  font-size: 14px;
+}
+
+.gs-imap {
+  margin-top: 20px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  max-width: 460px;
+}
+
+.gs-imap-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 110px;
+  gap: 14px;
+}
+
+/* The forwarding address is a value the app generated, so it is set in
+   mono like every other machine-produced value on the site. */
+.gs-forward {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  margin-bottom: 16px;
+  max-width: 420px;
+}
+
+.gs-forward-addr {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--fg);
+  background: rgba(var(--accent-rgb), 0.06);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
+  border-radius: 10px;
+  padding: 11px 14px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.gs-copy {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  border-radius: 10px;
+  padding: 0 16px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.gs-copy:hover {
+  color: var(--fg);
+  border-color: var(--chrome);
+}
+
+.gs-copy.is-copied {
+  color: var(--verify);
+  border-color: rgba(var(--verify-rgb), 0.4);
+}
+
+.gs-back {
+  margin-top: var(--s-3);
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--muted);
+  transition: color var(--dur) var(--ease);
+}
+
+.gs-back:hover {
+  color: var(--fg);
+}
+
+/* ── First scan ────────────────────────────────────────────────────
+   Extraction card on the left, the ledger of what it has filed on the
+   right. The card is the site's own component; only the ledger is new,
+   and it exists because the counter underneath needs something to be
+   counting. */
+.gs-scan {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  gap: var(--s-3);
+  align-items: start;
+}
+
+.gs-extract {
+  animation: none;
+  /* the stage already fades in; two entrances is one too many */
+}
+
+.gs-ledger {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  padding: 18px 20px;
+  min-height: 260px;
+}
+
+.gs-ledger-head {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--chrome);
+  margin: 0 0 14px;
+}
+
+.gs-ledger-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.gs-ledger-list li {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  padding: 9px 0;
+  border-top: 1px solid var(--line);
+  animation: gs-file 300ms var(--ease) both;
+}
+
+.gs-ledger-list li:first-child {
+  border-top: 0;
+}
+
+@keyframes gs-file {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gs-ledger-list li {
+    animation: none;
+  }
+}
+
+.gs-ledger-check {
+  width: 14px;
+  height: 14px;
+  color: var(--verify);
+  margin-top: 3px;
+}
+
+.gs-ledger-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.gs-ledger-meta {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--muted-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gs-ledger-empty {
+  font-size: 13px;
+  color: var(--faint);
+  margin: 0;
+}
+
+/* Counters. Only "contacts filed" is amber: it is the number the whole
+   product exists to move, and the other two are context for it. */
+.gs-meters {
+  display: flex;
+  gap: var(--s-5);
+  margin: var(--s-4) 0 var(--s-3);
+}
+
+.gs-meter {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gs-meter-n {
+  font-family: var(--font-mono);
+  font-size: 30px;
+  font-weight: 500;
+  font-feature-settings: 'tnum' 1;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--fg);
+}
+
+.gs-meter-n--found {
+  color: var(--accent);
+}
+
+.gs-meter-l {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--chrome);
+}
+
+.gs-bar {
+  height: 3px;
+  background: var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.gs-bar > i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  transition: width 400ms var(--ease);
+}
+
+.gs-scan-caption {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  margin: 10px 0 0;
+}
+
+.gs-scan-done {
+  margin-top: var(--s-3);
+}
+
+/* ── Plan ──────────────────────────────────────────────────────────
+   The result first. This number is the whole reason someone finished
+   the flow, so it gets the page's one big amber moment. */
+.gs-result {
+  text-align: center;
+  padding: 30px 20px;
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
+  background: rgba(var(--accent-rgb), 0.06);
+  border-radius: 18px;
+  margin-bottom: var(--s-5);
+}
+
+.gs-result-n {
+  font-family: var(--font-display);
+  font-size: 46px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--accent);
+  margin: 0 0 10px;
+  font-feature-settings: 'tnum' 1;
+}
+
+.gs-result-cap {
+  font-size: 15px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.gs-plans {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-3);
+  align-items: start;
+}
+
+.gs-plan {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* The recommended plan is drawn with an amber edge rather than a badge —
+   the site marks what matters by highlighting it, not by labelling it. */
+.gs-plan--lead {
+  border-color: rgba(var(--accent-rgb), 0.35);
+}
+
+.gs-plan:hover {
+  transform: none;
+}
+
+.gs-plan-price {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--fg);
+  margin: 0 0 6px;
+}
+
+.gs-plan-price small {
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--faint);
+}
+
+.gs-plan-note {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--accent);
+  margin: 10px 0 0;
+}
+
+.gs-plan-note--quiet {
+  color: var(--faint);
+}
+
+.gs-plan-list {
+  list-style: none;
+  margin: 22px 0 26px;
+  padding: 0;
+  display: grid;
+  gap: 11px;
+  flex: 1;
+}
+
+.gs-plan-list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.gs-plan-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--line);
+}
+
+.gs-plan-list--lead li::before {
+  background: rgba(var(--accent-rgb), 0.5);
+}
+
+.gs-plan-btn {
+  width: 100%;
+}
+
+.gs-plan-foot {
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+  margin: var(--s-4) 0 0;
+}
+
+.gs-plan-foot a {
+  color: var(--accent);
+}
+
+/* ── Toast ─────────────────────────────────────────────────────────
+   Confirms an action that has no other visible result yet. */
+.gs-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%) translateY(14px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--fg);
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  box-shadow: 0 16px 36px -18px rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+  z-index: 300;
+  max-width: calc(100vw - 40px);
+}
+
+.gs-toast.is-shown {
+  opacity: 1;
+  transform: translateX(-50%);
+}
+
+/* ── Responsive ────────────────────────────────────────────────────
+   The aside is supporting detail, so below the split it goes under the
+   form rather than above it. */
+@media (max-width: 900px) {
+  .gs-stage--split.is-active {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-4);
+  }
+
+  .gs-aside {
+    position: static;
+  }
+
+  .gs-scan {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gs-ledger {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .gs-steps {
+    gap: 6px 18px;
+    margin-bottom: var(--s-4);
+  }
+
+  .gs-step-name {
+    font-size: 12px;
+  }
+
+  .gs-title {
+    font-size: 30px;
+  }
+
+  .gs-sub {
+    font-size: 16px;
+  }
+
+  .gs-plans {
+    grid-template-columns: 1fr;
+  }
+
+  .gs-meters {
+    gap: var(--s-3);
+    justify-content: space-between;
+  }
+
+  .gs-meter-n {
+    font-size: 24px;
+  }
+
+  .gs-imap-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gs-result-n {
+    font-size: 36px;
+  }
+
+  /* .btnGhost picks up width:100% at this width from styles.css; the
+     route buttons are inline actions and should stay their own size. */
+  .gs-route-btn,
+  .gs-copy {
+    width: auto;
+  }
+}

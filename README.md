@@ -9,6 +9,11 @@ Plain HTML/CSS/JS, no build step, hosted on **GitHub Pages** with the custom dom
 ```
 ├── CNAME                  # GitHub Pages custom domain (sigbot.co)
 ├── index.html             # Home
+├── get-started.html       # Signup flow — every "Start free" CTA lands here.
+│                          # Four stages (account → inbox → first scan → plan),
+│                          # front-end only: search assets/js/get-started.js for
+│                          # "BACKEND HOOK" for every wire-up point. "Log in"
+│                          # still goes to sigbot.app/login.
 ├── pricing.html           # Plans + Paddle checkout (Paddle.js, live client token)
 ├── webapp.html            # Product page: web app
 ├── mobile.html            # Product page: mobile app

@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <title>Start free | Sigbot</title>
+  <meta name="description"
+    content="Create a Sigbot account, connect one inbox, and watch your contacts build themselves out of the signatures already sitting in your mail." />
+
+  <link rel="canonical" href="https://sigbot.co/get-started.html" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Google Fonts: Bricolage Grotesque (display), Inter (body), JetBrains Mono (data) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/get-started.css" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Start free | Sigbot" />
+  <meta property="og:description"
+    content="Connect one inbox and Sigbot files a contact for every signature it reads. Free forever, no credit card." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sigbot.co/get-started.html" />
+  <meta property="og:image" content="https://sigbot.co/assets/dashboard.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="Primary">
+      <div class="brand">
+        <a href="index.html">
+          <img src="assets/robot.svg" alt="" aria-hidden="true">
+          SIGBOT
+        </a>
+      </div>
+
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="navlinks">
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" id="nav-product-toggle" aria-expanded="false"
+            aria-controls="nav-product-menu" aria-haspopup="true">Product</button>
+          <div class="nav-dropdown-menu" id="nav-product-menu" role="menu"
+            aria-labelledby="nav-product-toggle">
+            <a href="webapp.html" role="menuitem">Web App</a>
+            <a href="mobile.html" role="menuitem">Mobile App</a>
+            <a href="demo.html" role="menuitem">Demo</a>
+          </div>
+        </div>
+        <a href="construction.html">Construction</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <!-- No "Start free" pill here: this page is it. Log in still leaves for the app. -->
+        <a class="cta-ghost" href="https://sigbot.app/login">Log in</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container">
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         PROGRESS
+         Four steps, and they really are a sequence — you cannot scan an
+         inbox you have not connected — so they are numbered. Amber marks
+         the step you are on, the way it marks the line being read
+         everywhere else on the site. Mint marks a step that is done,
+         because mint only ever means confirmed.
+         ═══════════════════════════════════════════════════════════════ -->
+    <ol class="gs-steps" id="gs-steps" aria-label="Progress">
+      <li class="gs-step is-current" data-step="account">
+        <span class="gs-step-num">01</span>
+        <span class="gs-step-name">Account</span>
+      </li>
+      <li class="gs-step" data-step="inbox">
+        <span class="gs-step-num">02</span>
+        <span class="gs-step-name">Inbox</span>
+      </li>
+      <li class="gs-step" data-step="scan">
+        <span class="gs-step-num">03</span>
+        <span class="gs-step-name">First scan</span>
+      </li>
+      <li class="gs-step" data-step="plan">
+        <span class="gs-step-num">04</span>
+        <span class="gs-step-name">Plan</span>
+      </li>
+    </ol>
+
+    <main id="main" tabindex="-1">
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           STAGE 01 — ACCOUNT
+           ═══════════════════════════════════════════════════════════════ -->
+      <section class="gs-stage gs-stage--split is-active" id="stage-account" aria-labelledby="account-title">
+        <div class="gs-col">
+          <p class="gs-eyebrow">Step 01</p>
+          <h1 class="pageTitle gs-title" id="account-title">Start free.</h1>
+          <p class="pageSub gs-sub">Sigbot reads the signature block on the mail you already receive and files the
+            details as a contact. Make an account, connect one inbox, and you are done typing contacts in.</p>
+
+          <!-- Microsoft is the only genuine one-click route the app ships, and
+               it doubles as the inbox connection — so it skips step 02. There is
+               deliberately no Google button: Gmail connects over IMAP with an
+               app password, and a Google pill here would promise otherwise. -->
+          <button class="gs-authbtn" type="button" data-signup="microsoft">
+            <svg width="20" height="20" viewBox="0 0 21 21" aria-hidden="true">
+              <rect x="1" y="1" width="9" height="9" fill="#f25022" />
+              <rect x="11" y="1" width="9" height="9" fill="#7fba00" />
+              <rect x="1" y="11" width="9" height="9" fill="#00a4ef" />
+              <rect x="11" y="11" width="9" height="9" fill="#ffb900" />
+            </svg>
+            <span class="gs-authbtn-label">
+              Continue with Microsoft
+              <small>Signs you in and connects Outlook in the same step</small>
+            </span>
+            <span class="gs-authbtn-arrow" aria-hidden="true">→</span>
+          </button>
+
+          <div class="gs-or"><span>or use an email and password</span></div>
+
+          <form id="gs-account-form" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="gs-email">Work email</label>
+              <input class="form-control" id="gs-email" name="email" type="email" autocomplete="email"
+                placeholder="you@company.com" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="gs-password">Password</label>
+              <input class="form-control" id="gs-password" name="password" type="password"
+                autocomplete="new-password" placeholder="At least 8 characters" minlength="8" required>
+            </div>
+
+            <p class="gs-error" id="gs-account-error" role="alert" hidden></p>
+
+            <button class="btnPrimary gs-submit" type="submit">Create account</button>
+          </form>
+
+          <p class="gs-fine">
+            Creating an account means you accept the <a href="/legal/terms.html">Terms</a> and
+            <a href="/legal/privacy.html">Privacy Policy</a>.
+          </p>
+          <p class="gs-fine">
+            Already have an account? <a href="https://sigbot.app/login">Log in</a>.
+          </p>
+        </div>
+
+        <!-- The aside carries the promise the page has to keep. Same three
+             facts as the home hero, said once. -->
+        <aside class="gs-aside">
+          <p class="gs-aside-title">What free gets you</p>
+          <ul class="gs-aside-list">
+            <li><span class="gs-aside-k">Scanning</span><span class="gs-aside-v">300 emails, 50 a day</span></li>
+            <li><span class="gs-aside-k">Inboxes</span><span class="gs-aside-v">Outlook, IMAP, or forwarding</span></li>
+            <li><span class="gs-aside-k">Contacts</span><span class="gs-aside-v">Searchable, exportable, on the map</span></li>
+            <li><span class="gs-aside-k">Card</span><span class="gs-aside-v">No credit card, no expiry</span></li>
+          </ul>
+          <p class="gs-aside-foot">Pro lifts the daily cap to 2,000 and backfills the whole inbox.
+            <a href="pricing.html">See pricing →</a>
+          </p>
+        </aside>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           STAGE 02 — INBOX
+           Three routes, and they are not equivalent — the same three the
+           web app page describes, in the same order and the same words.
+           ═══════════════════════════════════════════════════════════════ -->
+      <section class="gs-stage" id="stage-inbox" aria-labelledby="inbox-title" hidden>
+        <div class="gs-col gs-col--wide">
+          <p class="gs-eyebrow">Step 02</p>
+          <h2 class="pageTitle gs-title" id="inbox-title">Point Sigbot at one inbox.</h2>
+          <p class="pageSub gs-sub">Sigbot reads signature blocks to pull out contact details. It never sends,
+            replies, moves, or deletes anything, and you can disconnect an inbox whenever you like.</p>
+
+          <ol class="gs-routes">
+
+            <li class="gs-route">
+              <span class="gs-route-num">01</span>
+              <div class="gs-route-body">
+                <h3 class="gs-route-title">Outlook — one click</h3>
+                <p class="gs-route-desc">Sign in with Microsoft and approve access. Nothing to configure, and no
+                  password ever reaches us.</p>
+                <button class="btnPrimary gs-route-btn" type="button" data-connect="outlook">Connect Outlook</button>
+              </div>
+            </li>
+
+            <li class="gs-route">
+              <span class="gs-route-num">02</span>
+              <div class="gs-route-body">
+                <h3 class="gs-route-title">Gmail &amp; any IMAP inbox</h3>
+                <p class="gs-route-desc">Connect with your server address and an app password. This is how Gmail,
+                  Fastmail, and self-hosted inboxes connect.</p>
+                <button class="btnGhost gs-route-btn" type="button" id="gs-imap-toggle" aria-expanded="false"
+                  aria-controls="gs-imap-form">Set up IMAP</button>
+
+                <form class="gs-imap" id="gs-imap-form" novalidate hidden>
+                  <div class="form-group">
+                    <label class="form-label" for="gs-imap-email">Email address</label>
+                    <input class="form-control" id="gs-imap-email" type="email" autocomplete="email"
+                      placeholder="you@company.com" required>
+                  </div>
+                  <div class="gs-imap-row">
+                    <div class="form-group">
+                      <label class="form-label" for="gs-imap-host">IMAP host</label>
+                      <input class="form-control" id="gs-imap-host" placeholder="imap.gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="gs-imap-port">Port</label>
+                      <input class="form-control" id="gs-imap-port" inputmode="numeric" value="993" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="gs-imap-pw">App password</label>
+                    <input class="form-control" id="gs-imap-pw" type="password" autocomplete="off"
+                      placeholder="Generated in your mail provider" required>
+                    <p class="gs-hint">Not your account password — your provider generates a separate one for apps.</p>
+                  </div>
+
+                  <p class="gs-error" id="gs-imap-error" role="alert" hidden></p>
+
+                  <button class="btnPrimary gs-route-btn" type="submit">Connect inbox</button>
+                  <p class="gs-fine">Sent straight to Sigbot over TLS. The password is never kept in your browser.</p>
+                </form>
+              </div>
+            </li>
+
+            <li class="gs-route">
+              <span class="gs-route-num">03</span>
+              <div class="gs-route-body">
+                <h3 class="gs-route-title">Forward instead</h3>
+                <p class="gs-route-desc">Don't want to connect an inbox at all? You get a private forwarding address.
+                  Anything you send it gets read and filed.</p>
+
+                <div class="gs-forward">
+                  <code class="gs-forward-addr" id="gs-forward-addr">you-4f2a@in.sigbot.co</code>
+                  <button class="gs-copy" type="button" id="gs-forward-copy">Copy</button>
+                </div>
+                <button class="btnGhost gs-route-btn" type="button" data-connect="forwarding">I've set up
+                  forwarding</button>
+              </div>
+            </li>
+
+          </ol>
+
+          <button class="gs-back" type="button" data-back="account">← Back to account</button>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           STAGE 03 — FIRST SCAN
+           The extraction card is the site's signature graphic, so the first
+           scan is shown in exactly that language: amber marks the line being
+           read, mint confirms the field that landed. The ledger beside it is
+           the only new part — it is what the counter is actually counting.
+           ═══════════════════════════════════════════════════════════════ -->
+      <section class="gs-stage" id="stage-scan" aria-labelledby="scan-title" hidden>
+        <div class="gs-col gs-col--wide">
+          <p class="gs-eyebrow">Step 03</p>
+          <h2 class="pageTitle gs-title" id="scan-title">Reading your inbox.</h2>
+          <p class="pageSub gs-sub">Every message with a signature block becomes a contact record. This runs on its
+            own — you can close the tab and it keeps going.</p>
+
+          <div class="gs-scan">
+
+            <!-- The message being read -->
+            <div class="extract gs-extract" id="gs-extract" role="img"
+              aria-label="Sigbot reading an email signature and filling in a contact record">
+              <div class="extract-bar">
+                <div class="extract-dots"><span></span><span></span><span></span></div>
+                <div class="extract-bar-title" id="gs-extract-src">Inbox — message 1</div>
+              </div>
+
+              <div class="extract-sig">
+                <div class="extract-sig-pre" id="gs-sig-pre">Looking forward to your thoughts.</div>
+                <hr class="extract-rule" />
+                <div><span class="sigline extract-sig-name" data-field="name"></span></div>
+                <div><span class="sigline" data-field="title"></span></div>
+                <div><span class="sigline" data-field="company"></span></div>
+                <div><span class="sigline" data-field="phone"></span></div>
+                <div><span class="sigline" data-field="email"></span></div>
+              </div>
+
+              <div class="extract-mid">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="4" x2="12" y2="19" />
+                  <polyline points="6,13 12,19 18,13" />
+                </svg>
+                Extracted
+              </div>
+
+              <div class="extract-rows">
+                <div class="erow" data-row="name">
+                  <span class="erow-key">Name</span><span class="erow-val"></span>
+                  <svg class="erow-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <div class="erow" data-row="title">
+                  <span class="erow-key">Title</span><span class="erow-val"></span>
+                  <svg class="erow-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <div class="erow" data-row="company">
+                  <span class="erow-key">Company</span><span class="erow-val"></span>
+                  <svg class="erow-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <div class="erow" data-row="phone">
+                  <span class="erow-key">Phone</span><span class="erow-val"></span>
+                  <svg class="erow-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <div class="erow" data-row="email">
+                  <span class="erow-key">Email</span><span class="erow-val"></span>
+                  <svg class="erow-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- What has been filed so far -->
+            <div class="gs-ledger">
+              <p class="gs-ledger-head">Filed</p>
+              <ul class="gs-ledger-list" id="gs-ledger" aria-live="polite"></ul>
+              <p class="gs-ledger-empty" id="gs-ledger-empty">Contacts land here as they are read.</p>
+            </div>
+          </div>
+
+          <div class="gs-meters">
+            <div class="gs-meter">
+              <span class="gs-meter-n" id="gs-read">0</span>
+              <span class="gs-meter-l">Emails read</span>
+            </div>
+            <div class="gs-meter">
+              <span class="gs-meter-n gs-meter-n--found" id="gs-found">0</span>
+              <span class="gs-meter-l">Contacts filed</span>
+            </div>
+            <div class="gs-meter">
+              <span class="gs-meter-n" id="gs-companies">0</span>
+              <span class="gs-meter-l">Companies</span>
+            </div>
+          </div>
+
+          <div class="gs-bar" role="progressbar" aria-labelledby="gs-scan-caption" aria-valuemin="0" aria-valuemax="100"
+            aria-valuenow="0" id="gs-bar">
+            <i></i>
+          </div>
+          <p class="gs-scan-caption" id="gs-scan-caption">Connecting to your inbox…</p>
+
+          <div class="gs-scan-done" id="gs-scan-done" hidden>
+            <button class="btnPrimary" type="button" data-go="plan">See what Sigbot found</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           STAGE 04 — PLAN
+           Two plans, not three: the decision here is free-or-Pro. Team is a
+           line of text pointing at the pricing page, which already does the
+           full comparison.
+           ═══════════════════════════════════════════════════════════════ -->
+      <section class="gs-stage" id="stage-plan" aria-labelledby="plan-title" hidden>
+        <div class="gs-col gs-col--wide">
+          <p class="gs-eyebrow">Step 04</p>
+
+          <div class="gs-result" id="gs-result" hidden>
+            <p class="gs-result-n"><span id="gs-result-count">0</span> contacts</p>
+            <p class="gs-result-cap">filed out of mail you had already received. They are in your database now.</p>
+          </div>
+
+          <h2 class="pageTitle gs-title gs-title--center" id="plan-title">Keep the free plan, or lift the cap.</h2>
+          <p class="pageSub gs-sub gs-sub--center">Starter never expires. Pro exists for the day 50 emails a day stops
+            being enough.</p>
+
+          <div class="gs-plans">
+
+            <div class="panel gs-plan">
+              <p class="panelTitle">Starter</p>
+              <p class="gs-plan-price">$0 <small>/ forever</small></p>
+              <p class="gs-plan-note" id="gs-cap-note" hidden>Your inbox holds more mail than Starter will scan.</p>
+              <ul class="gs-plan-list">
+                <li>Scan up to 300 emails, 50 a day</li>
+                <li>One inbox — Outlook, IMAP, or forwarding</li>
+                <li>AI signature parsing</li>
+                <li>CSV &amp; Excel export</li>
+                <li>Interactive map</li>
+                <li>Cloud sync &amp; mobile app</li>
+              </ul>
+              <button class="btnGhost gs-plan-btn" type="button" data-plan="free">Stay on Starter</button>
+              <p class="gs-fine gs-fine--center">No credit card required</p>
+            </div>
+
+            <div class="panel gs-plan gs-plan--lead">
+              <p class="panelTitle">Pro</p>
+              <p class="gs-plan-price">$20 <small>/ month</small></p>
+              <p class="gs-plan-note gs-plan-note--quiet">Billed $192 a year if you pay yearly.</p>
+              <ul class="gs-plan-list gs-plan-list--lead">
+                <li>Unlimited email scanning — 2,000 a day</li>
+                <li>Unlimited contacts</li>
+                <li>Full inbox backfill</li>
+                <li>Bulk import &amp; export</li>
+                <li>Mobile app + interactive map</li>
+                <li>Business card scanning</li>
+              </ul>
+              <button class="btnPrimary gs-plan-btn" type="button" data-plan="pro">Upgrade to Pro</button>
+              <p class="gs-fine gs-fine--center">30-day money-back guarantee</p>
+            </div>
+
+          </div>
+
+          <p class="gs-plan-foot">Running a team on one shared database? <a href="pricing.html">Team is $200 a month for up to
+              10 people →</a></p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-top">
+        <div>© <span id="y"></span> SIGBOT</div>
+        <div class="small">
+          <a href="/legal/terms.html">Terms</a> ·
+          <a href="/legal/privacy.html">Privacy</a> ·
+          <a href="refund.html">Refunds</a> · <a href="/legal/security.html">Security</a> ·
+          <a href="/legal/dpa.html">DPA</a> ·
+          <a href="pricing.html">Pricing</a> ·
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-legal">
+        Sigbot is a trading name of Sigbot Ltd. Registered in England and Wales. Company No: 16997653.
+      </div>
+    </footer>
+
+  </div><!-- /.container -->
+
+  <div class="gs-toast" id="gs-toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/get-started.js"></script>
+</body>
+
+</html>
