@@ -1,155 +1,223 @@
-import { contacts, getTopCompany, getTopRole, getTimeAgo, getInitials, getAvatarColor } from '../data';
+/**
+ * Dashboard — mirrors apps/web/src/app/(app)/dashboard/page.tsx.
+ *
+ * Same composition in the same order: four stat cards (Total Contacts,
+ * Top Company, Top Role, Growth), the Contact Growth chart, then a
+ * three-column row of Recent Contacts, Recent Activity and Data
+ * Completeness with source chips underneath.
+ */
 
-export function renderDashboard(container: HTMLElement): void {
-    const recentContacts = [...contacts]
-        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-        .slice(0, 5);
+import { icons } from '../icons';
+import {
+  contacts,
+  getTopCompany,
+  getTopRole,
+  getTimeAgo,
+  getInitials,
+  type Contact,
+} from '../data';
 
-    const topCompany = getTopCompany();
-    const topRole = getTopRole();
+// ── Stats ─────────────────────────────────────────────────────────
 
-    container.innerHTML = `
-    <div class="dashboard-view">
-      <!-- Stat Cards -->
-      <div class="stat-cards">
-        <div class="stat-card">
-          <div class="stat-label">TOTAL CONTACTS</div>
-          <div class="stat-value">${contacts.length}</div>
-          <div class="stat-trend positive">↑ 100% this week</div>
-          <div class="stat-icon">👥</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">TOP COMPANY</div>
-          <div class="stat-value company-name">${topCompany}</div>
-          <div class="stat-trend">Most frequent</div>
-          <div class="stat-icon">🏢</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">TOP ROLE</div>
-          <div class="stat-value role-name">${topRole}</div>
-          <div class="stat-trend">Most frequent</div>
-          <div class="stat-icon">💼</div>
-        </div>
-      </div>
-
-      <!-- Recently Added -->
-      <div class="widget recently-added">
-        <h3>RECENTLY ADDED</h3>
-        <div class="recent-list">
-          ${recentContacts.map(c => {
-        const initials = getInitials(c);
-        const color = getAvatarColor(c.firstName + c.lastName);
-        const name = c.firstName + ' ' + c.lastName;
-        return `
-              <div class="recent-item">
-                <div class="recent-left">
-                  <div class="avatar" style="background: ${color}">${initials}</div>
-                  <div class="recent-info">
-                    <div class="recent-name">${name}</div>
-                    <div class="recent-meta">${c.company} · ${getTimeAgo(c.createdAt)}</div>
-                  </div>
-                </div>
-              </div>
-            `;
-    }).join('')}
-        </div>
-      </div>
-
-      <!-- Growth Timeline -->
-      <div class="widget growth-timeline">
-        <h3>GROWTH TIMELINE</h3>
-        <div class="chart-container">
-          <canvas id="growth-chart"></canvas>
-        </div>
-      </div>
-    </div>
-  `;
-
-    // Draw chart
-    requestAnimationFrame(() => drawGrowthChart());
+function countCompany(company: string): number {
+  return contacts.filter((c) => c.company === company).length;
 }
 
-function drawGrowthChart(): void {
-    const canvas = document.getElementById('growth-chart') as HTMLCanvasElement;
-    if (!canvas) return;
+function countRole(role: string): number {
+  return contacts.filter((c) => c.jobTitle === role).length;
+}
 
-    const container = canvas.parentElement!;
-    canvas.width = container.clientWidth;
-    canvas.height = 200;
+/** Percentage of contacts carrying a usable value in `field`. */
+function completeness(field: keyof Contact): number {
+  const filled = contacts.filter((c) => {
+    const v = c[field];
+    return typeof v === 'string' && v.trim() !== '' && v !== '—';
+  }).length;
+  return Math.round((filled / contacts.length) * 100);
+}
 
-    const ctx = canvas.getContext('2d')!;
-    const w = canvas.width;
-    const h = canvas.height;
-    const pad = { top: 20, right: 20, bottom: 30, left: 40 };
+function statCard(title: string, value: string, subtitle: string, icon: string): string {
+  return `
+    <div class="card">
+      <div class="stat-head">
+        <p class="stat-title">${title}</p>
+        ${icon}
+      </div>
+      <p class="stat-value">${value}</p>
+      <p class="stat-sub">${subtitle}</p>
+    </div>`;
+}
 
-    // Generate data points from contacts
-    const now = Date.now();
-    const dayMs = 86400000;
-    const days = 30;
-    const counts: number[] = [];
+// ── Growth chart ──────────────────────────────────────────────────
+// components/dashboard/growth-chart.tsx plots the cumulative contact
+// count over time; this draws the same series as a plain SVG polyline.
 
-    for (let i = days; i >= 0; i--) {
-        const dayEnd = now - i * dayMs;
-        const count = contacts.filter(c => new Date(c.createdAt).getTime() <= dayEnd).length;
-        counts.push(count);
-    }
+function growthChart(): string {
+  const w = 900;
+  const h = 200;
+  const padL = 38;
+  const padR = 12;
+  const padT = 12;
+  const padB = 24;
 
-    const maxVal = Math.max(...counts, 10);
-    const yTicks = [0, Math.round(maxVal * 0.25), Math.round(maxVal * 0.5), Math.round(maxVal * 0.75), maxVal];
+  const sorted = [...contacts].sort(
+    (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+  );
 
-    // Grid lines and y-axis labels
-    ctx.strokeStyle = '#e5e7eb';
-    ctx.lineWidth = 1;
-    ctx.font = '11px Inter, sans-serif';
-    ctx.fillStyle = '#9ca3af';
-    ctx.textAlign = 'right';
+  const points = sorted.map((c, i) => ({ t: new Date(c.createdAt).getTime(), n: i + 1 }));
+  const first = points[0]?.t ?? Date.now();
+  const last = points[points.length - 1]?.t ?? Date.now();
+  const span = Math.max(last - first, 1);
+  const max = Math.max(points.length, 1);
 
-    yTicks.forEach(tick => {
-        const y = pad.top + (1 - tick / maxVal) * (h - pad.top - pad.bottom);
-        ctx.beginPath();
-        ctx.moveTo(pad.left, y);
-        ctx.lineTo(w - pad.right, y);
-        ctx.stroke();
-        ctx.fillText(String(tick), pad.left - 8, y + 4);
-    });
+  const x = (t: number): number => padL + ((t - first) / span) * (w - padL - padR);
+  const y = (n: number): number => padT + (1 - n / max) * (h - padT - padB);
 
-    // Draw line
-    const stepX = (w - pad.left - pad.right) / (counts.length - 1);
+  const line = points.map((p) => `${x(p.t).toFixed(1)},${y(p.n).toFixed(1)}`).join(' ');
+  const area = `${padL},${(h - padB).toFixed(1)} ${line} ${x(last).toFixed(1)},${(h - padB).toFixed(1)}`;
 
-    // Area fill
-    ctx.beginPath();
-    counts.forEach((val, i) => {
-        const x = pad.left + i * stepX;
-        const y = pad.top + (1 - val / maxVal) * (h - pad.top - pad.bottom);
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-    });
-    ctx.lineTo(pad.left + (counts.length - 1) * stepX, h - pad.bottom);
-    ctx.lineTo(pad.left, h - pad.bottom);
-    ctx.closePath();
-    ctx.fillStyle = 'rgba(74, 222, 128, 0.08)';
-    ctx.fill();
+  const ticks = [0, 0.25, 0.5, 0.75, 1]
+    .map((f) => {
+      const n = Math.round(max * f);
+      const yy = y(n).toFixed(1);
+      return `<line class="chart-grid" x1="${padL}" y1="${yy}" x2="${w - padR}" y2="${yy}" />
+        <text class="chart-label" x="${padL - 6}" y="${yy}" text-anchor="end" dominant-baseline="middle">${n}</text>`;
+    })
+    .join('');
 
-    // Line
-    ctx.beginPath();
-    counts.forEach((val, i) => {
-        const x = pad.left + i * stepX;
-        const y = pad.top + (1 - val / maxVal) * (h - pad.top - pad.bottom);
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-    });
-    ctx.strokeStyle = '#4ade80';
-    ctx.lineWidth = 2;
-    ctx.stroke();
+  const fmt = (t: number): string =>
+    new Date(t).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
 
-    // Dots
-    counts.forEach((val, i) => {
-        if (i % 5 !== 0 && i !== counts.length - 1) return;
-        const x = pad.left + i * stepX;
-        const y = pad.top + (1 - val / maxVal) * (h - pad.top - pad.bottom);
-        ctx.beginPath();
-        ctx.arc(x, y, 3, 0, Math.PI * 2);
-        ctx.fillStyle = '#4ade80';
-        ctx.fill();
-    });
+  return `
+    <svg class="chart" viewBox="0 0 ${w} ${h}"
+      role="img" aria-label="Cumulative contact growth over time">
+      ${ticks}
+      <polygon class="chart-area" points="${area}" />
+      <polyline class="chart-line" points="${line}" />
+      <circle class="chart-dot" cx="${x(last).toFixed(1)}" cy="${y(max).toFixed(1)}" r="3" />
+      <text class="chart-label" x="${padL}" y="${h - 6}">${fmt(first)}</text>
+      <text class="chart-label" x="${w - padR}" y="${h - 6}" text-anchor="end">${fmt(last)}</text>
+    </svg>`;
+}
+
+// ── Panels ────────────────────────────────────────────────────────
+
+function recentContacts(): string {
+  const items = [...contacts]
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .slice(0, 5)
+    .map(
+      (c) => `
+      <li class="recent-item">
+        <div class="avatar">${getInitials(c)}</div>
+        <div class="recent-body">
+          <p class="recent-name">${c.firstName} ${c.lastName}</p>
+          <p class="recent-meta">${c.company}</p>
+        </div>
+      </li>`
+    )
+    .join('');
+
+  return `
+    <div class="card">
+      <h2 class="card-title">Recent Contacts</h2>
+      <ul class="recent-list">${items}</ul>
+    </div>`;
+}
+
+function recentActivity(): string {
+  const items = [...contacts]
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .slice(0, 6)
+    .map(
+      (c) => `
+      <li>
+        <span class="muted">Added </span>
+        <span>${c.firstName} ${c.lastName}</span>
+        <span class="when">${getTimeAgo(c.createdAt)}</span>
+      </li>`
+    )
+    .join('');
+
+  return `
+    <div class="card">
+      <h2 class="card-title">Recent Activity</h2>
+      <ul class="activity-list">${items}</ul>
+    </div>`;
+}
+
+function completenessRow(icon: string, label: string, pct: number): string {
+  return `
+    <button class="comp-row" data-demo="In the app, this opens a fill-in-the-blanks flow for that field.">
+      ${icon}
+      <span class="comp-label">${label}</span>
+      <span class="comp-track"><span class="comp-fill" style="width:${pct}%"></span></span>
+      <span class="comp-pct tabular">${pct}%</span>
+    </button>`;
+}
+
+function dataCompleteness(): string {
+  const sources = [...new Set(contacts.map((c) => c.source))].map(
+    (s) => `<span class="chip">${s} · ${contacts.filter((c) => c.source === s).length}</span>`
+  );
+
+  return `
+    <div class="card">
+      <h2 class="card-title">Data Completeness</h2>
+      ${completenessRow(icons.mail, 'Email', completeness('email'))}
+      ${completenessRow(icons.phone, 'Phone', completeness('phone'))}
+      ${completenessRow(icons.building, 'Company', completeness('company'))}
+      ${completenessRow(icons.briefcase, 'Job Title', completeness('jobTitle'))}
+      ${completenessRow(icons.mapPin, 'Location', completeness('location'))}
+      <div class="sources">
+        <p>Sources</p>
+        <div class="source-chips">${sources.join('')}</div>
+      </div>
+    </div>`;
+}
+
+// ── View ──────────────────────────────────────────────────────────
+
+/** Contacts created within the last `days` days. */
+function addedWithin(days: number, offsetDays = 0): number {
+  const now = Date.now();
+  const end = now - offsetDays * 86400000;
+  const start = end - days * 86400000;
+  return contacts.filter((c) => {
+    const t = new Date(c.createdAt).getTime();
+    return t > start && t <= end;
+  }).length;
+}
+
+export function renderDashboard(): string {
+  const topCompany = getTopCompany();
+  const topRole = getTopRole();
+
+  // Both figures come off the sample rather than being written in, so
+  // they stay true if the data changes. The app computes the same pair.
+  const thisWeek = addedWithin(7);
+  const lastWeek = addedWithin(7, 7);
+  const growth =
+    lastWeek === 0
+      ? thisWeek > 0 ? '+100%' : '0%'
+      : `${thisWeek >= lastWeek ? '+' : ''}${Math.round(((thisWeek - lastWeek) / lastWeek) * 100)}%`;
+
+  return `
+    <div class="stat-grid">
+      ${statCard('Total Contacts', String(contacts.length), `${thisWeek} added this week`, icons.users)}
+      ${statCard('Top Company', topCompany, `${countCompany(topCompany)} contacts`, icons.building)}
+      ${statCard('Top Role', topRole, `${countRole(topRole)} contacts`, icons.briefcase)}
+      ${statCard('Growth', growth, 'Week over week', icons.trendingUp)}
+    </div>
+
+    <div class="card section-gap">
+      <h2 class="card-title">Contact Growth</h2>
+      ${growthChart()}
+    </div>
+
+    <div class="grid-3 section-gap">
+      ${recentContacts()}
+      ${recentActivity()}
+      ${dataCompleteness()}
+    </div>`;
 }

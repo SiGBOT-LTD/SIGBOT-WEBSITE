@@ -84,3 +84,14 @@
                 max-width: calc(100% + 32px);
             }
         }
+
+/* Sets expectations under the frame: the demo is deliberately read-only,
+   and saying so beats letting someone click Export and get a toast. */
+.demo-note {
+  max-width: 640px;
+  margin: 16px auto 0;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--faint);
+}

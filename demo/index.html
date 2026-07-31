@@ -5,22 +5,26 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SIGBOT - App Demo</title>
+  <title>Sigbot — Web App Demo</title>
   <meta name="description"
-    content="Interactive demo of the Sigbot desktop application — Dashboard, Contacts, Map views." />
+    content="Interactive demo of the Sigbot web app — Dashboard, Contacts, Map and Account, running on sample data." />
 
-  <!-- Leaflet CSS -->
+  <!-- The app's two faces: DM Sans for body, JetBrains Mono for headings
+       and figures (apps/web maps --font-heading to the mono family). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Leaflet + MarkerCluster, as used by the app's map view -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <!-- Leaflet MarkerCluster CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-
-  <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <!-- Leaflet MarkerCluster JS -->
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-  <script type="module" crossorigin src="./assets/index-fawzYHud.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-Dy4StjXM.css">
+  <script type="module" crossorigin src="./assets/index-DYcB_3Vd.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CAq2KtH3.css">
 </head>
 
 <body>

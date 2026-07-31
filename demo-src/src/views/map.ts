@@ -1,92 +1,67 @@
+/**
+ * Map — mirrors apps/web/src/components/map/map-view.tsx.
+ *
+ * The app uses react-leaflet with a marker-cluster layer over the CARTO
+ * dark basemap; this is the same Leaflet setup driven directly. Cluster
+ * bubble styling matches the `.marker-cluster` rules in the app's
+ * globals.css.
+ */
+
 import { contacts } from '../data';
 
 declare const L: any;
 
 let map: any = null;
-let clusterGroup: any = null;
 
-export function renderMap(container: HTMLElement): void {
-    container.innerHTML = `
-    <div class="map-view">
-      <div id="map-container"></div>
-      <div class="map-controls">
-        <button class="map-control-btn active" id="heatmap-btn">🔥 Heatmap</button>
-        <button class="map-control-btn" id="home-btn">home</button>
-      </div>
-    </div>
-  `;
-
-    requestAnimationFrame(() => initMap());
+export function renderMap(): string {
+  return '<div class="map-holder"><div id="map"></div></div>';
 }
 
-function initMap(): void {
-    const container = document.getElementById('map-container');
-    if (!container) return;
+export function mountMap(): void {
+  const el = document.getElementById('map');
+  if (!el || typeof L === 'undefined') return;
 
-    // Clean up previous map instance
-    if (map) {
-        map.remove();
-        map = null;
-        clusterGroup = null;
-    }
+  // A fresh container each render, so drop any previous instance rather
+  // than letting Leaflet attach twice to a detached node.
+  if (map) {
+    map.remove();
+    map = null;
+  }
 
-    map = L.map(container, {
-        center: [49.0, -105.0],
-        zoom: 4,
-        zoomControl: false
-    });
+  map = L.map(el, { center: [51.0, -60.0], zoom: 3, zoomControl: true });
 
-    // Dark CARTO tiles
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 19
-    }).addTo(map);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19,
+  }).addTo(map);
 
-    // Zoom controls - bottom right
-    L.control.zoom({ position: 'bottomright' }).addTo(map);
+  const clusters = L.markerClusterGroup({
+    maxClusterRadius: 50,
+    showCoverageOnHover: false,
+    iconCreateFunction: (cluster: any) =>
+      L.divIcon({
+        html: `<div style="background:#e8e8e0;color:#0d0d0d;">${cluster.getChildCount()}</div>`,
+        className: 'marker-cluster',
+        iconSize: L.point(40, 40),
+      }),
+  });
 
-    // Marker cluster
-    clusterGroup = L.markerClusterGroup({
-        maxClusterRadius: 50,
-        spiderfyOnMaxZoom: true,
-        showCoverageOnHover: false,
-        iconCreateFunction: (cluster: any) => {
-            const count = cluster.getChildCount();
-            return L.divIcon({
-                html: `<div class="cluster-icon">${count}</div>`,
-                className: 'custom-cluster',
-                iconSize: L.point(40, 40)
-            });
-        }
-    });
+  contacts.forEach((c) => {
+    if (c.latitude == null || c.longitude == null) return;
+    L.marker([c.latitude, c.longitude])
+      .bindPopup(
+        `<div class="popup-name">${c.firstName} ${c.lastName}</div>` +
+          `<div class="popup-meta">${c.company}</div>` +
+          `<div class="popup-meta">${c.jobTitle}</div>`
+      )
+      .addTo(clusters);
+  });
 
-    // Add markers
-    const orangeIcon = L.divIcon({
-        html: '<div class="marker-dot"></div>',
-        className: 'custom-marker',
-        iconSize: [14, 14],
-        iconAnchor: [7, 7]
-    });
+  map.addLayer(clusters);
 
-    contacts.forEach(c => {
-        if (c.latitude && c.longitude) {
-            const marker = L.marker([c.latitude, c.longitude], { icon: orangeIcon });
-            marker.bindPopup(`
-        <div class="map-popup">
-          <strong>${c.firstName} ${c.lastName}</strong><br>
-          <span>${c.company}</span><br>
-          <span>${c.jobTitle}</span>
-        </div>
-      `);
-            clusterGroup.addLayer(marker);
-        }
-    });
-
-    map.addLayer(clusterGroup);
-
-    // Home button
-    document.getElementById('home-btn')?.addEventListener('click', () => {
-        map.setView([49.0, -105.0], 4);
-    });
+  // The container is sized by flex layout, which Leaflet cannot know
+  // about at construction time.
+  requestAnimationFrame(() => map && map.invalidateSize());
 }

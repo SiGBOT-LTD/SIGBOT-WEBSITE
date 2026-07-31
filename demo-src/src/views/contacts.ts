@@ -1,88 +1,114 @@
-import { contacts, getInitials, getAvatarColor } from '../data';
+/**
+ * Contacts — mirrors apps/web/src/app/(app)/contacts/page.tsx.
+ *
+ * The app's table: a select-all checkbox, sortable Name / Email /
+ * Company / Title headers, then Phone and Location, with columns
+ * dropping out at md / lg / xl. Selecting rows raises a bulk bar
+ * offering folder assignment, export and delete.
+ *
+ * Search matches the same fields the app's store filters on.
+ */
 
-export function renderContacts(container: HTMLElement): void {
-    const columns = [
-        { key: 'name', label: 'NAME' },
-        { key: 'email', label: 'EMAIL' },
-        { key: 'company', label: 'COMPANY' },
-        { key: 'jobTitle', label: 'JOB ROLE' },
-        { key: 'phone', label: 'PHONE' },
-        { key: 'location', label: 'LOCATION' }
-    ];
+import { icons } from '../icons';
+import { contacts, getInitials, type Contact } from '../data';
 
-    container.innerHTML = `
-    <div class="contacts-view">
-      <div class="contacts-toolbar">
-        <button class="columns-btn" id="columns-btn">Columns ▾</button>
-        <div class="toolbar-right">
-          <button class="export-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            Export ▾
-          </button>
-          <button class="more-btn">⋯</button>
-        </div>
-      </div>
-
-      <div class="table-wrapper">
-        <table class="contacts-table" id="contacts-table">
-          <thead>
-            <tr>
-              <th class="th-check"><input type="checkbox" id="select-all" /></th>
-              ${columns.map(col => `<th class="th-${col.key}">${col.label}</th>`).join('')}
-            </tr>
-          </thead>
-          <tbody id="contacts-tbody">
-          </tbody>
-        </table>
-      </div>
-    </div>
-  `;
-
-    renderRows();
-    setupSelectAll();
+function matches(c: Contact, q: string): boolean {
+  if (!q) return true;
+  const needle = q.toLowerCase();
+  return [c.firstName, c.lastName, c.email, c.company, c.jobTitle, c.phone, c.location]
+    .some((v) => (v ?? '').toLowerCase().includes(needle));
 }
 
-function renderRows(): void {
-    const tbody = document.getElementById('contacts-tbody');
-    if (!tbody) return;
+function sortHeader(label: string, extraClass = ''): string {
+  return `<th class="${extraClass}">
+    <button class="sort-btn" data-demo="Sorting is disabled in this demo — the app sorts on every column.">
+      ${label}${icons.arrowUpDown}
+    </button>
+  </th>`;
+}
 
-    tbody.innerHTML = contacts.map((c, idx) => {
-        const initials = getInitials(c);
-        const color = getAvatarColor(c.firstName + c.lastName);
-        const name = c.firstName + ' ' + c.lastName;
-
-        return `
-      <tr data-idx="${idx}">
-        <td class="td-check"><input type="checkbox" class="row-check" /></td>
-        <td class="td-name">
-          <div class="name-cell">
-            <div class="avatar-sm" style="background: ${color}">${initials}</div>
-            <div class="name-info">
-              <span class="contact-name">${name}</span>
-              <span class="source-badge">${c.source}</span>
-            </div>
+function row(c: Contact): string {
+  return `
+    <tr>
+      <td><input type="checkbox" aria-label="Select ${c.firstName} ${c.lastName}" /></td>
+      <td>
+        <div class="cell-name">
+          <div class="avatar">${getInitials(c)}</div>
+          <div>
+            <div class="name-main">${c.firstName} ${c.lastName}</div>
+            <div class="name-source">${c.source}</div>
           </div>
-        </td>
-        <td class="td-email">${c.email}</td>
-        <td class="td-company">${c.company}</td>
-        <td class="td-job">${c.jobTitle}</td>
-        <td class="td-phone">${c.phone}</td>
-        <td class="td-location">${c.location}</td>
-      </tr>
-    `;
-    }).join('');
+        </div>
+      </td>
+      <td class="col-md mono-cell muted-cell">${c.email}</td>
+      <td class="col-lg">${c.company}</td>
+      <td class="col-lg muted-cell">${c.jobTitle}</td>
+      <td class="col-lg mono-cell muted-cell">${c.phone}</td>
+      <td class="col-lg muted-cell">${c.location}</td>
+    </tr>`;
 }
 
-function setupSelectAll(): void {
-    const selectAll = document.getElementById('select-all') as HTMLInputElement;
-    if (!selectAll) return;
+export function renderContacts(query: string): string {
+  const rows = contacts.filter((c) => matches(c, query));
 
-    selectAll.addEventListener('change', () => {
-        const checks = document.querySelectorAll<HTMLInputElement>('.row-check');
-        checks.forEach(cb => cb.checked = selectAll.checked);
-    });
+  const body = rows.length
+    ? rows.map(row).join('')
+    : `<tr class="empty-row"><td colspan="7">No contacts match “${query}”.</td></tr>`;
+
+  return `
+    <div class="bulk-bar" id="bulk-bar" hidden>
+      <span class="bulk-count" id="bulk-count">0 selected</span>
+      <button class="btn btn-sm" data-demo="Folder assignment is disabled in this demo.">Add to folder</button>
+      <button class="btn btn-sm" data-demo="Export is disabled in this demo.">Export selected</button>
+      <button class="btn btn-sm" data-demo="Deleting is disabled in this demo.">${icons.trash}Delete</button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:40px"><input type="checkbox" id="select-all" aria-label="Select all contacts" /></th>
+            ${sortHeader('Name')}
+            ${sortHeader('Email', 'col-md')}
+            ${sortHeader('Company', 'col-lg')}
+            ${sortHeader('Title', 'col-lg')}
+            <th class="col-lg">Phone</th>
+            <th class="col-lg">Location</th>
+          </tr>
+        </thead>
+        <tbody>${body}</tbody>
+      </table>
+    </div>`;
+}
+
+/**
+ * Row selection. Delegated from the document in main.ts's render cycle
+ * would re-run on every keystroke, so selection is wired here against
+ * the live table and re-bound whenever the table is rebuilt.
+ */
+export function bindSelection(): void {
+  const bar = document.getElementById('bulk-bar');
+  const count = document.getElementById('bulk-count');
+  const selectAll = document.getElementById('select-all') as HTMLInputElement | null;
+  if (!bar || !count) return;
+
+  const boxes = (): HTMLInputElement[] =>
+    Array.from(document.querySelectorAll<HTMLInputElement>('tbody input[type="checkbox"]'));
+
+  const sync = (): void => {
+    const n = boxes().filter((b) => b.checked).length;
+    bar.hidden = n === 0;
+    count.textContent = `${n} selected`;
+    if (selectAll) {
+      selectAll.checked = n > 0 && n === boxes().length;
+      selectAll.indeterminate = n > 0 && n < boxes().length;
+    }
+  };
+
+  boxes().forEach((b) => b.addEventListener('change', sync));
+
+  selectAll?.addEventListener('change', () => {
+    boxes().forEach((b) => (b.checked = selectAll.checked));
+    sync();
+  });
 }
