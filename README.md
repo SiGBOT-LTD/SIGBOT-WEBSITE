@@ -9,11 +9,6 @@ Plain HTML/CSS/JS, no build step, hosted on **GitHub Pages** with the custom dom
 ```
 ├── CNAME                  # GitHub Pages custom domain (sigbot.co)
 ├── index.html             # Home
-├── get-started.html       # Signup flow — every "Start free" CTA lands here.
-│                          # Four stages (account → inbox → first scan → plan),
-│                          # front-end only: search assets/js/get-started.js for
-│                          # "BACKEND HOOK" for every wire-up point. "Log in"
-│                          # still goes to sigbot.app/login.
 ├── pricing.html           # Plans + Paddle checkout (Paddle.js, live client token)
 ├── webapp.html            # Product page: web app
 ├── mobile.html            # Product page: mobile app
@@ -24,6 +19,7 @@ Plain HTML/CSS/JS, no build step, hosted on **GitHub Pages** with the custom dom
 ├── refund.html            # Refund policy (canonical, linked from Terms & footers)
 ├── terms|privacy|dpa|security|cookies|app-privacy.html
 │                          # Redirect stubs → /legal/* (kept so old URLs don't 404)
+├── get-started.html       # Redirect stub → sigbot.app/get-started (signup lives in the app)
 ├── legal/                 # Canonical legal documents (own visual template)
 │   ├── legal.css          # Shared styles for all legal pages
 │   └── terms|privacy|security|dpa|api-terms|vulnerability-disclosure.html
@@ -50,6 +46,9 @@ Plain HTML/CSS/JS, no build step, hosted on **GitHub Pages** with the custom dom
   Terms · Privacy · Refunds · Security · DPA · Contact.
 - **Domains:** canonical URLs, OG tags, and the sitemap all use `https://sigbot.co`.
   `sigbot.ca` is legacy (GoDaddy-forwarded → sigbot.co). App links point to `https://sigbot.app`.
+- **CTAs leave the site:** every "Start free" links to `https://sigbot.app/get-started` and
+  "Log in" to `https://sigbot.app/login`. The site never collects an email or a password —
+  it has no server. Signup is the app's job.
 - **Adding a page:** copy an existing page's `<head>` (favicon links, canonical, OG tags),
   add it to `sitemap.xml`, use the standard nav + footer, include `assets/js/nav.js`.
 

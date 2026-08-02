@@ -2489,8 +2489,9 @@ body::before {
    THE EXTRACTION CARD — shared component
 
    Signature in, contact record out: the one graphic that states what the
-   product does. It opens the home page and it is what the first scan in
-   get-started.html looks like, so it lives here rather than in index.css.
+   product does. It opens the home page, and the app's first scan
+   (sigbot.app/get-started) shows the same shape, so it lives here rather
+   than in index.css.
    Amber marks the line being read, mint confirms the field that landed.
    ═══════════════════════════════════════════════════════════════════ */
 /* The single entrance on the home page. The hero copy paints instantly —

@@ -41,8 +41,8 @@
     }
 
     /* The extraction card (.extract / .sigline / .erow) moved to styles.css —
-       get-started.html shows the same graphic for the first scan, so the one
-       component now has one home. */
+       the app's first scan (sigbot.app/get-started) shows the same graphic,
+       so the one component now has one home. */
 
     @media (max-width: 900px) {
       .hero--split {
