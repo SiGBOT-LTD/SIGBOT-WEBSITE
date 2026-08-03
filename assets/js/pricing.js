@@ -2,6 +2,15 @@ Paddle.Initialize({
       token: 'live_5ccca908a5ed4850c510274c3e2',
       eventCallback: function(event) {
         if (event.name === 'checkout.completed') {
+          // Captured before the redirect. Paddle is the authority on revenue,
+          // but without this event PostHog sees the session end at the
+          // checkout and scores every purchase as an abandonment.
+          sigbotTrack('checkout_completed', {
+            plan: (event.data && event.data.items && event.data.items[0]
+                    && event.data.items[0].price_name) || null,
+            value: event.data && event.data.totals && event.data.totals.total,
+            currency: event.data && event.data.currency_code
+          });
           window.location.href = 'https://sigbot.app/dashboard';
         }
       }
@@ -16,6 +25,7 @@ Paddle.Initialize({
 
     document.getElementById('pro-checkout-btn').addEventListener('click', function() {
       var isAnnual = document.getElementById('billing-toggle').checked;
+      sigbotTrack('checkout_opened', { plan: 'pro', billing: isAnnual ? 'annual' : 'monthly' });
       Paddle.Checkout.open({
         items: [{ priceId: isAnnual ? PRICE_IDS.proAnnual : PRICE_IDS.pro, quantity: 1 }]
       });
@@ -23,6 +33,7 @@ Paddle.Initialize({
 
     document.getElementById('team-checkout-btn').addEventListener('click', function() {
       var isAnnual = document.getElementById('billing-toggle').checked;
+      sigbotTrack('checkout_opened', { plan: 'team', billing: isAnnual ? 'annual' : 'monthly' });
       Paddle.Checkout.open({
         items: [{ priceId: isAnnual ? PRICE_IDS.teamAnnual : PRICE_IDS.team, quantity: 1 }]
       });
@@ -44,6 +55,10 @@ Paddle.Initialize({
 
     toggle.addEventListener("change", () => {
       const annual = toggle.checked;
+
+      // Cheap to record and hard to learn any other way: how many people
+      // price the annual plan before deciding, not just who buys it.
+      sigbotTrack('billing_period_toggled', { billing: annual ? 'annual' : 'monthly' });
 
       labelMonthly.classList.toggle("active", !annual);
       labelAnnual.classList.toggle("active", annual);
