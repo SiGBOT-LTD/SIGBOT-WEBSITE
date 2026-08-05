@@ -84,7 +84,18 @@
           <input type="checkbox" id="billing-toggle">
           <span class="toggle-track"></span>
         </label>
-        <span class="billing-label" id="label-annual">Yearly <span class="annual-badge">Save 20%</span></span>
+        <span class="billing-label" id="label-annual">Yearly <span class="annual-badge" id="annual-badge">Save 20%</span></span>
+      </div>
+
+      <!-- REGION
+           Hidden until Paddle has actually returned a localised price.
+           Until then the prices below are the USD ones in this markup,
+           and a country picker next to them would be a control that
+           changes nothing. pricing.js unhides it. -->
+      <div class="region-row" id="region-row" hidden>
+        <label class="region-label" for="country-select">Prices for</label>
+        <select class="region-select" id="country-select" aria-describedby="region-note"></select>
+        <span class="region-note" id="region-note"></span>
       </div>
 
       <!-- PLANS
@@ -441,7 +452,11 @@
           </div>
           <div class="kvRow">
             <h3 class="kvKey">Is there a discount for yearly billing?</h3>
-            <div class="kvVal">Yes. Toggle to yearly above to save 20% on Pro ($192/yr) and Team ($1,920/yr).</div>
+            <div class="kvVal">Yes. Toggle to yearly above to save <span id="faq-save-pct">20%</span> on Pro (<span id="faq-pro-annual">$192/yr</span>) and Team (<span id="faq-team-annual">$1,920/yr</span>).</div>
+          </div>
+          <div class="kvRow">
+            <h3 class="kvKey">What currency will I be charged in?</h3>
+            <div class="kvVal">The prices above are already in your local currency — we detect your country and ask our payment provider, Paddle, what it will actually charge there, so the figure on this page is the figure at the checkout. If we've guessed your country wrong, change it with the picker under the billing toggle. Paddle is the merchant of record and handles local sales tax and VAT, including reverse charge for VAT-registered businesses in the EU and UK.</div>
           </div>
           <div class="kvRow">
             <h3 class="kvKey">How does Team pricing work?</h3>

@@ -72,6 +72,67 @@
       padding: 2px 8px;
     }
 
+    /* Region / currency picker.
+       Sits under the billing toggle and pulls up into that toggle's own
+       bottom margin, so the spacing is right whether or not the row is
+       rendered — it stays hidden when Paddle could not price the visit.
+       Deliberately quiet: it is a correction for the minority whose
+       detected country is wrong, not a decision the page is asking for.
+       No amber — nothing here is an action or an extracted value. */
+    .region-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: -24px 0 44px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .region-label {
+      color: var(--muted);
+    }
+
+    .region-select {
+      font: inherit;
+      font-size: 13px;
+      color: var(--fg);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 5px 10px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .region-select:hover {
+      border-color: var(--chrome);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* The native menu is drawn by the OS, which does not inherit the
+       page's dark palette on every platform. */
+    .region-select option,
+    .region-select optgroup {
+      background: var(--bg);
+      color: var(--fg);
+    }
+
+    .region-note {
+      color: var(--faint);
+      font-size: 12px;
+      flex-basis: 100%;
+      text-align: center;
+    }
+
+    @media (min-width: 720px) {
+      .region-note {
+        flex-basis: auto;
+        text-align: left;
+      }
+    }
+
     /* 3-column pricing grid */
     .pricingGrid3 {
       display: grid;
