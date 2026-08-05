@@ -22,11 +22,15 @@
       }
     });
 
+    /* These belong to the "Sigbot Pro" / "Sigbot Team" catalog created
+       2026-07-23, priced in USD. The original products were denominated
+       in CAD by mistake and are archived — archived price IDs fail both
+       PricePreview and checkout, so an old ID here is a dead buy button. */
     var PRICE_IDS = {
-      pro:        'pri_01kpq42h593dy8h8s01cb9bxes',
-      proAnnual:  'pri_01ksbbc7cr7nyy93gvmznm17xf',
-      team:       'pri_01kpq6tvcwxkntrdra0781evfk',
-      teamAnnual: 'pri_01ksbbghb3ajgnvrf0xsycptgx'
+      pro:        'pri_01ky5yqwjqxtjf3mxjd0yc4xsy',
+      proAnnual:  'pri_01ky5yqwq5pjjnett4r6dt31ka',
+      team:       'pri_01ky5yqx1wdas1d5ht3q78jmz5',
+      teamAnnual: 'pri_01ky5yqx6hvwrz8cqhx1g80njw'
     };
 
     /* ─── LOCALISED PRICING ───────────────────────────────────────────

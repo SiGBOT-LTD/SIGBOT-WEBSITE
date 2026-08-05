@@ -20,7 +20,7 @@
    Change them together. */
 (function () {
   var TOKEN = 'live_5ccca908a5ed4850c510274c3e2';
-  var PRO_MONTHLY = 'pri_01kpq42h593dy8h8s01cb9bxes';
+  var PRO_MONTHLY = 'pri_01ky5yqwjqxtjf3mxjd0yc4xsy';
 
   var CACHE_KEY   = 'sigbot.localPrice';
   var COUNTRY_KEY = 'sigbot.country';
