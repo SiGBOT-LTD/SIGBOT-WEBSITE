@@ -1,4 +1,10 @@
-Paddle.Initialize({
+/* paddle.js is loaded from Paddle's CDN, which ad blockers routinely
+       eat. Without this guard the ReferenceError below would take the
+       whole file with it — billing toggle included — and the page's own
+       rule is that failing to localise must not break anything else.
+       Checkout genuinely cannot work without paddle.js, so that stays
+       broken either way; the rest of the page must not. */
+    if (window.Paddle) Paddle.Initialize({
       token: 'live_5ccca908a5ed4850c510274c3e2',
       eventCallback: function(event) {
         if (event.name === 'checkout.completed') {
