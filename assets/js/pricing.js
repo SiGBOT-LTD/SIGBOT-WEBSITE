@@ -2,30 +2,17 @@
        eat. Without this guard the ReferenceError below would take the
        whole file with it — billing toggle included — and the page's own
        rule is that failing to localise must not break anything else.
-       Checkout genuinely cannot work without paddle.js, so that stays
-       broken either way; the rest of the page must not. */
+       paddle.js is only needed here for PricePreview (localised prices);
+       checkout itself happens in the app — see openCheckout below. */
     if (window.Paddle) Paddle.Initialize({
-      token: 'live_5ccca908a5ed4850c510274c3e2',
-      eventCallback: function(event) {
-        if (event.name === 'checkout.completed') {
-          // Captured before the redirect. Paddle is the authority on revenue,
-          // but without this event PostHog sees the session end at the
-          // checkout and scores every purchase as an abandonment.
-          sigbotTrack('checkout_completed', {
-            plan: (event.data && event.data.items && event.data.items[0]
-                    && event.data.items[0].price_name) || null,
-            value: event.data && event.data.totals && event.data.totals.total,
-            currency: event.data && event.data.currency_code
-          });
-          window.location.href = 'https://sigbot.app/dashboard';
-        }
-      }
+      token: 'live_5ccca908a5ed4850c510274c3e2'
     });
 
     /* These belong to the "Sigbot Pro" / "Sigbot Team" catalog created
-       2026-07-23, priced in USD. The original products were denominated
-       in CAD by mistake and are archived — archived price IDs fail both
-       PricePreview and checkout, so an old ID here is a dead buy button. */
+       2026-07-23, priced in USD. They feed PricePreview only — checkout
+       happens in the app (see openCheckout). The original products were
+       denominated in CAD by mistake and are archived — archived price IDs
+       fail PricePreview, so an old ID here kills the localised prices. */
     var PRICE_IDS = {
       pro:        'pri_01ky5yqwjqxtjf3mxjd0yc4xsy',
       proAnnual:  'pri_01ky5yqwq5pjjnett4r6dt31ka',
@@ -390,17 +377,15 @@
     });
 
     /* ─── CHECKOUT ────────────────────────────────────────────────────
-       No address is passed to the checkout on purpose. Paddle geolocates
-       there too, by the same method, so the default path already agrees
-       with this page; forcing an address in would mean also supplying a
-       postal code for the countries that require one, and getting that
-       wrong fails the checkout — the one thing on this page that must
-       never break. */
+       Checkout must happen inside the app, signed in. Every Paddle
+       purchase is keyed to a Firebase account via customData.firebase_uid
+       — a checkout opened from this static page has no UID to carry, and
+       the webhook that grants the plan would have nothing to attach the
+       payment to. The buy buttons hand the visitor to the app with the
+       chosen plan in the query string; sigbot.app/upgrade sits behind the
+       login wall and re-opens this exact checkout once signed in. */
     function openCheckout(plan) {
       var isAnnual = toggle.checked;
-      var priceId = plan === 'pro'
-        ? (isAnnual ? PRICE_IDS.proAnnual : PRICE_IDS.pro)
-        : (isAnnual ? PRICE_IDS.teamAnnual : PRICE_IDS.team);
 
       sigbotTrack('checkout_opened', {
         plan: plan,
@@ -409,7 +394,8 @@
         country: LOCAL ? LOCAL.country : null
       });
 
-      Paddle.Checkout.open({ items: [{ priceId: priceId, quantity: 1 }] });
+      window.location.href = 'https://sigbot.app/upgrade' +
+        '?plan=' + plan + '&cycle=' + (isAnnual ? 'yearly' : 'monthly');
     }
 
     document.getElementById('pro-checkout-btn').addEventListener('click', function () {
