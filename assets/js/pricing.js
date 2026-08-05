@@ -341,6 +341,16 @@ Paddle.Initialize({
 
         render();
         renderCopy();
+
+        // The "from $20/month" teasers on other pages read this instead
+        // of loading paddle.js themselves. See price-teaser.js.
+        try {
+          localStorage.setItem('sigbot.localPrice', JSON.stringify({
+            country: LOCAL.country,
+            proMonthly: money(LOCAL.pro.monthly),
+            ts: Date.now()
+          }));
+        } catch (e) {}
       }).catch(function () {
         /* Leave the USD markup alone. */
       });

@@ -1,0 +1,135 @@
+/* ─── LOCALISED PRICE TEASERS ─────────────────────────────────────
+   The home and web-app pages each quote "from $20/month" once. After
+   the pricing page started showing what Paddle actually charges in the
+   visitor's country, these lines were the last places still speaking
+   dollars to everyone.
+
+   One number does not justify loading the full checkout script on the
+   marketing pages, so this goes cache-first: a visit to the pricing
+   page leaves the localised Pro price in localStorage, and if that is
+   fresh the swap costs nothing. Only when there is no usable cache does
+   paddle.js get injected — after the page is idle, so it can never
+   compete with the hero, the globe, or anything else that matters.
+
+   Every path out of here that isn't a confirmed local price leaves the
+   "$20/month" markup untouched. Same rule as the pricing page: a page
+   that cannot localise should look like one that never tried.
+
+   The token and price ID are duplicated from pricing.js on purpose —
+   this file must stay loadable on pages that don't load that one.
+   Change them together. */
+(function () {
+  var TOKEN = 'live_5ccca908a5ed4850c510274c3e2';
+  var PRO_MONTHLY = 'pri_01kpq42h593dy8h8s01cb9bxes';
+
+  var CACHE_KEY   = 'sigbot.localPrice';
+  var COUNTRY_KEY = 'sigbot.country';
+  var CACHE_TTL   = 24 * 60 * 60 * 1000;
+
+  var targets = document.querySelectorAll('[data-local-price]');
+  if (!targets.length) return;
+
+  function apply(formatted) {
+    for (var i = 0; i < targets.length; i++) {
+      targets[i].textContent = formatted + '/month';
+    }
+  }
+
+  function savedCountry() {
+    try { return localStorage.getItem(COUNTRY_KEY); } catch (e) { return null; }
+  }
+
+  /* Cache is only trusted if it was priced for the country the visitor
+     has picked (or would be detected as — null matches null). A stale
+     currency here would disagree with the pricing page one click away,
+     which is the exact mismatch this file exists to remove. */
+  function fromCache() {
+    try {
+      var cached = JSON.parse(localStorage.getItem(CACHE_KEY));
+      if (!cached || !cached.proMonthly) return null;
+      if (Date.now() - cached.ts > CACHE_TTL) return null;
+      var picked = savedCountry();
+      if (picked && cached.country !== picked) return null;
+      return cached.proMonthly;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  /* Same formatting rules as pricing.js: Intl decides the decimal
+     places per currency, and whole amounts drop the ".00" because the
+     surrounding sentence quotes a price point, not a receipt. */
+  function money(minorUnits, currency) {
+    var locale = (navigator.languages && navigator.languages[0]) ||
+                 navigator.language || 'en';
+    var digits = 2;
+    try {
+      digits = new Intl.NumberFormat('en', {
+        style: 'currency', currency: currency
+      }).resolvedOptions().maximumFractionDigits;
+    } catch (e) {}
+
+    var amount = Number(minorUnits) / Math.pow(10, digits);
+    var isWhole = Math.abs(amount - Math.round(amount)) < 0.005;
+
+    return new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency: currency,
+      minimumFractionDigits: isWhole ? 0 : digits,
+      maximumFractionDigits: isWhole ? 0 : digits
+    }).format(amount);
+  }
+
+  function preview() {
+    var request = { items: [{ priceId: PRO_MONTHLY, quantity: 1 }] };
+    var picked = savedCountry();
+    if (picked) request.address = { countryCode: picked };
+
+    Paddle.PricePreview(request).then(function (result) {
+      var data = result && result.data;
+      var item = data && data.details && data.details.lineItems &&
+                 data.details.lineItems[0];
+      if (!item || !item.totals) return;
+
+      var formatted = money(item.totals.subtotal, data.currencyCode);
+      apply(formatted);
+
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({
+          country: (data.address && data.address.countryCode) || picked || null,
+          proMonthly: formatted,
+          ts: Date.now()
+        }));
+      } catch (e) {}
+    }).catch(function () { /* the $20 markup stands */ });
+  }
+
+  function loadPaddleAndPreview() {
+    if (window.Paddle && typeof Paddle.PricePreview === 'function') {
+      preview();
+      return;
+    }
+    var script = document.createElement('script');
+    script.src = 'https://cdn.paddle.com/paddle/v2/paddle.js';
+    script.async = true;
+    script.onload = function () {
+      try {
+        Paddle.Initialize({ token: TOKEN });
+        preview();
+      } catch (e) { /* the $20 markup stands */ }
+    };
+    document.head.appendChild(script);
+  }
+
+  var cached = fromCache();
+  if (cached) {
+    apply(cached);
+    return;
+  }
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(loadPaddleAndPreview, { timeout: 4000 });
+  } else {
+    setTimeout(loadPaddleAndPreview, 1);
+  }
+})();
