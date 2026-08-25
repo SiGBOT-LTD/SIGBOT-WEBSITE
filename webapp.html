@@ -223,12 +223,11 @@
       </div>
 
       <!-- How contacts get in.
-           Three genuinely different routes in the app, and they are not
-           equivalent: Outlook is one-click OAuth, everything else is IMAP with
-           an app password, and forwarding is the no-connection option. The
-           page used to flatten all three into "Outlook, Gmail and IMAP", which
-           implied a one-click Gmail button the app deliberately does not
-           ship. -->
+           Two live routes in the app — Outlook (one-click OAuth) and
+           forwarding (the no-connection option) — plus Gmail/IMAP, which
+           the app now shows as Coming Soon. Keep the Gmail/IMAP entry
+           listed (it signals roadmap) but never present it as connectable,
+           and never attach a date to it. -->
       <section class="webapp-integrations">
         <h2 class="heroTitle wa-h2">Connect once. Contacts appear automatically.</h2>
         <p class="f-desc wa-connect-lede">
@@ -248,17 +247,17 @@
           <li class="connect-route">
             <span class="connect-route-num">02</span>
             <div>
-              <h3 class="connect-route-title">Gmail &amp; any IMAP inbox</h3>
-              <p class="connect-route-desc">Connect with your server address and an app password. This is how Gmail,
-                Fastmail, and self-hosted inboxes connect.</p>
-            </div>
-          </li>
-          <li class="connect-route">
-            <span class="connect-route-num">03</span>
-            <div>
               <h3 class="connect-route-title">Forward instead</h3>
               <p class="connect-route-desc">Don't want to connect an inbox at all? You get a private forwarding
                 address. Anything you send it gets read and filed.</p>
+            </div>
+          </li>
+          <li class="connect-route connect-route--soon">
+            <span class="connect-route-num">03</span>
+            <div>
+              <h3 class="connect-route-title">Gmail &amp; IMAP <span class="connect-route-soon">Coming Soon</span></h3>
+              <p class="connect-route-desc">Direct Gmail and IMAP connections are coming soon — we'll announce it in
+                the app when they're live. Until then, forwarding works with any mailbox.</p>
             </div>
           </li>
         </ol>
@@ -558,9 +557,9 @@
         <div class="faq-item">
           <h3>Which inboxes does Sigbot support?</h3>
           <p>
-            Outlook connects in one click with your Microsoft account. Gmail and any other IMAP inbox connect with
-            your server address and an app password. If you'd rather not connect an inbox at all, forward mail to
-            your private Sigbot address instead.
+            Outlook connects in one click with your Microsoft account. If you'd rather not connect an inbox at all,
+            forward mail to your private Sigbot address instead — that works with any mailbox. Gmail and IMAP
+            support are coming soon; we'll announce it in the app when they're live.
           </p>
         </div>
 

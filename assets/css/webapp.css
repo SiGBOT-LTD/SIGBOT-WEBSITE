@@ -695,10 +695,11 @@
     }
 
 /* ── Connect routes ──────────────────────────────────────────────
-   The three ways contacts get in. Set as a numbered sequence rather
-   than three cards: they are alternatives ranked by how little work
-   they take, not equivalent options, and the page previously ran them
-   together into one sentence that implied a one-click Gmail button. */
+   How contacts get in. Set as a numbered sequence rather than three
+   cards: they are alternatives ranked by how little work they take,
+   not equivalent options. Gmail/IMAP sits last as a Coming Soon
+   entry — kept visible for roadmap, muted so it never reads as a
+   connectable route. */
     .wa-connect-lede {
       font-size: 18px;
       line-height: 1.6;
@@ -753,6 +754,31 @@
       color: var(--muted);
       margin: 0;
       max-width: 52ch;
+    }
+
+    /* Coming Soon route: muted number and title so the sequence still
+       scans as "two ways in today, one on the way". */
+    .connect-route--soon .connect-route-num {
+      color: var(--muted);
+    }
+
+    .connect-route--soon .connect-route-title {
+      color: var(--muted);
+    }
+
+    .connect-route-soon {
+      display: inline-block;
+      vertical-align: 2px;
+      margin-left: 8px;
+      padding: 3px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
 
     .wa-connect-foot {

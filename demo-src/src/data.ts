@@ -1,9 +1,10 @@
 /**
  * Sample database for the demo.
  *
- * Shaped to match `Contact` in @sigbot/shared, including the real
- * `EmailProvider` values ('outlook' | 'gmail' | 'imap') rather than the
- * uppercase label the old demo stored.
+ * Shaped to match `Contact` in @sigbot/shared. Sources are limited to
+ * the two live ingest routes ('outlook' | 'forwarding') — Gmail and
+ * IMAP are Coming Soon in the app, so the demo must not show contacts
+ * sourced from them.
  *
  * The distribution matters as much as the rows. This is meant to behave
  * like a database someone has actually been running for six weeks, so
@@ -16,7 +17,7 @@
  *     email 100 / company 96 / phone 79 / title 63 / location 79 —
  *     an honest picture, not five full bars.
  *   - Companies repeat, so Top Company and Top Role are real answers.
- *   - All three ingest routes appear, so the source chips mean something.
+ *   - Both live ingest routes appear, so the source chips mean something.
  *   - Coordinates spread over BC, the prairies, Ontario, the US west
  *     coast, the UK and Ireland, so the map clusters instead of
  *     stacking every pin on one city.
@@ -38,7 +39,7 @@ export interface Contact {
   longitude?: number;
   tags?: string[];
   notes?: string;
-  source: 'outlook' | 'gmail' | 'imap';
+  source: 'outlook' | 'forwarding';
   createdAt: string;
 }
 
@@ -60,18 +61,18 @@ const ROWS: Row[] = [
   ['Ruth', 'Danniells', 'r.danniells@westpointeng.ca', 'Westpoint Engineering', 'Project Manager', '+1 (604) 312-8851', 'Vancouver, BC', 49.2827, -123.1207, 'outlook', 40],
   ['Tobias', 'Ferrand', 't.ferrand@westpointeng.ca', 'Westpoint Engineering', '', '+1 (604) 312-8863', 'Vancouver, BC', 49.2827, -123.1207, 'outlook', 33],
   ['Nadia', 'Weston', 'nadia.w@westpointeng.ca', 'Westpoint Engineering', 'Quality Manager', '+1 (250) 487-6613', 'Burnaby, BC', 49.2488, -122.9805, 'outlook', 27],
-  ['Callum', 'Reyes', 'c.reyes@westpointeng.ca', 'Westpoint Engineering', '', '', 'Vancouver, BC', 49.2827, -123.1207, 'imap', 12],
+  ['Callum', 'Reyes', 'c.reyes@westpointeng.ca', 'Westpoint Engineering', '', '', 'Vancouver, BC', 49.2827, -123.1207, 'forwarding', 12],
 
   // ── Bayview Construction ──
   ['Rachel', 'Thornton', 'rachel.t@bayviewconst.ca', 'Bayview Construction', 'Contracts Manager', '+1 (250) 519-7742', 'Victoria, BC', 48.4284, -123.3656, 'outlook', 39],
   ['David', 'Miller', 'd.miller@bayviewconst.ca', 'Bayview Construction', 'VP of Business Development', '+1 (416) 555-0182', 'Toronto, ON', 43.6532, -79.3832, 'outlook', 36],
   ['Imogen', 'Prasad', 'i.prasad@bayviewconst.ca', 'Bayview Construction', 'Project Manager', '+1 (250) 519-7758', 'Victoria, BC', 48.4284, -123.3656, 'outlook', 22],
-  ['Stefan', 'Oyelaran', 's.oyelaran@bayviewconst.ca', 'Bayview Construction', '', '+1 (250) 519-7761', '', null, null, 'imap', 9],
+  ['Stefan', 'Oyelaran', 's.oyelaran@bayviewconst.ca', 'Bayview Construction', '', '+1 (250) 519-7761', '', null, null, 'forwarding', 9],
 
   // ── Clearwater Industries ──
   ['Priya', 'Kavanaugh', 'priya.k@clearwaterind.com', 'Clearwater Industries', 'Project Manager', '+1 (778) 509-3321', 'Vancouver, BC', 49.2827, -123.1207, 'outlook', 38],
   ['Gordon', 'Selby', 'g.selby@clearwaterind.com', 'Clearwater Industries', 'Operations Director', '+1 (778) 509-3344', 'Vancouver, BC', 49.2827, -123.1207, 'outlook', 30],
-  ['Yuki', 'Tanaka-Bell', 'y.tanakabell@clearwaterind.com', 'Clearwater Industries', 'Procurement Lead', '', 'Seattle, WA', 47.6062, -122.3321, 'gmail', 16],
+  ['Yuki', 'Tanaka-Bell', 'y.tanakabell@clearwaterind.com', 'Clearwater Industries', 'Procurement Lead', '', 'Seattle, WA', 47.6062, -122.3321, 'forwarding', 16],
 
   // ── Summit Group Companies ──
   ['Elena', 'Driscoll', 'elena.d@summitgroupco.com', 'Summit Group Companies', 'Estimating Manager', '+1 (250) 614-9982', 'Kelowna, BC', 49.888, -119.496, 'outlook', 37],
@@ -81,48 +82,48 @@ const ROWS: Row[] = [
   // ── Horizon Builders ──
   ['Derek', 'Malone', 'derek.m@horizonbuild.ca', 'Horizon Builders', 'Preconstruction Manager', '+1 (604) 442-8871', 'Vancouver, BC', 49.2827, -123.1207, 'outlook', 35],
   ['Anneke', 'Vos', 'a.vos@horizonbuild.ca', 'Horizon Builders', 'Site Superintendent', '+1 (604) 442-8884', 'Vancouver, BC', 49.2827, -123.1207, 'outlook', 19],
-  ['Femi', 'Adeyemi', 'f.adeyemi@horizonbuild.ca', 'Horizon Builders', '', '', 'Vancouver, BC', 49.2827, -123.1207, 'imap', 6],
+  ['Femi', 'Adeyemi', 'f.adeyemi@horizonbuild.ca', 'Horizon Builders', '', '', 'Vancouver, BC', 49.2827, -123.1207, 'forwarding', 6],
 
   // ── Cedarstone Developments ──
   ['Liam', 'Ashford', 'liam.a@cedarstonedev.ca', 'Cedarstone Developments', 'CFO', '+1 (604) 883-4156', 'Vancouver, BC', 49.2827, -123.1207, 'outlook', 34],
   ['Sylvie', 'Marchetti', 's.marchetti@cedarstonedev.ca', 'Cedarstone Developments', 'Development Manager', '+1 (604) 883-4162', 'Vancouver, BC', 49.2827, -123.1207, 'outlook', 21],
-  ['Hugh', 'Brennan', 'h.brennan@cedarstonedev.ca', 'Cedarstone Developments', 'Project Manager', '+1 (604) 883-4177', 'Vancouver, BC', 49.2827, -123.1207, 'gmail', 6],
+  ['Hugh', 'Brennan', 'h.brennan@cedarstonedev.ca', 'Cedarstone Developments', 'Project Manager', '+1 (604) 883-4177', 'Vancouver, BC', 49.2827, -123.1207, 'forwarding', 6],
 
   // ── Two-person firms ──
   ['Owen', 'Beckett', 'owen.b@arclightmech.ca', 'Arclight Mechanical', 'Operations Lead', '+1 (416) 773-2201', 'Toronto, ON', 43.6532, -79.3832, 'outlook', 32],
   ['Meredith', 'Cole', 'm.cole@arclightmech.ca', 'Arclight Mechanical', '', '+1 (416) 773-2218', 'Toronto, ON', 43.6532, -79.3832, 'outlook', 14],
   ['Tessa', 'Langford', 'tessa.l@northshoreroof.ca', 'North Shore Roofing Co', 'Director', '+1 (250) 671-3390', 'Nanaimo, BC', 49.1659, -123.9401, 'outlook', 31],
-  ['Aaron', 'Kirkbride', 'a.kirkbride@northshoreroof.ca', 'North Shore Roofing Co', 'Estimator', '+1 (250) 671-3402', 'Nanaimo, BC', 49.1659, -123.9401, 'imap', 13],
+  ['Aaron', 'Kirkbride', 'a.kirkbride@northshoreroof.ca', 'North Shore Roofing Co', 'Estimator', '+1 (250) 671-3402', 'Nanaimo, BC', 49.1659, -123.9401, 'forwarding', 13],
   ['Victor', 'Sandoval', 'victor.s@ridgelineltd.ca', 'Ridgeline Limited', 'Preconstruction Manager', '+1 (250) 603-1108', 'Victoria, BC', 48.4284, -123.3656, 'outlook', 29],
   ['Wren', 'Halloway', 'w.halloway@ridgelineltd.ca', 'Ridgeline Limited', '', '+1 (250) 603-1121', '', null, null, 'outlook', 10],
   ['Gemma', 'Oyelowo', 'g.oyelowo@ironbridgefab.ca', 'Iron Bridge Fabrication', 'Quality Manager', '+1 (250) 487-6620', 'Nanaimo, BC', 49.1659, -123.9401, 'outlook', 28],
-  ['Curtis', 'Nowak', 'c.nowak@ironbridgefab.ca', 'Iron Bridge Fabrication', 'Fabrication Lead', '', 'Nanaimo, BC', 49.1659, -123.9401, 'imap', 5],
+  ['Curtis', 'Nowak', 'c.nowak@ironbridgefab.ca', 'Iron Bridge Fabrication', 'Fabrication Lead', '', 'Nanaimo, BC', 49.1659, -123.9401, 'forwarding', 5],
 
   // ── Prairies and east ──
   ['Rick', 'Falconer', 'rick@falconequip.ca', 'Falcon Equipment', 'Owner', '+1 (250) 754-8802', 'Nanaimo, BC', 49.1659, -123.9401, 'outlook', 26],
   ['Jolene', 'Mbeki', 'j.mbeki@megacrane.ca', 'Mega Crane', 'Dispatch Manager', '+1 (604) 298-4410', 'Vancouver, BC', 49.2827, -123.1207, 'outlook', 25],
   ['Carl', 'Whitfield', 'carl.w@megacrane.ca', 'Mega Crane', '', '+1 (604) 298-4423', 'Vancouver, BC', 49.2827, -123.1207, 'outlook', 23],
   ['Sasha', 'Petrenko', 's.petrenko@northwindciv.ca', 'Northwind Civil', 'Project Manager', '+1 (403) 244-9917', 'Calgary, AB', 51.0447, -114.0719, 'outlook', 20],
-  ['Grant', 'Ibbotson', 'g.ibbotson@northwindciv.ca', 'Northwind Civil', 'Site Engineer', '+1 (403) 244-9925', 'Calgary, AB', 51.0447, -114.0719, 'gmail', 5],
+  ['Grant', 'Ibbotson', 'g.ibbotson@northwindciv.ca', 'Northwind Civil', 'Site Engineer', '+1 (403) 244-9925', 'Calgary, AB', 51.0447, -114.0719, 'forwarding', 5],
   ['Dana', 'Rousseau', 'd.rousseau@prairiesteel.ca', 'Prairie Steel Works', 'Sales Manager', '+1 (306) 668-3315', 'Saskatoon, SK', 52.1332, -106.67, 'outlook', 18],
-  ['Elijah', 'Munroe', 'e.munroe@prairiesteel.ca', 'Prairie Steel Works', '', '', 'Saskatoon, SK', 52.1332, -106.67, 'imap', 4],
+  ['Elijah', 'Munroe', 'e.munroe@prairiesteel.ca', 'Prairie Steel Works', '', '', 'Saskatoon, SK', 52.1332, -106.67, 'forwarding', 4],
   ['Anita', 'Bergeron', 'a.bergeron@lauriergroupe.ca', 'Laurier Groupe', 'Directrice de projet', '+1 (514) 397-2264', 'Montreal, QC', 45.5019, -73.5674, 'outlook', 17],
   ['Colin', 'Fraser', 'c.fraser@atlanticmarine.ca', 'Atlantic Marine Services', 'Operations Manager', '+1 (902) 429-7731', 'Halifax, NS', 44.6488, -63.5752, 'outlook', 15],
   ['Marguerite', 'Okonkwo', 'm.okonkwo@redriverint.ca', 'Red River Interiors', 'Project Manager', '+1 (204) 953-6620', 'Winnipeg, MB', 49.8951, -97.1384, 'outlook', 15],
   ['Theo', 'Lindqvist', 't.lindqvist@edmontonmech.ca', 'Edmonton Mechanical', 'Estimator', '+1 (780) 421-9908', 'Edmonton, AB', 53.5461, -113.4938, 'outlook', 12],
 
   // ── US west coast ──
-  ['Bianca', 'Ferreira', 'b.ferreira@puget-fab.com', 'Puget Fabrication', 'Operations Lead', '+1 (206) 812-4470', 'Seattle, WA', 47.6062, -122.3321, 'gmail', 26],
-  ['Nathan', 'Oduya', 'n.oduya@puget-fab.com', 'Puget Fabrication', '', '+1 (206) 812-4488', 'Seattle, WA', 47.6062, -122.3321, 'gmail', 9],
-  ['Erin', 'Kowalczyk', 'erin.k@willametteciv.com', 'Willamette Civil', 'Contracts Manager', '+1 (503) 640-2219', 'Portland, OR', 45.5152, -122.6784, 'gmail', 11],
+  ['Bianca', 'Ferreira', 'b.ferreira@puget-fab.com', 'Puget Fabrication', 'Operations Lead', '+1 (206) 812-4470', 'Seattle, WA', 47.6062, -122.3321, 'forwarding', 26],
+  ['Nathan', 'Oduya', 'n.oduya@puget-fab.com', 'Puget Fabrication', '', '+1 (206) 812-4488', 'Seattle, WA', 47.6062, -122.3321, 'forwarding', 9],
+  ['Erin', 'Kowalczyk', 'erin.k@willametteciv.com', 'Willamette Civil', 'Contracts Manager', '+1 (503) 640-2219', 'Portland, OR', 45.5152, -122.6784, 'forwarding', 11],
 
   // ── UK and Ireland ──
-  ['Sophie', 'Turner', 'sophie@northgate.co.uk', 'Northgate Ltd', 'Head of Partnerships', '+44 20 7946 0812', 'London, UK', 51.5074, -0.1278, 'imap', 30],
-  ['Alastair', 'Finch', 'a.finch@northgate.co.uk', 'Northgate Ltd', '', '+44 20 7946 0829', 'London, UK', 51.5074, -0.1278, 'imap', 16],
-  ['Priti', 'Raval', 'p.raval@mercerbuild.co.uk', 'Mercer Build Group', 'Commercial Manager', '+44 161 496 0331', 'Manchester, UK', 53.4808, -2.2426, 'imap', 21],
-  ['Douglas', 'Mair', 'd.mair@clydeworks.co.uk', 'Clyde Works', 'Managing Director', '+44 141 249 7702', 'Glasgow, UK', 55.8642, -4.2518, 'imap', 14],
-  ['Aoife', 'Byrne', 'aoife@liffeyholdings.ie', 'Liffey Holdings', 'Finance Director', '+353 1 903 4417', 'Dublin, IE', 53.3498, -6.2603, 'imap', 4],
-  ['Ewan', 'Castellano', 'e.castellano@severnplant.co.uk', 'Severn Plant Hire', '', '', 'Bristol, UK', 51.4545, -2.5879, 'imap', 3],
+  ['Sophie', 'Turner', 'sophie@northgate.co.uk', 'Northgate Ltd', 'Head of Partnerships', '+44 20 7946 0812', 'London, UK', 51.5074, -0.1278, 'forwarding', 30],
+  ['Alastair', 'Finch', 'a.finch@northgate.co.uk', 'Northgate Ltd', '', '+44 20 7946 0829', 'London, UK', 51.5074, -0.1278, 'forwarding', 16],
+  ['Priti', 'Raval', 'p.raval@mercerbuild.co.uk', 'Mercer Build Group', 'Commercial Manager', '+44 161 496 0331', 'Manchester, UK', 53.4808, -2.2426, 'forwarding', 21],
+  ['Douglas', 'Mair', 'd.mair@clydeworks.co.uk', 'Clyde Works', 'Managing Director', '+44 141 249 7702', 'Glasgow, UK', 55.8642, -4.2518, 'forwarding', 14],
+  ['Aoife', 'Byrne', 'aoife@liffeyholdings.ie', 'Liffey Holdings', 'Finance Director', '+353 1 903 4417', 'Dublin, IE', 53.3498, -6.2603, 'forwarding', 4],
+  ['Ewan', 'Castellano', 'e.castellano@severnplant.co.uk', 'Severn Plant Hire', '', '', 'Bristol, UK', 51.4545, -2.5879, 'forwarding', 3],
 
   // ── This week ──
   ['Harriet', 'Okafor', 'h.okafor@lakeshoreelec.ca', 'Lakeshore Electrical', 'Project Manager', '+1 (416) 990-2214', 'Toronto, ON', 43.6532, -79.3832, 'outlook', 2],

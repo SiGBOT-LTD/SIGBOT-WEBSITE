@@ -44,8 +44,8 @@ export function renderAccount(): string {
           ${usageLine('Emails scanned total', contacts.length, TOTAL_LIMIT)}
         </div>
         <ul class="plan-list">
-          ${feature('Scan up to 300 emails (50/day)')}
-          ${feature('Outlook, IMAP, or a forwarding address')}
+          ${feature('Scan up to 50 emails/day, 300 total')}
+          ${feature('Outlook or a forwarding address &mdash; Gmail &amp; IMAP coming soon')}
           ${feature('AI signature parsing')}
           ${feature('CSV &amp; Excel export')}
           ${feature('Interactive map')}

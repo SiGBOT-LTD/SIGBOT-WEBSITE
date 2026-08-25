@@ -153,7 +153,7 @@ function header(): string {
             <button data-demo="Importing is disabled here. The real app takes Excel, CSV and vCard.">
               ${icons.fileUp}Import (Excel/CSV/vCard)
             </button>
-            <button data-demo="Connect an inbox at sigbot.app — Outlook in one click, or IMAP with an app password.">
+            <button data-demo="Connect an inbox at sigbot.app — Outlook in one click, or use your private forwarding address.">
               ${icons.mail}Scrape Emails
             </button>
           </div>
