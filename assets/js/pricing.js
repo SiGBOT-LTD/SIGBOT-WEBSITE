@@ -16,8 +16,8 @@
     var PRICE_IDS = {
       pro:        'pri_01ky5yqwjqxtjf3mxjd0yc4xsy',
       proAnnual:  'pri_01ky5yqwq5pjjnett4r6dt31ka',
-      team:       'pri_01ky5yqx1wdas1d5ht3q78jmz5',
-      teamAnnual: 'pri_01ky5yqx6hvwrz8cqhx1g80njw'
+      team:       'pri_01m0dx8gv58r1tqzfqab1rkkqs',
+      teamAnnual: 'pri_01m0dx8h59vgveg0csxasdzc42'
     };
 
     /* ─── LOCALISED PRICING ───────────────────────────────────────────
