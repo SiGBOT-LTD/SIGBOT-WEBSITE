@@ -799,3 +799,132 @@
         gap: 12px;
       }
     }
+
+    /* ── More ways in ────────────────────────────────────────────────
+       Data that doesn't arrive by email: spreadsheet/vCard import, .eml
+       and .msg drops, and the mobile card scanner. Sits under the
+       connect routes as three quiet tiles. */
+    .adddata-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      max-width: 900px;
+      margin: 48px auto 0;
+      text-align: left;
+    }
+
+    .adddata-tile {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .adddata-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+      margin: 0 0 8px;
+    }
+
+    .adddata-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .adddata-desc a {
+      color: var(--accent);
+    }
+
+    .adddata-mono {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--fg);
+    }
+
+    @media (max-width: 760px) {
+      .adddata-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── Mockup bits added with the folders/team/review rows ─────────── */
+    .wa-folder-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    /* Mock buttons on the review-queue rows. Mint is allowed here: an
+       Approve control is a confirmation affordance. */
+    .review-btn {
+      border: 1px solid #2a2a2a;
+      background: #1a1a1a;
+      color: var(--chrome);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: default;
+      white-space: nowrap;
+    }
+
+    .review-btn--ok {
+      background: rgba(var(--verify-rgb), 0.12);
+      border-color: rgba(var(--verify-rgb), 0.3);
+      color: var(--verify);
+    }
+
+    /* ── Under the hood ──────────────────────────────────────────────
+       One strip on the hybrid parser. The chips are set in mono because
+       they name pipeline stages, i.e. data, not prose. */
+    .webapp-ai {
+      margin-top: 120px;
+      text-align: center;
+    }
+
+    .webapp-ai-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 16px;
+    }
+
+    .webapp-ai-chips {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .webapp-ai-chip {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 16px;
+      background: var(--card-bg);
+    }
+
+    .webapp-ai-chip--out {
+      color: var(--accent);
+      border-color: rgba(var(--accent-rgb), 0.35);
+      background: rgba(var(--accent-rgb), 0.08);
+    }
+
+    .webapp-ai-arrow {
+      color: var(--faint);
+      font-size: 14px;
+    }

@@ -1,0 +1,320 @@
+/* ═══════════════════════════════════════════════════════════════════
+   mobile.html — page styles.
+   The scrollytelling phone (.mobile-showcase, .iphone-bezel, .app-*)
+   lives in styles.css because it predates the per-page convention;
+   everything added since — the real-screenshot gallery, feature grid,
+   FAQ, and the extra mock-screen pieces — lives here.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Mock-screen additions ──────────────────────────────────────────
+   Small pieces the real app has that the original mock screens lacked:
+   the Caller ID card and folder chips on Contacts, and the whole
+   Scrape screen. Kept at mock scale (10-12px type, #141414 tiles). */
+
+.app-callerid {
+  margin: 0 20px 10px;
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 10px;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* Mint is reserved for "confirmed"; an enabled toggle qualifies. */
+.app-callerid .cid-on {
+  color: var(--verify);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.app-chip-row {
+  display: flex;
+  gap: 6px;
+  margin: 0 20px 12px;
+  overflow: hidden;
+}
+
+.m-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 10px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.m-chip.active {
+  background: rgba(var(--accent-rgb), 0.12);
+  border-color: rgba(var(--accent-rgb), 0.3);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.m-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Scrape screen: an Outlook run in progress with a live feed below it. */
+.scrape-progress-card {
+  margin: 0 20px 16px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.scrape-progress-card strong {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.scrape-bar-track {
+  height: 6px;
+  background: #26262c;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 10px 0 8px;
+}
+
+.scrape-bar-fill {
+  height: 100%;
+  width: 62%;
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+.scrape-feed {
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scrape-feed-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.scrape-feed-item strong {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.scrape-feed-item .ok {
+  color: var(--verify);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+/* ── Real screenshots ───────────────────────────────────────────────
+   Actual captures of the shipping Android build (same frames as the
+   Play Store listing), so the page shows the app itself and not only
+   the illustration above. */
+
+.shots-section {
+  text-align: center;
+  margin: 0 auto 120px;
+}
+
+.shots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 36px;
+  margin-top: 48px;
+}
+
+.shot {
+  margin: 0;
+}
+
+.shot-frame {
+  background: #000;
+  border: 3px solid #333;
+  border-radius: 26px;
+  padding: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.shot-frame img {
+  width: 100%;
+  display: block;
+  border-radius: 18px;
+}
+
+.shot-caption {
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .shots-grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ── Section heading + feature grid ─────────────────────────────────
+   Same shape as webapp.html's features-grid-4 (icon beside the title,
+   description spanning below) at three tracks for six cards. */
+
+.m-h2 {
+  font-size: 32px;
+  margin: 0 auto 20px;
+}
+
+.m-sub {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.m-features {
+  margin: 0 auto 120px;
+  text-align: center;
+}
+
+.m-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 48px;
+  text-align: left;
+}
+
+.m-features-grid .panel {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 12px;
+  align-items: center;
+  padding: 28px;
+}
+
+.m-features-grid .feature-icon-box {
+  grid-column: 1;
+  grid-row: 1;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: var(--muted);
+}
+
+.m-features-grid .feature-icon-box svg {
+  width: 22px;
+  height: 22px;
+}
+
+.m-features-grid .f-title {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+.m-features-grid .f-desc {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: 14px 0 0;
+  font-size: 15px;
+}
+
+@media (max-width: 900px) {
+  .m-features-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .m-features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Mini FAQ ───────────────────────────────────────────────────────
+   Mirrors webapp.html's .faq-item block; duplicated here because that
+   one lives in webapp.css, which this page doesn't load. */
+
+.mobile-faq {
+  margin: 0 auto 120px;
+  max-width: 700px;
+  text-align: center;
+}
+
+.faq-item {
+  text-align: left;
+  border-top: 1px solid #1e1e1e;
+  padding: 20px 0;
+}
+
+.faq-item h3 {
+  font-size: 16px;
+  color: var(--fg);
+  margin: 0 0 8px;
+}
+
+.faq-item p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+  max-width: var(--measure);
+}
+
+.faq-item p a {
+  color: var(--accent);
+}
+
+.mobile-faq-more {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.mobile-faq-more a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ── Closing CTA ────────────────────────────────────────────────────
+   Same treatment as webapp.html's closing panel. */
+
+.mobile-cta-end {
+  margin: 0 0 40px;
+  text-align: center;
+  padding: 60px 32px;
+  background: rgba(var(--accent-rgb), 0.06);
+  border: 1px solid rgba(var(--accent-rgb), 0.15);
+  border-radius: 24px;
+}

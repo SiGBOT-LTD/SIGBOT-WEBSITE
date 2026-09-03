@@ -10,7 +10,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <title>Web App | Sigbot</title>
   <meta name="description"
-    content="The Sigbot web app gives you full access to your contact database from any browser. No download required." />
+    content="The Sigbot web app gives you full access to your contact database from any browser — dashboard analytics, an interactive map, folders and team sharing, imports and exports, and built-in clean-up tools. No download required." />
 
   <link rel="canonical" href="https://sigbot.co/webapp.html" />
   <meta name="robots" content="index,follow" />
@@ -132,9 +132,9 @@
                 </div>
                 <div class="sidebar-item" style="color: var(--chrome);font-size: 12px;padding:5px 16px;"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> New Folder</div>
                 <div class="sidebar-usage">
-                  <div class="sidebar-usage-row"><span style="color: var(--chrome);font-size: 12px;text-transform:uppercase;letter-spacing:0.05em;">Email scraping</span><span style="font-size: 12px;color:var(--accent);font-weight:600;">Starter</span></div>
-                  <div class="sidebar-usage-row"><span>Today</span><span>0 / 50</span></div>
-                  <div class="sidebar-usage-row"><span>Total</span><span>279 / 300</span></div>
+                  <div class="sidebar-usage-row"><span style="color: var(--chrome);font-size: 12px;text-transform:uppercase;letter-spacing:0.05em;">Email scraping</span><span style="font-size: 12px;color:var(--accent);font-weight:600;">Free</span></div>
+                  <div class="sidebar-usage-row"><span>Today</span><span>36 / 150</span></div>
+                  <div class="sidebar-usage-row"><span>Contacts</span><span>279 / 1,000</span></div>
                   <div class="sidebar-upgrade-btn"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></svg></span> Upgrade</div>
                 </div>
               </div>
@@ -262,6 +262,26 @@
           </li>
         </ol>
 
+        <!-- Data that doesn't arrive by email still gets a door. -->
+        <div class="adddata-grid">
+          <div class="adddata-tile">
+            <h3 class="adddata-title">Import spreadsheets</h3>
+            <p class="adddata-desc">Bring an existing list along: CSV, Excel, and vCard files walk through a
+              three-step wizard with column mapping, so your old data lands in the right fields.</p>
+          </div>
+          <div class="adddata-tile">
+            <h3 class="adddata-title">Drop email files</h3>
+            <p class="adddata-desc">Drag <span class="adddata-mono">.eml</span> or Outlook
+              <span class="adddata-mono">.msg</span> files straight onto the app — their signatures are parsed
+              exactly like live mail.</p>
+          </div>
+          <div class="adddata-tile">
+            <h3 class="adddata-title">Scan cards on mobile</h3>
+            <p class="adddata-desc">Photograph a business card in the <a href="mobile.html">mobile app</a> and the
+              contact appears here, in the same database, seconds later.</p>
+          </div>
+        </div>
+
         <p class="f-desc wa-connect-foot">
           Works alongside the tools you already use on-site — see <a href="/construction.html">Sigbot for Construction</a>
           for integrations with Procore, Buildertrend, and Pipedrive.
@@ -322,6 +342,52 @@
           <h3 class="f-title">Team management</h3>
           <p class="f-desc">Invite team members, manage roles, and share contact folders across your organisation — all from the web dashboard.</p>
         </div>
+        <div class="panel">
+          <div class="feature-icon-box">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 13c0 5-3.5 7.5-8 8.5-4.5-1-8-3.5-8-8.5V6l8-3 8 3z" />
+              <path d="M9 12l2 2 4-4" />
+            </svg>
+          </div>
+          <h3 class="f-title">Review queue</h3>
+          <p class="f-desc">Newsletters, no-reply senders, and brand mail get held back instead of filed. Approve or reject them in bulk, and allowlist the domains you trust.</p>
+        </div>
+        <div class="panel">
+          <div class="feature-icon-box">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="9" cy="12" r="5.5" />
+              <circle cx="15" cy="12" r="5.5" />
+            </svg>
+          </div>
+          <h3 class="f-title">Duplicate detection</h3>
+          <p class="f-desc">Likely duplicates are clustered by email, phone, or name and domain. Merge them field by field — and every merge can be undone.</p>
+        </div>
+        <div class="panel">
+          <div class="feature-icon-box">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 6h18M8 6V4.5A1.5 1.5 0 0 1 9.5 3h5A1.5 1.5 0 0 1 16 4.5V6" />
+              <path d="M5 6l1 14a2 2 0 0 0 2 1.8h8A2 2 0 0 0 18 20l1-14" />
+              <path d="M12 11v6M9.5 11l.4 6M14.5 11l-.4 6" />
+            </svg>
+          </div>
+          <h3 class="f-title">Trash &amp; restore</h3>
+          <p class="f-desc">Deleted contacts aren't gone — they sit in the trash for 30 days and come back with one click if you change your mind.</p>
+        </div>
+        <div class="panel">
+          <div class="feature-icon-box">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="16" rx="2" />
+              <line x1="9.5" y1="4" x2="9.5" y2="20" />
+              <line x1="15.5" y1="4" x2="15.5" y2="20" />
+            </svg>
+          </div>
+          <h3 class="f-title">Custom columns</h3>
+          <p class="f-desc">Add up to 30 columns of your own — rename, reorder, and track the fields that matter to your business alongside the parsed ones.</p>
+        </div>
       </div>
 
       <!-- Mid-page CTA -->
@@ -380,10 +446,10 @@
                   <div class="sidebar-usage">
                     <div class="sidebar-usage-row">
                       <span style="color: var(--chrome);font-size: 12px;text-transform:uppercase;letter-spacing:0.05em;">Email scraping</span>
-                      <span style="font-size: 12px;color:var(--accent);font-weight:600;">Starter</span>
+                      <span style="font-size: 12px;color:var(--accent);font-weight:600;">Free</span>
                     </div>
-                    <div class="sidebar-usage-row"><span>Today</span><span>0 / 50</span></div>
-                    <div class="sidebar-usage-row"><span>Total</span><span>279 / 300</span></div>
+                    <div class="sidebar-usage-row"><span>Today</span><span>36 / 150</span></div>
+                    <div class="sidebar-usage-row"><span>Contacts</span><span>279 / 1,000</span></div>
                     <div class="sidebar-upgrade-btn"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></svg></span> Upgrade</div>
                   </div>
                 </div>
@@ -427,7 +493,9 @@
           <div class="wa-center">
             <h2 class="heroTitle wa-h2">Organise with folders.</h2>
             <p class="f-desc" style="font-size: 18px; line-height: 1.6; max-width: 600px; margin: 0 auto;">
-              Group contacts into named folders for projects, clients, or regions. Share folders with teammates so everyone works from the same list.
+              Group contacts into colour-coded folders for projects, clients, or regions — and nest subfolders inside
+              them when a job gets big. Drag contacts in, or share a folder with your team so everyone works from the
+              same list.
             </p>
           </div>
           <div class="wa-center-col">
@@ -456,20 +524,165 @@
                   </div>
                   <div style="display: flex; flex-direction: column; gap: 8px;">
                     <div style="background:#141414; border:1px solid #222; border-radius:8px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center;">
-                      <div class="wa-row"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> <strong>Manchester Clients</strong></div>
+                      <div class="wa-row"><span class="wa-folder-dot" style="background:#f59e0b;"></span><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> <strong>Manchester Clients</strong></div>
                       <div class="wa-meta">142 contacts · Shared</div>
                     </div>
-                    <div class="wa-bar">
-                      <div class="wa-row"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> <strong>Project Phoenix</strong></div>
-                      <div class="wa-meta">37 contacts · Private</div>
+                    <div class="wa-bar" style="margin-left:26px;">
+                      <div class="wa-row"><span class="wa-folder-dot" style="background:#f59e0b;"></span><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> <strong>Airport Extension</strong></div>
+                      <div class="wa-meta">54 contacts · Subfolder</div>
                     </div>
                     <div class="wa-bar">
-                      <div class="wa-row"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> <strong>Subcontractors 2026</strong></div>
+                      <div class="wa-row"><span class="wa-folder-dot" style="background:#60a5fa;"></span><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> <strong>Subcontractors 2026</strong></div>
                       <div class="wa-meta">88 contacts · Shared</div>
                     </div>
                     <div class="wa-bar">
-                      <div class="wa-row"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> <strong>Investor Contacts</strong></div>
+                      <div class="wa-row"><span class="wa-folder-dot" style="background:#a78bfa;"></span><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> <strong>Investor Contacts</strong></div>
                       <div class="wa-meta">21 contacts · Private</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 1b: Team -->
+        <div class="web-walk-row">
+          <div class="wa-center">
+            <h2 class="heroTitle wa-h2">One database for the whole team.</h2>
+            <p class="f-desc" style="font-size: 18px; line-height: 1.6; max-width: 600px; margin: 0 auto;">
+              Invite your people and give everyone the same, always-current contact list. Owners and admins manage
+              members and folders; on the Professional plan you can set who may view, edit, or manage each folder
+              individually.
+            </p>
+          </div>
+          <div class="wa-center-col">
+            <p class="sample-data-label"><em>Sample data shown for illustration.</em></p>
+            <div class="browser-window small">
+              <div class="browser-chrome">
+                <div class="browser-dots">
+                  <div class="browser-dot red"></div>
+                  <div class="browser-dot yellow"></div>
+                  <div class="browser-dot green"></div>
+                </div>
+                <div class="browser-url">sigbot.app/team</div>
+              </div>
+              <div class="app-shell" style="min-height: 320px;">
+                <div class="app-sidebar">
+                  <div class="app-sidebar-logo"><span></span> SIGBOT</div>
+                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="1.6"/><path d="M9.5 4h5v2.4h-5z"/><path d="M9 11h6M9 15h4"/></svg></span> Contacts</div>
+                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13M15 6.5v13"/></svg></span> Map</div>
+                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> Folders</div>
+                  <div class="sidebar-item active"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="8" r="3.2"/><path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4"/></svg></span> Team</div>
+                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 8 12 3 17 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span> Export</div>
+                </div>
+                <div class="app-main">
+                  <div class="app-topbar">
+                    <div class="app-page-title">Team</div>
+                    <span class="wa-meta">4 of 5 seats used</span>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div class="wa-bar">
+                      <div class="wa-row"><strong>Alex Morgan</strong></div>
+                      <span class="wa-chip-accent">Owner</span>
+                    </div>
+                    <div class="wa-bar">
+                      <div class="wa-row"><strong>Sam Whitfield</strong></div>
+                      <span class="wa-chip">Admin</span>
+                    </div>
+                    <div class="wa-bar">
+                      <div class="wa-row"><strong>Jordan Blake</strong></div>
+                      <span class="wa-chip">Member</span>
+                    </div>
+                    <div class="wa-bar" style="border-style:dashed; opacity:0.75;">
+                      <div class="wa-row">dana@yourcompany.com</div>
+                      <span class="wa-chip">Invite sent</span>
+                    </div>
+                    <div class="wa-tile" style="margin-top:4px;">
+                      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+                        <div class="wa-row"><span class="wa-folder-dot" style="background:#f59e0b;"></span><strong>Manchester Clients</strong></div>
+                        <div style="display:flex; gap:6px;">
+                          <span class="wa-chip">Viewer</span>
+                          <span class="wa-chip-accent">Editor</span>
+                          <span class="wa-chip">Admin</span>
+                        </div>
+                      </div>
+                      <div style="margin-top:8px; color: var(--chrome);">Per-folder permissions — Professional plan</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 1c: Clean-up — review queue, duplicates, trash -->
+        <div class="web-walk-row">
+          <div class="wa-center">
+            <h2 class="heroTitle wa-h2">A database that cleans itself.</h2>
+            <p class="f-desc" style="font-size: 18px; line-height: 1.6; max-width: 600px; margin: 0 auto;">
+              Sigbot's classifier holds back newsletters, no-reply senders, and brand mail in a review queue instead
+              of filing them. Likely duplicates get clustered for a field-by-field merge you can undo, and anything
+              you delete waits in the trash for 30 days.
+            </p>
+          </div>
+          <div class="wa-center-col">
+            <p class="sample-data-label"><em>Sample data shown for illustration.</em></p>
+            <div class="browser-window small">
+              <div class="browser-chrome">
+                <div class="browser-dots">
+                  <div class="browser-dot red"></div>
+                  <div class="browser-dot yellow"></div>
+                  <div class="browser-dot green"></div>
+                </div>
+                <div class="browser-url">sigbot.app/contacts/review</div>
+              </div>
+              <div class="app-shell" style="min-height: 320px;">
+                <div class="app-main" style="padding: 18px 20px;">
+                  <div class="app-topbar">
+                    <div class="app-page-title">Review queue</div>
+                    <span class="wa-meta">3 held back</span>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div class="wa-tile">
+                      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+                        <div class="wa-row"><strong>news@buildweekly.com</strong></div>
+                        <div style="display:flex; gap:6px;">
+                          <span class="review-btn review-btn--ok">Approve</span>
+                          <span class="review-btn">Reject</span>
+                        </div>
+                      </div>
+                      <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
+                        <span class="wa-chip">marketing / notification subdomain</span>
+                        <span class="wa-chip">bulk-mail headers</span>
+                      </div>
+                    </div>
+                    <div class="wa-tile">
+                      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+                        <div class="wa-row"><strong>no-reply@invoicehub.io</strong></div>
+                        <div style="display:flex; gap:6px;">
+                          <span class="review-btn review-btn--ok">Approve</span>
+                          <span class="review-btn">Reject</span>
+                        </div>
+                      </div>
+                      <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
+                        <span class="wa-chip">no-reply / role address</span>
+                      </div>
+                    </div>
+                    <div class="wa-tile">
+                      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+                        <div class="wa-row"><strong>hello@apexcranes.co.uk</strong></div>
+                        <div style="display:flex; gap:6px;">
+                          <span class="review-btn review-btn--ok">Approve</span>
+                          <span class="review-btn">Reject</span>
+                        </div>
+                      </div>
+                      <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
+                        <span class="wa-chip">sender is the brand, not a person</span>
+                      </div>
+                    </div>
+                    <div style="font-size:12px; color: var(--chrome); padding: 2px 4px 0;">
+                      Approve once and Sigbot learns — or allowlist a domain so it's never held back again.
                     </div>
                   </div>
                 </div>
@@ -542,6 +755,25 @@
 
       </div>
 
+      <!-- Under the hood — the parser is the product's core IP; one
+           compact strip, not a lecture. -->
+      <section class="webapp-ai">
+        <p class="webapp-ai-eyebrow">Under the hood</p>
+        <h2 class="heroTitle wa-h2">Every signature is read twice.</h2>
+        <p class="f-desc wa-sub">
+          A structural parser works through each signature in fourteen passes — and the messy ones go to an AI
+          reader as well. The two results are merged field by field, weighted by confidence, so a mangled
+          mobile signature still comes out as a clean, complete contact.
+        </p>
+        <div class="webapp-ai-chips" aria-hidden="true">
+          <span class="webapp-ai-chip">heuristic parse</span>
+          <span class="webapp-ai-arrow">+</span>
+          <span class="webapp-ai-chip">AI read</span>
+          <span class="webapp-ai-arrow">→</span>
+          <span class="webapp-ai-chip webapp-ai-chip--out">confidence merge</span>
+        </div>
+      </section>
+
       <!-- Mini FAQ -->
       <section class="webapp-faq">
         <h2 class="heroTitle" style="font-size: 32px; margin: 0 auto 32px;">Common questions</h2>
@@ -568,6 +800,24 @@
           <p>
             Within minutes. Sigbot backfills your existing inbox and then extracts new contacts in real time as
             emails arrive.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I bring in contacts I already have?</h3>
+          <p>
+            Yes. Import CSV, Excel, or vCard files through a guided wizard with column mapping, or drag .eml and
+            Outlook .msg files onto the app to have their signatures parsed like live mail. Exports work the same
+            way in reverse — CSV or Excel, whole database or a filtered view.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How does team sharing work?</h3>
+          <p>
+            The Starter plan gives up to 5 people one shared database with team folders; Professional scales to 50
+            seats and adds per-folder permissions, so you decide who may view, edit, or manage each folder. See
+            <a href="pricing.html">pricing</a> for the full comparison.
           </p>
         </div>
 

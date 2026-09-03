@@ -18,8 +18,12 @@
                     const targetScreen = document.querySelector(`.${target}`);
                     if (targetScreen) targetScreen.classList.add('active');
 
+                    // A step may show a screen that has no tab of its own
+                    // (Scrape lives behind the Dashboard quick action);
+                    // data-nav names the tab to keep lit in that case.
+                    const navTarget = entry.target.dataset.nav || target;
                     navItems.forEach(n =>
-                        n.classList.toggle('active', n.dataset.screen === target));
+                        n.classList.toggle('active', n.dataset.screen === navTarget));
                 }
             });
         }, {

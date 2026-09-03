@@ -9,13 +9,13 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>Mobile App | Sigbot</title>
     <meta name="description"
-        content="Sigbot Mobile: Access your contact database, search, map, scan business cards, and share your profile via QR code on the go." />
+        content="Sigbot Mobile: your contact database on the go — caller ID on incoming calls, business-card scanning, inbox scraping from your phone, folders, an interactive map, and QR profile sharing." />
 
     <link rel="canonical" href="https://sigbot.co/mobile.html" />
     <meta name="robots" content="index,follow" />
 
     <meta property="og:title" content="Mobile App | Sigbot" />
-    <meta property="og:description" content="Access your Sigbot contact database on the go — search, map view, business-card scanning, and QR profile sharing." />
+    <meta property="og:description" content="Your Sigbot contact database on the go — caller ID, business-card scanning, inbox scraping from your phone, folders, map view, and QR profile sharing." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://sigbot.co/mobile.html" />
     <meta property="og:image" content="https://sigbot.co/assets/dashboard.png" />
@@ -23,6 +23,7 @@
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/mobile.css" />
     <link
     href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
@@ -73,8 +74,8 @@
                 Your Database,<br>On the Go.
             </h1>
             <p class="sub heroSub">
-                Take your contact database with you. Search contacts, view maps, scan business cards, and share your
-                profile via QR code.
+                Take your contact database with you. Know who's calling, scan business cards, run an inbox scrape
+                from your phone, and share your details with a QR code — all synced with the web app.
             </p>
             <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; align-items: center; margin: 0 auto;">
                 <!-- App Store Badge -->
@@ -155,7 +156,18 @@
                                         stroke-linecap="round"><circle cx="11" cy="11" r="7" /><line x1="16.5" y1="16.5" x2="21" y2="21" /></svg>
                                 </div>
                             </div>
+                            <!-- The real Contacts screen leads with the Caller ID
+                                 card and folder chips; the mock matches it. -->
+                            <div class="app-callerid">
+                                <span>Caller ID &middot; sync to your phone book</span>
+                                <span class="cid-on">On</span>
+                            </div>
                             <div class="app-search-bar">Search contacts...</div>
+                            <div class="app-chip-row" aria-hidden="true">
+                                <span class="m-chip active">All</span>
+                                <span class="m-chip"><span class="m-dot" style="background:#f59e0b;"></span>Site Crew</span>
+                                <span class="m-chip"><span class="m-dot" style="background:#60a5fa;"></span>Suppliers</span>
+                            </div>
                             <div class="app-list">
                                 <div class="app-list-item">
                                     <div class="app-avatar-sm">RT</div>
@@ -216,7 +228,29 @@
                             <div class="app-header-overlay">Scan Card</div>
                         </div>
 
-                        <!-- Screen 5: Profile -->
+                        <!-- Screen 5: Scrape — an Outlook run in progress.
+                             In the app this lives behind the Dashboard quick
+                             action, so its scroll step keeps Dashboard lit in
+                             the tab bar (data-nav). -->
+                        <div class="app-screen screen-scrape">
+                            <div class="app-header">
+                                <div>Scrape Email</div>
+                            </div>
+                            <div class="scrape-progress-card">
+                                <div><strong>Outlook</strong> &middot; scanning inbox&hellip;</div>
+                                <div class="scrape-bar-track"><div class="scrape-bar-fill"></div></div>
+                                <div>124 of 200 emails &middot; 38 contacts found</div>
+                            </div>
+                            <div class="app-section-title">Live feed</div>
+                            <div class="scrape-feed">
+                                <div class="scrape-feed-item"><span><strong>Rachel Thornton</strong> &middot; Bayview Construction</span><span class="ok">Saved</span></div>
+                                <div class="scrape-feed-item"><span><strong>Derek Malone</strong> &middot; Horizon Builders</span><span class="ok">Saved</span></div>
+                                <div class="scrape-feed-item"><span><strong>Liam Ashford</strong> &middot; Cedarstone Developments</span><span class="ok">Saved</span></div>
+                                <div class="scrape-feed-item"><span><strong>Priya Kavanaugh</strong> &middot; Clearwater Industries</span><span class="ok">Saved</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Screen 6: Profile -->
                         <div class="app-screen screen-sync">
                             <div class="app-header">
                                 <div>My Profile</div>
@@ -278,14 +312,16 @@
             <div class="scroll-steps">
                 <div class="step" data-screen="screen-dashboard">
                     <h2>Dashboard Overview</h2>
-                    <p>Get a quick snapshot of your database growth and recently added contacts instantly.</p>
+                    <p>Get a quick snapshot of your database growth and recently added contacts, with quick actions
+                        to scan a card or scrape your inbox right from the first screen.</p>
                 </div>
 
                 <div class="step" data-screen="screen-contacts">
-                    <h2>Powerful Search</h2>
-                    <p>Find anyone in seconds. Filter by company, role, or name and start a call with one tap. Save
-                        any contact straight into your phone's own address book, so they show up on an incoming
-                        call.</p>
+                    <h2>Search, Call, Caller ID</h2>
+                    <p>Find anyone in seconds and start a call or email with one tap. Turn on Caller ID sync and
+                        Sigbot keeps your phone's own address book up to date, so the site manager who emailed you
+                        last week shows up by name when they ring. Your folders come along too — personal and team,
+                        colour-coded, exactly as they are on the web.</p>
                 </div>
 
                 <div class="step" data-screen="screen-map">
@@ -295,23 +331,176 @@
 
                 <div class="step" data-screen="screen-scan">
                     <h2>Card Scanner</h2>
-                    <p>Met someone new? Snap a photo of their business card to accurately extract details directly into
-                        your database.</p>
+                    <p>Met someone new? Snap a photo of their business card and Sigbot reads it, fills in the
+                        fields, and files the contact into your database — with a review step before anything is
+                        saved. Included on the Individual plan and up.</p>
+                </div>
+
+                <div class="step" data-screen="screen-scrape" data-nav="screen-dashboard">
+                    <h2>Scrape an Inbox From Your Phone</h2>
+                    <p>You don't need to be at a desk to fill your database. Sign in to Outlook with your Microsoft
+                        account — no password ever touches the app — and run a scrape on the spot. It's the same
+                        parser the web app uses, and every contact lands in the same synced database.</p>
                 </div>
 
                 <div class="step" data-screen="screen-sync">
-                    <h2>Profile & QR Code</h2>
-                    <p>Create your personal profile card and generate a vCard QR code so others can scan and save your
-                        contact details instantly.</p>
+                    <h2>Profile &amp; QR Code</h2>
+                    <p>Create your personal profile card and generate a vCard QR code so others can scan and save
+                        your contact details instantly — no app needed on their side.</p>
                 </div>
+            </div>
+        </div>
 
-                <!-- The phone can run a scrape itself; the page never said so. -->
-                <div class="step" data-screen="screen-dashboard">
-                    <h2>Scan an inbox from your phone</h2>
-                    <p>You don't need to be at a desk to fill your database. Run a scrape on a connected inbox
-                        straight from the app — the same parser the web app uses, with everything landing in the
-                        same synced database.</p>
+        <!-- REAL SCREENSHOTS — the same captures as the Play Store listing,
+             so the page shows the shipping app, not just the illustration. -->
+        <section class="shots-section">
+            <h2 class="heroTitle m-h2">Straight from the app.</h2>
+            <p class="f-desc m-sub">Real screens from the Android build — the same dark theme, the same database,
+                sized for one thumb.</p>
+            <div class="shots-grid">
+                <figure class="shot">
+                    <div class="shot-frame">
+                        <img src="assets/mobile-dashboard.png" loading="lazy" width="1080" height="1920"
+                            alt="Sigbot mobile dashboard showing total contacts, Scan Card and Scrape Email quick actions, and recently added contacts" />
+                    </div>
+                    <figcaption class="shot-caption"><strong>Dashboard</strong> — totals, recent additions, and
+                        one-tap scan or scrape.</figcaption>
+                </figure>
+                <figure class="shot">
+                    <div class="shot-frame">
+                        <img src="assets/mobile-contacts.png" loading="lazy" width="1080" height="1920"
+                            alt="Sigbot mobile contacts list with Caller ID sync toggle, search, and call and email buttons on every row" />
+                    </div>
+                    <figcaption class="shot-caption"><strong>Contacts</strong> — search, Caller ID sync, and a call
+                        button on every row.</figcaption>
+                </figure>
+                <figure class="shot">
+                    <div class="shot-frame">
+                        <img src="assets/mobile-profile.png" loading="lazy" width="1080" height="1920"
+                            alt="Sigbot mobile profile screen with plan usage meters and the shareable QR code profile" />
+                    </div>
+                    <figcaption class="shot-caption"><strong>Profile</strong> — your plan usage at a glance and
+                        your shareable QR card.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- FEATURE GRID — everything the app does, in one place. -->
+        <section class="m-features">
+            <h2 class="heroTitle m-h2">Built for the field.</h2>
+            <p class="f-desc m-sub">The full Sigbot database in your pocket — and a few things only a phone can do.</p>
+
+            <div class="m-features-grid">
+                <div class="panel">
+                    <div class="feature-icon-box">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z" />
+                        </svg>
+                    </div>
+                    <h3 class="f-title">Caller ID sync</h3>
+                    <p class="f-desc">Auto-sync your Sigbot contacts into your phone's address book, so incoming
+                        calls show a name and company instead of a number.</p>
                 </div>
+                <div class="panel">
+                    <div class="feature-icon-box">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8" /><path d="M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8" />
+                            <path d="M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16" /><path d="M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16" />
+                            <rect x="7" y="9" width="10" height="6.5" rx="1" />
+                        </svg>
+                    </div>
+                    <h3 class="f-title">Business-card scanner</h3>
+                    <p class="f-desc">Photograph a card and Sigbot reads it into a contact — name, title, company,
+                        phone, email — with a review step before it saves. Individual plan and up.</p>
+                </div>
+                <div class="panel">
+                    <div class="feature-icon-box">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                    </div>
+                    <h3 class="f-title">Inbox scraping on the go</h3>
+                    <p class="f-desc">Connect Outlook with a Microsoft sign-in and run a scrape from anywhere — the
+                        same server-side parser as the web app, no passwords stored on the phone.</p>
+                </div>
+                <div class="panel">
+                    <div class="feature-icon-box">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z" />
+                        </svg>
+                    </div>
+                    <h3 class="f-title">Personal &amp; team folders</h3>
+                    <p class="f-desc">The folders you set up on the web follow you — personal and team, colour-coded
+                        chips, one tap to filter the list to a project or crew.</p>
+                </div>
+                <div class="panel">
+                    <div class="feature-icon-box">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" />
+                            <rect x="3" y="14" width="7" height="7" rx="1" />
+                            <path d="M14 14h3v3h-3zM19 14h2v2h-2zM14 19h2v2h-2zM18 18h3v3h-3z" fill="currentColor" stroke="none" />
+                        </svg>
+                    </div>
+                    <h3 class="f-title">QR vCard sharing</h3>
+                    <p class="f-desc">Your details as a scannable QR code. Anyone with a camera can save you to
+                        their phone — they don't need Sigbot installed.</p>
+                </div>
+                <div class="panel">
+                    <div class="feature-icon-box">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 12a9 9 0 1 1-2.6-6.3" /><polyline points="21 3 21 9 15 9" />
+                        </svg>
+                    </div>
+                    <h3 class="f-title">Always in sync</h3>
+                    <p class="f-desc">One database in the cloud. A card scanned on site is on your teammate's
+                        browser before you're back in the van — and vice versa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MINI FAQ -->
+        <section class="mobile-faq">
+            <h2 class="heroTitle" style="font-size: 32px; margin: 0 auto 32px;">Common questions</h2>
+
+            <div class="faq-item">
+                <h3>When can I get the app?</h3>
+                <p>The Android app arrives on Google Play first, with the iOS App Store to follow — both are coming
+                    soon. Your account will work in the app the day it lands; in the meantime the
+                    <a href="webapp.html">web app</a> has everything, from any browser.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Is the mobile app included in my plan?</h3>
+                <p>Yes — the mobile app and cloud sync are included on every plan, Free included. Business-card
+                    scanning is part of the Individual plan and up. See <a href="pricing.html">pricing</a> for the
+                    full comparison.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Do I need a separate account?</h3>
+                <p>No. It's one account and one database everywhere — log in on mobile with the same details you
+                    use at sigbot.app and your contacts, folders, and plan come with you.</p>
+            </div>
+
+            <p class="mobile-faq-more"><a href="/faq.html">See all FAQs →</a></p>
+        </section>
+
+        <!-- CLOSING CTA -->
+        <div class="mobile-cta-end">
+            <h2 class="heroTitle" style="font-size: 48px; margin: 0 auto 20px; text-align: center;">Your database will
+                be ready before the app is.</h2>
+            <p class="pageSub" style="margin: 0 auto 40px; max-width: 520px;">Start free on the web today — connect
+                your inbox, let Sigbot build your contact list, and it'll all be waiting in your pocket at launch.</p>
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://sigbot.app/get-started" class="btnPrimary" style="padding: 16px 40px; font-size: 16px;">Start free</a>
+                <a href="webapp.html" class="btnGhost" style="padding: 16px 32px; font-size: 16px;">Explore the web app</a>
             </div>
         </div>
 
