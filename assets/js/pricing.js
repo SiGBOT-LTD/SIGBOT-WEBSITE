@@ -8,18 +8,16 @@
       token: 'live_5ccca908a5ed4850c510274c3e2'
     });
 
-    /* 2026 tiers. These feed PricePreview only — checkout happens in the
-       app (see openCheckout). FILL THESE IN after the 2026 catalog exists
-       (scripts/setup-paddle.mjs in the app repo prints them); while any id
-       is empty, localisation is skipped entirely and the USD markup in
-       pricing.html stands, country picker hidden — a page that cannot
-       localise should look like a page that never tried.
-       Starter and Professional are annual-only: no monthly ids exist. */
+    /* 2026 tiers — "Sigbot Individual / Starter / Professional" catalog
+       created 2026-09-03 by scripts/setup-paddle.mjs (app repo), priced in
+       USD. These feed PricePreview only — checkout happens in the app (see
+       openCheckout). Starter and Professional are annual-only: no monthly
+       ids exist. */
     var PRICE_IDS = {
-      individual:         '',
-      individualAnnual:   '',
-      starterAnnual:      '',
-      professionalAnnual: ''
+      individual:         'pri_01m1k1fmh4jvpst9t6gqmdb5zb',
+      individualAnnual:   'pri_01m1k1fmn6nhmwrerfks8thb2e',
+      starterAnnual:      'pri_01m1k1fmzdhemebjnzfabg33gj',
+      professionalAnnual: 'pri_01m1k1fng49mpkxfr9exp9tth9'
     };
 
     /* ─── LOCALISED PRICING ───────────────────────────────────────────

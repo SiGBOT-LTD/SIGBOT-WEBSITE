@@ -20,9 +20,7 @@
    Change them together. */
 (function () {
   var TOKEN = 'live_5ccca908a5ed4850c510274c3e2';
-  /* FILL IN once the 2026 catalog exists (scripts/setup-paddle.mjs
-     prints the ids). Empty = every path leaves the $50 markup alone. */
-  var INDIVIDUAL_MONTHLY = '';
+  var INDIVIDUAL_MONTHLY = 'pri_01m1k1fmh4jvpst9t6gqmdb5zb';
 
   var CACHE_KEY   = 'sigbot.localPrice.v2';
   var COUNTRY_KEY = 'sigbot.country';
