@@ -2,182 +2,26 @@
    mobile.html — page styles.
    The scrollytelling phone (.mobile-showcase, .iphone-bezel, .app-*)
    lives in styles.css because it predates the per-page convention;
-   everything added since — the real-screenshot gallery, feature grid,
-   FAQ, and the extra mock-screen pieces — lives here.
+   everything added since — the real-screenshot screens, feature grid,
+   FAQ, and closing CTA — lives here.
    ═══════════════════════════════════════════════════════════════════ */
 
-/* ── Mock-screen additions ──────────────────────────────────────────
-   Small pieces the real app has that the original mock screens lacked:
-   the Caller ID card and folder chips on Contacts, and the whole
-   Scrape screen. Kept at mock scale (10-12px type, #141414 tiles). */
-
-.app-callerid {
-  margin: 0 20px 10px;
-  background: #141414;
-  border: 1px solid #222;
-  border-radius: 10px;
-  padding: 8px 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  font-size: 11px;
-  color: var(--muted);
+/* ── Real screenshot screens ────────────────────────────────────────
+   Dashboard, Contacts, Scrape and Profile are actual captures of the
+   app (rendered at the bezel's exact 1:2 aspect). The capture's own
+   tab bar sits under the mock .app-bottom-nav, which is opaque and
+   drives the scroll-step highlighting; Map and Scan stay as themed
+   mockups (neither renders in the capture pipeline). */
+.app-screen--img {
+  padding: 0;
 }
 
-/* Mint is reserved for "confirmed"; an enabled toggle qualifies. */
-.app-callerid .cid-on {
-  color: var(--verify);
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.app-chip-row {
-  display: flex;
-  gap: 6px;
-  margin: 0 20px 12px;
-  overflow: hidden;
-}
-
-.m-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: #1a1a1a;
-  border: 1px solid #2a2a2a;
-  border-radius: 999px;
-  padding: 3px 9px;
-  font-size: 10px;
-  color: var(--muted);
-  white-space: nowrap;
-}
-
-.m-chip.active {
-  background: rgba(var(--accent-rgb), 0.12);
-  border-color: rgba(var(--accent-rgb), 0.3);
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.m-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  display: inline-block;
-  flex-shrink: 0;
-}
-
-/* Scrape screen: an Outlook run in progress with a live feed below it. */
-.scrape-progress-card {
-  margin: 0 20px 16px;
-  background: #1a1a1a;
-  border: 1px solid #2a2a2a;
-  border-radius: 12px;
-  padding: 14px;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.scrape-progress-card strong {
-  color: var(--fg);
-  font-weight: 600;
-}
-
-.scrape-bar-track {
-  height: 6px;
-  background: #26262c;
-  border-radius: 999px;
-  overflow: hidden;
-  margin: 10px 0 8px;
-}
-
-.scrape-bar-fill {
-  height: 100%;
-  width: 62%;
-  background: var(--accent);
-  border-radius: 999px;
-}
-
-.scrape-feed {
-  margin: 0 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.scrape-feed-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  background: #141414;
-  border: 1px solid #222;
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.scrape-feed-item strong {
-  color: var(--fg);
-  font-weight: 600;
-}
-
-.scrape-feed-item .ok {
-  color: var(--verify);
-  font-size: 11px;
-  white-space: nowrap;
-}
-
-/* ── Real screenshots ───────────────────────────────────────────────
-   Actual captures of the shipping Android build (same frames as the
-   Play Store listing), so the page shows the app itself and not only
-   the illustration above. */
-
-.shots-section {
-  text-align: center;
-  margin: 0 auto 120px;
-}
-
-.shots-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 36px;
-  margin-top: 48px;
-}
-
-.shot {
-  margin: 0;
-}
-
-.shot-frame {
-  background: #000;
-  border: 3px solid #333;
-  border-radius: 26px;
-  padding: 8px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-}
-
-.shot-frame img {
+.app-screen--img img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
   display: block;
-  border-radius: 18px;
-}
-
-.shot-caption {
-  margin-top: 16px;
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.5;
-}
-
-@media (max-width: 760px) {
-  .shots-grid {
-    grid-template-columns: 1fr;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-  }
 }
 
 /* ── Section heading + feature grid ─────────────────────────────────

@@ -28,7 +28,7 @@
   <meta property="og:description" content="Access your Sigbot contact database from any browser." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sigbot.co/webapp.html" />
-  <meta property="og:image" content="https://sigbot.co/assets/dashboard.png" />
+  <meta property="og:image" content="https://sigbot.co/assets/webapp-dashboard.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -104,6 +104,7 @@
         <p class="f-desc wa-sub">
           Track contact growth over time, spot your top companies and roles, and see exactly where your data is incomplete — all from one screen.
         </p>
+        <p class="sample-data-label"><em>Sample data shown for illustration.</em></p>
         <div style="display: flex; justify-content: center;">
           <div class="browser-window">
             <div class="browser-chrome">
@@ -114,110 +115,7 @@
               </div>
               <div class="browser-url">sigbot.app/dashboard</div>
             </div>
-            <div class="app-shell" style="min-height: 520px;">
-              <div class="app-sidebar" style="display: flex; flex-direction: column; width: 190px;">
-                <div class="app-sidebar-logo"><span></span> SIGBOT</div>
-                <!-- Workspace dropdown -->
-                <div style="margin:0 10px 14px;background:rgba(var(--accent-rgb), 0.1);border:1px solid rgba(var(--accent-rgb), 0.2);border-radius:6px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;cursor:default;">
-                  <span style="font-size: 12px;color: var(--muted);font-weight:500;">Personal</span>
-                  <span class="wa-meta">▾</span>
-                </div>
-                <div class="sidebar-item active"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="20" x2="20" y2="20"/><rect x="5.5" y="12" width="4" height="5"/><rect x="11.5" y="7" width="4" height="10"/><rect x="17" y="14" width="4" height="3"/></svg></span> Dashboard</div>
-                <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="8" r="3.2"/><path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4"/></svg></span> Contacts</div>
-                <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13M15 6.5v13"/></svg></span> Map</div>
-                <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5 19.5v-1a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v1"/></svg></span> Account</div>
-                <div style="padding:14px 16px 4px;display:flex;justify-content:space-between;align-items:center;">
-                  <span style="font-size: 12px;color: var(--chrome);text-transform:uppercase;letter-spacing:0.07em;">Folders</span>
-                  <span style="font-size:15px;color: var(--chrome);line-height:1;">+</span>
-                </div>
-                <div class="sidebar-item" style="color: var(--chrome);font-size: 12px;padding:5px 16px;"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> New Folder</div>
-                <div class="sidebar-usage">
-                  <div class="sidebar-usage-row"><span style="color: var(--chrome);font-size: 12px;text-transform:uppercase;letter-spacing:0.05em;">Email scraping</span><span style="font-size: 12px;color:var(--accent);font-weight:600;">Free</span></div>
-                  <div class="sidebar-usage-row"><span>Today</span><span>36 / 150</span></div>
-                  <div class="sidebar-usage-row"><span>Contacts</span><span>279 / 1,000</span></div>
-                  <div class="sidebar-upgrade-btn"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></svg></span> Upgrade</div>
-                </div>
-              </div>
-              <div class="app-main">
-                <div class="app-topbar">
-                  <div class="app-page-title">Dashboard</div>
-                </div>
-                <!-- Stat cards -->
-                <div class="db-stats-grid">
-                  <div class="db-stat-box">
-                    <div class="db-stat-lbl">Total Contacts</div>
-                    <div class="db-stat-val">279</div>
-                    <div class="db-stat-meta">0 added this week</div>
-                  </div>
-                  <div class="db-stat-box">
-                    <div class="db-stat-lbl">Top Company</div>
-                    <div class="db-stat-val">Bird</div>
-                    <div class="db-stat-meta">6 contacts</div>
-                  </div>
-                  <div class="db-stat-box">
-                    <div class="db-stat-lbl">Top Role</div>
-                    <div class="db-stat-val" style="font-size:12px;padding-top:2px;">Project Manager</div>
-                    <div class="db-stat-meta">6 contacts</div>
-                  </div>
-                  <div class="db-stat-box">
-                    <div class="db-stat-lbl">Growth</div>
-                    <div class="db-stat-val">+12%</div>
-                    <div class="db-stat-meta">Week over week</div>
-                  </div>
-                </div>
-                <!-- Growth chart -->
-                <div class="db-chart-box">
-                  <div class="db-chart-title-row">
-                    <div class="db-chart-title">Contact Growth</div>
-                    <div class="db-chart-range">May 26 — Jun 26</div>
-                  </div>
-                  <svg class="db-chart-svg" viewBox="0 0 400 52" preserveAspectRatio="none">
-                    <defs>
-                      <linearGradient id="cGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.25"/>
-                        <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
-                      </linearGradient>
-                    </defs>
-                    <path d="M0,52 C40,51 80,48 120,42 C160,36 200,24 260,14 C300,8 350,3 400,1 L400,52 Z" fill="url(#cGrad)"/>
-                    <path d="M0,52 C40,51 80,48 120,42 C160,36 200,24 260,14 C300,8 350,3 400,1" stroke="var(--accent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="400" cy="1" r="3" fill="var(--accent)"/>
-                  </svg>
-                </div>
-                <!-- Recent Activity + Data Completeness -->
-                <div class="db-bottom-grid">
-                  <div class="db-bottom-box">
-                    <div class="db-bottom-title">Recent Activity</div>
-                    <div class="activity-item"><span>Imported <strong>221 contacts</strong></span><span class="activity-date">26 Jun</span></div>
-                    <div class="activity-item"><span>Imported <strong>221 contacts</strong></span><span class="activity-date">24 Jun</span></div>
-                    <div class="activity-item"><span>Imported <strong>41 contacts</strong></span><span class="activity-date">22 Jun</span></div>
-                    <div class="activity-item"><span>Imported <strong>20 contacts</strong></span><span class="activity-date">21 Jun</span></div>
-                  </div>
-                  <div class="db-bottom-box">
-                    <div class="db-bottom-title">Data Completeness</div>
-                    <div class="comp-row">
-                      <div class="comp-label">Email</div>
-                      <div class="comp-bar-track"><div class="comp-bar-fill" style="width:100%;background:#22c55e;"></div></div>
-                      <div class="comp-pct" style="color:#22c55e;">100%</div>
-                    </div>
-                    <div class="comp-row">
-                      <div class="comp-label">Phone</div>
-                      <div class="comp-bar-track"><div class="comp-bar-fill" style="width:88%;background:#22c55e;"></div></div>
-                      <div class="comp-pct" style="color:#22c55e;">88%</div>
-                    </div>
-                    <div class="comp-row">
-                      <div class="comp-label">Company</div>
-                      <div class="comp-bar-track"><div class="comp-bar-fill" style="width:100%;background:#22c55e;"></div></div>
-                      <div class="comp-pct" style="color:#22c55e;">100%</div>
-                    </div>
-                    <div class="comp-row">
-                      <div class="comp-label">Job Title</div>
-                      <div class="comp-bar-track"><div class="comp-bar-fill" style="width:16%;background:#f59e0b;"></div></div>
-                      <div class="comp-pct" style="color:#f59e0b;">16%</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <img src="assets/webapp-dashboard.png" alt="The Sigbot dashboard: total contacts, top company and role, a contact growth chart, recent activity, and data completeness meters" width="1872" height="1154" loading="lazy" style="width: 100%; display: block;">
           </div>
         </div>
       </div>
@@ -315,7 +213,7 @@
             </svg>
           </div>
           <h3 class="f-title">Search, filter, export</h3>
-          <p class="f-desc">Search across thousands of contacts instantly. Filter by company, role, or source inbox. Export to CSV or Excel in one click.</p>
+          <p class="f-desc">Search across thousands of contacts instantly. Filter by company, role, or source inbox. Export to Excel, CSV, JSON, or vCard in one click.</p>
         </div>
         <div class="panel">
           <div class="feature-icon-box">
@@ -418,72 +316,7 @@
                 </div>
                 <div class="browser-url">sigbot.app/contacts</div>
               </div>
-              <div class="app-shell" style="min-height: 420px;">
-
-                <!-- Sidebar — matches real app structure -->
-                <div class="app-sidebar" style="display:flex;flex-direction:column;width:190px;">
-                  <div class="app-sidebar-logo"><span></span> SIGBOT</div>
-
-                  <!-- Workspace dropdown -->
-                  <div style="margin:0 10px 14px;background:rgba(var(--accent-rgb), 0.1);border:1px solid rgba(var(--accent-rgb), 0.2);border-radius:6px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;cursor:default;">
-                    <span style="font-size: 12px;color: var(--muted);font-weight:500;">Personal</span>
-                    <span class="wa-meta">▾</span>
-                  </div>
-
-                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="20" x2="20" y2="20"/><rect x="5.5" y="12" width="4" height="5"/><rect x="11.5" y="7" width="4" height="10"/><rect x="17" y="14" width="4" height="3"/></svg></span> Dashboard</div>
-                  <div class="sidebar-item active"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="8" r="3.2"/><path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4"/></svg></span> Contacts</div>
-                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13M15 6.5v13"/></svg></span> Map</div>
-                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5 19.5v-1a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v1"/></svg></span> Account</div>
-
-                  <!-- Folders section -->
-                  <div style="padding:14px 16px 4px;display:flex;justify-content:space-between;align-items:center;">
-                    <span style="font-size: 12px;color: var(--chrome);text-transform:uppercase;letter-spacing:0.07em;">Folders</span>
-                    <span style="font-size:15px;color: var(--chrome);line-height:1;cursor:default;">+</span>
-                  </div>
-                  <div class="sidebar-item" style="color: var(--chrome);font-size: 12px;padding:5px 16px;"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> New Folder</div>
-
-                  <!-- Upgrade widget -->
-                  <div class="sidebar-usage">
-                    <div class="sidebar-usage-row">
-                      <span style="color: var(--chrome);font-size: 12px;text-transform:uppercase;letter-spacing:0.05em;">Email scraping</span>
-                      <span style="font-size: 12px;color:var(--accent);font-weight:600;">Free</span>
-                    </div>
-                    <div class="sidebar-usage-row"><span>Today</span><span>36 / 150</span></div>
-                    <div class="sidebar-usage-row"><span>Contacts</span><span>279 / 1,000</span></div>
-                    <div class="sidebar-upgrade-btn"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></svg></span> Upgrade</div>
-                  </div>
-                </div>
-
-                <!-- Main content -->
-                <div class="app-main" style="overflow:hidden;">
-                  <!-- Topbar matching real app buttons -->
-                  <div class="app-topbar" style="flex-wrap:wrap;gap:8px;">
-                    <div style="display:flex;align-items:baseline;gap:10px;flex-shrink:0;">
-                      <div class="app-page-title">Contacts</div>
-                      <span style="font-size: 12px;color: var(--chrome);font-weight:400;">279 contacts</span>
-                    </div>
-                    <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
-                      <div class="app-search" style="width:140px;">Search contacts...</div>
-                      <div style="background:#1a1a1a;border:1px solid #2a2a2a;color: var(--chrome);font-size: 12px;font-weight:600;padding:5px 8px;border-radius:6px;cursor:default;white-space:nowrap;">Add Data</div>
-                      <div style="background:#1a1a1a;border:1px solid #2a2a2a;color: var(--chrome);font-size: 12px;font-weight:600;padding:5px 8px;border-radius:6px;cursor:default;white-space:nowrap;">Export Data</div>
-                      <div style="background:var(--accent);color: var(--bg);font-size: 12px;font-weight:600;padding:5px 8px;border-radius:6px;cursor:default;white-space:nowrap;">+ New Contact</div>
-                    </div>
-                  </div>
-
-                  <!-- Table header -->
-                  <div style="display:grid;grid-template-columns:20px 1.4fr 1.8fr 1.4fr 1.1fr 0.1fr;gap:6px;padding:6px 8px;font-size: 12px;color: var(--chrome);text-transform:uppercase;letter-spacing:0.06em;border-bottom:1px solid #1e1e1e;margin-bottom:2px;align-items:center;">
-                    <div></div><div>Name ↕</div><div>Email ↕</div><div>Company ↕</div><div>Title ↕</div><div></div>
-                  </div>
-
-                  <!-- Contact rows — real data from app screenshot -->
-                  <div class="ctrow"><div class="ctcheck"></div><div class="ctcell"><div class="ctname">Amy Levine</div><div class="ctmeta">(506) 431-7139 &nbsp;·&nbsp; Canada</div></div><div class="ctcell ctmuted">amy.levine@ironcladcontracting.com</div><div class="ctcell ctmuted">Ironclad Contracting</div><div class="ctcell ctmuted">Site Superintendent</div><div class="ctdots">···</div></div>
-                  <div class="ctrow ctalt"><div class="ctcheck"></div><div class="ctcell"><div class="ctname">Martha Gilbert</div><div class="ctmeta">(405) 377-3515 &nbsp;·&nbsp; USA</div></div><div class="ctcell ctmuted">martha.gilbert@anchorpointconstruction.com</div><div class="ctcell ctmuted">Anchor Point Construction</div><div class="ctcell ctmuted">Civil Engineer</div><div class="ctdots">···</div></div>
-                  <div class="ctrow"><div class="ctcheck"></div><div class="ctcell"><div class="ctname">Colton Clay</div><div class="ctmeta">(267) 586-9261 &nbsp;·&nbsp; USA</div></div><div class="ctcell ctmuted">colton.clay@pinnacleconstructiongroup.com</div><div class="ctcell ctmuted">Pinnacle Construction Group</div><div class="ctcell ctmuted">Civil Engineer</div><div class="ctdots">···</div></div>
-                  <div class="ctrow ctalt"><div class="ctcheck"></div><div class="ctcell"><div class="ctname">Deborah Reid</div><div class="ctmeta">(746) 120-0471 &nbsp;·&nbsp; USA</div></div><div class="ctcell ctmuted">deborah.reid@horizonbuildpartners.com</div><div class="ctcell ctmuted">Horizon Build Partners</div><div class="ctcell ctmuted">Site Manager</div><div class="ctdots">···</div></div>
-                  <div class="ctrow"><div class="ctcheck"></div><div class="ctcell"><div class="ctname">Brenda Carson</div><div class="ctmeta">(513) 709-8593 &nbsp;·&nbsp; USA</div></div><div class="ctcell ctmuted">brenda.carson@apexstructuralgroup.com</div><div class="ctcell ctmuted">Apex Structural Group</div><div class="ctcell ctmuted">Construction Estimator</div><div class="ctdots">···</div></div>
-                  <div class="ctrow ctalt"><div class="ctcheck"></div><div class="ctcell"><div class="ctname">Tammy Ballard</div><div class="ctmeta">(516) 048-1754 &nbsp;·&nbsp; USA</div></div><div class="ctcell ctmuted">tammy.ballard@northstarbuilders.com</div><div class="ctcell ctmuted">Northstar Builders</div><div class="ctcell ctmuted">Plumbing Contractor</div><div class="ctdots">···</div></div>
-                </div>
-              </div>
+              <img src="assets/webapp-contacts.png" alt="The Sigbot contacts table with sortable name, email, company and title columns, search, and the folder tree in the sidebar" width="1872" height="1154" loading="lazy" style="width: 100%; display: block;">
             </div>
           </div>
         </div>
@@ -507,41 +340,9 @@
                   <div class="browser-dot yellow"></div>
                   <div class="browser-dot green"></div>
                 </div>
-                <div class="browser-url">sigbot.app/folders</div>
+                <div class="browser-url">sigbot.app/team/manchester-clients</div>
               </div>
-              <div class="app-shell" style="min-height: 320px;">
-                <div class="app-sidebar">
-                  <div class="app-sidebar-logo"><span></span> SIGBOT</div>
-                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="1.6"/><path d="M9.5 4h5v2.4h-5z"/><path d="M9 11h6M9 15h4"/></svg></span> Contacts</div>
-                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13M15 6.5v13"/></svg></span> Map</div>
-                  <div class="sidebar-item active"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> Folders</div>
-                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="8" r="3.2"/><path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4"/></svg></span> Team</div>
-                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 8 12 3 17 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span> Export</div>
-                </div>
-                <div class="app-main">
-                  <div class="app-topbar">
-                    <div class="app-page-title">Folders</div>
-                  </div>
-                  <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <div style="background:#141414; border:1px solid #222; border-radius:8px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center;">
-                      <div class="wa-row"><span class="wa-folder-dot" style="background:#f59e0b;"></span><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> <strong>Manchester Clients</strong></div>
-                      <div class="wa-meta">142 contacts · Shared</div>
-                    </div>
-                    <div class="wa-bar" style="margin-left:26px;">
-                      <div class="wa-row"><span class="wa-folder-dot" style="background:#f59e0b;"></span><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> <strong>Airport Extension</strong></div>
-                      <div class="wa-meta">54 contacts · Subfolder</div>
-                    </div>
-                    <div class="wa-bar">
-                      <div class="wa-row"><span class="wa-folder-dot" style="background:#60a5fa;"></span><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> <strong>Subcontractors 2026</strong></div>
-                      <div class="wa-meta">88 contacts · Shared</div>
-                    </div>
-                    <div class="wa-bar">
-                      <div class="wa-row"><span class="wa-folder-dot" style="background:#a78bfa;"></span><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> <strong>Investor Contacts</strong></div>
-                      <div class="wa-meta">21 contacts · Private</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <img src="assets/webapp-folder.png" alt="A shared team folder in Sigbot showing its contacts, the admin permission badge, and colour-coded folders in the sidebar" width="1872" height="1154" loading="lazy" style="width: 100%; display: block;">
             </div>
           </div>
         </div>
@@ -565,53 +366,9 @@
                   <div class="browser-dot yellow"></div>
                   <div class="browser-dot green"></div>
                 </div>
-                <div class="browser-url">sigbot.app/team</div>
+                <div class="browser-url">sigbot.app/admin</div>
               </div>
-              <div class="app-shell" style="min-height: 320px;">
-                <div class="app-sidebar">
-                  <div class="app-sidebar-logo"><span></span> SIGBOT</div>
-                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="1.6"/><path d="M9.5 4h5v2.4h-5z"/><path d="M9 11h6M9 15h4"/></svg></span> Contacts</div>
-                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13M15 6.5v13"/></svg></span> Map</div>
-                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> Folders</div>
-                  <div class="sidebar-item active"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="8" r="3.2"/><path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4"/></svg></span> Team</div>
-                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 8 12 3 17 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span> Export</div>
-                </div>
-                <div class="app-main">
-                  <div class="app-topbar">
-                    <div class="app-page-title">Team</div>
-                    <span class="wa-meta">4 of 5 seats used</span>
-                  </div>
-                  <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <div class="wa-bar">
-                      <div class="wa-row"><strong>Alex Morgan</strong></div>
-                      <span class="wa-chip-accent">Owner</span>
-                    </div>
-                    <div class="wa-bar">
-                      <div class="wa-row"><strong>Sam Whitfield</strong></div>
-                      <span class="wa-chip">Admin</span>
-                    </div>
-                    <div class="wa-bar">
-                      <div class="wa-row"><strong>Jordan Blake</strong></div>
-                      <span class="wa-chip">Member</span>
-                    </div>
-                    <div class="wa-bar" style="border-style:dashed; opacity:0.75;">
-                      <div class="wa-row">dana@yourcompany.com</div>
-                      <span class="wa-chip">Invite sent</span>
-                    </div>
-                    <div class="wa-tile" style="margin-top:4px;">
-                      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
-                        <div class="wa-row"><span class="wa-folder-dot" style="background:#f59e0b;"></span><strong>Manchester Clients</strong></div>
-                        <div style="display:flex; gap:6px;">
-                          <span class="wa-chip">Viewer</span>
-                          <span class="wa-chip-accent">Editor</span>
-                          <span class="wa-chip">Admin</span>
-                        </div>
-                      </div>
-                      <div style="margin-top:8px; color: var(--chrome);">Per-folder permissions — Professional plan</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <img src="assets/webapp-team.png" alt="Sigbot team management: members with owner, admin and member roles, seat usage, and invitations" width="1872" height="1154" loading="lazy" style="width: 100%; display: block;">
             </div>
           </div>
         </div>
@@ -637,56 +394,7 @@
                 </div>
                 <div class="browser-url">sigbot.app/contacts/review</div>
               </div>
-              <div class="app-shell" style="min-height: 320px;">
-                <div class="app-main" style="padding: 18px 20px;">
-                  <div class="app-topbar">
-                    <div class="app-page-title">Review queue</div>
-                    <span class="wa-meta">3 held back</span>
-                  </div>
-                  <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <div class="wa-tile">
-                      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
-                        <div class="wa-row"><strong>news@buildweekly.com</strong></div>
-                        <div style="display:flex; gap:6px;">
-                          <span class="review-btn review-btn--ok">Approve</span>
-                          <span class="review-btn">Reject</span>
-                        </div>
-                      </div>
-                      <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
-                        <span class="wa-chip">marketing / notification subdomain</span>
-                        <span class="wa-chip">bulk-mail headers</span>
-                      </div>
-                    </div>
-                    <div class="wa-tile">
-                      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
-                        <div class="wa-row"><strong>no-reply@invoicehub.io</strong></div>
-                        <div style="display:flex; gap:6px;">
-                          <span class="review-btn review-btn--ok">Approve</span>
-                          <span class="review-btn">Reject</span>
-                        </div>
-                      </div>
-                      <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
-                        <span class="wa-chip">no-reply / role address</span>
-                      </div>
-                    </div>
-                    <div class="wa-tile">
-                      <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
-                        <div class="wa-row"><strong>hello@apexcranes.co.uk</strong></div>
-                        <div style="display:flex; gap:6px;">
-                          <span class="review-btn review-btn--ok">Approve</span>
-                          <span class="review-btn">Reject</span>
-                        </div>
-                      </div>
-                      <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
-                        <span class="wa-chip">sender is the brand, not a person</span>
-                      </div>
-                    </div>
-                    <div style="font-size:12px; color: var(--chrome); padding: 2px 4px 0;">
-                      Approve once and Sigbot learns — or allowlist a domain so it's never held back again.
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <img src="assets/webapp-review.png" alt="The Sigbot review queue holding back automated senders, with reasons, scores, and approve, reject and trust-domain actions" width="1872" height="1154" loading="lazy" style="width: 100%; display: block;">
             </div>
           </div>
         </div>
@@ -696,7 +404,7 @@
           <div class="wa-center">
             <h2 class="heroTitle wa-h2">Export in seconds.</h2>
             <p class="f-desc" style="font-size: 18px; line-height: 1.6; max-width: 600px; margin: 0 auto;">
-              Download your full database or a filtered subset as a CSV or Excel file. Send it straight into your CRM, mailing list, or reporting tool.
+              Download your full database or a filtered subset as Excel, CSV, JSON, or vCard. Send it straight into your CRM, mailing list, or reporting tool.
             </p>
             <p class="webapp-trust-note">
               🔒 Your data is encrypted in transit and at rest, and handled under our GDPR/PIPEDA-compliant
@@ -712,43 +420,9 @@
                   <div class="browser-dot yellow"></div>
                   <div class="browser-dot green"></div>
                 </div>
-                <div class="browser-url">sigbot.app/export</div>
+                <div class="browser-url">sigbot.app/contacts</div>
               </div>
-              <div class="app-shell" style="min-height: 320px;">
-                <div class="app-sidebar">
-                  <div class="app-sidebar-logo"><span></span> SIGBOT</div>
-                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="1.6"/><path d="M9.5 4h5v2.4h-5z"/><path d="M9 11h6M9 15h4"/></svg></span> Contacts</div>
-                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13M15 6.5v13"/></svg></span> Map</div>
-                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2.5h7A1.5 1.5 0 0 1 19 10v7a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 3 17V7.5z"/></svg></span> Folders</div>
-                  <div class="sidebar-item"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="8" r="3.2"/><path d="M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4"/></svg></span> Team</div>
-                  <div class="sidebar-item active"><span class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 8 12 3 17 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></span> Export</div>
-                </div>
-                <div class="app-main">
-                  <div class="app-topbar">
-                    <div class="app-page-title">Export</div>
-                  </div>
-                  <div style="display: flex; flex-direction: column; gap: 12px;">
-                    <div class="wa-tile">
-                      <div style="color: var(--fg); font-weight:600; margin-bottom:8px;">Select scope</div>
-                      <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                        <span style="background:rgba(var(--accent-rgb), 0.15);color:#60a5fa;border-radius:6px;padding:4px 10px;font-size: 12px;font-weight:600;">All contacts (279)</span>
-                        <span class="wa-chip">Current folder</span>
-                        <span class="wa-chip">Filtered view</span>
-                      </div>
-                    </div>
-                    <div class="wa-tile">
-                      <div style="color: var(--fg); font-weight:600; margin-bottom:8px;">Format</div>
-                      <div style="display:flex; gap:8px;">
-                        <span style="background:rgba(var(--accent-rgb), 0.15);color:#60a5fa;border-radius:6px;padding:4px 10px;font-size: 12px;font-weight:600;">.csv</span>
-                        <span class="wa-chip">.xlsx</span>
-                      </div>
-                    </div>
-                    <div style="background:var(--accent); border-radius:8px; padding:10px; text-align:center; font-size:13px; font-weight:700; color: var(--bg); cursor:default;">
-                      Download export
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <img src="assets/webapp-export.png" alt="The export menu on the Sigbot contacts table offering Excel, CSV, JSON and vCard downloads" width="1872" height="1154" loading="lazy" style="width: 100%; display: block;">
             </div>
           </div>
         </div>
@@ -808,7 +482,7 @@
           <p>
             Yes. Import CSV, Excel, or vCard files through a guided wizard with column mapping, or drag .eml and
             Outlook .msg files onto the app to have their signatures parsed like live mail. Exports work the same
-            way in reverse — CSV or Excel, whole database or a filtered view.
+            way in reverse — Excel, CSV, JSON, or vCard, whole database or a filtered view.
           </p>
         </div>
 
