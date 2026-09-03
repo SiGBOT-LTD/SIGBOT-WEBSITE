@@ -13,6 +13,19 @@
       max-width: 700px;
     }
 
+    /* Real-screenshot frames. The captures are 1140px-wide app viewports,
+       so the frame breaks out of the 936px text column and shows them at
+       (near) native size — squeezing a full app UI into the column made
+       its text unreadably small. An explicit width (not max-width) is
+       what escapes the column; flex-shrink: 0 stops the centering flex
+       wrappers from clamping it back; calc keeps a 24px gutter on
+       viewports narrower than the capture. */
+    .browser-window.wide {
+      width: min(1140px, calc(100vw - 48px));
+      max-width: none;
+      flex-shrink: 0;
+    }
+
     .browser-chrome {
       background: #1a1a1a;
       border-bottom: 1px solid #2a2a2a;
