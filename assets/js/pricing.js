@@ -8,34 +8,28 @@
       token: 'live_5ccca908a5ed4850c510274c3e2'
     });
 
-    /* These belong to the "Sigbot Pro" / "Sigbot Team" catalog created
-       2026-07-23, priced in USD. They feed PricePreview only — checkout
-       happens in the app (see openCheckout). The original products were
-       denominated in CAD by mistake and are archived — archived price IDs
-       fail PricePreview, so an old ID here kills the localised prices. */
+    /* 2026 tiers — "Sigbot Individual / Starter / Professional" catalog
+       created 2026-09-03 by scripts/setup-paddle.mjs (app repo), priced in
+       USD. These feed PricePreview only — checkout happens in the app (see
+       openCheckout). Starter and Professional are annual-only: no monthly
+       ids exist. */
     var PRICE_IDS = {
-      pro:        'pri_01ky5yqwjqxtjf3mxjd0yc4xsy',
-      proAnnual:  'pri_01ky5yqwq5pjjnett4r6dt31ka',
-      team:       'pri_01m0dx8gv58r1tqzfqab1rkkqs',
-      teamAnnual: 'pri_01m0dx8h59vgveg0csxasdzc42'
+      individual:         'pri_01m1k1fmh4jvpst9t6gqmdb5zb',
+      individualAnnual:   'pri_01m1k1fmn6nhmwrerfks8thb2e',
+      starterAnnual:      'pri_01m1k1fmzdhemebjnzfabg33gj',
+      professionalAnnual: 'pri_01m1k1fng49mpkxfr9exp9tth9'
     };
 
     /* ─── LOCALISED PRICING ───────────────────────────────────────────
-       The numbers written into pricing.html are US dollars. Everyone
-       outside the US was reading a price they would never be charged:
-       Paddle is the merchant of record, it converts and taxes at the
-       checkout, so a visitor in Berlin saw "$20" on this page and a euro
-       total on the next one.
+       The numbers written into pricing.html are US dollars. Paddle is
+       the merchant of record: it converts and taxes at the checkout, so
+       this asks Paddle what it will actually charge for each price ID in
+       the visitor's country and renders that answer — the only number
+       guaranteed to survive to the checkout.
 
-       Nothing below invents an exchange rate. Paddle is asked what it
-       will actually charge for each price ID in the visitor's country
-       and the page renders that answer, which is the only number that
-       can be guaranteed to survive to the checkout.
-
-       If the call fails — Paddle blocked, offline, an ad blocker eating
-       paddle.js — the USD markup already in the HTML is left untouched
-       and the country picker never appears. A page that cannot localise
-       should look like a page that never tried, not a broken one. */
+       If the call fails — Paddle blocked, offline, ids not yet filled in
+       — the USD markup already in the HTML is left untouched and the
+       country picker never appears. */
 
     var LOCALE = (navigator.languages && navigator.languages[0]) ||
                  navigator.language || 'en';
@@ -45,10 +39,7 @@
     var COUNTRY_KEY = 'sigbot.country';
 
     /* Grouped by continent because that is how someone scans for their
-       own country in a list this long. Countries are here to cover the
-       currencies Paddle settles in plus the markets Sigbot actually
-       sees traffic from; anywhere else still works, it just arrives via
-       IP detection and gets added to the list below on the fly. */
+       own country in a list this long. */
     var REGIONS = [
       ['Africa', [
         ['EG', 'Egypt'], ['KE', 'Kenya'], ['MA', 'Morocco'],
@@ -85,11 +76,11 @@
 
     /* The prices in the markup, as strings, so the renderer has one code
        path whether or not Paddle answered. These must stay in step with
-       pricing.html — they are what a visitor sees if the preview call
-       never lands. */
+       pricing.html. */
     var STATIC = {
-      pro:  { monthly: '$20',  annualMonthly: '$16',  annualTotal: '$192' },
-      team: { monthly: '$200', annualMonthly: '$160', annualTotal: '$1,920' }
+      individual:   { monthly: '$50', annualMonthly: '$42', annualTotal: '$500' },
+      starter:      { annualTotal: '$2,500' },
+      professional: { annualTotal: '$10,000' }
     };
 
     // Filled in once Paddle answers; null means "render the USD markup".
@@ -104,36 +95,21 @@
     var regionSelect = document.getElementById('country-select');
     var regionNote   = document.getElementById('region-note');
 
-    var faqSavePct   = document.getElementById('faq-save-pct');
-    var faqProYear   = document.getElementById('faq-pro-annual');
-    var faqTeamYear  = document.getElementById('faq-team-annual');
+    var faqSavePct         = document.getElementById('faq-save-pct');
+    var faqIndividualYear  = document.getElementById('faq-individual-annual');
 
-    var PLAN_EL = {
-      pro: {
-        price:   document.getElementById('pro-price'),
-        period:  document.getElementById('pro-period'),
-        orig:    document.getElementById('pro-original'),
-        savings: document.getElementById('pro-savings')
+    var EL = {
+      individual: {
+        price:   document.getElementById('individual-price'),
+        period:  document.getElementById('individual-period'),
+        orig:    document.getElementById('individual-original'),
+        savings: document.getElementById('individual-savings')
       },
-      team: {
-        price:   document.getElementById('team-price'),
-        period:  document.getElementById('team-period'),
-        orig:    document.getElementById('team-original'),
-        savings: document.getElementById('team-savings')
-      }
+      starter:      { price: document.getElementById('starter-price') },
+      professional: { price: document.getElementById('professional-price') }
     };
 
-    /* ─── MONEY ───────────────────────────────────────────────────────
-       Paddle returns amounts in the currency's smallest unit as strings:
-       "1600" is £16.00, but "1600" in yen is ¥1,600. Intl knows how many
-       decimal places each currency has, so it decides where the point
-       goes rather than a hardcoded /100.
-
-       Trailing ".00" is dropped. The headline price is set in a large
-       display weight and "$20" is the shape this page was designed
-       around; "$20.00" reads as a receipt. Anything that does not divide
-       evenly — a converted annual price split over twelve months — keeps
-       its decimals, because rounding those away would be a lie. */
+    /* ─── MONEY ─────────────────────────────────────────────────────── */
     function currencyDigits(currency) {
       try {
         return new Intl.NumberFormat('en', {
@@ -158,20 +134,15 @@
     }
 
     /* ─── RENDER ──────────────────────────────────────────────────────
-       One source of the three strings each plan needs, so the billing
-       toggle does not have to know whether prices came from Paddle or
-       from the markup. */
-    function displayed(plan) {
-      if (!LOCAL) return STATIC[plan];
-
-      var monthly = LOCAL[plan].monthly;
-      var annual  = LOCAL[plan].annual;
-
+       Only Individual has a monthly/annual choice; Starter and
+       Professional are annual-only (2026 tiers), so the toggle moves the
+       lead card and leaves their "/ year" figures alone. */
+    function individualDisplayed() {
+      if (!LOCAL) return STATIC.individual;
+      var monthly = LOCAL.individual.monthly;
+      var annual  = LOCAL.individual.annual;
       return {
         monthly:       money(monthly),
-        // The annual plan bills once a year; the headline shows what it
-        // works out at per month, with the yearly total spelled out
-        // underneath so the actual charge is never hidden.
         annualMonthly: money(Math.round(annual / 12)),
         annualTotal:   money(annual)
       };
@@ -183,35 +154,33 @@
       labelMonthly.classList.toggle('active', !annual);
       labelAnnual.classList.toggle('active', annual);
 
-      ['pro', 'team'].forEach(function (plan) {
-        var d = displayed(plan);
-        var els = PLAN_EL[plan];
+      var d = individualDisplayed();
+      var els = EL.individual;
+      els.price.textContent  = annual ? d.annualMonthly : d.monthly;
+      els.period.textContent = '/ month';
+      if (annual) {
+        els.orig.textContent = d.monthly;
+        els.orig.classList.add('show');
+        els.savings.textContent = 'billed ' + d.annualTotal + '/yr';
+        els.savings.classList.add('show');
+      } else {
+        els.orig.classList.remove('show');
+        els.savings.classList.remove('show');
+      }
 
-        els.price.textContent  = annual ? d.annualMonthly : d.monthly;
-        els.period.textContent = '/ month';
-
-        if (annual) {
-          els.orig.textContent = d.monthly;
-          els.orig.classList.add('show');
-          els.savings.textContent = 'billed ' + d.annualTotal + '/yr';
-          els.savings.classList.add('show');
-        } else {
-          els.orig.classList.remove('show');
-          els.savings.classList.remove('show');
-        }
-      });
+      if (LOCAL) {
+        EL.starter.price.textContent      = money(LOCAL.starter.annual);
+        EL.professional.price.textContent = money(LOCAL.professional.annual);
+      }
     }
 
-    /* The copy that quotes numbers — the "Save 20%" badge and the yearly
-       billing answer in the FAQ — has to move with the prices, or the
-       page argues with itself in every currency but dollars. The saving
-       is recalculated rather than assumed: local price points are set
-       per currency and need not land on exactly 20%. */
+    /* The copy that quotes numbers has to move with the prices. The
+       saving is recalculated rather than assumed. */
     function renderCopy() {
       if (!LOCAL) return;
 
       var pct = Math.round(
-        (1 - LOCAL.pro.annual / (LOCAL.pro.monthly * 12)) * 100
+        (1 - LOCAL.individual.annual / (LOCAL.individual.monthly * 12)) * 100
       );
 
       if (pct > 0) {
@@ -219,28 +188,17 @@
         faqSavePct.textContent  = pct + '%';
       }
 
-      faqProYear.textContent  = money(LOCAL.pro.annual) + '/yr';
-      faqTeamYear.textContent = money(LOCAL.team.annual) + '/yr';
+      faqIndividualYear.textContent = money(LOCAL.individual.annual) + '/yr';
 
       var note = 'Prices shown in ' + LOCAL.currency;
       if (LOCAL.taxRate > 0) {
-        // Paddle's subtotal is the price before tax, which is the number
-        // this page has always shown. Saying so is cheaper than a
-        // surprise at the checkout.
         note += ', excluding local sales tax (' +
                 Math.round(LOCAL.taxRate * 100) + '% here), added at checkout';
       }
       regionNote.textContent = note + '.';
     }
 
-    /* ─── COUNTRY PICKER ──────────────────────────────────────────────
-       IP detection is right most of the time and wrong in exactly the
-       cases that matter: a VPN, a work laptop routed through head
-       office, someone buying for a team in another country. The picker
-       is the escape hatch.
-
-       It is built only after a successful preview, so it can never
-       appear as a control that does nothing. */
+    /* ─── COUNTRY PICKER ────────────────────────────────────────────── */
     function buildCountryPicker(selected) {
       if (regionSelect.options.length) {
         regionSelect.value = selected;
@@ -264,9 +222,6 @@
         regionSelect.appendChild(group);
       });
 
-      // Paddle sells into far more countries than are listed above. If
-      // the visitor was detected somewhere else, that somewhere else
-      // belongs in the list — selecting nothing would read as an error.
       if (selected && !known[selected]) {
         var extra = document.createElement('option');
         extra.value = selected;
@@ -285,20 +240,20 @@
       }
     }
 
-    /* ─── PADDLE PREVIEW ──────────────────────────────────────────────
-       All four price IDs go in one request: mixing billing periods is
-       supported, and one round trip means the monthly and yearly
-       headlines can never be a currency apart from each other. */
+    /* ─── PADDLE PREVIEW ────────────────────────────────────────────── */
     function loadPrices(countryCode) {
       if (!window.Paddle || typeof Paddle.PricePreview !== 'function') return;
 
+      // Ids not filled in yet (the 2026 catalog is created by
+      // scripts/setup-paddle.mjs) — the USD markup stands.
+      var ids = [PRICE_IDS.individual, PRICE_IDS.individualAnnual,
+                 PRICE_IDS.starterAnnual, PRICE_IDS.professionalAnnual];
+      for (var i = 0; i < ids.length; i++) {
+        if (!ids[i]) return;
+      }
+
       var request = {
-        items: [
-          { priceId: PRICE_IDS.pro,        quantity: 1 },
-          { priceId: PRICE_IDS.proAnnual,  quantity: 1 },
-          { priceId: PRICE_IDS.team,       quantity: 1 },
-          { priceId: PRICE_IDS.teamAnnual, quantity: 1 }
-        ]
+        items: ids.map(function (id) { return { priceId: id, quantity: 1 }; })
       };
 
       // Omitting the address is what triggers Paddle's own IP lookup.
@@ -314,11 +269,7 @@
           if (item.price && item.price.id) byId[item.price.id] = item;
         });
 
-        // A partial answer is worse than none: three localised prices
-        // and one dollar figure is the exact confusion this is meant to
-        // remove. All four or the markup stands.
-        var ids = [PRICE_IDS.pro, PRICE_IDS.proAnnual,
-                   PRICE_IDS.team, PRICE_IDS.teamAnnual];
+        // A partial answer is worse than none. All four or the markup stands.
         for (var i = 0; i < ids.length; i++) {
           if (!byId[ids[i]]) return;
         }
@@ -328,9 +279,13 @@
         LOCAL = {
           currency: data.currencyCode,
           country:  (data.address && data.address.countryCode) || countryCode || null,
-          taxRate:  Number(byId[PRICE_IDS.pro].taxRate || 0),
-          pro:  { monthly: subtotal(PRICE_IDS.pro),  annual: subtotal(PRICE_IDS.proAnnual) },
-          team: { monthly: subtotal(PRICE_IDS.team), annual: subtotal(PRICE_IDS.teamAnnual) }
+          taxRate:  Number(byId[PRICE_IDS.individual].taxRate || 0),
+          individual: {
+            monthly: subtotal(PRICE_IDS.individual),
+            annual:  subtotal(PRICE_IDS.individualAnnual)
+          },
+          starter:      { annual: subtotal(PRICE_IDS.starterAnnual) },
+          professional: { annual: subtotal(PRICE_IDS.professionalAnnual) }
         };
 
         if (LOCAL.country) buildCountryPicker(LOCAL.country);
@@ -339,12 +294,12 @@
         render();
         renderCopy();
 
-        // The "from $20/month" teasers on other pages read this instead
+        // The "from $50/month" teasers on other pages read this instead
         // of loading paddle.js themselves. See price-teaser.js.
         try {
-          localStorage.setItem('sigbot.localPrice', JSON.stringify({
+          localStorage.setItem('sigbot.localPrice.v2', JSON.stringify({
             country: LOCAL.country,
-            proMonthly: money(LOCAL.pro.monthly),
+            individualMonthly: money(LOCAL.individual.monthly),
             ts: Date.now()
           }));
         } catch (e) {}
@@ -358,17 +313,12 @@
 
       try { localStorage.setItem(COUNTRY_KEY, country); } catch (e) {}
 
-      // Worth naming: it is the clearest signal there is that the
-      // detected country was wrong for a real buyer, and it says which
-      // markets are asking for prices they were not being shown.
       sigbotTrack('pricing_country_changed', { country: country });
 
       loadPrices(country);
     });
 
     toggle.addEventListener('change', function () {
-      // Cheap to record and hard to learn any other way: how many people
-      // price the annual plan before deciding, not just who buys it.
       sigbotTrack('billing_period_toggled', {
         billing: toggle.checked ? 'annual' : 'monthly'
       });
@@ -377,33 +327,36 @@
     });
 
     /* ─── CHECKOUT ────────────────────────────────────────────────────
-       Checkout must happen inside the app, signed in. Every Paddle
-       purchase is keyed to a Firebase account via customData.firebase_uid
-       — a checkout opened from this static page has no UID to carry, and
-       the webhook that grants the plan would have nothing to attach the
-       payment to. The buy buttons hand the visitor to the app with the
-       chosen plan in the query string; sigbot.app/upgrade sits behind the
-       login wall and re-opens this exact checkout once signed in. */
-    function openCheckout(plan) {
-      var isAnnual = toggle.checked;
+       Checkout must happen inside the app, signed in — every Paddle
+       purchase is keyed to a Firebase account via customData.firebase_uid.
+       The buy buttons hand the visitor to the app with the chosen plan in
+       the query string; sigbot.app/upgrade sits behind the login wall and
+       opens the matching checkout once signed in. Starter and
+       Professional are annual-only, so their cycle is always yearly. */
+    function openCheckout(plan, forcedCycle) {
+      var cycle = forcedCycle || (toggle.checked ? 'yearly' : 'monthly');
 
       sigbotTrack('checkout_opened', {
         plan: plan,
-        billing: isAnnual ? 'annual' : 'monthly',
+        billing: cycle === 'yearly' ? 'annual' : 'monthly',
         currency: LOCAL ? LOCAL.currency : 'USD',
         country: LOCAL ? LOCAL.country : null
       });
 
       window.location.href = 'https://sigbot.app/upgrade' +
-        '?plan=' + plan + '&cycle=' + (isAnnual ? 'yearly' : 'monthly');
+        '?plan=' + plan + '&cycle=' + cycle;
     }
 
-    document.getElementById('pro-checkout-btn').addEventListener('click', function () {
-      openCheckout('pro');
+    document.getElementById('individual-checkout-btn').addEventListener('click', function () {
+      openCheckout('individual');
     });
 
-    document.getElementById('team-checkout-btn').addEventListener('click', function () {
-      openCheckout('team');
+    document.getElementById('starter-checkout-btn').addEventListener('click', function () {
+      openCheckout('starter', 'yearly');
+    });
+
+    document.getElementById('professional-checkout-btn').addEventListener('click', function () {
+      openCheckout('professional', 'yearly');
     });
 
     (function init() {
