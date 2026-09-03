@@ -22,7 +22,7 @@
   var TOKEN = 'live_5ccca908a5ed4850c510274c3e2';
   var INDIVIDUAL_MONTHLY = 'pri_01m1k1fmh4jvpst9t6gqmdb5zb';
 
-  var CACHE_KEY   = 'sigbot.localPrice.v2';
+  var CACHE_KEY   = 'sigbot.localPrice.v3';
   var COUNTRY_KEY = 'sigbot.country';
   var CACHE_TTL   = 24 * 60 * 60 * 1000;
 
@@ -56,9 +56,9 @@
     }
   }
 
-  /* Same formatting rules as pricing.js: Intl decides the decimal
-     places per currency, and whole amounts drop the ".00" because the
-     surrounding sentence quotes a price point, not a receipt. */
+  /* Same formatting rules as pricing.js: rounded to the nearest whole
+     amount, because the surrounding sentence quotes a price point, not
+     a receipt. The exact localised figure appears at the checkout. */
   function money(minorUnits, currency) {
     var locale = (navigator.languages && navigator.languages[0]) ||
                  navigator.language || 'en';
@@ -69,14 +69,13 @@
       }).resolvedOptions().maximumFractionDigits;
     } catch (e) {}
 
-    var amount = Number(minorUnits) / Math.pow(10, digits);
-    var isWhole = Math.abs(amount - Math.round(amount)) < 0.005;
+    var amount = Math.round(Number(minorUnits) / Math.pow(10, digits));
 
     return new Intl.NumberFormat(locale, {
       style: 'currency',
       currency: currency,
-      minimumFractionDigits: isWhole ? 0 : digits,
-      maximumFractionDigits: isWhole ? 0 : digits
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
     }).format(amount);
   }
 

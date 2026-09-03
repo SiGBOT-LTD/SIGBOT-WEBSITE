@@ -120,16 +120,19 @@
       }
     }
 
+    /* Displayed prices round to the nearest whole amount — converted
+       decimals (CA$68.86) read like a receipt, not a price point. The
+       exact localised figure still appears at the Paddle checkout; the
+       FAQ's currency answer discloses the rounding. */
     function money(minorUnits) {
       var digits = currencyDigits(LOCAL.currency);
-      var amount = Number(minorUnits) / Math.pow(10, digits);
-      var isWhole = Math.abs(amount - Math.round(amount)) < 0.005;
+      var amount = Math.round(Number(minorUnits) / Math.pow(10, digits));
 
       return new Intl.NumberFormat(LOCALE, {
         style: 'currency',
         currency: LOCAL.currency,
-        minimumFractionDigits: isWhole ? 0 : digits,
-        maximumFractionDigits: isWhole ? 0 : digits
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
       }).format(amount);
     }
 
@@ -297,7 +300,7 @@
         // The "from $50/month" teasers on other pages read this instead
         // of loading paddle.js themselves. See price-teaser.js.
         try {
-          localStorage.setItem('sigbot.localPrice.v2', JSON.stringify({
+          localStorage.setItem('sigbot.localPrice.v3', JSON.stringify({
             country: LOCAL.country,
             individualMonthly: money(LOCAL.individual.monthly),
             ts: Date.now()
