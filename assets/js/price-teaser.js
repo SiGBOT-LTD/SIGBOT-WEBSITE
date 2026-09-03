@@ -22,7 +22,7 @@
   var TOKEN = 'live_5ccca908a5ed4850c510274c3e2';
   var INDIVIDUAL_MONTHLY = 'pri_01m1k1fmh4jvpst9t6gqmdb5zb';
 
-  var CACHE_KEY   = 'sigbot.localPrice.v3';
+  var CACHE_KEY   = 'sigbot.localPrice.v4';
   var COUNTRY_KEY = 'sigbot.country';
   var CACHE_TTL   = 24 * 60 * 60 * 1000;
 
@@ -91,7 +91,22 @@
                  data.details.lineItems[0];
       if (!item || !item.totals) return;
 
-      var formatted = money(item.totals.subtotal, data.currencyCode);
+      /* Same rule as pricing.js: every catalog price is a whole amount in
+         every currency, and the whole figure is the advertised price —
+         totals.total where tax is folded in (UK/EU/AU…), totals.subtotal
+         where it is added at checkout (US/CA…). */
+      var digits = 2;
+      try {
+        digits = new Intl.NumberFormat('en', {
+          style: 'currency', currency: data.currencyCode
+        }).resolvedOptions().maximumFractionDigits;
+      } catch (e) {}
+      var unit = Math.pow(10, digits);
+      var whole = function (minor) { return Number(minor) % unit === 0; };
+      var minor = whole(item.totals.total) && !whole(item.totals.subtotal)
+        ? item.totals.total
+        : item.totals.subtotal;
+      var formatted = money(minor, data.currencyCode);
       apply(formatted);
 
       try {

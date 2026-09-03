@@ -195,8 +195,10 @@
 
       var note = 'Prices shown in ' + LOCAL.currency;
       if (LOCAL.taxRate > 0) {
-        note += ', excluding local sales tax (' +
-                Math.round(LOCAL.taxRate * 100) + '% here), added at checkout';
+        note += LOCAL.taxInclusive
+          ? ', including ' + Math.round(LOCAL.taxRate * 100) + '% tax'
+          : ', excluding local sales tax (' +
+            Math.round(LOCAL.taxRate * 100) + '% here), added at checkout';
       }
       regionNote.textContent = note + '.';
     }
@@ -277,18 +279,36 @@
           if (!byId[ids[i]]) return;
         }
 
-        function subtotal(id) { return Number(byId[id].totals.subtotal); }
+        /* Every catalog price now carries a whole-number override in every
+           currency. Paddle's tax mode is location-based: in countries where
+           tax is folded INTO the price (UK, EU, AU, …) the whole advertised
+           figure is totals.total; where tax is added at the checkout
+           (US, CA, …) it is totals.subtotal. Displaying the whole one is
+           displaying the price. */
+        var digits = currencyDigits(data.currencyCode);
+        var unit = Math.pow(10, digits);
+        function isWholeMinor(minor) { return Number(minor) % unit === 0; }
+        function advertised(id) {
+          var t = byId[id].totals;
+          if (isWholeMinor(t.total) && !isWholeMinor(t.subtotal)) return Number(t.total);
+          return Number(t.subtotal);
+        }
+        var indTotals = byId[PRICE_IDS.individual].totals;
+        var taxInclusive =
+          Number(indTotals.total) !== Number(indTotals.subtotal) &&
+          advertised(PRICE_IDS.individual) === Number(indTotals.total);
 
         LOCAL = {
           currency: data.currencyCode,
           country:  (data.address && data.address.countryCode) || countryCode || null,
           taxRate:  Number(byId[PRICE_IDS.individual].taxRate || 0),
+          taxInclusive: taxInclusive,
           individual: {
-            monthly: subtotal(PRICE_IDS.individual),
-            annual:  subtotal(PRICE_IDS.individualAnnual)
+            monthly: advertised(PRICE_IDS.individual),
+            annual:  advertised(PRICE_IDS.individualAnnual)
           },
-          starter:      { annual: subtotal(PRICE_IDS.starterAnnual) },
-          professional: { annual: subtotal(PRICE_IDS.professionalAnnual) }
+          starter:      { annual: advertised(PRICE_IDS.starterAnnual) },
+          professional: { annual: advertised(PRICE_IDS.professionalAnnual) }
         };
 
         if (LOCAL.country) buildCountryPicker(LOCAL.country);
@@ -300,7 +320,7 @@
         // The "from $50/month" teasers on other pages read this instead
         // of loading paddle.js themselves. See price-teaser.js.
         try {
-          localStorage.setItem('sigbot.localPrice.v3', JSON.stringify({
+          localStorage.setItem('sigbot.localPrice.v4', JSON.stringify({
             country: LOCAL.country,
             individualMonthly: money(LOCAL.individual.monthly),
             ts: Date.now()
