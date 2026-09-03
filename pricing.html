@@ -145,9 +145,9 @@
           </div>
         </div>
 
-        <!-- INDIVIDUAL — the plan the product is built around -->
-        <div class="plan-col plan-col--lead">
-          <p class="plan-col-name">Individual <span class="plan-col-badge">Most popular</span></p>
+        <!-- INDIVIDUAL -->
+        <div class="plan-col">
+          <p class="plan-col-name">Individual</p>
           <div class="price-tag">
             <span class="price-value" id="individual-price">$50</span>
             <span class="price-period" id="individual-period">/ month</span>
@@ -182,7 +182,7 @@
             </li>
           </ul>
           <div class="btnrow">
-            <button class="btnPrimary" id="individual-checkout-btn">Subscribe</button>
+            <button class="btnGhost" id="individual-checkout-btn">Subscribe</button>
           </div>
         </div>
 
@@ -221,9 +221,9 @@
           </div>
         </div>
 
-        <!-- PROFESSIONAL -->
-        <div class="plan-col">
-          <p class="plan-col-name">Professional</p>
+        <!-- PROFESSIONAL — the lead tile -->
+        <div class="plan-col plan-col--lead">
+          <p class="plan-col-name">Professional <span class="plan-col-badge">Most popular</span></p>
           <div class="price-tag">
             <span class="price-value" id="professional-price">$10,000</span>
             <span class="price-period" id="professional-period">/ year</span>
@@ -248,7 +248,7 @@
             </li>
           </ul>
           <div class="btnrow">
-            <button class="btnGhost" id="professional-checkout-btn">Subscribe</button>
+            <button class="btnPrimary" id="professional-checkout-btn">Subscribe</button>
           </div>
         </div>
 
@@ -321,9 +321,9 @@
               <tr>
                 <th style="width: 32%;">Feature</th>
                 <th>Free</th>
-                <th class="col-highlight">Individual</th>
+                <th>Individual</th>
                 <th>Starter</th>
-                <th>Professional</th>
+                <th class="col-highlight">Professional</th>
               </tr>
             </thead>
             <tbody>
@@ -332,143 +332,143 @@
               <tr>
                 <td>Email scanning</td>
                 <td>150/day</td>
-                <td class="col-highlight">2,000/day</td>
+                <td>2,000/day</td>
                 <td>10,000/day, shared by the team</td>
-                <td>Unlimited</td>
+                <td class="col-highlight">Unlimited</td>
               </tr>
               <tr>
                 <td>Contacts</td>
                 <td>Up to 1,000</td>
+                <td>Unlimited</td>
+                <td>Unlimited</td>
                 <td class="col-highlight">Unlimited</td>
-                <td>Unlimited</td>
-                <td>Unlimited</td>
               </tr>
               <tr>
                 <td>Full inbox backfill</td>
                 <td><span class="check-no" role="img" aria-label="Not included">—</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
                 <td class="col-highlight"><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
               </tr>
               <tr>
                 <td>Connection methods</td>
                 <td>Outlook, forwarding <em>(Gmail &amp; IMAP coming soon)</em></td>
+                <td>Outlook, forwarding <em>(Gmail &amp; IMAP coming soon)</em></td>
+                <td>Outlook, forwarding <em>(Gmail &amp; IMAP coming soon)</em></td>
                 <td class="col-highlight">Outlook, forwarding <em>(Gmail &amp; IMAP coming soon)</em></td>
-                <td>Outlook, forwarding <em>(Gmail &amp; IMAP coming soon)</em></td>
-                <td>Outlook, forwarding <em>(Gmail &amp; IMAP coming soon)</em></td>
               </tr>
               <tr>
                 <td>Automatic deduplication</td>
                 <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
                 <td class="col-highlight"><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
               </tr>
 
               <tr class="section-head"><td colspan="5">Intelligence</td></tr>
               <tr>
                 <td>AI signature parsing</td>
                 <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
                 <td class="col-highlight"><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
               </tr>
               <tr>
                 <td>Business card scanning (mobile)</td>
                 <td><span class="check-no" role="img" aria-label="Not included">—</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
                 <td class="col-highlight"><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
               </tr>
 
               <tr class="section-head"><td colspan="5">Data &amp; Export</td></tr>
               <tr>
                 <td>Excel import &amp; export</td>
                 <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
                 <td class="col-highlight"><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
               </tr>
               <tr>
                 <td>CSV export</td>
                 <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
                 <td class="col-highlight"><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
               </tr>
 
               <tr class="section-head"><td colspan="5">Platform &amp; Sync</td></tr>
               <tr>
                 <td>Web app, cloud sync &amp; mobile app</td>
                 <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
                 <td class="col-highlight"><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
               </tr>
               <tr>
                 <td>Interactive contact map</td>
                 <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
                 <td class="col-highlight"><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
               </tr>
               <tr>
                 <td>Personal folders</td>
                 <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
                 <td class="col-highlight"><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
               </tr>
 
               <tr class="section-head"><td colspan="5">Team</td></tr>
               <tr>
                 <td>Seats</td>
                 <td>1</td>
-                <td class="col-highlight">1</td>
+                <td>1</td>
                 <td>Up to 5</td>
-                <td>Up to 50</td>
+                <td class="col-highlight">Up to 50</td>
               </tr>
               <tr>
                 <td>Shared team folders</td>
                 <td><span class="check-no" role="img" aria-label="Not included">—</span></td>
-                <td class="col-highlight"><span class="check-no" role="img" aria-label="Not included">—</span></td>
+                <td><span class="check-no" role="img" aria-label="Not included">—</span></td>
                 <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td class="col-highlight"><span class="check-yes" role="img" aria-label="Included">✓</span></td>
               </tr>
               <tr>
                 <td>Multiple teams</td>
                 <td><span class="check-no" role="img" aria-label="Not included">—</span></td>
-                <td class="col-highlight"><span class="check-no" role="img" aria-label="Not included">—</span></td>
                 <td><span class="check-no" role="img" aria-label="Not included">—</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-no" role="img" aria-label="Not included">—</span></td>
+                <td class="col-highlight"><span class="check-yes" role="img" aria-label="Included">✓</span></td>
               </tr>
               <tr>
                 <td>Per-folder permissions (view / edit / admin)</td>
                 <td><span class="check-no" role="img" aria-label="Not included">—</span></td>
-                <td class="col-highlight"><span class="check-no" role="img" aria-label="Not included">—</span></td>
                 <td><span class="check-no" role="img" aria-label="Not included">—</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td><span class="check-no" role="img" aria-label="Not included">—</span></td>
+                <td class="col-highlight"><span class="check-yes" role="img" aria-label="Included">✓</span></td>
               </tr>
               <tr>
                 <td>User management &amp; admin controls</td>
                 <td><span class="check-no" role="img" aria-label="Not included">—</span></td>
-                <td class="col-highlight"><span class="check-no" role="img" aria-label="Not included">—</span></td>
+                <td><span class="check-no" role="img" aria-label="Not included">—</span></td>
                 <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td class="col-highlight"><span class="check-yes" role="img" aria-label="Included">✓</span></td>
               </tr>
               <tr>
                 <td>Centralised billing</td>
                 <td><span class="check-no" role="img" aria-label="Not included">—</span></td>
-                <td class="col-highlight"><span class="check-no" role="img" aria-label="Not included">—</span></td>
+                <td><span class="check-no" role="img" aria-label="Not included">—</span></td>
                 <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td class="col-highlight"><span class="check-yes" role="img" aria-label="Included">✓</span></td>
               </tr>
               <tr>
                 <td>Priority support</td>
                 <td><span class="check-no" role="img" aria-label="Not included">—</span></td>
-                <td class="col-highlight"><span class="check-no" role="img" aria-label="Not included">—</span></td>
+                <td><span class="check-no" role="img" aria-label="Not included">—</span></td>
                 <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
-                <td><span class="check-yes" role="img" aria-label="Included">✓</span></td>
+                <td class="col-highlight"><span class="check-yes" role="img" aria-label="Included">✓</span></td>
               </tr>
 
             </tbody>
