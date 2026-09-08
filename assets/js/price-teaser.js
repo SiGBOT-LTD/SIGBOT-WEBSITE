@@ -1,5 +1,5 @@
 /* ─── LOCALISED PRICE TEASERS ─────────────────────────────────────
-   The home and web-app pages each quote "from $50/month" once. After
+   The home and web-app pages each quote "from $500/year" once. After
    the pricing page started showing what Paddle actually charges in the
    visitor's country, these lines were the last places still speaking
    dollars to everyone.
@@ -12,7 +12,7 @@
    compete with the hero, the globe, or anything else that matters.
 
    Every path out of here that isn't a confirmed local price leaves the
-   "$50/month" markup untouched. Same rule as the pricing page: a page
+   "$500/year" markup untouched. Same rule as the pricing page: a page
    that cannot localise should look like one that never tried.
 
    The token and price ID are duplicated from pricing.js on purpose —
@@ -20,9 +20,9 @@
    Change them together. */
 (function () {
   var TOKEN = 'live_5ccca908a5ed4850c510274c3e2';
-  var INDIVIDUAL_MONTHLY = 'pri_01m1k1fmh4jvpst9t6gqmdb5zb';
+  var INDIVIDUAL_YEARLY = 'pri_01m1k1fmn6nhmwrerfks8thb2e';
 
-  var CACHE_KEY   = 'sigbot.localPrice.v5';
+  var CACHE_KEY   = 'sigbot.localPrice.v6';
   var COUNTRY_KEY = 'sigbot.country';
   var CACHE_TTL   = 24 * 60 * 60 * 1000;
 
@@ -31,7 +31,7 @@
 
   function apply(formatted) {
     for (var i = 0; i < targets.length; i++) {
-      targets[i].textContent = formatted + '/month';
+      targets[i].textContent = formatted + '/year';
     }
   }
 
@@ -46,11 +46,11 @@
   function fromCache() {
     try {
       var cached = JSON.parse(localStorage.getItem(CACHE_KEY));
-      if (!cached || !cached.individualMonthly) return null;
+      if (!cached || !cached.individualYearly) return null;
       if (Date.now() - cached.ts > CACHE_TTL) return null;
       var picked = savedCountry();
       if (picked && cached.country !== picked) return null;
-      return cached.individualMonthly;
+      return cached.individualYearly;
     } catch (e) {
       return null;
     }
@@ -80,8 +80,8 @@
   }
 
   function preview() {
-    if (!INDIVIDUAL_MONTHLY) return; // catalog ids not filled in yet
-    var request = { items: [{ priceId: INDIVIDUAL_MONTHLY, quantity: 1 }] };
+    if (!INDIVIDUAL_YEARLY) return; // catalog ids not filled in yet
+    var request = { items: [{ priceId: INDIVIDUAL_YEARLY, quantity: 1 }] };
     var picked = savedCountry();
     if (picked) request.address = { countryCode: picked };
 
@@ -112,11 +112,11 @@
       try {
         localStorage.setItem(CACHE_KEY, JSON.stringify({
           country: (data.address && data.address.countryCode) || picked || null,
-          individualMonthly: formatted,
+          individualYearly: formatted,
           ts: Date.now()
         }));
       } catch (e) {}
-    }).catch(function () { /* the $50 markup stands */ });
+    }).catch(function () { /* the $500 markup stands */ });
   }
 
   function loadPaddleAndPreview() {
@@ -131,7 +131,7 @@
       try {
         Paddle.Initialize({ token: TOKEN });
         preview();
-      } catch (e) { /* the $50 markup stands */ }
+      } catch (e) { /* the $500 markup stands */ }
     };
     document.head.appendChild(script);
   }

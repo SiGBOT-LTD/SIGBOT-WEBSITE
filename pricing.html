@@ -75,17 +75,7 @@
     <div class="page" style="text-align: center;" id="main" tabindex="-1">
 
       <h1 class="pageTitle">Simple, transparent pricing</h1>
-      <p class="pageSub" style="margin-bottom: 0;">Start free. Upgrade when you need more.</p>
-
-      <!-- Billing Toggle -->
-      <div class="billing-toggle-wrap">
-        <span class="billing-label active" id="label-monthly">Monthly</span>
-        <label class="toggle-switch">
-          <input type="checkbox" id="billing-toggle">
-          <span class="toggle-track"></span>
-        </label>
-        <span class="billing-label" id="label-annual">Yearly <span class="annual-badge" id="annual-badge"><!-- sigbot:pricing:annual-badge:start -->Save 17%<!-- sigbot:pricing:annual-badge:end --></span></span>
-      </div>
+      <p class="pageSub" style="margin-bottom: 40px;">Start free. Upgrade when you need more. Every paid plan is billed yearly.</p>
 
       <!-- REGION
            Hidden until Paddle has actually returned a localised price.
@@ -105,9 +95,13 @@
            full comparison table further down still does the
            compare-everything job; these columns only carry the decision.
            "Everything in X" leads each paid column so the bullets are
-           only what's new. pricing.js still owns the price elements by
-           id (individual-price/-period/-original/-savings, starter-price,
-           professional-price) and the three checkout buttons. -->
+           only what's new. Every paid plan is billed yearly (monthly
+           billing was retired 2026-09-08). The USD prices sit between
+           sigbot:pricing:price:<tier> markers, generated from the app's
+           catalog; pricing.js still owns those elements by id
+           (individual-price, starter-price, professional-price) and
+           swaps in Paddle's localised figure, and owns the three
+           checkout buttons. -->
       <div class="plan-strip">
 
         <!-- FREE -->
@@ -151,10 +145,8 @@
         <div class="plan-col">
           <p class="plan-col-name">Individual</p>
           <div class="price-tag">
-            <span class="price-value" id="individual-price">$50</span>
-            <span class="price-period" id="individual-period">/ month</span>
-            <span class="price-original" id="individual-original">$50</span>
-            <span class="annual-savings" id="individual-savings">billed $500/yr</span>
+            <span class="price-value" id="individual-price"><!-- sigbot:pricing:price:individual:start -->$500<!-- sigbot:pricing:price:individual:end --></span>
+            <span class="price-period" id="individual-period">/ year</span>
           </div>
           <!-- sigbot:pricing:cards:individual:start -->
           <p class="plan-includes">Includes:</p>
@@ -194,7 +186,7 @@
         <div class="plan-col">
           <p class="plan-col-name">Starter</p>
           <div class="price-tag">
-            <span class="price-value" id="starter-price">$2,500</span>
+            <span class="price-value" id="starter-price"><!-- sigbot:pricing:price:starter:start -->$2,500<!-- sigbot:pricing:price:starter:end --></span>
             <span class="price-period" id="starter-period">/ year</span>
           </div>
           <!-- sigbot:pricing:cards:starter:start -->
@@ -231,7 +223,7 @@
         <div class="plan-col plan-col--lead">
           <p class="plan-col-name">Professional <span class="plan-col-badge">Most popular</span></p>
           <div class="price-tag">
-            <span class="price-value" id="professional-price">$10,000</span>
+            <span class="price-value" id="professional-price"><!-- sigbot:pricing:price:professional:start -->$10,000<!-- sigbot:pricing:price:professional:end --></span>
             <span class="price-period" id="professional-period">/ year</span>
           </div>
           <!-- sigbot:pricing:cards:professional:start -->
@@ -505,12 +497,12 @@
             <div class="kvVal">Yes. Upgrade or downgrade whenever you like. Nothing is ever deleted on a downgrade: teams and folders beyond the new plan's allowance are archived read-only, and upgrading again restores them exactly as they were.</div>
           </div>
           <div class="kvRow">
-            <h3 class="kvKey">Is there a discount for yearly billing?</h3>
-            <div class="kvVal">Yes. Toggle to yearly above to save <span id="faq-save-pct"><!-- sigbot:pricing:faq-save-pct:start -->17%<!-- sigbot:pricing:faq-save-pct:end --></span> on Individual (<span id="faq-individual-annual"><!-- sigbot:pricing:faq-individual-annual:start -->$500/yr<!-- sigbot:pricing:faq-individual-annual:end --></span>). Starter and Professional are billed annually only.</div>
+            <h3 class="kvKey">How often am I billed?</h3>
+            <div class="kvVal">Once a year. Every paid plan is an annual subscription — Individual is <span id="faq-individual-annual"><!-- sigbot:pricing:faq-individual-annual:start -->$500/yr<!-- sigbot:pricing:faq-individual-annual:end --></span>, and Starter and Professional are annual contracts too. There is no monthly option. You can cancel at any time and keep access until the end of the year you've paid for, and your first purchase is covered by our 30-day money-back guarantee.</div>
           </div>
           <div class="kvRow">
             <h3 class="kvKey">What currency will I be charged in?</h3>
-            <div class="kvVal">The prices above are already in your local currency — we detect your country and ask our payment provider, Paddle, what it will actually charge there, shown rounded to the nearest whole amount; the exact figure appears at the checkout. If we've guessed your country wrong, change it with the picker under the billing toggle. Paddle is the merchant of record and handles local sales tax and VAT, including reverse charge for VAT-registered businesses in the EU and UK.</div>
+            <div class="kvVal">The prices above are already in your local currency — we detect your country and ask our payment provider, Paddle, what it will actually charge there, shown rounded to the nearest whole amount; the exact figure appears at the checkout. If we've guessed your country wrong, change it with the picker above the plans. Paddle is the merchant of record and handles local sales tax and VAT, including reverse charge for VAT-registered businesses in the EU and UK.</div>
           </div>
           <div class="kvRow">
             <h3 class="kvKey">How does team pricing work?</h3>
