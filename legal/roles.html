@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<title>Roles and permissions — Sigbot</title>
+<meta name="description" content="What each Sigbot team role can do, how folder grants apply inside shared folders, and the team-wide switches the owner controls.">
+<link rel="canonical" href="https://sigbot.co/legal/roles.html">
+<meta property="og:title" content="Sigbot — legal">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sigbot.co/legal/roles.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legal/legal.css">
+<style>
+  .intro{color:#D8D4CC;font-size:16px;max-width:640px;margin-top:16px;}
+  .shell{max-width:880px;margin:0 auto;padding:56px 32px 96px;display:block;}
+  .legal-nav{background:var(--paper-muted);border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin-bottom:48px;}
+  .legal-nav .label{font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;}
+  .legal-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 20px;}
+  .legal-nav li a{font-size:14px;font-weight:500;color:var(--text);}
+  section{margin-bottom:36px;}
+  h2{font-size:21px;margin:0 0 12px;font-weight:700;border-bottom:2px solid var(--line);padding-bottom:8px;}
+  h3{font-size:16px;margin:20px 0 8px;font-weight:600;}
+  p{margin:0 0 14px;font-size:15.5px;}
+  ul,ol{margin:0 0 14px;padding-left:22px;}
+  li{margin-bottom:6px;font-size:15.5px;}
+  .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:14px;}
+  .card{background:var(--paper-muted);border:1px solid var(--line);border-radius:8px;padding:16px 18px;}
+  .card h3{margin-top:0;font-size:15px;}
+  .card p{font-size:14.5px;margin-bottom:0;}
+  @media(max-width:640px){.grid{grid-template-columns:1fr;}}
+  table{width:100%;border-collapse:collapse;margin:0 0 14px;font-size:14.5px;}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);}
+  th.c,td.c{text-align:center;white-space:nowrap;}
+  .table-wrap{overflow-x:auto;}
+</style>
+<!-- Analytics -->
+<script src="/assets/js/analytics.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wordmark"><span class="dot"></span>SIGBOT</div>
+  <nav class="top">
+    <a href="/">Home</a>
+    <a href="/pricing.html">Pricing</a>
+    <a href="/legal/privacy.html">Legal</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Legal &amp; Trust</div>
+    <h1>Roles and permissions</h1>
+    <div class="meta">Last updated: 9 September 2026</div>
+    <p class="intro">What each role in a Sigbot team can do, how folder grants apply inside shared folders, and the team-wide switches the owner controls.</p>
+  </div>
+</div>
+
+<div class="shell">
+
+  <div class="legal-nav">
+    <div class="label">Legal</div>
+    <ul>
+      <li><a href="/legal/security.html">Security Overview</a></li>
+      <li><a href="/legal/privacy.html">Privacy Policy</a></li>
+      <li><a href="/legal/terms.html">Terms of Service</a></li>
+      <li><a href="/legal/api-terms.html">API Terms of Service</a></li>
+      <li><a href="/legal/dpa.html">Data Processing Addendum</a></li>
+      <li><a href="/legal/vulnerability-disclosure.html">Vulnerability Disclosure Policy</a></li>
+      <li class="current"><a href="/legal/roles.html">Roles and permissions</a></li>
+    </ul>
+  </div>
+
+  <section>
+    <h2>1. Team roles</h2>
+    <p>Every member of a team holds one of three roles. The role is set when you are invited and can be changed by the owner.</p>
+    <div class="grid">
+      <div class="card"><h3>Owner</h3><p>Holds every permission, including billing, seats and ownership transfer. There is one owner per team. The owner's permissions cannot be restricted.</p></div>
+      <div class="card"><h3>Admin</h3><p>Runs the team day to day. By default an admin holds every permission in the table in section 3. Billing stays with the owner.</p></div>
+      <div class="card"><h3>Member</h3><p>Works inside the shared folders they have been given access to. By default a member can add contacts to shared folders and holds no other team-wide permission.</p></div>
+    </div>
+    <p>Roles govern team-wide actions such as inviting people or exporting. What you can do inside a particular shared folder is governed by your folder grant, described next.</p>
+  </section>
+
+  <section>
+    <h2>2. Folder grants</h2>
+    <p>Inside a shared folder, each member holds one of four grants: viewer, editor, admin or owner. Grants are set per folder by a folder admin. A subfolder can narrow a grant but not widen it. Team owners and admins hold at least admin on every shared folder.</p>
+    <div class="table-wrap">
+    <table>
+      <tr><th>Grant</th><th>What it allows</th></tr>
+      <tr><td>Viewer</td><td>See and search the folder's contacts.</td></tr>
+      <tr><td>Editor</td><td>Viewer, plus add contacts to the folder and remove them from it.</td></tr>
+      <tr><td>Admin</td><td>Editor, plus edit the shared record, delete contacts to the folder's trash, manage columns and subfolders, and set other members' grants.</td></tr>
+      <tr><td>Owner</td><td>Admin, plus transfer the folder to another member. The member who creates a folder is its owner.</td></tr>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Team permissions</h2>
+    <p>These are the team-wide permissions, what each one allows, and whether each role holds it by default.</p>
+    <div class="table-wrap">
+    <table>
+      <tr><th>Permission</th><th>What it allows</th><th class="c">Owner</th><th class="c">Admin</th><th class="c">Member</th></tr>
+      <tr><td>Export contacts</td><td>Download shared folders as CSV, Excel, JSON or vCard.</td><td class="c">✓</td><td class="c">✓</td><td class="c">—</td></tr>
+      <tr><td>Add to shared folders</td><td>Share own contacts into team folders and run scans in the team scope.</td><td class="c">✓</td><td class="c">✓</td><td class="c">✓</td></tr>
+      <tr><td>Invite people</td><td>Send and revoke invitations (seats permitting).</td><td class="c">✓</td><td class="c">✓</td><td class="c">—</td></tr>
+      <tr><td>Manage scan rules</td><td>Exclude domains and addresses from the team's scans, and purge them.</td><td class="c">✓</td><td class="c">✓</td><td class="c">—</td></tr>
+      <tr><td>View private contacts</td><td>See the full record of a contact another member marked private.</td><td class="c">✓</td><td class="c">✓</td><td class="c">—</td></tr>
+      <tr><td>Manage integrations</td><td>Connect Zapier and API access for the team.</td><td class="c">✓</td><td class="c">✓</td><td class="c">—</td></tr>
+    </table>
+    </div>
+    <p>The owner always holds every permission and can change the admin and member defaults in <em>Admin console → Settings → Permissions</em>. The server checks the matrix on every call, so a permission that is off for your role cannot be reached by a client that ignores the setting. Billing is owner-only and cannot be granted to another role.</p>
+  </section>
+
+  <section>
+    <h2>4. Team security policy</h2>
+    <p>Two switches in <em>Admin console → Settings</em> apply to the whole team. Only the owner can change them.</p>
+    <h3>Two-step verification for admins</h3>
+    <p>When this is on, inviting people, removing them, changing roles, transferring ownership and changing seats all need a sign-in that used an authenticator code. The owner must turn on two-step verification for their own account first (<em>Account details → Security</em>) and sign in again with a code before switching it on, so nobody is locked out.</p>
+    <h3>AI parsing for team scans</h3>
+    <p>When this is off, scans run in the team scope use Sigbot's built-in parser only, and nothing from a connected inbox leaves the platform. A team-scoped scan uses AI only when both this switch and the scanning member's own setting (<em>Account details → Privacy</em>) are on. Our <a href="/legal/privacy.html">Privacy Policy</a> describes what is sent when it is on.</p>
+  </section>
+
+  <section>
+    <h2>5. Scan rules</h2>
+    <p>Scan rules are a list of email addresses and domains that a scan treats differently. A member whose role has <em>Manage scan rules</em> keeps the team's list from the Admin console; it applies to every scan run in the team scope.</p>
+    <ul>
+      <li><strong>Exclude</strong> — messages from the address, or the domain and its subdomains, are dropped before classification, so the sender never reaches the team's contacts or review queue.</li>
+      <li><strong>Internal</strong> — marks the team's own domains, so colleagues who email you are not filed as external contacts.</li>
+      <li><strong>Also remove existing matches</strong> — when you add a rule you can also purge every existing record that matches it, together with its change history and review-queue entries. The rule then blocks the address from being filed again. A team rule acts on the team's records only; a member's personal contacts stay theirs.</li>
+    </ul>
+    <p>Personal accounts have the same list under <em>Import Emails → Scan rules</em>; it applies to your own scans.</p>
+  </section>
+
+  <section>
+    <h2>6. Private contacts</h2>
+    <p>Any member can mark one of their contacts private. In shared folders, teammates then see a row labelled "Hidden contact" with no name, email address or other details, so they know a record exists and can ask about it. A member whose role has <em>View private contacts</em> sees the full record, as does the member who owns it.</p>
+  </section>
+
+  <section>
+    <h2>7. Where this is enforced</h2>
+    <p>Every team action goes through Sigbot's servers, which check the caller's role, folder grant, permission set and the team's security policy before acting. Team actions such as invitations, role changes, exports and permission changes are recorded in the team's audit log. The controls on this page form part of the measures described in our <a href="/legal/security.html">Security Overview</a> and <a href="/legal/dpa.html">Data Processing Addendum</a>.</p>
+  </section>
+
+  <section>
+    <h2>8. Contact</h2>
+    <p>Questions about roles and permissions: <a href="mailto:support@sigbot.co">support@sigbot.co</a>. Security questions: <a href="mailto:security@sigbot.co">security@sigbot.co</a>.</p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/legal/security.html">Security Overview</a></li>
+        <li><a href="/legal/privacy.html">Privacy Policy</a></li>
+        <li><a href="/legal/terms.html">Terms of Service</a></li>
+        <li><a href="/legal/api-terms.html">API Terms of Service</a></li>
+        <li><a href="/legal/dpa.html">Data Processing Addendum</a></li>
+        <li><a href="/legal/vulnerability-disclosure.html">Vulnerability Disclosure Policy</a></li>
+        <li><a href="/legal/roles.html">Roles and permissions</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/refund.html">Refunds</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">© 2026 Sigbot Ltd. Registered in England and Wales. Company No: 16997653.</div>
+</footer>
+
+</body>
+</html>

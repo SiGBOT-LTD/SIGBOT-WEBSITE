@@ -28,6 +28,10 @@
   p{margin:0 0 14px;font-size:15.5px;}
   ul,ol{margin:0 0 14px;padding-left:22px;}
   li{margin-bottom:6px;font-size:15.5px;}
+  table{width:100%;border-collapse:collapse;margin:0 0 14px;font-size:14.5px;}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);}
+  .table-wrap{overflow-x:auto;}
 </style>
 <!-- Analytics -->
 <script src="/assets/js/analytics.js"></script>
@@ -47,7 +51,7 @@
   <div class="hero-inner">
     <div class="eyebrow">Legal</div>
     <h1>Privacy Policy</h1>
-    <div class="meta">Last updated: 27 August 2026</div>
+    <div class="meta">Last updated: 9 September 2026</div>
   </div>
 </div>
 
@@ -62,6 +66,7 @@
       <li><a href="/legal/api-terms.html">API Terms of Service</a></li>
       <li><a href="/legal/dpa.html">Data Processing Addendum</a></li>
       <li><a href="/legal/vulnerability-disclosure.html">Vulnerability Disclosure Policy</a></li>
+      <li><a href="/legal/roles.html">Roles and permissions</a></li>
       <li><a href="/legal/delete-account.html">Delete Your Account</a></li>
     </ul>
   </div>
@@ -83,11 +88,12 @@
 
   <section>
     <h2>3. Personal Data We Process</h2>
-    <p><strong>Account Data:</strong> Name, email address, login credentials, subscription status.</p>
+    <p><strong>Account Data:</strong> Name, email address, login credentials, whether two-step verification is on, subscription status. If you sign in with Google or Microsoft, the identity that provider confirms; signing in this way grants identity only and does not give Sigbot access to your mailbox.</p>
     <p><strong>Contact Data (Customer-provided):</strong> Names, email addresses, phone numbers, job titles, company names, and other details extracted from email signature blocks in connected inboxes.</p>
     <p>Sigbot does not read, store, or index the substantive body content of emails — only signature-block information is extracted.</p>
     <h3>How extraction works</h3>
-    <p>Signature-block text is processed using third-party artificial-intelligence models to identify and structure contact details. Specifically, signature-block text is sent server-side to Anthropic PBC's Claude API for parsing, and images captured with the business-card scanner are sent to Google Cloud Vision for optical character recognition. These providers process the data solely to provide the extraction service to us, under data protection agreements, and are listed as subprocessors in our <a href="/legal/dpa.html#subprocessors">Data Processing Addendum</a>. Sigbot's agreements with these providers do not permit them to use your data to train their models.</p>
+    <p>Signature-block text is processed using third-party artificial-intelligence models to identify and structure contact details. Only the extracted signature zone — not the message body, subject, recipients or attachments — is sent server-side to Anthropic PBC's Claude API for parsing, capped at 4,000 characters per message. Images captured with the business-card scanner are sent to Google Cloud Vision for optical character recognition. These providers process the data solely to provide the extraction service to us, under data protection agreements, and are listed as subprocessors in our <a href="/legal/dpa.html#subprocessors">Data Processing Addendum</a>. Sigbot's agreements with these providers do not permit them to use your data to train their models.</p>
+    <p>AI parsing can be switched off for your account (<em>Account details → Privacy → Use AI to read signatures</em>) and, by the team owner, for a team's scans (<em>Admin console → Settings → AI parsing for team scans</em>). When it is off, Sigbot's built-in parser runs alone and nothing from your inbox leaves the platform.</p>
   </section>
 
   <section>
@@ -135,21 +141,38 @@
 
   <section>
     <h2>10. Security Measures</h2>
-    <p>We implement encryption in transit (TLS), encryption at rest, access controls, OAuth-based authentication where supported, and monitoring systems. Full details are available on our <a href="/legal/security.html">Security Overview</a> page.</p>
+    <p>We implement encryption in transit (TLS), encryption at rest, application-level encryption of mailbox tokens, access controls, OAuth-based authentication where supported, two-step verification, and monitoring systems. Full details are available on our <a href="/legal/security.html">Security Overview</a> page.</p>
   </section>
 
   <section>
     <h2>11. Data Retention</h2>
     <ul>
-      <li>Account data — retained for the active lifecycle of your account.</li>
+      <li>Account data — retained for the active lifecycle of your account, then erased when you delete it.</li>
       <li>Billing data — retained as required by applicable financial and tax law.</li>
-      <li>Contact data — retained until deleted by you, or within 30 days of account termination per our DPA.</li>
     </ul>
+    <p>Everything else is erased automatically on the schedule below. Deleting your account erases all of it at once, after your subscription is cancelled; copies in backups age out within 14 days.</p>
+    <div class="table-wrap">
+    <table>
+      <tr><th>Data</th><th>Kept for</th></tr>
+      <tr><td>Contact records</td><td>Until you delete them, then 30 days in Trash (restorable), then erased. <em>Delete permanently</em> erases at once.</td></tr>
+      <tr><td>Records another member removed from a team folder</td><td>30 days (restorable), then erased</td></tr>
+      <tr><td>Review-queue entries you rejected</td><td>180 days</td></tr>
+      <tr><td>Scan coverage hashes (SHA-256 of message ids; no content)</td><td>180 days</td></tr>
+      <tr><td>Cached signature parses</td><td>90 days</td></tr>
+      <tr><td>Scan job records</td><td>90 days</td></tr>
+      <tr><td>Throttle counters</td><td>1 day</td></tr>
+      <tr><td>OAuth sign-in state</td><td>10 minutes</td></tr>
+      <tr><td>Mailbox tokens</td><td>Until you disconnect the mailbox. Google grants are revoked at Google immediately; Microsoft tokens are deleted at once, with a link to revoke the grant in your Microsoft account.</td></tr>
+      <tr><td>Application logs</td><td>30 days</td></tr>
+      <tr><td>Admin-activity logs</td><td>400 days</td></tr>
+    </table>
+    </div>
+    <p>The same schedule, with more detail, is on our <a href="/legal/security.html">Security Overview</a>.</p>
   </section>
 
   <section>
     <h2>12. Your Rights</h2>
-    <p>Depending on your jurisdiction, you may have the right to access, correct, delete, restrict, or port your personal data, and to object to processing. To exercise these rights, contact <a href="mailto:legal@sigbot.co">legal@sigbot.co</a>. You can delete your account and all associated data yourself at any time — see <a href="/legal/delete-account.html">Delete your account</a>.</p>
+    <p>Depending on your jurisdiction, you may have the right to access, correct, delete, restrict, or port your personal data, and to object to processing. Two of these are self-serve in the app: <em>Download my data</em> (<em>Account details → Your data</em>) gives you a JSON archive of your account and a CSV of your contacts, and <em>Delete account</em> (<em>Account details → Danger zone</em>) erases your account and all associated data at once — see <a href="/legal/delete-account.html">Delete your account</a>. For anything else, including requests about data held in someone else's account, contact <a href="mailto:legal@sigbot.co">legal@sigbot.co</a>.</p>
   </section>
 
   <section>
@@ -185,6 +208,7 @@
         <li><a href="/legal/api-terms.html">API Terms of Service</a></li>
         <li><a href="/legal/dpa.html">Data Processing Addendum</a></li>
         <li><a href="/legal/vulnerability-disclosure.html">Vulnerability Disclosure Policy</a></li>
+        <li><a href="/legal/roles.html">Roles and permissions</a></li>
         <li><a href="/legal/delete-account.html">Delete Your Account</a></li>
       </ul>
     </div>

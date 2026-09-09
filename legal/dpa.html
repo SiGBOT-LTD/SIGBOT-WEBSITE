@@ -37,6 +37,7 @@
   th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
   th{background:var(--bg);color:var(--white);font-weight:700;}
   tr:nth-child(even) td{background:var(--paper-muted);}
+  .table-meta{font-size:13px;color:var(--text-muted);margin:-2px 0 10px;}
   .kv{background:var(--paper-muted);border:1px solid var(--line);border-radius:8px;margin-bottom:18px;overflow:hidden;}
   .kv-row{display:grid;grid-template-columns:180px 1fr;border-bottom:1px solid var(--line);}
   .kv-row:last-child{border-bottom:none;}
@@ -64,7 +65,7 @@
   <div class="hero-inner">
     <div class="eyebrow">Legal</div>
     <h1>Data Processing Addendum</h1>
-    <div class="meta">Last updated: 19 July 2026 &nbsp;·&nbsp; Covers the UK/EEA, Canada, and United States</div>
+    <div class="meta">Last updated: 9 September 2026 &nbsp;·&nbsp; Covers the UK/EEA, Canada, and United States</div>
     <p class="intro">This DPA forms part of, and is incorporated by reference into, Sigbot's Terms of Service. It takes effect automatically when you create an account and agree to the Terms of Service. It sets out how Sigbot processes personal data on behalf of customers as a data processor / service provider.</p>
   </div>
 </div>
@@ -81,6 +82,7 @@
         <li><a href="/legal/api-terms.html">API Terms of Service</a></li>
         <li class="current"><a href="/legal/dpa.html">Data Processing Addendum</a></li>
         <li><a href="/legal/vulnerability-disclosure.html">Vulnerability Disclosure Policy</a></li>
+        <li><a href="/legal/roles.html">Roles and permissions</a></li>
       </ul>
     </div>
     <div class="legal-nav">
@@ -148,6 +150,7 @@
 
     <section id="subprocessors">
       <h2>5. Subprocessing</h2>
+      <p class="table-meta">Subprocessor list last modified: 9 September 2026.</p>
       <p>Customer provides a general authorisation for Sigbot to engage the Subprocessors below. Sigbot will give at least 14 days' notice before adding or replacing a Subprocessor, during which Customer may object on reasonable data-protection grounds.</p>
       <table>
         <tr><th>Subprocessor</th><th>Purpose</th><th>Location / Transfer Mechanism</th></tr>
@@ -157,12 +160,15 @@
         <tr><td>Anthropic PBC</td><td>AI-assisted parsing of email signature blocks into structured contact fields</td><td>US — SCCs &amp; UK Addendum for UK/EEA-originating data</td></tr>
         <tr><td>Vercel Inc.</td><td>Web application hosting &amp; content delivery (processes request metadata such as IP addresses and logs)</td><td>US-based, global edge network — SCCs &amp; UK IDTA addendum for UK/EEA-originating data</td></tr>
         <tr><td>Paddle.com Market Ltd</td><td>Payment processing &amp; billing (merchant of record)</td><td>UK/EU/US — Paddle's SCCs for UK/EEA-originating data</td></tr>
+        <tr><td>Resend, Inc.</td><td>Transactional email — email verification, password reset, team invitations and team notices (processes the recipient's address and the message content)</td><td>US — SCCs &amp; UK Addendum for UK/EEA-originating data</td></tr>
+        <tr><td>OpenStreetMap Foundation (Nominatim)</td><td>Geocoding of contact postal addresses for the map view; the request contains the address text only</td><td>UK / EU — no restricted transfer for UK/EEA-originating data</td></tr>
+        <tr><td>komoot GmbH (Photon)</td><td>Geocoding of contact postal addresses for the map view; the request contains the address text only</td><td>Germany (EU) — no restricted transfer for UK/EEA-originating data</td></tr>
       </table>
     </section>
 
     <section id="transfers">
       <h2>6. International Data Transfers</h2>
-      <p>Customer Data may be processed in the UK, EEA, Canada, and United States, reflecting Sigbot's operations and its Subprocessors. Transfers out of the UK/EEA rely on: an adequacy decision (Canada's federal regime under PIPEDA currently benefits from UK/EU adequacy findings for PIPEDA-covered organisations); the SCCs and UK Addendum for transfers to the United States or other non-adequate jurisdictions; or another valid transfer mechanism. For data collected in Canada, Sigbot ensures Subprocessors outside Canada provide comparable protection as required under PIPEDA.</p>
+      <p>Customer Data is stored in the European Union (Google Cloud Firestore, multi-region <code>eur3</code>) and processed by Sigbot's Cloud Functions in the United States (<code>us-central1</code>) and by the Subprocessors listed in Section 5, reflecting Sigbot's operations. Transfers out of the UK/EEA rely on: an adequacy decision (Canada's federal regime under PIPEDA currently benefits from UK/EU adequacy findings for PIPEDA-covered organisations); the SCCs and UK Addendum for transfers to the United States or other non-adequate jurisdictions; or another valid transfer mechanism. For data collected in Canada, Sigbot ensures Subprocessors outside Canada provide comparable protection as required under PIPEDA.</p>
     </section>
 
     <section id="dsr">
@@ -172,7 +178,7 @@
 
     <section id="security">
       <h2>8. Security Measures</h2>
-      <p>Sigbot implements technical and organisational measures appropriate to the risk, described in full on our <a href="/legal/security.html">Security Overview</a> page, including encryption in transit and at rest, role-based access controls, OAuth-based authentication where supported, logging and monitoring, and a defined incident response process. Sigbot will notify Customer without undue delay, and in any event within 72 hours of confirming a personal data breach affecting Customer Data.</p>
+      <p>Sigbot implements technical and organisational measures appropriate to the risk, described in full on our <a href="/legal/security.html">Security Overview</a> page, including encryption in transit and at rest, application-level encryption of mailbox tokens, role-based access controls and a role-based permission matrix per team (see <a href="/legal/roles.html">Roles and permissions</a>), OAuth-based authentication where supported, two-step verification rolling out to every account (authenticator app), automatic retention and deletion on the schedule published in the Security Overview, logging and monitoring, and a defined incident response process. Sigbot will notify Customer without undue delay, and in any event within 72 hours of confirming a personal data breach affecting Customer Data.</p>
     </section>
 
     <section id="audit">
@@ -182,7 +188,7 @@
 
     <section id="deletion">
       <h2>10. Deletion and Return of Data</h2>
-      <p>On termination or Customer's written request, Sigbot will delete or return all Customer Data within 30 days, except where retention is required by law, in which case that data is isolated and protected from further processing.</p>
+      <p>Customer Data that Customer deletes through the Services is erased on the schedule published on the <a href="/legal/security.html">Security Overview</a>: individual records after a 30-day restore window (or at once when Customer chooses "Delete permanently"), and everything held for an account at once when Customer deletes the account. Copies in backups age out within 14 days of erasure. On termination or Customer's written request, Sigbot will delete or return all remaining Customer Data within 30 days, except where retention is required by law, in which case that data is isolated and protected from further processing.</p>
     </section>
 
     <hr style="border:none;border-top:1px solid var(--line);margin:40px 0;">
@@ -238,6 +244,7 @@
         <li><a href="/legal/api-terms.html">API Terms of Service</a></li>
         <li><a href="/legal/dpa.html">Data Processing Addendum</a></li>
         <li><a href="/legal/vulnerability-disclosure.html">Vulnerability Disclosure Policy</a></li>
+        <li><a href="/legal/roles.html">Roles and permissions</a></li>
       </ul>
     </div>
     <div>

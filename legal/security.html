@@ -38,6 +38,10 @@
   .card h3{margin-top:0;font-size:15px;}
   .card p{font-size:14.5px;margin-bottom:0;}
   @media(max-width:640px){.grid{grid-template-columns:1fr;}}
+  table{width:100%;border-collapse:collapse;margin:0 0 14px;font-size:14.5px;}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);}
+  .table-wrap{overflow-x:auto;}
 </style>
 <!-- Analytics -->
 <script src="/assets/js/analytics.js"></script>
@@ -57,7 +61,7 @@
   <div class="hero-inner">
     <div class="eyebrow">Legal &amp; Trust</div>
     <h1>Security Overview</h1>
-    <div class="meta">Last updated: 19 July 2026</div>
+    <div class="meta">Last updated: 9 September 2026</div>
     <p class="intro">How Sigbot protects the data that moves through connected inboxes — from authentication and encryption to how we respond when something goes wrong.</p>
   </div>
 </div>
@@ -73,6 +77,7 @@
       <li><a href="/legal/api-terms.html">API Terms of Service</a></li>
       <li><a href="/legal/dpa.html">Data Processing Addendum</a></li>
       <li><a href="/legal/vulnerability-disclosure.html">Vulnerability Disclosure Policy</a></li>
+      <li><a href="/legal/roles.html">Roles and permissions</a></li>
     </ul>
   </div>
 
@@ -92,11 +97,24 @@
       <li>Data in transit is encrypted using TLS.</li>
       <li>Data at rest is encrypted using our cloud providers' standard at-rest encryption.</li>
       <li>API keys and credentials are stored using secure secrets management.</li>
+      <li>Mailbox OAuth tokens are additionally encrypted with an application-level AES-256-GCM key held in Secret Manager.</li>
     </ul>
   </section>
 
   <section>
     <h2>3. Authentication and Access</h2>
+    <h3>Your account</h3>
+    <ul>
+      <li>You sign in with an email address and password, or with Google or Microsoft where enabled. Signing in with a provider grants identity only; it does not give Sigbot access to your mailbox.</li>
+      <li>Two-step verification with an authenticator app is rolling out to every account (<em>Account details → Security</em>). A team owner can require it for admin actions — see <a href="/legal/roles.html">Roles and permissions</a>.</li>
+      <li>Passwords must be at least 8 characters, with a lower-case letter, an upper-case letter and a number. The policy is enforced server-side.</li>
+      <li>Your email address must be verified before Sigbot will scan a mailbox.</li>
+      <li>You can sign out every other device from <em>Account details → Security</em>. Changing your password also signs out other sessions.</li>
+      <li>Deleting your account and signing out other devices both require a recent sign-in.</li>
+      <li>Every scan and OAuth action is rate-limited per account.</li>
+      <li>Requests from the web app carry an App Check attestation (reCAPTCHA Enterprise). App Check currently runs in monitor mode.</li>
+    </ul>
+    <h3>Mailboxes and internal access</h3>
     <ul>
       <li>Where supported by your email provider, Sigbot connects to inboxes via OAuth rather than storing your email password directly.</li>
       <li>Internal access to production systems and Customer Data is limited to personnel who need it to operate or support the Services, on a role-based basis.</li>
@@ -106,7 +124,7 @@
 
   <section>
     <h2>4. Monitoring and Logging</h2>
-    <p>We log access to production systems and monitor for anomalous activity. Log retention periods are reviewed periodically in line with our data minimisation obligations.</p>
+    <p>We log access to production systems and monitor for anomalous activity. Application logs are kept for 30 days and admin-activity logs for 400 days (see section 9); these periods are reviewed in line with our data minimisation obligations.</p>
   </section>
 
   <section>
@@ -135,12 +153,42 @@
   </section>
 
   <section>
-    <h2>9. Data Retention and Deletion</h2>
-    <p>Customer Data is retained for as long as your account is active, or as described in our <a href="/legal/dpa.html">Data Processing Addendum</a>. You can request deletion of your account and associated data by contacting <a href="mailto:legal@sigbot.co">legal@sigbot.co</a>.</p>
+    <h2>9. Data retention</h2>
+    <p>Retention is automatic. The periods below are enforced by scheduled deletion and time-to-live policies on our database; nothing on this list needs a request from you.</p>
+    <div class="table-wrap">
+    <table>
+      <tr><th>Data</th><th>Kept for</th><th>Then</th></tr>
+      <tr><td>Contact records</td><td>Until you delete them, then 30 days in Trash, during which you can restore them</td><td>Erased. <em>Delete permanently</em> erases at once.</td></tr>
+      <tr><td>Records another member removed from a team folder</td><td>30 days, during which they can be restored</td><td>Erased</td></tr>
+      <tr><td>Review-queue entries you rejected</td><td>180 days</td><td>Erased</td></tr>
+      <tr><td>Scan coverage hashes (SHA-256 of message ids; no content)</td><td>180 days</td><td>Erased</td></tr>
+      <tr><td>Cached signature parses</td><td>90 days</td><td>Erased</td></tr>
+      <tr><td>Scan job records</td><td>90 days</td><td>Erased</td></tr>
+      <tr><td>Throttle counters</td><td>1 day</td><td>Erased</td></tr>
+      <tr><td>OAuth sign-in state</td><td>10 minutes</td><td>Erased</td></tr>
+      <tr><td>Mailbox tokens</td><td>Until you disconnect the mailbox</td><td>Google grants are revoked at Google immediately. Microsoft tokens are deleted at once, and the app links to your Microsoft account so you can revoke the grant there.</td></tr>
+      <tr><td>Application logs</td><td>30 days</td><td>Erased</td></tr>
+      <tr><td>Admin-activity logs</td><td>400 days</td><td>Erased</td></tr>
+      <tr><td>Everything above, when you delete your account</td><td>—</td><td>Your subscription is cancelled first, then all of it is erased at once. Copies in backups age out within 14 days.</td></tr>
+    </table>
+    </div>
+    <p>Billing records are kept for as long as tax and accounting law require; see <a href="/legal/delete-account.html">Delete your account</a>.</p>
   </section>
 
   <section>
-    <h2>10. Contact</h2>
+    <h2>10. Your data, self-serve</h2>
+    <p>You do not need to contact us for any of the following.</p>
+    <ul>
+      <li><strong>Download my data</strong> — <em>Account details → Your data</em>. One JSON archive of your account, settings, connected mailboxes, team memberships, scan history and audit entries, plus a CSV of your contacts with their change history. The archive is assembled in your browser; nothing is stored on our servers or emailed.</li>
+      <li><strong>Delete account</strong> — <em>Account details → Danger zone</em>. Requires a recent sign-in. Cancels your subscription, then erases your data as described in section 9. See <a href="/legal/delete-account.html">Delete your account</a>.</li>
+      <li><strong>Delete permanently</strong> and <strong>Empty trash</strong> — in Trash. Erases the selected records, or everything in Trash, now rather than after 30 days.</li>
+      <li><strong>Scan-rule purge</strong> — when you add an exclusion rule for an address or domain, tick <em>Also remove existing matches</em> to erase every record that matches it, together with its change history and review-queue entries. The rule then blocks the address from being filed again. Personal accounts: <em>Import Emails → Scan rules</em>. Teams: the Admin console, for roles with <em>Manage scan rules</em> (see <a href="/legal/roles.html">Roles and permissions</a>).</li>
+    </ul>
+    <p>Requests about anything else, or about data held in someone else's account, go to <a href="mailto:legal@sigbot.co">legal@sigbot.co</a>.</p>
+  </section>
+
+  <section>
+    <h2>11. Contact</h2>
     <p>Security questions or concerns: <a href="mailto:security@sigbot.co">security@sigbot.co</a>. To report a vulnerability, see our <a href="/legal/vulnerability-disclosure.html">Vulnerability Disclosure Policy</a>.</p>
   </section>
 
@@ -157,6 +205,7 @@
         <li><a href="/legal/api-terms.html">API Terms of Service</a></li>
         <li><a href="/legal/dpa.html">Data Processing Addendum</a></li>
         <li><a href="/legal/vulnerability-disclosure.html">Vulnerability Disclosure Policy</a></li>
+        <li><a href="/legal/roles.html">Roles and permissions</a></li>
       </ul>
     </div>
     <div>
