@@ -24,7 +24,6 @@
 
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="stylesheet" href="assets/css/pricing.css" />
-  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 
   <meta property="og:title" content="Book a build | Sigbot" />
   <meta property="og:description" content="We build your subcontractor or client database from your inbox. One-off, delivered as Excel." />
@@ -43,15 +42,6 @@
     .build-col .price-tag { margin-top: 10px; }
     .build-col .feature-list { margin-top: 16px; flex: 1; }
     .build-col .btnrow { margin-top: 20px; flex-wrap: wrap; align-items: center; gap: 10px; }
-    .qty {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 13px; color: var(--muted);
-    }
-    .qty input {
-      width: 64px; padding: 8px 10px; font: inherit; font-size: 14px;
-      color: var(--fg); background: var(--bg); border: 1px solid var(--line);
-      border-radius: 8px;
-    }
     .steps { display: grid; gap: 24px; grid-template-columns: 1fr; margin-top: 28px; text-align: left; }
     @media (min-width: 720px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
     .step-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .12em; color: var(--muted); }
@@ -114,11 +104,14 @@
            The prices, units and checklists between the sigbot:pricing
            markers are generated from SERVICE_SKUS in the app's catalog
            (scripts/sync-pricing-copy.mjs in the app repo) — do not hand-edit
-           them. The pay buttons open Paddle's checkout for the matching
-           one-time price (ids in PRICE_IDS below). -->
+           them. The buttons hand the visitor to the app: a build is
+           delivered by scanning a mailbox inside the buyer's own account, so
+           the account and the connection have to exist before the card is
+           charged. sigbot.app/build collects the brief and takes the
+           payment — the same pattern as the plan buttons on pricing.html. -->
       <div id="builds" style="text-align: left;">
         <h2 style="font-size: 24px; font-weight: 800; margin: 0 0 4px; letter-spacing: -0.03em;">Three ways to start</h2>
-        <p style="font-size: 14px; color: var(--muted); margin: 0 0 8px;">Prices in USD. Paddle, our merchant of record, bills in your local currency and adds any applicable tax at checkout.</p>
+        <p style="font-size: 14px; color: var(--muted); margin: 0 0 8px;">Each one starts in the app: connect the mailbox we build from, tell us what you need, then pay. Prices in USD — Paddle, our merchant of record, bills in your local currency and adds any applicable tax at checkout.</p>
 
         <div class="plan-strip build-strip" style="grid-template-columns: 1fr;">
 
@@ -151,10 +144,9 @@
           </ul>
             <!-- sigbot:pricing:service-deliverables:inbox-history-build:end -->
             <div class="btnrow">
-              <button class="btnPrimary" data-pay="INBOX_HISTORY_BUILD">Pay now</button>
-              <label class="qty">Mailboxes <input type="number" id="qty-inbox" min="1" max="25" value="1" aria-label="Number of mailboxes"></label>
+              <a class="btnPrimary" data-start="inbox-history-build" href="https://sigbot.app/build?service=inbox-history-build">Start this build →</a>
             </div>
-            <p class="pay-note">Pay first or book first — either works. We start within one working day of payment.</p>
+            <p class="pay-note">Connect the mailbox, tell us what you need, then pay. Takes about two minutes, and you will see it working before you are charged.</p>
           </div>
 
           <!-- TEAM DATABASE BUILD -->
@@ -186,9 +178,9 @@
           </ul>
             <!-- sigbot:pricing:service-deliverables:team-database-build:end -->
             <div class="btnrow">
-              <button class="btnPrimary" data-pay="TEAM_DATABASE_BUILD">Pay now</button>
+              <a class="btnPrimary" data-start="team-database-build" href="https://sigbot.app/build?service=team-database-build">Start this build →</a>
             </div>
-            <p class="pay-note">Most teams book the call first so we can agree the folder structure before we start. Converts straight into a Starter plan at the handover.</p>
+            <p class="pay-note">Tell us who is on the team and how you want the folders, then pay. We confirm the scope with you within one working day, before any work starts. Converts straight into a Starter plan at the handover.</p>
           </div>
 
           <!-- PAID PILOT -->
@@ -220,9 +212,9 @@
           </ul>
             <!-- sigbot:pricing:service-deliverables:paid-pilot:end -->
             <div class="btnrow">
-              <button class="btnPrimary" data-pay="PAID_PILOT">Pay the first half</button>
+              <a class="btnPrimary" data-start="paid-pilot" href="https://sigbot.app/build?service=paid-pilot">Request a pilot →</a>
             </div>
-            <p class="pay-note">Credited in full against an annual plan signed within 30 days of the pilot ending. Pilots start with a call — book above.</p>
+            <p class="pay-note">You tell us what the pilot should prove and when suits for the kick-off call, then pay the first half. Credited in full against an annual plan signed within 30 days of the pilot ending.</p>
           </div>
 
         </div>
@@ -261,7 +253,11 @@
         <div class="kv kv--qa">
           <div class="kvRow">
             <h3 class="kvKey">Do I need a Sigbot subscription?</h3>
-            <div class="kvVal">No. Every build is a one-off. You keep the Excel file whatever you decide. If you want the list to stay current, the Inbox History Build includes 30 days of Individual, and team builds convert straight into a Starter plan at the handover.</div>
+            <div class="kvVal">No. Every build is a one-off and you keep the Excel file whatever you decide next. You do need a Sigbot account — it is free, takes a minute, and it is where the build is delivered — but no paid plan. The Inbox History Build includes 30 days of Individual so the list keeps itself current afterwards, and team builds convert straight into a Starter plan at the handover.</div>
+          </div>
+          <div class="kvRow">
+            <h3 class="kvKey">Why do I connect the mailbox before paying?</h3>
+            <div class="kvVal">Because that is the order that protects you. The scan runs inside your own account against a mailbox you connect — nobody at Sigbot ever reads your mail — so if your IT setup blocks it, we both find out before any money changes hands rather than after. You will also have watched real contacts appear before you are asked for a card.</div>
           </div>
           <div class="kvRow">
             <h3 class="kvKey">Which mailboxes can you build from?</h3>
@@ -328,75 +324,24 @@
       if (note) note.textContent = 'Pick a slot that suits you — the call is 20 minutes, no demo unless you want one.';
     })();
 
-    /* ─── PAY NOW ─────────────────────────────────────────────────────
-       One-time Paddle prices on the "Sigbot Services" product, created
-       2026-09-09 by scripts/setup-paddle.mjs (app repo). Checkout opens
-       right here — a build is not tied to an app account, so unlike the
-       plans there is no firebase_uid to carry. Paddle emails the receipt;
-       we fulfil by hand from the Paddle transaction. The token is the same
-       public client token pricing.js uses. */
-    var PADDLE_TOKEN = 'live_5ccca908a5ed4850c510274c3e2';
-    var PRICE_IDS = {
-      INBOX_HISTORY_BUILD: 'pri_01m24wexx4qkmna45qemsejv2b',
-      TEAM_DATABASE_BUILD: 'pri_01m24wey10bwf03dxbkkwcqbd2',
-      PAID_PILOT:          'pri_01m24wey4kz05k7hw0gsj01bsf'
-    };
-    var FALLBACK = 'mailto:support@sigbot.co?subject=Book%20a%20build%20%E2%80%94%20';
+    /* ─── START A BUILD ───────────────────────────────────────────────
+       Checkout deliberately does NOT happen on this page. A build is
+       delivered by scanning a mailbox from inside the buyer's own Sigbot
+       account, so an account — and, for the single-mailbox build, a live
+       connection — are preconditions of paying rather than things we chase
+       afterwards. Taking the money here would also lose the firebase_uid the
+       webhook needs to attach the order to anyone.
 
-    var paddleReady = false;
-    try {
-      if (window.Paddle) {
-        Paddle.Initialize({ token: PADDLE_TOKEN });
-        paddleReady = true;
-      }
-    } catch (e) { paddleReady = false; }
-
-    function quantityFor(key) {
-      if (key !== 'INBOX_HISTORY_BUILD') return 1;
-      var input = document.getElementById('qty-inbox');
-      var n = parseInt(input && input.value, 10);
-      if (!(n >= 1)) n = 1;
-      if (n > 25) n = 25;
-      if (input) input.value = String(n);
-      return n;
-    }
-
-    Array.prototype.forEach.call(document.querySelectorAll('[data-pay]'), function (btn) {
-      btn.addEventListener('click', function () {
-        var key = btn.getAttribute('data-pay');
-        var priceId = PRICE_IDS[key];
-        var qty = quantityFor(key);
-
+       So the buttons are plain links into the app, which collects the brief
+       and opens the real checkout. Same shape as the plan buttons on
+       pricing.html. All this script does is count the click. */
+    Array.prototype.forEach.call(document.querySelectorAll('[data-start]'), function (link) {
+      link.addEventListener('click', function () {
         if (typeof sigbotTrack === 'function') {
-          sigbotTrack('build_pay_clicked', { service: key, quantity: qty });
+          sigbotTrack('build_start_clicked', { service: link.getAttribute('data-start') });
         }
-
-        /* Ad blockers eat paddle.js; a blocked checkout must still lead
-           somewhere a person can pay, so fall back to email. */
-        if (!paddleReady || !priceId || typeof Paddle.Checkout !== 'object') {
-          window.location.href = FALLBACK + encodeURIComponent(key.replace(/_/g, ' ').toLowerCase());
-          return;
-        }
-
-        Paddle.Checkout.open({
-          items: [{ priceId: priceId, quantity: qty }],
-          customData: { service: key, quantity: String(qty), source: 'sigbot.co/build' },
-          settings: { displayMode: 'overlay', theme: 'dark', successUrl: 'https://sigbot.co/build.html?paid=' + key.toLowerCase() }
-        });
       });
     });
-
-    /* Back from a successful checkout: say so, once. */
-    (function () {
-      var m = /[?&]paid=([a-z_]+)/.exec(window.location.search);
-      if (!m) return;
-      var note = document.getElementById('book-note');
-      if (note) {
-        note.textContent = 'Payment received — thank you. We’ll email you within one working day to start the build.';
-        note.style.color = 'var(--fg)';
-      }
-      if (typeof sigbotTrack === 'function') sigbotTrack('build_paid', { service: m[1] });
-    })();
 
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
