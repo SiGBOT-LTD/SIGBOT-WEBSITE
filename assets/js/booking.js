@@ -192,6 +192,9 @@
       frame.className = 'calendly-frame';
       calendarPanel.appendChild(frame);
       calendarPanel.hidden = false;
+      // Two columns only exist once there is a calendar to put beside the form.
+      var grid = document.querySelector('.book-grid');
+      if (grid) grid.classList.add('book-grid--split');
       var toggle = document.getElementById('book-form-toggle');
       if (toggle) toggle.hidden = false;
       formPanel.hidden = true;

@@ -34,8 +34,13 @@
   <script src="/assets/js/analytics.js"></script>
 
   <style>
-    .book-grid { display: grid; gap: 28px; grid-template-columns: 1fr; align-items: start; }
-    @media (min-width: 900px) { .book-grid { grid-template-columns: 1.15fr 0.85fr; } }
+    /* One column by default — with no scheduling link configured the form
+       IS the page, and a reserved empty second column just looks broken.
+       booking.js adds .book-grid--split once a calendar is embedded. */
+    .book-grid { display: grid; gap: 28px; grid-template-columns: 1fr; align-items: start; max-width: 620px; }
+    @media (min-width: 900px) {
+      .book-grid--split { grid-template-columns: 1.15fr 0.85fr; max-width: none; }
+    }
 
     /* Honeypot: off-screen rather than display:none, which some bots skip. */
     .hp {
@@ -189,7 +194,7 @@
       <div class="twoCol book-aside" style="text-align: left;">
         <div class="panel">
           <p class="panelTitle">What happens on the call</p>
-          <div class="kv">
+          <div class="kv kv--qa">
             <div class="kvRow">
               <div class="kvKey">First 10 minutes</div>
               <div class="kvVal">You talk. How your subcontractor or client list is kept today, who maintains it, and what goes wrong on bid day.</div>
@@ -207,7 +212,7 @@
 
         <div class="panel">
           <p class="panelTitle">Rather not talk?</p>
-          <div class="kv">
+          <div class="kv kv--qa">
             <div class="kvRow">
               <div class="kvKey">Try it</div>
               <div class="kvVal"><a href="https://sigbot.app/get-started" style="color: var(--accent);">Start free</a> — 150 scans a day, 1,000 contacts, no card.</div>
