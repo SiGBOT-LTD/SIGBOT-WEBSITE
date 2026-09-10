@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <title>Book a build | Sigbot</title>
+  <meta name="description"
+    content="Done-for-you builds: we turn one mailbox or a whole team's inboxes into a clean, deduped contact database. One-off pricing, delivered as Excel, no subscription required." />
+
+  <link rel="canonical" href="https://sigbot.co/build.html" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/pricing.css" />
+  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+
+  <meta property="og:title" content="Book a build | Sigbot" />
+  <meta property="og:description" content="We build your subcontractor or client database from your inbox. One-off, delivered as Excel." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sigbot.co/build.html" />
+  <meta property="og:image" content="https://sigbot.co/assets/dashboard.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Analytics -->
+  <script src="/assets/js/analytics.js"></script>
+
+  <style>
+    /* Page-local layout for the build cards: a wider, three-up version of
+       the pricing strip with the checklist and a pay row per card. */
+    .build-strip { margin-top: 40px; }
+    .build-col .price-tag { margin-top: 10px; }
+    .build-col .feature-list { margin-top: 16px; flex: 1; }
+    .build-col .btnrow { margin-top: 20px; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .qty {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--muted);
+    }
+    .qty input {
+      width: 64px; padding: 8px 10px; font: inherit; font-size: 14px;
+      color: var(--fg); background: var(--bg); border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .steps { display: grid; gap: 24px; grid-template-columns: 1fr; margin-top: 28px; text-align: left; }
+    @media (min-width: 720px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .step-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .12em; color: var(--muted); }
+    .step h3 { font-size: 16px; margin: 6px 0 8px; }
+    .step p { font-size: 14px; color: var(--muted); line-height: 1.55; margin: 0; }
+    .book-hero { margin: 32px auto 0; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .book-note { font-size: 13px; color: var(--muted); margin-top: 12px; }
+    .pay-note { font-size: 12px; color: var(--muted); margin: 10px 0 0; line-height: 1.5; }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="nav-wrap">
+  <nav class="nav" aria-label="Primary">
+    <div class="brand">
+    <a href="index.html">
+      <img src="assets/robot.svg" alt="" aria-hidden="true">
+      SIGBOT
+    </a>
+    </div>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="navlinks">
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" id="nav-product-toggle" aria-expanded="false"
+          aria-controls="nav-product-menu" aria-haspopup="true">Product</button>
+        <div class="nav-dropdown-menu" id="nav-product-menu" role="menu"
+          aria-labelledby="nav-product-toggle">
+          <a href="webapp.html" role="menuitem">Web App</a>
+          <a href="mobile.html" role="menuitem">Mobile App</a>
+          <a href="demo.html" role="menuitem">Demo</a>
+        </div>
+      </div>
+      <a href="construction.html">Construction</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a class="cta-ghost" href="https://sigbot.app/login">Log in</a>
+      <a class="cta" href="https://sigbot.app/get-started">Start free</a>
+    </div>
+  </nav>
+</div>
+
+  <div class="container">
+    <div class="page" style="text-align: center;" id="main" tabindex="-1">
+
+      <h1 class="pageTitle">We'll build your contact database for you</h1>
+      <p class="pageSub" style="max-width: var(--measure); margin-inline: auto;">One estimator's inbox, or the whole precon team's. We run the scan, merge the duplicates, strip the newsletters, and hand you a clean list in Excel — formatted for BuildingConnected or Procore. One-off, no subscription required.</p>
+
+      <div class="book-hero">
+        <a class="btnPrimary" id="book-call" href="mailto:support@sigbot.co?subject=Book%20a%20build" style="padding: 14px 32px;">Book a 20-minute call</a>
+        <a class="btnGhost" href="#builds" style="padding: 14px 32px;">See the builds</a>
+      </div>
+      <p class="book-note" id="book-note">Ten minutes to hear how bid day works today, ten to pick the right build. No demo unless you want one.</p>
+
+      <hr class="section-rule">
+
+      <!-- BUILDS
+           The prices, units and checklists between the sigbot:pricing
+           markers are generated from SERVICE_SKUS in the app's catalog
+           (scripts/sync-pricing-copy.mjs in the app repo) — do not hand-edit
+           them. The pay buttons open Paddle's checkout for the matching
+           one-time price (ids in PRICE_IDS below). -->
+      <div id="builds" style="text-align: left;">
+        <h2 style="font-size: 24px; font-weight: 800; margin: 0 0 4px; letter-spacing: -0.03em;">Three ways to start</h2>
+        <p style="font-size: 14px; color: var(--muted); margin: 0 0 8px;">Prices in USD. Paddle, our merchant of record, bills in your local currency and adds any applicable tax at checkout.</p>
+
+        <div class="plan-strip build-strip" style="grid-template-columns: 1fr;">
+
+          <!-- INBOX HISTORY BUILD -->
+          <div class="plan-col build-col">
+            <p class="plan-col-name">Inbox History Build</p>
+            <div class="price-tag">
+              <span class="price-value"><!-- sigbot:pricing:service-price:inbox-history-build:start -->$249<!-- sigbot:pricing:service-price:inbox-history-build:end --></span>
+              <span class="price-period"><!-- sigbot:pricing:service-unit:inbox-history-build:start -->per mailbox<!-- sigbot:pricing:service-unit:inbox-history-build:end --></span>
+            </div>
+            <p class="service-blurb">The "install" moment for one person. Your entire mailbox history becomes a subcontractor or client list you can actually use — in about a day.</p>
+            <!-- sigbot:pricing:service-deliverables:inbox-history-build:start -->
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Full backfill of one mailbox
+            </li>
+            <li class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Duplicates merged, newsletters and no-reply mail removed
+            </li>
+            <li class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Excel export formatted for BuildingConnected or Procore
+            </li>
+            <li class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              30 days of the Individual plan
+            </li>
+          </ul>
+            <!-- sigbot:pricing:service-deliverables:inbox-history-build:end -->
+            <div class="btnrow">
+              <button class="btnPrimary" data-pay="INBOX_HISTORY_BUILD">Pay now</button>
+              <label class="qty">Mailboxes <input type="number" id="qty-inbox" min="1" max="25" value="1" aria-label="Number of mailboxes"></label>
+            </div>
+            <p class="pay-note">Pay first or book first — either works. We start within one working day of payment.</p>
+          </div>
+
+          <!-- TEAM DATABASE BUILD -->
+          <div class="plan-col plan-col--lead build-col">
+            <p class="plan-col-name">Team Database Build <span class="plan-col-badge">Most popular</span></p>
+            <div class="price-tag">
+              <span class="price-value"><!-- sigbot:pricing:service-price:team-database-build:start -->$1,500<!-- sigbot:pricing:service-price:team-database-build:end --></span>
+              <span class="price-period"><!-- sigbot:pricing:service-unit:team-database-build:start -->up to 10 mailboxes<!-- sigbot:pricing:service-unit:team-database-build:end --></span>
+            </div>
+            <p class="service-blurb">Done-for-you onboarding for the whole team. Every inbox scanned into one shared database, organised the way your projects and trades actually run.</p>
+            <!-- sigbot:pricing:service-deliverables:team-database-build:start -->
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Everything in the Inbox History Build, across up to 10 mailboxes
+            </li>
+            <li class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Folders set up by project and trade
+            </li>
+            <li class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Duplicates merged across the team
+            </li>
+            <li class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              45-minute handover call
+            </li>
+          </ul>
+            <!-- sigbot:pricing:service-deliverables:team-database-build:end -->
+            <div class="btnrow">
+              <button class="btnPrimary" data-pay="TEAM_DATABASE_BUILD">Pay now</button>
+            </div>
+            <p class="pay-note">Most teams book the call first so we can agree the folder structure before we start. Converts straight into a Starter plan at the handover.</p>
+          </div>
+
+          <!-- PAID PILOT -->
+          <div class="plan-col build-col">
+            <p class="plan-col-name">60-day Paid Pilot</p>
+            <div class="price-tag">
+              <span class="price-value"><!-- sigbot:pricing:service-price:paid-pilot:start -->$1,250<!-- sigbot:pricing:service-price:paid-pilot:end --></span>
+              <span class="price-period"><!-- sigbot:pricing:service-unit:paid-pilot:start -->50% now, 50% at day 30<!-- sigbot:pricing:service-unit:paid-pilot:end --></span>
+            </div>
+            <p class="service-blurb">Prove it on a live tender. Your team runs on Sigbot for 60 days with the database built for you, and the whole fee comes off your first year if you continue.</p>
+            <!-- sigbot:pricing:service-deliverables:paid-pilot:start -->
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Starter plan for one team, 60 days
+            </li>
+            <li class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Team Database Build in week one
+            </li>
+            <li class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Weekly 20-minute check-in
+            </li>
+            <li class="feature-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Credited in full against an annual contract
+            </li>
+          </ul>
+            <!-- sigbot:pricing:service-deliverables:paid-pilot:end -->
+            <div class="btnrow">
+              <button class="btnPrimary" data-pay="PAID_PILOT">Pay the first half</button>
+            </div>
+            <p class="pay-note">Credited in full against an annual plan signed within 30 days of the pilot ending. Pilots start with a call — book above.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <hr class="section-rule">
+
+      <!-- HOW IT WORKS -->
+      <div style="text-align: left;">
+        <h2 style="font-size: 24px; font-weight: 800; margin: 0 0 4px; letter-spacing: -0.03em;">How a build works</h2>
+        <p style="font-size: 14px; color: var(--muted); margin: 0;">You spend about twenty minutes on it in total.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <h3>Connect the mailbox</h3>
+            <p>You sign in to Sigbot and connect Outlook — read-only, revocable any time. For a team build, each person does the same, or an admin does it for them. Nothing is forwarded to us and no one at Sigbot reads your mail.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <h3>We run and clean the scan</h3>
+            <p>The full history is scanned, signatures are parsed, contacts are merged by email address, and newsletters, no-reply senders and bounces are removed. For team builds we set up folders by project and trade and merge duplicates across people.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <h3>Handover</h3>
+            <p>You get the database live in Sigbot plus an Excel export formatted for BuildingConnected or Procore. Team builds include a 45-minute handover call. Individual builds include 30 days of the Individual plan so the list keeps itself current.</p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="section-rule">
+
+      <!-- FAQ -->
+      <div style="text-align: left; max-width: 640px; margin: 0 auto;">
+        <h2 style="font-size: 24px; font-weight: 800; margin: 0 0 32px; letter-spacing: -0.03em; text-align: center;">Common questions</h2>
+        <div class="kv kv--qa">
+          <div class="kvRow">
+            <h3 class="kvKey">Do I need a Sigbot subscription?</h3>
+            <div class="kvVal">No. Every build is a one-off. You keep the Excel file whatever you decide. If you want the list to stay current, the Inbox History Build includes 30 days of Individual, and team builds convert straight into a Starter plan at the handover.</div>
+          </div>
+          <div class="kvRow">
+            <h3 class="kvKey">Which mailboxes can you build from?</h3>
+            <div class="kvVal">Outlook and Microsoft 365 mailboxes connect directly. Gmail and other IMAP mailboxes work through an app password — we'll walk you through it on the call.</div>
+          </div>
+          <div class="kvRow">
+            <h3 class="kvKey">Who sees my email?</h3>
+            <div class="kvVal">Nobody at Sigbot reads your mail. The scan runs inside your own Sigbot account against the mailbox you connected, and only the signature blocks are parsed. You can revoke access the moment the build is delivered. See our <a href="/legal/security.html" style="color: var(--accent);">security page</a> and <a href="/legal/dpa.html" style="color: var(--accent);">DPA</a>.</div>
+          </div>
+          <div class="kvRow">
+            <h3 class="kvKey">What if the list isn't what I expected?</h3>
+            <div class="kvVal">Tell us within 30 days and we'll either rework it or refund the build in full — the same <a href="refund.html" style="color: var(--accent);">30-day money-back guarantee</a> as every paid plan.</div>
+          </div>
+          <div class="kvRow">
+            <h3 class="kvKey">Can I pay by invoice?</h3>
+            <div class="kvVal">Yes. Book the call and ask, or <a href="mailto:support@sigbot.co?subject=Build%20invoice" style="color: var(--accent);">email us</a> — we'll send a Paddle invoice with bank transfer details.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom CTA -->
+      <div class="pricing-cta">
+        <h2>Not sure which one?</h2>
+        <p style="max-width: var(--measure); margin-inline: auto;">Book the call. Ten minutes on how bid day works today, ten on which build fits.</p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a class="btnPrimary" id="book-call-bottom" href="mailto:support@sigbot.co?subject=Book%20a%20build" style="padding: 14px 32px;">Book a 20-minute call</a>
+          <a class="btnGhost" href="pricing.html" style="padding: 14px 32px;">See plan pricing</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-top">
+        <div>© <span id="y"></span> SIGBOT</div>
+        <div class="small"><a href="/legal/terms.html">Terms</a> · <a href="/legal/privacy.html">Privacy</a> · <a href="refund.html">Refunds</a> · <a href="/legal/security.html">Security</a> · <a href="/legal/dpa.html">DPA</a> · <a href="pricing.html">Pricing</a> · <a href="contact.html">Contact</a></div>
+      </div>
+      <div class="footer-legal">
+        Sigbot is a trading name of Sigbot Ltd. Registered in England and Wales. Company No: 16997653.
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    /* ─── BOOKING ─────────────────────────────────────────────────────
+       Set CALENDLY_URL to the scheduling link (e.g.
+       'https://calendly.com/<account>/build-call') and both "Book a
+       20-minute call" buttons switch from the email fallback to it. Left
+       empty, the buttons open a pre-addressed email so the page is never
+       a dead end. */
+    var CALENDLY_URL = '';
+
+    (function () {
+      if (!CALENDLY_URL) return;
+      ['book-call', 'book-call-bottom'].forEach(function (id) {
+        var a = document.getElementById(id);
+        if (!a) return;
+        a.href = CALENDLY_URL;
+        a.target = '_blank';
+        a.rel = 'noopener';
+      });
+      var note = document.getElementById('book-note');
+      if (note) note.textContent = 'Pick a slot that suits you — the call is 20 minutes, no demo unless you want one.';
+    })();
+
+    /* ─── PAY NOW ─────────────────────────────────────────────────────
+       One-time Paddle prices on the "Sigbot Services" product, created
+       2026-09-09 by scripts/setup-paddle.mjs (app repo). Checkout opens
+       right here — a build is not tied to an app account, so unlike the
+       plans there is no firebase_uid to carry. Paddle emails the receipt;
+       we fulfil by hand from the Paddle transaction. The token is the same
+       public client token pricing.js uses. */
+    var PADDLE_TOKEN = 'live_5ccca908a5ed4850c510274c3e2';
+    var PRICE_IDS = {
+      INBOX_HISTORY_BUILD: 'pri_01m24wexx4qkmna45qemsejv2b',
+      TEAM_DATABASE_BUILD: 'pri_01m24wey10bwf03dxbkkwcqbd2',
+      PAID_PILOT:          'pri_01m24wey4kz05k7hw0gsj01bsf'
+    };
+    var FALLBACK = 'mailto:support@sigbot.co?subject=Book%20a%20build%20%E2%80%94%20';
+
+    var paddleReady = false;
+    try {
+      if (window.Paddle) {
+        Paddle.Initialize({ token: PADDLE_TOKEN });
+        paddleReady = true;
+      }
+    } catch (e) { paddleReady = false; }
+
+    function quantityFor(key) {
+      if (key !== 'INBOX_HISTORY_BUILD') return 1;
+      var input = document.getElementById('qty-inbox');
+      var n = parseInt(input && input.value, 10);
+      if (!(n >= 1)) n = 1;
+      if (n > 25) n = 25;
+      if (input) input.value = String(n);
+      return n;
+    }
+
+    Array.prototype.forEach.call(document.querySelectorAll('[data-pay]'), function (btn) {
+      btn.addEventListener('click', function () {
+        var key = btn.getAttribute('data-pay');
+        var priceId = PRICE_IDS[key];
+        var qty = quantityFor(key);
+
+        if (typeof sigbotTrack === 'function') {
+          sigbotTrack('build_pay_clicked', { service: key, quantity: qty });
+        }
+
+        /* Ad blockers eat paddle.js; a blocked checkout must still lead
+           somewhere a person can pay, so fall back to email. */
+        if (!paddleReady || !priceId || typeof Paddle.Checkout !== 'object') {
+          window.location.href = FALLBACK + encodeURIComponent(key.replace(/_/g, ' ').toLowerCase());
+          return;
+        }
+
+        Paddle.Checkout.open({
+          items: [{ priceId: priceId, quantity: qty }],
+          customData: { service: key, quantity: String(qty), source: 'sigbot.co/build' },
+          settings: { displayMode: 'overlay', theme: 'dark', successUrl: 'https://sigbot.co/build.html?paid=' + key.toLowerCase() }
+        });
+      });
+    });
+
+    /* Back from a successful checkout: say so, once. */
+    (function () {
+      var m = /[?&]paid=([a-z_]+)/.exec(window.location.search);
+      if (!m) return;
+      var note = document.getElementById('book-note');
+      if (note) {
+        note.textContent = 'Payment received — thank you. We’ll email you within one working day to start the build.';
+        note.style.color = 'var(--fg)';
+      }
+      if (typeof sigbotTrack === 'function') sigbotTrack('build_paid', { service: m[1] });
+    })();
+
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+  <script src="assets/js/nav.js"></script>
+</body>
+
+</html>

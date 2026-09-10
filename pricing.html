@@ -75,7 +75,7 @@
     <div class="page" style="text-align: center;" id="main" tabindex="-1">
 
       <h1 class="pageTitle">Simple, transparent pricing</h1>
-      <p class="pageSub" style="margin-bottom: 40px;">Start free. Upgrade when you need more. Every paid plan is billed yearly.</p>
+      <p class="pageSub" style="margin-bottom: 40px;">Start free. Upgrade when you need more. Individual is monthly or yearly; team plans are billed yearly.</p>
 
       <!-- REGION
            Hidden until Paddle has actually returned a localised price.
@@ -95,12 +95,13 @@
            full comparison table further down still does the
            compare-everything job; these columns only carry the decision.
            "Everything in X" leads each paid column so the bullets are
-           only what's new. Every paid plan is billed yearly (monthly
-           billing was retired 2026-09-08). The USD prices sit between
-           sigbot:pricing:price:<tier> markers, generated from the app's
-           catalog; pricing.js still owns those elements by id
-           (individual-price, starter-price, professional-price) and
-           swaps in Paddle's localised figure, and owns the three
+           only what's new. Team plans are billed yearly; Individual is
+           $190/yr or $19/mo (repriced 2026-09-09 — yearly is the
+           headline, monthly one click away). The USD prices sit between
+           sigbot:pricing:price:<tier> / price-monthly:<tier> /
+           price:enterprise markers, generated from
+           the app's catalog; pricing.js still owns the priced elements
+           by id and swaps in Paddle's localised figures, and owns the
            checkout buttons. -->
       <div class="plan-strip">
 
@@ -145,9 +146,10 @@
         <div class="plan-col">
           <p class="plan-col-name">Individual</p>
           <div class="price-tag">
-            <span class="price-value" id="individual-price"><!-- sigbot:pricing:price:individual:start -->$500<!-- sigbot:pricing:price:individual:end --></span>
+            <span class="price-value" id="individual-price"><!-- sigbot:pricing:price:individual:start -->$190<!-- sigbot:pricing:price:individual:end --></span>
             <span class="price-period" id="individual-period">/ year</span>
           </div>
+          <p class="price-alt">or <span id="individual-monthly-price"><!-- sigbot:pricing:price-monthly:individual:start -->$19<!-- sigbot:pricing:price-monthly:individual:end --></span> / month · yearly saves <span id="individual-saving"><!-- sigbot:pricing:saving:individual:start -->17%<!-- sigbot:pricing:saving:individual:end --></span></p>
           <!-- sigbot:pricing:cards:individual:start -->
           <p class="plan-includes">Includes:</p>
           <ul class="feature-list">
@@ -178,8 +180,9 @@
           </ul>
           <!-- sigbot:pricing:cards:individual:end -->
           <div class="btnrow">
-            <button class="btnGhost" id="individual-checkout-btn">Subscribe</button>
+            <button class="btnGhost" id="individual-checkout-btn">Subscribe yearly</button>
           </div>
+          <button class="btnLink" id="individual-monthly-btn">or pay monthly →</button>
         </div>
 
         <!-- STARTER -->
@@ -198,7 +201,7 @@
             </li>
             <li class="feature-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Up to 5 seats
+              5 seats included, add up to 15 at $450/seat/yr
             </li>
             <li class="feature-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -256,9 +259,10 @@
         <div class="plan-col plan-col--span">
           <p class="plan-col-name">Enterprise</p>
           <div class="price-tag">
-            <span class="price-value">Custom</span>
-            <span class="price-period">annual contract</span>
+            <span class="price-value"><!-- sigbot:pricing:price:enterprise:start -->From $25,000<!-- sigbot:pricing:price:enterprise:end --></span>
+            <span class="price-period">/ year</span>
           </div>
+          <p class="price-alt">annual contract, quoted to fit</p>
           <!-- sigbot:pricing:cards:enterprise:start -->
           <p class="plan-includes">Everything in Professional, plus:</p>
           <ul class="feature-list">
@@ -307,6 +311,47 @@
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
           No credit card required
+        </div>
+      </div>
+
+      <hr class="section-rule">
+
+      <!-- SERVICES — done-for-you builds (one-time, sold on build.html).
+           The three cards are generated whole between the services
+           markers from SERVICE_SKUS in the app's catalog. -->
+      <div class="services" id="services">
+        <h2 style="font-size: 24px; font-weight: 800; margin: 0 0 4px; letter-spacing: -0.03em;">Done-for-you builds</h2>
+        <p style="font-size: 14px; color: var(--muted); margin: 0 auto 28px; max-width: var(--measure);">Skip the setup. We turn your inbox — or your whole team's — into a clean contact database, and hand it over ready to use. One-off, no subscription required.</p>
+        <div class="services-strip">
+        <!-- sigbot:pricing:services:start -->
+        <div class="service-col">
+          <p class="plan-col-name">Inbox History Build</p>
+          <div class="price-tag">
+            <span class="price-value">$249</span>
+            <span class="price-period">per mailbox</span>
+          </div>
+          <p class="service-blurb">One mailbox turned into a clean, deduped contact list — delivered as an Excel file ready for BuildingConnected or Procore, with 30 days of Individual included.</p>
+        </div>
+        <div class="service-col">
+          <p class="plan-col-name">Team Database Build</p>
+          <div class="price-tag">
+            <span class="price-value">$1,500</span>
+            <span class="price-period">up to 10 mailboxes</span>
+          </div>
+          <p class="service-blurb">The whole team’s inboxes built into one shared database — folders set up by project and trade, duplicates merged, and a 45-minute handover call.</p>
+        </div>
+        <div class="service-col">
+          <p class="plan-col-name">60-day Paid Pilot</p>
+          <div class="price-tag">
+            <span class="price-value">$1,250</span>
+            <span class="price-period">50% now, 50% at day 30</span>
+          </div>
+          <p class="service-blurb">Starter for one team for 60 days, the Team Database Build included, and a weekly 20-minute check-in. Credited in full against an annual plan signed within 30 days of the pilot ending.</p>
+        </div>
+        <!-- sigbot:pricing:services:end -->
+        </div>
+        <div class="btnrow" style="justify-content: center; margin-top: 24px;">
+          <a class="btnPrimary" href="build.html">Book a build →</a>
         </div>
       </div>
 
@@ -427,7 +472,7 @@
                 <td>Seats</td>
                 <td>1</td>
                 <td>1</td>
-                <td>Up to 5</td>
+                <td>5 included, up to 15</td>
                 <td class="col-highlight">Up to 50</td>
               </tr>
               <tr>
@@ -498,7 +543,7 @@
           </div>
           <div class="kvRow">
             <h3 class="kvKey">How often am I billed?</h3>
-            <div class="kvVal">Once a year. Every paid plan is an annual subscription — Individual is <span id="faq-individual-annual"><!-- sigbot:pricing:faq-individual-annual:start -->$500/yr<!-- sigbot:pricing:faq-individual-annual:end --></span>, and Starter and Professional are annual contracts too. There is no monthly option. You can cancel at any time and keep access until the end of the year you've paid for, and your first purchase is covered by our 30-day money-back guarantee.</div>
+            <div class="kvVal">Individual is <span id="faq-individual-annual"><!-- sigbot:pricing:faq-individual-annual:start -->$190/yr or $19/mo<!-- sigbot:pricing:faq-individual-annual:end --></span> — pick yearly or monthly at checkout. Starter and Professional are annual subscriptions, billed once a year. You can cancel at any time and keep access until the end of the period you've paid for, and your first purchase is covered by our 30-day money-back guarantee.</div>
           </div>
           <div class="kvRow">
             <h3 class="kvKey">What currency will I be charged in?</h3>
@@ -506,7 +551,7 @@
           </div>
           <div class="kvRow">
             <h3 class="kvKey">How does team pricing work?</h3>
-            <div class="kvVal"><!-- sigbot:pricing:faq-team-pricing:start -->Starter is one flat $2,500/year for up to 5 people sharing team folders and a single contact database. Professional is $10,000/year for up to 50 people, multiple teams, and per-folder permissions. Beyond 50 seats, <a href="mailto:support@sigbot.co?subject=Enterprise%20Enquiry" style="color: var(--accent);">talk to us</a> about an Enterprise plan.<!-- sigbot:pricing:faq-team-pricing:end --></div>
+            <div class="kvVal"><!-- sigbot:pricing:faq-team-pricing:start -->Starter is one flat $2,500/year for up to 5 people sharing team folders and a single contact database. Need a few more? Add seats to Starter at $450/seat/year, up to 15 in total — an 8-seat team pays $3,850/year. Professional is $10,000/year for up to 50 people, multiple teams, and per-folder permissions. Beyond 50 seats, <a href="mailto:support@sigbot.co?subject=Enterprise%20Enquiry" style="color: var(--accent);">talk to us</a> about an Enterprise plan — from $25,000 a year.<!-- sigbot:pricing:faq-team-pricing:end --></div>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 /* ─── LOCALISED PRICE TEASERS ─────────────────────────────────────
-   The home and web-app pages each quote "from $500/year" once. After
+   The home and web-app pages each quote "from $190/year" once. After
    the pricing page started showing what Paddle actually charges in the
    visitor's country, these lines were the last places still speaking
    dollars to everyone.
@@ -12,7 +12,7 @@
    compete with the hero, the globe, or anything else that matters.
 
    Every path out of here that isn't a confirmed local price leaves the
-   "$500/year" markup untouched. Same rule as the pricing page: a page
+   "$190/year" markup untouched. Same rule as the pricing page: a page
    that cannot localise should look like one that never tried.
 
    The token and price ID are duplicated from pricing.js on purpose —
@@ -22,7 +22,7 @@
   var TOKEN = 'live_5ccca908a5ed4850c510274c3e2';
   var INDIVIDUAL_YEARLY = 'pri_01m1k1fmn6nhmwrerfks8thb2e';
 
-  var CACHE_KEY   = 'sigbot.localPrice.v6';
+  var CACHE_KEY   = 'sigbot.localPrice.v7';
   var COUNTRY_KEY = 'sigbot.country';
   var CACHE_TTL   = 24 * 60 * 60 * 1000;
 
@@ -116,7 +116,7 @@
           ts: Date.now()
         }));
       } catch (e) {}
-    }).catch(function () { /* the $500 markup stands */ });
+    }).catch(function () { /* the $190 markup stands */ });
   }
 
   function loadPaddleAndPreview() {

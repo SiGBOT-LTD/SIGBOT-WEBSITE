@@ -11,9 +11,11 @@
     /* 2026 tiers — "Sigbot Individual / Starter / Professional" catalog
        created 2026-09-03 by scripts/setup-paddle.mjs (app repo), priced in
        USD. These feed PricePreview only — checkout happens in the app (see
-       openCheckout). Every plan is annual-only: monthly billing was retired
-       on 2026-09-08 and the old Individual monthly price is archived. */
+       openCheckout). Team plans are annual-only; Individual is $190/yr or
+       $19/mo since the 2026-09-09 repricing (the monthly id is a NEW price —
+       the old $50 one stays archived). */
     var PRICE_IDS = {
+      individual:         'pri_01m24wcz9tffjj1s5eq0pbbkph',
       individualAnnual:   'pri_01m1k1fmn6nhmwrerfks8thb2e',
       starterAnnual:      'pri_01m1k1fmzdhemebjnzfabg33gj',
       professionalAnnual: 'pri_01m1k1fng49mpkxfr9exp9tth9'
@@ -87,7 +89,11 @@
     var faqIndividualYear  = document.getElementById('faq-individual-annual');
 
     var EL = {
-      individual:   { price: document.getElementById('individual-price') },
+      individual:   {
+        price:   document.getElementById('individual-price'),
+        monthly: document.getElementById('individual-monthly-price'),
+        saving:  document.getElementById('individual-saving')
+      },
       starter:      { price: document.getElementById('starter-price') },
       professional: { price: document.getElementById('professional-price') }
     };
@@ -120,12 +126,18 @@
     }
 
     /* ─── RENDER ──────────────────────────────────────────────────────
-       Every plan is annual-only (monthly billing retired 2026-09-08), so
-       there is nothing to toggle: once Paddle answers, the three "/ year"
-       figures are swapped for the localised ones. */
+       Yearly is the headline on every card; Individual also quotes its
+       monthly price on the line beneath. Once Paddle answers, every figure
+       is swapped for the localised one and the saving is recomputed from
+       the localised amounts rather than assumed. */
     function render() {
       if (!LOCAL) return;
       EL.individual.price.textContent   = money(LOCAL.individual.annual);
+      EL.individual.monthly.textContent = money(LOCAL.individual.monthly);
+      var pct = Math.round(
+        (1 - LOCAL.individual.annual / (LOCAL.individual.monthly * 12)) * 100
+      );
+      if (pct > 0) EL.individual.saving.textContent = pct + '%';
       EL.starter.price.textContent      = money(LOCAL.starter.annual);
       EL.professional.price.textContent = money(LOCAL.professional.annual);
     }
@@ -134,7 +146,8 @@
     function renderCopy() {
       if (!LOCAL) return;
 
-      faqIndividualYear.textContent = money(LOCAL.individual.annual) + '/yr';
+      faqIndividualYear.textContent =
+        money(LOCAL.individual.annual) + '/yr or ' + money(LOCAL.individual.monthly) + '/mo';
 
       var note = 'Prices shown in ' + LOCAL.currency;
       if (LOCAL.taxRate > 0) {
@@ -194,8 +207,8 @@
 
       // Ids not filled in yet (the 2026 catalog is created by
       // scripts/setup-paddle.mjs) — the USD markup stands.
-      var ids = [PRICE_IDS.individualAnnual, PRICE_IDS.starterAnnual,
-                 PRICE_IDS.professionalAnnual];
+      var ids = [PRICE_IDS.individual, PRICE_IDS.individualAnnual,
+                 PRICE_IDS.starterAnnual, PRICE_IDS.professionalAnnual];
       for (var i = 0; i < ids.length; i++) {
         if (!ids[i]) return;
       }
@@ -217,7 +230,7 @@
           if (item.price && item.price.id) byId[item.price.id] = item;
         });
 
-        // A partial answer is worse than none. All three or the markup stands.
+        // A partial answer is worse than none. All four or the markup stands.
         for (var i = 0; i < ids.length; i++) {
           if (!byId[ids[i]]) return;
         }
@@ -246,7 +259,10 @@
           country:  (data.address && data.address.countryCode) || countryCode || null,
           taxRate:  Number(byId[PRICE_IDS.individualAnnual].taxRate || 0),
           taxInclusive: taxInclusive,
-          individual:   { annual: advertised(PRICE_IDS.individualAnnual) },
+          individual:   {
+            monthly: advertised(PRICE_IDS.individual),
+            annual:  advertised(PRICE_IDS.individualAnnual)
+          },
           starter:      { annual: advertised(PRICE_IDS.starterAnnual) },
           professional: { annual: advertised(PRICE_IDS.professionalAnnual) }
         };
@@ -257,10 +273,10 @@
         render();
         renderCopy();
 
-        // The "from $500/year" teasers on other pages read this instead
+        // The "from $190/year" teasers on other pages read this instead
         // of loading paddle.js themselves. See price-teaser.js.
         try {
-          localStorage.setItem('sigbot.localPrice.v6', JSON.stringify({
+          localStorage.setItem('sigbot.localPrice.v7', JSON.stringify({
             country: LOCAL.country,
             individualYearly: money(LOCAL.individual.annual),
             ts: Date.now()
@@ -286,24 +302,28 @@
        purchase is keyed to a Firebase account via customData.firebase_uid.
        The buy buttons hand the visitor to the app with the chosen plan in
        the query string; sigbot.app/upgrade sits behind the login wall and
-       opens the matching checkout once signed in. Every plan is
-       annual-only, so the cycle is always yearly. */
-    function openCheckout(plan) {
+       opens the matching checkout once signed in. Team plans are
+       annual-only; Individual can go monthly from its second button. */
+    function openCheckout(plan, cycle) {
+      cycle = cycle || 'yearly';
       sigbotTrack('checkout_opened', {
         plan: plan,
-        billing: 'annual',
+        billing: cycle === 'yearly' ? 'annual' : 'monthly',
         currency: LOCAL ? LOCAL.currency : 'USD',
         country: LOCAL ? LOCAL.country : null
       });
 
       window.location.href = 'https://sigbot.app/upgrade' +
-        '?plan=' + plan + '&cycle=yearly';
+        '?plan=' + plan + '&cycle=' + cycle;
     }
 
     ['individual', 'starter', 'professional'].forEach(function (plan) {
       document.getElementById(plan + '-checkout-btn').addEventListener('click', function () {
-        openCheckout(plan);
+        openCheckout(plan, 'yearly');
       });
+    });
+    document.getElementById('individual-monthly-btn').addEventListener('click', function () {
+      openCheckout('individual', 'monthly');
     });
 
     (function init() {
