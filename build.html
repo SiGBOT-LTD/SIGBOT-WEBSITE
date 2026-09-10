@@ -93,7 +93,7 @@
       <p class="pageSub" style="max-width: var(--measure); margin-inline: auto;">One estimator's inbox, or the whole precon team's. We run the scan, merge the duplicates, strip the newsletters, and hand you a clean list in Excel — formatted for BuildingConnected or Procore. One-off, no subscription required.</p>
 
       <div class="book-hero">
-        <a class="btnPrimary" id="book-call" href="mailto:support@sigbot.co?subject=Book%20a%20build" style="padding: 14px 32px;">Book a 20-minute call</a>
+        <a class="btnPrimary" id="book-call" href="book.html?topic=build" style="padding: 14px 32px;">Book a 20-minute call</a>
         <a class="btnGhost" href="#builds" style="padding: 14px 32px;">See the builds</a>
       </div>
       <p class="book-note" id="book-note">Ten minutes to hear how bid day works today, ten to pick the right build. No demo unless you want one.</p>
@@ -273,7 +273,7 @@
           </div>
           <div class="kvRow">
             <h3 class="kvKey">Can I pay by invoice?</h3>
-            <div class="kvVal">Yes. Book the call and ask, or <a href="mailto:support@sigbot.co?subject=Build%20invoice" style="color: var(--accent);">email us</a> — we'll send a Paddle invoice with bank transfer details.</div>
+            <div class="kvVal">Yes. <a href="book.html?topic=build" style="color: var(--accent);">Book a call</a> and ask, or <a href="mailto:support@sigbot.co?subject=Build%20invoice" style="color: var(--accent);">email us</a> — we'll send a Paddle invoice with bank transfer details.</div>
           </div>
         </div>
       </div>
@@ -283,7 +283,7 @@
         <h2>Not sure which one?</h2>
         <p style="max-width: var(--measure); margin-inline: auto;">Book the call. Ten minutes on how bid day works today, ten on which build fits.</p>
         <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-          <a class="btnPrimary" id="book-call-bottom" href="mailto:support@sigbot.co?subject=Book%20a%20build" style="padding: 14px 32px;">Book a 20-minute call</a>
+          <a class="btnPrimary" id="book-call-bottom" href="book.html?topic=build" style="padding: 14px 32px;">Book a 20-minute call</a>
           <a class="btnGhost" href="pricing.html" style="padding: 14px 32px;">See plan pricing</a>
         </div>
       </div>
@@ -303,27 +303,6 @@
   </div>
 
   <script>
-    /* ─── BOOKING ─────────────────────────────────────────────────────
-       Set CALENDLY_URL to the scheduling link (e.g.
-       'https://calendly.com/<account>/build-call') and both "Book a
-       20-minute call" buttons switch from the email fallback to it. Left
-       empty, the buttons open a pre-addressed email so the page is never
-       a dead end. */
-    var CALENDLY_URL = '';
-
-    (function () {
-      if (!CALENDLY_URL) return;
-      ['book-call', 'book-call-bottom'].forEach(function (id) {
-        var a = document.getElementById(id);
-        if (!a) return;
-        a.href = CALENDLY_URL;
-        a.target = '_blank';
-        a.rel = 'noopener';
-      });
-      var note = document.getElementById('book-note');
-      if (note) note.textContent = 'Pick a slot that suits you — the call is 20 minutes, no demo unless you want one.';
-    })();
-
     /* ─── START A BUILD ───────────────────────────────────────────────
        Checkout deliberately does NOT happen on this page. A build is
        delivered by scanning a mailbox from inside the buyer's own Sigbot

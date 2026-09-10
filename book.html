@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <title>Book a call | Sigbot</title>
+  <meta name="description"
+    content="Book a 20-minute call with Sigbot about a done-for-you build, a pilot, a team rollout or an enterprise contract." />
+
+  <link rel="canonical" href="https://sigbot.co/book.html" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <meta property="og:title" content="Book a call | Sigbot" />
+  <meta property="og:description" content="Twenty minutes with the person who builds it." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sigbot.co/book.html" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Analytics -->
+  <script src="/assets/js/analytics.js"></script>
+
+  <style>
+    .book-grid { display: grid; gap: 28px; grid-template-columns: 1fr; align-items: start; }
+    @media (min-width: 900px) { .book-grid { grid-template-columns: 1.15fr 0.85fr; } }
+
+    /* Honeypot: off-screen rather than display:none, which some bots skip. */
+    .hp {
+      position: absolute; left: -9999px; width: 1px; height: 1px;
+      overflow: hidden; opacity: 0;
+    }
+
+    .form-status {
+      font-size: 14px; color: var(--muted); margin: 12px 0 0; line-height: 1.5;
+    }
+    .form-status--error { color: #f87171; }
+
+    .calendly-frame {
+      width: 100%; min-height: 660px; border: 0; border-radius: 12px;
+      background: var(--surface);
+    }
+
+    .book-aside .kvVal { line-height: 1.6; }
+    .book-done {
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      background: rgba(34, 197, 94, 0.08);
+      border-radius: 12px; padding: 24px;
+    }
+    .book-done h2 { font-size: 18px; margin: 0 0 8px; }
+    .book-done p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 0 0 8px; }
+    .link-btn {
+      background: none; border: 0; padding: 0; font: inherit; font-size: 14px;
+      color: var(--muted); cursor: pointer; text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .link-btn:hover { color: var(--fg); }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="nav-wrap">
+  <nav class="nav" aria-label="Primary">
+    <div class="brand">
+    <a href="index.html">
+      <img src="assets/robot.svg" alt="" aria-hidden="true">
+      SIGBOT
+    </a>
+    </div>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="navlinks">
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" id="nav-product-toggle" aria-expanded="false"
+          aria-controls="nav-product-menu" aria-haspopup="true">Product</button>
+        <div class="nav-dropdown-menu" id="nav-product-menu" role="menu"
+          aria-labelledby="nav-product-toggle">
+          <a href="webapp.html" role="menuitem">Web App</a>
+          <a href="mobile.html" role="menuitem">Mobile App</a>
+          <a href="demo.html" role="menuitem">Demo</a>
+        </div>
+      </div>
+      <a href="construction.html">Construction</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a class="cta-ghost" href="https://sigbot.app/login">Log in</a>
+      <a class="cta" href="https://sigbot.app/get-started">Start free</a>
+    </div>
+  </nav>
+</div>
+
+  <div class="container">
+    <div class="page" id="main" tabindex="-1">
+
+      <h1 class="pageTitle" id="book-title">Book a call</h1>
+      <p class="pageSub" id="book-blurb" style="max-width: var(--measure);">Twenty minutes. Ten to hear how bid day works today, ten to pick the right build. No demo unless you want one.</p>
+
+      <div class="book-grid" style="margin-top: 44px;">
+
+        <!-- CALENDAR (only when a scheduling link is configured in
+             assets/js/site-config.js — otherwise the form below is the
+             booking system, and it is complete on its own). -->
+        <div class="panel" id="book-calendar" hidden>
+          <p class="panelTitle">Pick a time</p>
+        </div>
+
+        <!-- FORM -->
+        <div class="panel" id="book-form-panel">
+          <p class="panelTitle">Tell us what you need</p>
+
+          <form id="enquiry-form" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="f-name">Name</label>
+              <input id="f-name" name="name" type="text" class="form-control" placeholder="Your name" autocomplete="name" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" class="form-control" placeholder="you@company.co.uk" autocomplete="email" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="f-company">Company</label>
+              <input id="f-company" name="company" type="text" class="form-control" placeholder="Optional" autocomplete="organization">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="f-phone">Phone</label>
+              <input id="f-phone" name="phone" type="tel" class="form-control" placeholder="Optional — if you'd rather we called" autocomplete="tel">
+            </div>
+
+            <div class="form-group" id="group-preferredTimes">
+              <label class="form-label" for="f-times">When suits?</label>
+              <input id="f-times" name="preferredTimes" type="text" class="form-control" placeholder="Tuesday or Thursday afternoon, UK time">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="f-message">What do you need?</label>
+              <textarea id="f-message" name="message" class="form-control" rows="5" placeholder="How your team works today, and what you'd want out of this."></textarea>
+            </div>
+
+            <!-- Honeypot. Not a real field; people never see it. -->
+            <div class="hp" aria-hidden="true">
+              <label for="f-website">Website</label>
+              <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="btnrow" style="margin-top: 8px;">
+              <button class="btnPrimary" type="submit" style="cursor:pointer;">Send request</button>
+              <a class="btnGhost" href="pricing.html">See pricing</a>
+            </div>
+            <p class="form-status" id="form-status" hidden></p>
+            <p style="font-size:12px; color: var(--muted); margin: 14px 0 0; line-height:1.5;">
+              Goes straight to support@sigbot.co, and you get a copy. We reply within one working day.
+            </p>
+          </form>
+
+          <!-- Shown in place of the form once it has actually sent. -->
+          <div class="book-done" id="form-done" hidden>
+            <h2>Got it — thank you</h2>
+            <p>We have your request and have sent you a copy. We reply within one working day, usually sooner.</p>
+            <p>If it is urgent, write to <a href="mailto:support@sigbot.co" style="color: var(--accent);">support@sigbot.co</a> and say so.</p>
+            <div class="btnrow" style="margin-top:16px">
+              <a class="btnGhost" href="https://sigbot.app/get-started">Start free while you wait</a>
+            </div>
+          </div>
+
+          <button class="link-btn" id="book-form-toggle" style="margin-top:16px" hidden>Rather send a message?</button>
+        </div>
+      </div>
+
+      <hr class="section-rule">
+
+      <!-- What to expect -->
+      <div class="twoCol book-aside" style="text-align: left;">
+        <div class="panel">
+          <p class="panelTitle">What happens on the call</p>
+          <div class="kv">
+            <div class="kvRow">
+              <div class="kvKey">First 10 minutes</div>
+              <div class="kvVal">You talk. How your subcontractor or client list is kept today, who maintains it, and what goes wrong on bid day.</div>
+            </div>
+            <div class="kvRow">
+              <div class="kvKey">Last 10 minutes</div>
+              <div class="kvVal">We say plainly whether Sigbot helps, which build fits, and what it costs. If it doesn't fit, we say that too.</div>
+            </div>
+            <div class="kvRow">
+              <div class="kvKey">No demo</div>
+              <div class="kvVal">Unless you ask for one. You can see the product yourself for free in the meantime.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <p class="panelTitle">Rather not talk?</p>
+          <div class="kv">
+            <div class="kvRow">
+              <div class="kvKey">Try it</div>
+              <div class="kvVal"><a href="https://sigbot.app/get-started" style="color: var(--accent);">Start free</a> — 150 scans a day, 1,000 contacts, no card.</div>
+            </div>
+            <div class="kvRow">
+              <div class="kvKey">Buy a build</div>
+              <div class="kvVal"><a href="build.html" style="color: var(--accent);">Done-for-you builds</a> from $249. Connect a mailbox, tell us what you need, pay. No call required.</div>
+            </div>
+            <div class="kvRow">
+              <div class="kvKey">Just email</div>
+              <div class="kvVal"><a href="mailto:support@sigbot.co" style="color: var(--accent);">support@sigbot.co</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="footer-top">
+        <div>© <span id="y"></span> SIGBOT</div>
+        <div class="small"><a href="/legal/terms.html">Terms</a> · <a href="/legal/privacy.html">Privacy</a> · <a href="refund.html">Refunds</a> · <a href="/legal/security.html">Security</a> · <a href="/legal/dpa.html">DPA</a> · <a href="pricing.html">Pricing</a> · <a href="contact.html">Contact</a></div>
+      </div>
+      <div class="footer-legal">
+        Sigbot is a trading name of Sigbot Ltd. Registered in England and Wales. Company No: 16997653.
+      </div>
+    </div>
+
+  </div>
+
+  <script src="assets/js/site-config.js"></script>
+  <script src="assets/js/booking.js"></script>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    sigbotInitBookingPage();
+  </script>
+  <script src="assets/js/nav.js"></script>
+</body>
+
+</html>

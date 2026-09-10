@@ -23,6 +23,18 @@
     rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    /* Off-screen rather than display:none, which some bots skip. */
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0; }
+    .form-status { font-size: 14px; color: var(--muted); margin: 12px 0 0; line-height: 1.5; }
+    .form-status--error { color: #f87171; }
+    .book-done {
+      border: 1px solid rgba(34, 197, 94, 0.3); background: rgba(34, 197, 94, 0.08);
+      border-radius: 12px; padding: 24px;
+    }
+    .book-done h2 { font-size: 18px; margin: 0 0 8px; }
+    .book-done p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 0; }
+  </style>
 
   <meta property="og:title" content="Contact | Sigbot" />
   <meta property="og:description" content="Get in touch with Sigbot." />
@@ -86,17 +98,17 @@
             </div>
             <div class="kvRow">
               <div class="kvKey">Team rollouts</div>
-              <div class="kvVal">Include company + mailbox count</div>
+              <div class="kvVal"><a href="book.html?topic=team" style="color: var(--accent);">Book a call</a> — include company + mailbox count</div>
             </div>
             <div class="kvRow">
               <div class="kvKey">Response time</div>
-              <div class="kvVal">Usually same day</div>
+              <div class="kvVal">Usually same day. You get an emailed copy of anything you send.</div>
             </div>
           </div>
 
           <div class="btnrow" style="margin-top:32px">
             <a class="btnPrimary" href="mailto:support@sigbot.co?subject=Sigbot%20Support">Email support</a>
-            <a class="btnGhost" href="mailto:support@sigbot.co?subject=Sigbot%20Team%20Rollout">Team pricing</a>
+            <a class="btnGhost" href="book.html?topic=team">Book a call</a>
           </div>
         </div>
 
@@ -104,28 +116,40 @@
         <div class="panel">
           <p class="panelTitle">Send a Message</p>
 
-          <form id="contact-form">
+          <form id="enquiry-form" novalidate>
             <div class="form-group">
-              <label class="form-label">Name</label>
-              <input name="name" type="text" class="form-control" placeholder="Your name" required>
+              <label class="form-label" for="c-name">Name</label>
+              <input id="c-name" name="name" type="text" class="form-control" placeholder="Your name" autocomplete="name" required>
             </div>
 
             <div class="form-group">
-              <label class="form-label">Email</label>
-              <input name="email" type="email" class="form-control" placeholder="your@email.com" required>
+              <label class="form-label" for="c-email">Email</label>
+              <input id="c-email" name="email" type="email" class="form-control" placeholder="your@email.com" autocomplete="email" required>
             </div>
 
             <div class="form-group">
-              <label class="form-label">Message</label>
-              <textarea name="message" class="form-control" rows="5" placeholder="How can we help?" required></textarea>
+              <label class="form-label" for="c-message">Message</label>
+              <textarea id="c-message" name="message" class="form-control" rows="5" placeholder="How can we help?" required></textarea>
+            </div>
+
+            <!-- Honeypot. Not a real field; people never see it. -->
+            <div class="hp" aria-hidden="true">
+              <label for="c-website">Website</label>
+              <input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off">
             </div>
 
             <div class="btnrow" style="margin-top:32px">
               <button class="btnPrimary" type="submit" style="cursor:pointer;">Send Message</button>
               <a class="btnGhost" href="faq.html">See FAQ</a>
             </div>
-            <p style="font-size:12px; color: var(--muted); margin: 12px 0 0;">Opens your email app with the message pre-filled — sends to support@sigbot.co.</p>
+            <p class="form-status" id="form-status" hidden></p>
+            <p style="font-size:12px; color: var(--muted); margin: 12px 0 0;">Sends to support@sigbot.co and emails you a copy. No mail app needed.</p>
           </form>
+
+          <div class="book-done" id="form-done" hidden>
+            <h2>Got it — thank you</h2>
+            <p>Your message is with us and a copy is on its way to you. We usually reply the same day.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -148,7 +172,11 @@
 
   </div>
 
-  <script src="assets/js/contact.js"></script>
+  <script src="assets/js/site-config.js"></script>
+  <script src="assets/js/booking.js"></script>
+  <script>
+    sigbotWireEnquiryForm(document.getElementById('enquiry-form'), { kind: 'support' });
+  </script>
   <script src="assets/js/nav.js"></script>
 </body>
 
