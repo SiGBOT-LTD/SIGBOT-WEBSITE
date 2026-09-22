@@ -66,6 +66,7 @@ function sigbotTrack(event, props) {
    added later, including the ones inside the nav dropdown. */
 (function () {
   var DESTINATIONS = [
+    { test: /apps\.apple\.com/, name: 'app_store' },
     { test: /sigbot\.app\/login/, name: 'login' },
     { test: /get-started/, name: 'get_started' },
     { test: /pricing/, name: 'pricing' },

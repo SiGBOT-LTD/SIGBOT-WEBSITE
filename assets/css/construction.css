@@ -369,6 +369,13 @@
       letter-spacing: -0.02em; margin-bottom: 10px;
     }
     .con-stepCard p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+    .con-stepCard p a, .con-problemCard p a {
+      color: var(--fg);
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.35);
+      text-underline-offset: 3px;
+    }
+    .con-stepCard p a:hover, .con-problemCard p a:hover { color: var(--accent); }
 
     /* ── QUOTE ── */
     .con-quoteSection {

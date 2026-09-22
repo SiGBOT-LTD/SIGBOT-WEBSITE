@@ -162,3 +162,119 @@
   border: 1px solid rgba(var(--accent-rgb), 0.15);
   border-radius: 24px;
 }
+
+/* ── Store badges (hero + closing CTA) ──────────────────────────────
+   The App Store badge is a real link (the iOS app shipped 12 Sep 2026);
+   Google Play keeps the same shape, unlinked and dimmed, until the Play
+   listing is live — then it becomes an <a> with the same classes. */
+.store-row {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.store-badges {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.store-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 176px;
+  padding: 11px 18px;
+  background: #000;
+  color: #fff;
+  border: 1.5px solid #3a3a3a;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.store-badge svg {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.store-badge-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.15;
+}
+
+.store-badge-small {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.store-badge-large {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+a.store-badge:hover {
+  color: #fff;
+  border-color: var(--chrome, #666);
+  transform: translateY(var(--lift-control, -2px));
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+.store-badge--soon {
+  opacity: 0.55;
+  cursor: default;
+}
+
+/* Laptop readers point their phone at this; on a phone it is noise. */
+.store-qr {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.store-qr img {
+  width: 92px;
+  height: 92px;
+  display: block;
+}
+
+.store-meta {
+  margin: 16px auto 0;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.store-row--end .btnPrimary,
+.store-row--end .btnGhost {
+  margin: 0;
+}
+
+.store-row--end {
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .store-qr { display: none; }
+  .store-badges { flex-direction: column; width: 100%; }
+  .store-badge { width: 100%; max-width: 320px; justify-content: center; }
+}

@@ -157,6 +157,18 @@
       text-align: left;
     }
 
+    .compare-table td a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 255, 255, 0.35);
+      text-underline-offset: 3px;
+    }
+
+    .compare-table td a:hover {
+      color: var(--accent);
+      text-decoration-color: currentColor;
+    }
+
     .compare-table thead th.col-highlight {
       color: var(--accent);
     }

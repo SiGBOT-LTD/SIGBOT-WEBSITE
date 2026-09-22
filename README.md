@@ -46,6 +46,11 @@ Plain HTML/CSS/JS, no build step, hosted on **GitHub Pages** with the custom dom
   Terms · Privacy · Refunds · Security · DPA · Contact.
 - **Domains:** canonical URLs, OG tags, and the sitemap all use `https://sigbot.co`.
   `sigbot.ca` is legacy (GoDaddy-forwarded → sigbot.co). App links point to `https://sigbot.app`.
+- **iOS app:** live on the App Store since 12 Sep 2026 at
+  `https://apps.apple.com/app/sigbot/id6797326694` (linked from mobile.html, the home footer
+  CTA, faq.html; `assets/app-store-qr.svg` encodes the same URL). Google Play is not live yet:
+  the Play badge on mobile.html is unlinked and marked "coming soon" — when it ships, turn it
+  into an `<a class="store-badge">` and update the FAQ answers that say Android is coming.
 - **CTAs leave the site:** every "Start free" links to `https://sigbot.app/get-started` and
   "Log in" to `https://sigbot.app/login`. The site never collects an email or a password —
   it has no server. Signup is the app's job.
