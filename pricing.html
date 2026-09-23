@@ -102,7 +102,13 @@
            price:enterprise markers, generated from
            the app's catalog; pricing.js still owns the priced elements
            by id and swaps in Paddle's localised figures, and owns the
-           checkout buttons. -->
+           checkout buttons.
+
+           GENERATED — do not hand-edit anything between a
+           sigbot:pricing:… start/end pair: the sync replaces it. The card
+           bullets come from PLAN_METADATA, the figures from the same
+           catalog. Everything OUTSIDE the markers (these buttons, the
+           localisation script) is hand-written and is left alone. -->
       <div class="plan-strip">
 
         <!-- FREE -->
@@ -317,8 +323,10 @@
       <hr class="section-rule">
 
       <!-- SERVICES — done-for-you builds (one-time, sold on build.html).
-           The three cards are generated whole between the services
-           markers from SERVICE_SKUS in the app's catalog. -->
+           GENERATED — the three cards are written whole between the services
+           markers from SERVICE_SKUS in the app's catalog
+           (scripts/sync-pricing-copy.mjs in the app repo); do not hand-edit
+           them, the next sync replaces them. -->
       <div class="services" id="services">
         <h2 style="font-size: 24px; font-weight: 800; margin: 0 0 4px; letter-spacing: -0.03em;">Done-for-you builds</h2>
         <p style="font-size: 14px; color: var(--muted); margin: 0 auto 28px; max-width: var(--measure);">Skip the setup. We turn your inbox — or your whole team's — into a clean contact database, and hand it over ready to use. One-off, no subscription required.</p>
@@ -357,7 +365,15 @@
 
       <hr class="section-rule">
 
-      <!-- Feature Comparison Table -->
+      <!-- FEATURE COMPARISON TABLE
+           GENERATED — do not hand-edit the rows below. Every row between the
+           compare markers inside <tbody> is written from PLAN_COMPARISON in
+           the app's catalog (packages/shared/src/billing/comparison.ts) by
+           scripts/sync-pricing-copy.mjs in the app repo, which REPLACES
+           whatever sits between the markers. An edit made here survives only
+           until the next sync and then vanishes without a word — which is how
+           the two links to mobile.html were nearly lost. Change the row (or
+           its links) in comparison.ts and re-run the sync. -->
       <div style="text-align: left;">
         <h2 style="font-size: 24px; font-weight: 800; margin: 0 0 4px; letter-spacing: -0.03em;">Full feature comparison</h2>
         <p style="font-size: 14px; color: var(--muted); margin: 0 0 32px;">Everything you get on each plan.</p>
