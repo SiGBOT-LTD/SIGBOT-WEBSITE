@@ -301,9 +301,20 @@
        Checkout must happen inside the app, signed in — every Paddle
        purchase is keyed to a Firebase account via customData.firebase_uid.
        The buy buttons hand the visitor to the app with the chosen plan in
-       the query string; sigbot.app/upgrade sits behind the login wall and
-       opens the matching checkout once signed in. Team plans are
-       annual-only; Individual can go monthly from its second button. */
+       the query string. Team plans are annual-only; Individual can go
+       monthly from its second button.
+
+       Two destinations, because buying a team plan is not the same job as
+       buying a single licence:
+         - individual → sigbot.app/upgrade, which opens the matching
+           checkout once signed in;
+         - starter / professional → sigbot.app/get-started?plan=…, the
+           guided team flow: company name, then checkout, then a team is
+           created and colleagues are invited. Sending a team buyer to
+           /upgrade took their money and left them with a subscription and
+           no team, and nothing on screen asking them to make one. */
+    var TEAM_PLANS = { starter: 1, professional: 1 };
+
     function openCheckout(plan, cycle) {
       cycle = cycle || 'yearly';
       sigbotTrack('checkout_opened', {
@@ -313,8 +324,9 @@
         country: LOCAL ? LOCAL.country : null
       });
 
-      window.location.href = 'https://sigbot.app/upgrade' +
-        '?plan=' + plan + '&cycle=' + cycle;
+      window.location.href = TEAM_PLANS[plan]
+        ? 'https://sigbot.app/get-started?plan=' + plan
+        : 'https://sigbot.app/upgrade?plan=' + plan + '&cycle=' + cycle;
     }
 
     ['individual', 'starter', 'professional'].forEach(function (plan) {
