@@ -95,8 +95,31 @@
         saving:  document.getElementById('individual-saving')
       },
       starter:      { price: document.getElementById('starter-price') },
-      professional: { price: document.getElementById('professional-price') }
+      professional: { price: document.getElementById('professional-price') },
+      free:         { price: document.getElementById('free-price') },
+      enterprise:   { price: document.getElementById('enterprise-price') }
     };
+
+    /* Free and Enterprise have no Paddle price to preview. Free is zero in
+       any currency. Enterprise is a quoted "From $25,000", so it moves by
+       the factor Paddle applies to Professional — currency, tax and
+       Paddle's own rounding all folded in — and then rounds to two
+       significant figures: the start of a quote, not a checkout amount.
+       The USD figures are read from the markup once, before anything is
+       swapped, so the sync stays the only place they are written. */
+    function usdAmount(el) {
+      var digits = el ? el.textContent.replace(/[^\d]/g, '') : '';
+      return digits ? Number(digits) : null;
+    }
+
+    var USD = {
+      professional: usdAmount(EL.professional.price),
+      enterprise:   usdAmount(EL.enterprise.price)
+    };
+
+    var ENTERPRISE_PREFIX = EL.enterprise.price
+      ? EL.enterprise.price.textContent.split('$')[0]
+      : '';
 
     /* ─── MONEY ─────────────────────────────────────────────────────── */
     function currencyDigits(currency) {
@@ -125,6 +148,13 @@
       }).format(amount);
     }
 
+    // Two significant figures: 22,157 → 22,000; 3,844,800 → 3,800,000.
+    function roughly(minorUnits) {
+      if (!(minorUnits > 0)) return 0;
+      var step = Math.pow(10, Math.floor(Math.log10(minorUnits)) - 1);
+      return Math.round(minorUnits / step) * step;
+    }
+
     /* ─── RENDER ──────────────────────────────────────────────────────
        Yearly is the headline on every card; Individual also quotes its
        monthly price on the line beneath. Once Paddle answers, every figure
@@ -140,6 +170,13 @@
       if (pct > 0) EL.individual.saving.textContent = pct + '%';
       EL.starter.price.textContent      = money(LOCAL.starter.annual);
       EL.professional.price.textContent = money(LOCAL.professional.annual);
+
+      if (EL.free.price) EL.free.price.textContent = money(0);
+      if (EL.enterprise.price && USD.enterprise && USD.professional) {
+        EL.enterprise.price.textContent = ENTERPRISE_PREFIX + money(roughly(
+          LOCAL.professional.annual * USD.enterprise / USD.professional
+        ));
+      }
     }
 
     /* The copy that quotes numbers has to move with the prices. */
