@@ -8,9 +8,9 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <title>Book a build | Sigbot</title>
+  <title>Done-for-you builds | Sigbot</title>
   <meta name="description"
-    content="Done-for-you builds: we turn one mailbox or a whole team's inboxes into a clean, deduped contact database. One-off pricing, delivered as Excel, no subscription required." />
+    content="Done-for-you builds: we turn your Outlook mailbox, or your whole team's, into a clean, deduped contact database in your Sigbot account, with an Excel export. One-off prices." />
 
   <link rel="canonical" href="https://sigbot.co/build.html" />
   <meta name="robots" content="index,follow" />
@@ -25,8 +25,8 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="stylesheet" href="assets/css/pricing.css" />
 
-  <meta property="og:title" content="Book a build | Sigbot" />
-  <meta property="og:description" content="We build your subcontractor or client database from your inbox. One-off, delivered as Excel." />
+  <meta property="og:title" content="Done-for-you builds | Sigbot" />
+  <meta property="og:description" content="We build your subcontractor or client database from your inbox, in your Sigbot account, with an Excel export. One-off prices." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sigbot.co/build.html" />
   <meta property="og:image" content="https://sigbot.co/assets/dashboard.png" />
@@ -90,7 +90,7 @@
     <div class="page" style="text-align: center;" id="main" tabindex="-1">
 
       <h1 class="pageTitle">We'll build your contact database for you</h1>
-      <p class="pageSub" style="max-width: var(--measure); margin-inline: auto;">One estimator's inbox, or the whole precon team's. We run the scan, merge the duplicates, strip the newsletters, and hand you a clean list in Excel — formatted for BuildingConnected or Procore. One-off, no subscription required.</p>
+      <p class="pageSub" style="max-width: var(--measure); margin-inline: auto;">One estimator's inbox, or the whole precon team's. We run the scan, merge the duplicates, strip the newsletters, check the result, and hand you a clean list in your Sigbot account — with an Excel export laid out for Procore's directory import or as a BuildingConnected bidder list. One-off prices.</p>
 
       <div class="book-hero">
         <a class="btnPrimary" id="book-call" href="book.html?topic=build" style="padding: 14px 32px;">Book a 20-minute call</a>
@@ -101,17 +101,20 @@
       <hr class="section-rule">
 
       <!-- BUILDS
-           The prices, units and checklists between the sigbot:pricing
-           markers are generated from SERVICE_SKUS in the app's catalog
-           (scripts/sync-pricing-copy.mjs in the app repo) — do not hand-edit
-           them. The buttons hand the visitor to the app: a build is
-           delivered by scanning a mailbox inside the buyer's own account, so
-           the account and the connection have to exist before the card is
-           charged. sigbot.app/build collects the brief and takes the
-           payment — the same pattern as the plan buttons on pricing.html. -->
+           Everything between the sigbot:pricing markers — price, unit, who
+           it is for, blurb, checklist, promise, the pilot's credit terms — is
+           generated from SERVICE_SKUS in the app's catalog
+           (scripts/sync-pricing-copy.mjs in the app repo); do not hand-edit
+           it. The buttons hand the visitor to the app: a build is delivered
+           by scanning a mailbox inside the buyer's own account, so the
+           account and the connection have to exist before the card is
+           charged. sigbot.app/build collects the brief (for the team
+           builds, the application) and takes the payment once the build can
+           actually be delivered — the same pattern as the plan buttons on
+           pricing.html. -->
       <div id="builds" style="text-align: left;">
         <h2 style="font-size: 24px; font-weight: 800; margin: 0 0 4px; letter-spacing: -0.03em;">Three ways to start</h2>
-        <p style="font-size: 14px; color: var(--muted); margin: 0 0 8px;">Each one starts in the app: connect the mailbox we build from, tell us what you need, then pay. Prices in USD — Paddle, our merchant of record, bills in your local currency and adds any applicable tax at checkout.</p>
+        <p style="font-size: 14px; color: var(--muted); margin: 0 0 8px;">The Inbox History Build starts in the app: connect your Outlook mailbox, tell us what you need, pay, and the scan starts straight away. Team builds and pilots start with an application and a 20-minute call; you pay once we've agreed the scope. Prices in USD — Paddle, our merchant of record, bills in your local currency and adds any applicable tax at checkout.</p>
 
         <div class="plan-strip build-strip" style="grid-template-columns: 1fr;">
 
@@ -120,48 +123,50 @@
             <p class="plan-col-name">Inbox History Build</p>
             <div class="price-tag">
               <span class="price-value"><!-- sigbot:pricing:service-price:inbox-history-build:start -->$249<!-- sigbot:pricing:service-price:inbox-history-build:end --></span>
-              <span class="price-period"><!-- sigbot:pricing:service-unit:inbox-history-build:start -->per mailbox<!-- sigbot:pricing:service-unit:inbox-history-build:end --></span>
+              <span class="price-period"><!-- sigbot:pricing:service-unit:inbox-history-build:start -->one mailbox, one-off<!-- sigbot:pricing:service-unit:inbox-history-build:end --></span>
             </div>
-            <p class="service-blurb">The "install" moment for one person. Your entire mailbox history becomes a subcontractor or client list you can actually use — in about a day.</p>
+            <p class="service-audience"><!-- sigbot:pricing:service-audience:inbox-history-build:start -->Outlook and Microsoft 365 mailboxes.<!-- sigbot:pricing:service-audience:inbox-history-build:end --></p>
+            <p class="service-blurb"><!-- sigbot:pricing:service-blurb:inbox-history-build:start -->We scan one Outlook or Microsoft 365 mailbox end to end and hand you a clean, deduplicated contact list — live in your account and as an Excel export — with 30 days of Individual from delivery.<!-- sigbot:pricing:service-blurb:inbox-history-build:end --></p>
             <!-- sigbot:pricing:service-deliverables:inbox-history-build:start -->
           <ul class="feature-list">
             <li class="feature-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Full backfill of one mailbox
+              Full history of one Outlook or Microsoft 365 mailbox, up to 50,000 emails
             </li>
             <li class="feature-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Duplicates merged, newsletters and no-reply mail removed
+              Duplicates merged, newsletters and no-reply senders removed, checked by a person
             </li>
             <li class="feature-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Excel export formatted for BuildingConnected or Procore
+              Excel laid out for Procore’s directory import or as a BuildingConnected bidder list — or plain Excel/CSV
             </li>
             <li class="feature-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              30 days of the Individual plan
+              30 days of the Individual plan, starting on delivery
             </li>
           </ul>
             <!-- sigbot:pricing:service-deliverables:inbox-history-build:end -->
             <div class="btnrow">
               <a class="btnPrimary" data-start="inbox-history-build" href="https://sigbot.app/build?service=inbox-history-build">Start this build →</a>
             </div>
-            <p class="pay-note">Connect the mailbox, tell us what you need, then pay. Takes about two minutes, and you will see it working before you are charged.</p>
+            <p class="pay-note">Connect your Outlook mailbox, tell us what you need, then pay. <!-- sigbot:pricing:service-promise:inbox-history-build:start -->Starts the moment you pay. Most mailboxes are delivered within 3 working days; above 50,000 emails we'll agree a date with you.<!-- sigbot:pricing:service-promise:inbox-history-build:end --> <a href="refund.html#builds" style="color: var(--accent);">Refund terms</a>.</p>
           </div>
 
           <!-- TEAM DATABASE BUILD -->
-          <div class="plan-col plan-col--lead build-col">
-            <p class="plan-col-name">Team Database Build <span class="plan-col-badge">Most popular</span></p>
+          <div class="plan-col build-col">
+            <p class="plan-col-name">Team Database Build</p>
             <div class="price-tag">
               <span class="price-value"><!-- sigbot:pricing:service-price:team-database-build:start -->$1,500<!-- sigbot:pricing:service-price:team-database-build:end --></span>
               <span class="price-period"><!-- sigbot:pricing:service-unit:team-database-build:start -->up to 10 mailboxes<!-- sigbot:pricing:service-unit:team-database-build:end --></span>
             </div>
-            <p class="service-blurb">Done-for-you onboarding for the whole team. Every inbox scanned into one shared database, organised the way your projects and trades actually run.</p>
+            <p class="service-audience"><!-- sigbot:pricing:service-audience:team-database-build:start -->For teams on Starter or Professional — each teammate needs a seat. Not on a team plan yet? The 60-day pilot includes this build.<!-- sigbot:pricing:service-audience:team-database-build:end --></p>
+            <p class="service-blurb"><!-- sigbot:pricing:service-blurb:team-database-build:start -->Your whole team’s Outlook mailboxes built into one shared database: folders set up by project and trade, duplicates merged across the team, and a 45-minute handover call.<!-- sigbot:pricing:service-blurb:team-database-build:end --></p>
             <!-- sigbot:pricing:service-deliverables:team-database-build:start -->
           <ul class="feature-list">
             <li class="feature-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Everything in the Inbox History Build, across up to 10 mailboxes
+              Up to 10 Outlook or Microsoft 365 mailboxes, each connected by its owner from a team invite
             </li>
             <li class="feature-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -178,9 +183,9 @@
           </ul>
             <!-- sigbot:pricing:service-deliverables:team-database-build:end -->
             <div class="btnrow">
-              <a class="btnPrimary" data-start="team-database-build" href="https://sigbot.app/build?service=team-database-build">Start this build →</a>
+              <a class="btnPrimary" data-start="team-database-build" href="https://sigbot.app/build?service=team-database-build">Apply for this build →</a>
             </div>
-            <p class="pay-note">Tell us who is on the team and how you want the folders, then pay. We confirm the scope with you within one working day, before any work starts. Converts straight into a Starter plan at the handover.</p>
+            <p class="pay-note">Creates your free Sigbot account. <!-- sigbot:pricing:service-promise:team-database-build:start -->Nothing to pay until we’ve agreed the scope and dates on a 20-minute call.<!-- sigbot:pricing:service-promise:team-database-build:end --> <a href="refund.html#builds" style="color: var(--accent);">Refund terms</a>.</p>
           </div>
 
           <!-- PAID PILOT -->
@@ -190,12 +195,13 @@
               <span class="price-value"><!-- sigbot:pricing:service-price:paid-pilot:start -->$1,250<!-- sigbot:pricing:service-price:paid-pilot:end --></span>
               <span class="price-period"><!-- sigbot:pricing:service-unit:paid-pilot:start -->50% now, 50% at day 30<!-- sigbot:pricing:service-unit:paid-pilot:end --></span>
             </div>
-            <p class="service-blurb">Prove it on a live tender. Your team runs on Sigbot for 60 days with the database built for you, and the whole fee comes off your first year if you continue.</p>
+            <p class="service-audience"><!-- sigbot:pricing:service-audience:paid-pilot:start -->For teams of up to 15 trying Sigbot before an annual plan.<!-- sigbot:pricing:service-audience:paid-pilot:end --></p>
+            <p class="service-blurb"><!-- sigbot:pricing:service-blurb:paid-pilot:start -->Starter for your team for 60 days, the Team Database Build in the first week, and a weekly 20-minute check-in.<!-- sigbot:pricing:service-blurb:paid-pilot:end --></p>
             <!-- sigbot:pricing:service-deliverables:paid-pilot:start -->
           <ul class="feature-list">
             <li class="feature-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Starter plan for one team, 60 days
+              Starter plan for up to 15 people, 60 days
             </li>
             <li class="feature-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -207,14 +213,15 @@
             </li>
             <li class="feature-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Credited in full against an annual contract
+              Fee credited in full against a Starter or Professional annual plan
             </li>
           </ul>
             <!-- sigbot:pricing:service-deliverables:paid-pilot:end -->
             <div class="btnrow">
-              <a class="btnPrimary" data-start="paid-pilot" href="https://sigbot.app/build?service=paid-pilot">Request a pilot →</a>
+              <a class="btnPrimary" data-start="paid-pilot" href="https://sigbot.app/build?service=paid-pilot">Apply for a pilot →</a>
             </div>
-            <p class="pay-note">You tell us what the pilot should prove and when suits for the kick-off call, then pay the first half. Credited in full against an annual plan signed within 30 days of the pilot ending.</p>
+            <p class="pay-note">Creates your free Sigbot account. <!-- sigbot:pricing:service-promise:paid-pilot:start -->Nothing to pay until we’ve agreed the scope on a 20-minute call. The pilot runs 60 days from the first payment.<!-- sigbot:pricing:service-promise:paid-pilot:end --></p>
+            <p class="pay-note"><!-- sigbot:pricing:service-credit:paid-pilot:start -->The full $1,250 is credited against a Starter or Professional annual plan signed within 30 days of the pilot ending.<!-- sigbot:pricing:service-credit:paid-pilot:end --> <a href="refund.html#builds" style="color: var(--accent);">Refund terms</a>.</p>
           </div>
 
         </div>
@@ -225,22 +232,22 @@
       <!-- HOW IT WORKS -->
       <div style="text-align: left;">
         <h2 style="font-size: 24px; font-weight: 800; margin: 0 0 4px; letter-spacing: -0.03em;">How a build works</h2>
-        <p style="font-size: 14px; color: var(--muted); margin: 0;">You spend about twenty minutes on it in total.</p>
+        <p style="font-size: 14px; color: var(--muted); margin: 0;">Your part is a few minutes — plus, for a team build, a 20-minute call and the handover.</p>
         <div class="steps">
           <div class="step">
             <div class="step-num">01</div>
             <h3>Connect the mailbox</h3>
-            <p>You sign in to Sigbot and connect Outlook — read-only, revocable any time. For a team build, each person does the same, or an admin does it for them. Nothing is forwarded to us and no one at Sigbot reads your mail.</p>
+            <p>You sign in to Sigbot and connect Outlook or Microsoft 365 — read-only, revocable any time. For a team build, each teammate gets a team invite and connects their own mailbox. Nothing is forwarded to us and no one at Sigbot reads your mail.</p>
           </div>
           <div class="step">
             <div class="step-num">02</div>
-            <h3>We run and clean the scan</h3>
-            <p>The full history is scanned, signatures are parsed, contacts are merged by email address, and newsletters, no-reply senders and bounces are removed. For team builds we set up folders by project and trade and merge duplicates across people.</p>
+            <h3>We run, clean and check the scan</h3>
+            <p>The Inbox History Build's scan starts the moment you pay. The mailbox's history is scanned, signatures are parsed, contacts are merged by email address, and newsletters, no-reply senders and bounces are removed. Then a person at Sigbot checks the list before it's handed over. For team builds we also set up folders by project and trade and merge duplicates across people.</p>
           </div>
           <div class="step">
             <div class="step-num">03</div>
             <h3>Handover</h3>
-            <p>You get the database live in Sigbot plus an Excel export formatted for BuildingConnected or Procore. Team builds include a 45-minute handover call. Individual builds include 30 days of the Individual plan so the list keeps itself current.</p>
+            <p>Your contacts are live in your Sigbot account, and your order page has the export: laid out for Procore's directory import or as a BuildingConnected bidder list, or plain Excel or CSV. The Inbox History Build includes 30 days of the Individual plan from delivery. Team builds include a 45-minute handover call.</p>
           </div>
         </div>
       </div>
@@ -253,27 +260,27 @@
         <div class="kv kv--qa">
           <div class="kvRow">
             <h3 class="kvKey">Do I need a Sigbot subscription?</h3>
-            <div class="kvVal">No. Every build is a one-off and you keep the Excel file whatever you decide next. You do need a Sigbot account — it is free, takes a minute, and it is where the build is delivered — but no paid plan. The Inbox History Build includes 30 days of Individual so the list keeps itself current afterwards, and team builds convert straight into a Starter plan at the handover.</div>
+            <div class="kvVal">Not for the Inbox History Build. It's a one-off, and you keep your contacts and the export whatever you decide next. You need a free Sigbot account — it takes a minute, and it's where the build is delivered — and the build includes 30 days of the Individual plan from delivery. The Team Database Build is for teams already on Starter or Professional; the 60-day pilot includes Starter for your team while it runs.</div>
           </div>
           <div class="kvRow">
             <h3 class="kvKey">Why do I connect the mailbox before paying?</h3>
-            <div class="kvVal">Because that is the order that protects you. The scan runs inside your own account against a mailbox you connect — nobody at Sigbot ever reads your mail — so if your IT setup blocks it, we both find out before any money changes hands rather than after. You will also have watched real contacts appear before you are asked for a card.</div>
+            <div class="kvVal">Because that is the order that protects you. The scan runs inside your own account against a mailbox you connect — nobody at Sigbot ever reads your mail — so if your IT setup blocks it, we both find out before any money changes hands rather than after. Once it's connected you can preview the first contacts it finds before you pay. If your IT team has to approve Sigbot first, save your brief and we'll send you the request to pass on; you pay only once the mailbox connects.</div>
           </div>
           <div class="kvRow">
             <h3 class="kvKey">Which mailboxes can you build from?</h3>
-            <div class="kvVal">Outlook and Microsoft 365 mailboxes connect directly. Gmail and other IMAP mailboxes work through an app password — we'll walk you through it on the call.</div>
+            <div class="kvVal">The Inbox History Build works with Outlook and Microsoft 365 mailboxes. Gmail and other providers aren't supported yet: start the build, choose "Tell me when Gmail is ready", and we'll keep your answers and email you if that changes. For a team build, each teammate needs an Outlook or Microsoft 365 mailbox.</div>
           </div>
           <div class="kvRow">
             <h3 class="kvKey">Who sees my email?</h3>
-            <div class="kvVal">Nobody at Sigbot reads your mail. The scan runs inside your own Sigbot account against the mailbox you connected, and only the signature blocks are parsed. You can revoke access the moment the build is delivered. See our <a href="/legal/security.html" style="color: var(--accent);">security page</a> and <a href="/legal/dpa.html" style="color: var(--accent);">DPA</a>.</div>
+            <div class="kvVal">Nobody at Sigbot reads your mail. The scan runs inside your own Sigbot account against the mailbox you connected, and only the signature blocks are parsed. To check the result, a person at Sigbot looks at the contacts the build found — never your emails — and you agree to that when you order. You can revoke access the moment the build is delivered. See our <a href="/legal/security.html" style="color: var(--accent);">security page</a> and <a href="/legal/dpa.html" style="color: var(--accent);">DPA</a>.</div>
           </div>
           <div class="kvRow">
             <h3 class="kvKey">What if the list isn't what I expected?</h3>
-            <div class="kvVal">Tell us within 30 days and we'll either rework it or refund the build in full — the same <a href="refund.html" style="color: var(--accent);">30-day money-back guarantee</a> as every paid plan.</div>
+            <div class="kvVal">Tell us. What happens next depends on the build, and each one's terms are in our <a href="refund.html#builds" style="color: var(--accent);">refund policy</a> — separate from the money-back guarantee on paid plans.</div>
           </div>
           <div class="kvRow">
             <h3 class="kvKey">Can I pay by invoice?</h3>
-            <div class="kvVal">Yes. <a href="book.html?topic=build" style="color: var(--accent);">Book a call</a> and ask, or <a href="mailto:support@sigbot.co?subject=Build%20invoice" style="color: var(--accent);">email us</a> — we'll send a Paddle invoice with bank transfer details.</div>
+            <div class="kvVal">Yes. Create your free Sigbot account with the email address the invoice should go to, then <a href="book.html?topic=build" style="color: var(--accent);">book a call</a> or <a href="mailto:support@sigbot.co?subject=Build%20invoice" style="color: var(--accent);">email us</a> — we'll send a Paddle invoice with bank transfer details, and your order updates by itself when it's paid.</div>
           </div>
         </div>
       </div>
